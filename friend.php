@@ -86,7 +86,7 @@
                         	<h6> 
                         		<span class="glyphicon glyphicon-map-marker"></span>
                         		Check-in Room 316A (Study)</h6>
-                        	<p>3 days ago</p>
+                        	<p>4 days ago</p>
                          </div>
                     </div>
                 </div>
