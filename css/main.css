@@ -1,0 +1,538 @@
+/**
+$pink = #ee4055;
+$red = #e03838;
+$orange = #ef4f23;
+$green = #26b89a;
+$blue = #3d8cea;
+$purple = #883c96;
+*/
+
+
+.btn_login{
+	width:100%;
+	border-radius: 16px;
+}
+.btn_fb{
+	width:100%;
+	border-radius: 22px;
+	margin-top:25px;
+}
+.btn_reg{
+	width:100%;
+	border-radius:16px;
+}
+.intro {
+    display: table;
+    width: 100%;
+    height: 100%;
+    padding: 80px 0;
+    text-align: center;
+    color: #fff;
+    background: url(../images/intro-bg.jpg) no-repeat bottom center scroll;
+    background-color: #000;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+.form-control{
+	border-radius: 16px;
+}
+.profile {
+    display: table;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    background-color: #fff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    /*background: url(../images/intro-bg.jpg) no-repeat bottom center scroll;
+    background-color: #000;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+.profile h4{
+	font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica Neue Ultra Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Arial", sans-serif;
+	font-weight:100;
+	font-stretch:normal;
+	font-size: 12px;
+	color:#252525;
+	text-decoration: none;
+	text-shadow: none;
+	border-bottom: 1px solid #ee4055;
+	padding: 5px;
+	margin:0;
+}
+.profile h5{
+	font-size: 11px;
+	color:#ee4055;
+	text-decoration: none;
+	text-shadow: none;
+	padding: 5px;
+	margin: 0;
+}
+.profile img{
+	border: 4px solid #ee4055;
+}
+.profile_content{
+	padding:5px;
+}
+.profile_content p{
+	color:grey;
+	font-size: 10px;
+}
+
+.profile_content .glyphicon{
+	color:#ee4055;
+}
+#logo{
+	padding-bottom: 50px;
+}
+#fb_login{
+	padding-top: 30px;
+}
+
+#header_pink, #header_red, #header_orange, #header_purple, #header_green, #header_blue{
+	border: none;
+}
+
+
+#header_red{
+	background-color: #e03838;
+}
+
+#header_pink {
+	background-color: #ee4055;
+}
+
+#header_orange {
+	background-color: #ef4f23;
+}	
+#header_purple{
+	background-color: #883c96;
+}
+#header_blue{
+	background-color: #3d8cea;
+}
+#header_green{
+	background-color: #26b89a;
+}
+#header_pink a, #header_red a, #header_orange a, #header_purple a, #header_green a,#header_blue a{
+	background-color: #fff;
+	margin-top:20px;
+	border-radius: 50%;
+	text-shadow:none;
+	border:none;
+	padding:0.8em 1em;
+	margin-left: 10px;
+}
+
+#header_red a{
+	color:#e03838;
+}
+#header_pink a{
+	color:#ee4055;
+}
+#header_orange a{
+	color:#ef4f23;
+}
+#header_purple a{
+	color:#883c96;
+}
+#header_blue a{
+	color:#3d8cea;
+}
+#header_green a{
+	color:#26b89a;
+}
+#nav{
+	background-color: #2a2a2a;
+}
+
+#nav a{
+	font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica Neue Ultra Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Arial", sans-serif;
+	text-decoration: none;
+	border:none;
+	font-size: 14px;
+	text-shadow: none;
+	font-weight: 100;
+	padding-bottom: 15px;
+	padding-top:	15px;
+}
+#nav a:hover{
+	opacity: 0.9;
+}
+#nav h4{
+	font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica Neue Ultra Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Arial", sans-serif;
+	font-size: 12px;
+	color:#fff;
+	text-shadow: none;
+}
+
+
+
+.feed {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    background-color: #fff;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    /*background: url(../images/intro-bg.jpg) no-repeat bottom center scroll;
+    background-color: #000;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.feed h4{
+	font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica Neue Ultra Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Arial", sans-serif;
+	font-weight:100;
+	font-stretch:normal;
+	font-size: 16px;
+	color:#e03838;
+	text-decoration: none;
+	text-shadow: none;
+	padding: 5px;
+	margin:0;
+}
+
+.ui-content ul li a img{
+	border: 2px solid #e03838;
+	margin-right: 10px;
+}
+
+.ui-content ul li a h2{
+	font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica Neue Ultra Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Arial", sans-serif;
+	font-weight:100;
+	font-stretch:normal;
+	font-size: 12px;
+	color:#fff;
+	text-decoration: none;
+	text-shadow: none;
+	padding: 5px;
+	margin:0;
+}
+.ui-content ul li a p{
+	color:grey;
+	font-size: 10px;
+	padding-left: 10px
+}
+
+/*Checkin*/
+.checkin {
+    display: table;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    background-color: #fff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    /*background: url(../images/intro-bg.jpg) no-repeat bottom center scroll;
+    background-color: #000;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+.checkin h4{
+	font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica Neue Ultra Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Arial", sans-serif;
+	font-weight:100;
+	font-stretch:normal;
+	font-size: 12px;
+	color:#252525;
+	text-decoration: none;
+	text-shadow: none;
+	border-bottom: 1px solid #ef4f23;
+	padding: 5px;
+	margin:0;
+}
+.checkin h5{
+	font-size: 11px;
+	color:#ef4f23;
+	text-decoration: none;
+	text-shadow: none;
+	padding: 5px;
+	margin: 0;
+}
+.checkin img{
+	border: 4px solid #ef4f23;
+}
+/*Friends*/
+#friends_list ul li span{
+	color:#883c96;
+}
+#friends_list ul li img{
+	border:2px solid #883c96;
+}
+
+/*info*/
+
+
+#info_text{
+	margin-top:20px;
+	padding: 15px;
+	border-top-right-radius: 8px;
+	border-top-left-radius: 8px;
+	background-color:#252525;
+	font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica Neue Ultra Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Arial", sans-serif;
+	font-weight: 100;
+	color: #26b89a;
+}
+#info_text p{
+	font-size: 11px;
+	color:#fff;
+}
+#info_text h4{
+	font-size: 18px;
+	color: #26b89a;
+
+}
+#info_text h5{
+	font-size: 13px;
+	color: #1c705f;
+}
+#info_text h6{
+	font-size: 11px;
+	color: #26b89a;
+	
+}
+
+/*store*/
+
+#store_list ul li img{
+	border:2px solid #ee4055;
+}
+#store_list h6{
+	font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica Neue Ultra Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Arial", sans-serif;
+	font-weight: 100;
+	font-size: 12px;
+}
+#store_list p{
+	color:grey;
+}
+#store_list ul li span{
+	color:#ee4055;
+}
+/*FRiends page*/
+.friendsi {
+    display: table;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    background-color: #fff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    /*background: url(../images/intro-bg.jpg) no-repeat bottom center scroll;
+    background-color: #000;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+.friendsi h4{
+	font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica Neue Ultra Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Arial", sans-serif;
+	font-weight:100;
+	font-stretch:normal;
+	font-size: 12px;
+	color:#252525;
+	text-decoration: none;
+	text-shadow: none;
+	border-bottom: 1px solid #883c96;
+	padding: 5px;
+	margin:0;
+}
+.friendsi h5{
+	font-size: 11px;
+	color:#883c96;
+	text-decoration: none;
+	text-shadow: none;
+	padding: 5px;
+	margin: 0;
+}
+.friendsi img{
+	border: 4px solid #883c96;
+}
+.friendsi_content{
+	padding:5px;
+}
+.friendsi_content p{
+	color:grey;
+	font-size: 10px;
+}
+
+.friendsi_content .glyphicon{
+	color:#883c96;
+}
+/*From style.css*/
+
+
+#login{
+	margin: 10px;
+}
+
+
+
+#log:hover{
+background-color:#33bb11;
+opacity:0.2;
+
+}
+
+#fb{
+background-color:#330055;
+opacity:0.5;
+
+}
+
+#fb:hover{
+background-color:#330055;
+opacity:0.2;
+
+}
+
+.log{
+margin:20px;
+}
+
+#logo{
+text-align:center;
+}
+
+#hot{
+
+margin-bottom:10px;
+margin-left:10px;
+margin-right:20px;
+padding:4px;
+display:inline-block;
+}
+#warm{
+
+display:inline-block;
+margin-right:30px;
+padding:4px;
+margin-bottom:10px;
+}
+#cold{
+
+display:inline-block;
+margin-right:10px;
+margin-bottom:10px;
+padding:4px;
+}
+#dark{
+
+display:inline-block;
+margin-right:55px;
+margin-bottom:10px;
+padding:4px;
+}
+#bright{
+
+display:inline-block;
+margin-right:15px;
+margin-bottom:10px;
+padding:4px;
+}
+#comfy{
+
+display:inline-block ;
+margin-right:15px;
+margin-bottom:10px;
+padding:4px;
+}
+#crowded{
+
+display:inline-block;
+margin-right:30px;
+margin-bottom:10px;
+padding:4px;
+}
+#peaceful{
+
+display:inline-block;
+padding:4px;
+margin-right:105px;
+margin-bottom:10px;
+}
+
+#check-in{
+	text-align:center;
+	padding-top: 10px;
+}
+
+#hash-tag{
+	background-color: #1a1a1a;
+	width:100%;
+	padding: 15px;
+}
+
+#check-in-title h2{
+	color: #de5c38;
+	text-shadow: none;
+	text-align: center;
+	font-size: 20px;
+	font-weight: 100;
+}
+#checkin_location{
+	background-color: #1d1d1d;
+	width:100%;
+	padding: 15px;
+}
+#checkin_location h2, #hash-tag h2{
+	font-size:16px;
+	font-weight: 100;
+	text-shadow: none;
+	color:#ef4f23;
+
+}
+#checkin_location select option{
+	font-size:14px;
+	font-weight: 100;
+	text-shadow: none;
+}
+#survey{
+	font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica Neue Ultra Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Arial", sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+#select1{
+	float:left;
+	clear: top;
+	width: 50%;
+}
+
+#select-lvl{
+	float:left;
+
+
+}
+/*CSS for score.php*/
+    .ui-slider {
+		margin-left: auto !important;
+		margin-right:auto !important;
+      width : 90% !important;
+
+      background : white !important;
+
+    }
+    input.ui-slider-input {
+	background : white !important;
+	color: black !important;
+    }
+    .ui-slider-handle {
+      background : brown !important;
+    }
+	
+	
+	#checkin{
+	width:50%;
+	float: right;
+	}
+/*end*/
+
