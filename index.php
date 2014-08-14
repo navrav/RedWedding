@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+
+<?php
+$conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Viking8Chief+latch","aeb");
+if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+      }
+
+mysqli_close($conNew);
+?>
+
 <html class="ui-mobile">
 
 <head>
@@ -31,6 +41,12 @@
 		function signup(){
 			window.location.href='/signup.php';
 		}
+
+		function checkForm(){
+			if(document.getElementById("user") == "" || document.getElementById("pass") == "" ){
+				return false;
+			}
+		}
 			
 	</script>
 
@@ -48,9 +64,9 @@
 							<form id="logins" method='POST' action='check.php'> 
 								<!--input type="text" name="u" id="u" placeholder="Username"-->
 								<div class="form-group col-lg-12">
-								<input type="text" class="form-control input-control" placeholder="Username" name="u"></div>
+								<input type="text" class="form-control input-control" id="user" placeholder="Username" name="u"></div>
 							<div class="form-group col-lg-12">
-								<input type="password" class="form-control" placeholder="Password" name="p">
+								<input type="password" class="form-control" id="pass" placeholder="Password" name="p">
 								</div>                    <!--input type="password" name="p" id="p" placeholder="Password"-->	
 								<div class="form-group col-md-6 col-md-offset-3"> 
 								<button type="button" class="btn btn-success btn_login" value="Login" id="log" onclick="window.location.href='/feed.php'">Login</button>
