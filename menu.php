@@ -15,7 +15,7 @@
 		    </a>
 	    </li>
 		<li>
-			<a href="http://deco3800-12.uqcloud.net/feed.php"  data-ajax="false" style="background-color:#e03838;">
+			<a href="feed.php"  data-ajax="false" style="background-color:#e03838;">
 			<span class="glyphicon glyphicon-home"></span>
 			  Feed
 			</a>
