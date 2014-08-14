@@ -43,8 +43,15 @@ mysqli_close($conNew);
 		}
 
 		function checkForm(){
-			if(document.getElementById("user") == "" || document.getElementById("pass") == "" ){
+			if(document.getElementById("user").value == ""){
+				document.getElementById("check").innerHTML = "Please enter Username";
 				return false;
+			} else if(document.getElementById("pass").value == "" ){
+				document.getElementById("check").innerHTML = "Please enter Password";
+				return false;
+			}
+			else {
+				window.location.href='/feed.php'
 			}
 		}
 			
@@ -60,7 +67,7 @@ mysqli_close($conNew);
 						
 						<div class="col-md-8 col-md-offset-2">
 							<div id="logo"><img src="logo2.png"/></div>
-							<!--p class="intro-text">A free, premium quality, responsive one page Bootstrap theme created by Start Bootstrap.</p-->
+							<span id="check"></span>
 							<form id="logins" method='POST' action='check.php'> 
 								<!--input type="text" name="u" id="u" placeholder="Username"-->
 								<div class="form-group col-lg-12">
@@ -69,7 +76,7 @@ mysqli_close($conNew);
 								<input type="password" class="form-control" id="pass" placeholder="Password" name="p">
 								</div>                    <!--input type="password" name="p" id="p" placeholder="Password"-->	
 								<div class="form-group col-md-6 col-md-offset-3"> 
-								<button type="button" class="btn btn-success btn_login" value="Login" id="log" onclick="window.location.href='/feed.php'">Login</button>
+								<button type="button" class="btn btn-success btn_login" value="Login" id="log" onclick="return checkForm()">Login</button>
 								</div>
 								
 								<div class="form-group col-md-6 col-md-offset-3">
