@@ -4,7 +4,7 @@
 		$pass = $_GET['pass'];
 		$email = $_GET['email'];
 		
-		$conNew=mysqli_connect("deco3800-12.zones.eait.uq.edu.au","root","Hebrew*Read+dire","aeb");
+		$conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Viking8Chief+latch","aeb");
       	// Check connection
       	if (mysqli_connect_errno()) {
         	echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -15,7 +15,7 @@
 	?>
 	
 	<?php
-      $conNew=mysqli_connect("deco3800-12.zones.eait.uq.edu.au","root","Hebrew*Read+dire","aeb");
+      $conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Viking8Chief+latch","aeb");
       // Check connection
       if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();

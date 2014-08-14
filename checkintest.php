@@ -3,7 +3,7 @@
 		$room = $_POST['room'];
 		$tag = $_POST['tag'];
 		
-		$conNew=mysqli_connect("deco3800-12.zones.eait.uq.edu.au","root","Hebrew*Read+dire","aeb");
+		$conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Viking8Chief+latch","aeb");
       	// Check connection
       	if (mysqli_connect_errno()) {
         	echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -22,7 +22,7 @@
 	<br>
 	
 	<?php
-      $conNew=mysqli_connect("deco3800-12.zones.eait.uq.edu.au","root","Hebrew*Read+dire","aeb");
+      $conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Viking8Chief+latch","aeb");
       // Check connection
       if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();

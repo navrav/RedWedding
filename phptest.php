@@ -10,7 +10,7 @@
     <h1> Table of Users </h1>
 
     <?php
-      $con=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","","aeb");
+      $con=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Viking8Chief+latch","aeb");
       // Check connection
       if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -40,14 +40,14 @@
     <h1> Get a user's list of friends </h1>
     
     <?php
-      $conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Hebrew*Read+dire","aeb");
+      $conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Viking8Chief+latch","aeb");
       // Check connection
       if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
       }
       $resultNew = mysqli_query($conNew,"SELECT f_name, l_name FROM Users WHERE u_ID IN (SELECT ID_2 FROM Friends WHERE ID_1 =1)");
 
-      $conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Hebrew*Read+dire","aeb");
+      $conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Viking8Chief+latch","aeb");
       // Check connection
       if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -81,7 +81,7 @@
 <!-- 		Room: <input type='text' name='room'></br> -->
 		
 		<?php
-			$conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Hebrew*Read+dire","aeb");
+			$conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Viking8Chief+latch","aeb");
       		// Check connection
       		if (mysqli_connect_errno()) {
         		echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -116,7 +116,7 @@
 	<br>
     
     <?php
-    	$conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Hebrew*Read+dire","aeb");
+    	$conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Viking8Chief+latch","aeb");
       	// Check connection
       	if (mysqli_connect_errno()) {
         	echo "Failed to connect to MySQL: " . mysqli_connect_error();
