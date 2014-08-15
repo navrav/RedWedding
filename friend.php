@@ -61,7 +61,7 @@
                         	
                         	<h6>
                         		<span class="glyphicon glyphicon-stats"></span>
-                        		Achievement Received: Pro</h6>
+                        		Achievement Received: EXPERT</h6>
                         	<p>12 hours ago</p>
                         	
                         	<h6>
