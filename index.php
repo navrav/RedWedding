@@ -51,7 +51,7 @@ mysqli_close($conNew);
 				return false;
 			}
 			else {
-				window.location.href='/check.php'
+				window.location.href='/feed.php'
 			}
 		}
 			

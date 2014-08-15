@@ -276,7 +276,8 @@
 						<input type="hidden" name="tag2" id="tag2" value="a" />
 						<input type="hidden" name="tag3" id="tag3" value="a" />
 						<input type="hidden" name="tag4" id="tag4" value="a" />
-						<input type="submit" name="submit" id="submit" value="Check In" "/> <!-- data-toggle="modal" data-target="#myModal"  -->
+						<input type="submit" name="submit" id="submit" value="Check In" /> 
+						<!-- data-toggle="modal" data-target="#myModal"  -->
 					
 					</div>
 					
