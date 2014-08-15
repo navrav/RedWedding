@@ -44,14 +44,14 @@ mysqli_close($conNew);
 
 		function checkForm(){
 			if(document.getElementById("user").value == ""){
-				document.getElementById("check").innerHTML = "Please enter Username";
+				document.getElementById("check").innerHTML = "Please enter Email";
 				return false;
 			} else if(document.getElementById("pass").value == "" ){
 				document.getElementById("check").innerHTML = "Please enter Password";
 				return false;
 			}
 			else {
-				window.location.href='/feed.php'
+				window.location.href='/check.php'
 			}
 		}
 			
@@ -69,12 +69,13 @@ mysqli_close($conNew);
 							<div id="logo"><img src="logo2.png"/></div>
 							<span id="check"></span>
 							<form id="logins" method='POST' action='check.php'> 
-								<!--input type="text" name="u" id="u" placeholder="Username"-->
+								<!--input type="text" name="u" id="u" placeholder="Email"-->
 								<div class="form-group col-lg-12">
-								<input type="text" class="form-control input-control" id="user" placeholder="Username" name="u"></div>
-							<div class="form-group col-lg-12">
-								<input type="password" class="form-control" id="pass" placeholder="Password" name="p">
-								</div>                    <!--input type="password" name="p" id="p" placeholder="Password"-->	
+								<input type="text" class="form-control input-control" id="user" placeholder="Email" name="u" value=""></div>
+								<!--input type="password" name="p" id="p" placeholder="Password"-->	
+								<div class="form-group col-lg-12">
+								<input type="password" class="form-control" id="pass" placeholder="Password" name="p" value="">
+								</div>                   
 								<div class="form-group col-md-6 col-md-offset-3"> 
 								<button type="button" class="btn btn-success btn_login" value="Login" id="log" onclick="return checkForm()">Login</button>
 								</div>
