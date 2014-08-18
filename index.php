@@ -86,7 +86,7 @@ mysqli_close($conNew);
 					 
 					
 								<div class="form-group" col-md-6 col-md-offset-3 id="fb_login">
-								<button type="button" class="btn btn-primary btn_fb">Login using Facebook</button>
+								<button type="button" class="btn btn-primary btn_fb">Login using Facbook</button>
 								</div>
 							</form>
 					  
