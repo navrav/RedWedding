@@ -13,12 +13,61 @@
 		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 		<script src="jquery.mobile-1.4.2.js"></script>
 		
-		<script>
-			function Buy(){
+		
+		<!--Need to know:
+			User ID
+			Secret ID
+			Secret Cost
+		-->
+
+	<?php
+	session_start();
+
+	$host="deco3801-01.zones.eait.uq.edu.au"; // Host name
+	$username="root"; // Mysql username
+	$password="Viking8Chief+latch"; // Mysql password
+	$db_name="aeb"; // Database name
+	$tbl_name="Users"; // Table name u_ID
+	$tbl_name2="Secrets"; //Table name s_ID
+	$tbl3_name="UserSecrets"; //Table name
+	error_reporting(E_ALL);
+
+	// Connect to server and select databse.
+	$dbconn = new mysqli($host, $username, $password, $db_name);
+	if($dbconn->connect_errno > 0){
+			die("Unable to connect to database [".$db->connect_error."]");
+		}
+	?>	
+
+		<!--		//$conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Viking8Chief+latch","aeb");
+      	// Check connection
+      	//if (mysqli_connect_errno()) {
+        //	echo "Failed to connect to MySQL: " . mysqli_connect_error();
+      	//}-->
+
+      <script>
+			function buy(){
 				document.getElementById('layover').style.display= "block";
 				document.getElementById('confirmpop').style.display= "block";
+
+				document.getElementById('button').disabled = true;
+
+				<?php
+				$user="SELECT * FROM $tbl_name WHERE email='$myusername' and pass='$mypassword'";
+				$secret="SELECT * FROM $tbl_name2 WHERE email='$myusername' and pass='$mypassword'";
+				$resultNew = mysqli_query($dbconn,"INSERT INTO $tbl3_name(u_ID, s_ID) VALUES ('$user', '$secret');");
+				//mysqli_close($dbconn);
+				$result = mysqli_query($con,"SELECT * FROM Users");
+
+				while($row = mysqli_fetch_array($result)) {
+  				echo $row['u_ID'] . " " . $row['f_name'];
+  				echo "<br>";
+
+				?>
 			}
-		</script>
+
+
+	</script>
 		
 	</head>
 	
@@ -48,7 +97,7 @@
         <h6>AEB Rooms Secret</h6>
         <p>15 AEBux</p>
         <p class="ui-li-aside">
-        	<button type="button" class="btn btn-default btn-sm" >
+        	<button type="button" class="btn btn-default btn-sm" onclick="buy()">
 	        		<span class="glyphicon glyphicon-gift"></span> Buy Secret
 	        </button>
 		</p>        
