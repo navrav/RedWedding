@@ -68,7 +68,7 @@ mysqli_close($conNew);
 						<div class="col-md-8 col-md-offset-2">
 							<div id="logo"><img src="logo2.png"/></div>
 							<span id="check"></span>
-							<form id="logins" method='POST' action='check.php'> 
+							<form id="logins" method='POST' action='check.php' data-ajax=false> 
 								<!--input type="text" name="u" id="u" placeholder="Email"-->
 								<div class="form-group col-lg-12">
 								<input type="text" class="form-control input-control" id="user" placeholder="Email" name="user" value=""></div>
