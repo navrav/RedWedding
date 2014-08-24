@@ -77,7 +77,7 @@ mysqli_close($conNew);
 								<input type="password" class="form-control" id="pass" placeholder="Password" name="p" value="">
 								</div>                   
 								<div class="form-group col-md-6 col-md-offset-3"> 
-								<button type="button" class="btn btn-success btn_login" value="Login" id="log" onclick="return checkForm()">Login</button>
+								<button type="submit" class="btn btn-success btn_login" value="Login" id="log" onclick="return checkForm()">Login</button>
 								</div>
 								
 								<div class="form-group col-md-6 col-md-offset-3">
