@@ -51,7 +51,7 @@ mysqli_close($conNew);
 				return false;
 			}
 			else {
-				window.location.href='/feed.php'
+				window.location.href='/check.php'
 			}
 		}
 			
@@ -71,13 +71,13 @@ mysqli_close($conNew);
 							<form id="logins" method='POST' action='check.php'> 
 								<!--input type="text" name="u" id="u" placeholder="Email"-->
 								<div class="form-group col-lg-12">
-								<input type="text" class="form-control input-control" id="user" placeholder="Email" name="u" value=""></div>
+								<input type="text" class="form-control input-control" id="user" placeholder="Email" name="user" value=""></div>
 								<!--input type="password" name="p" id="p" placeholder="Password"-->	
 								<div class="form-group col-lg-12">
-								<input type="password" class="form-control" id="pass" placeholder="Password" name="p" value="">
+								<input type="password" class="form-control" id="pass" placeholder="Password" name="pass" value="">
 								</div>                   
 								<div class="form-group col-md-6 col-md-offset-3"> 
-								<button type="submit" class="btn btn-success btn_login" value="Login" id="log" onclick="return checkForm()">Login</button>
+								<button type="submit" class="btn btn-success btn_login" value="Login" id="log">Login</button>
 								</div>
 								
 								<div class="form-group col-md-6 col-md-offset-3">
