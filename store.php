@@ -50,18 +50,13 @@
 				document.getElementById('layover').style.display= "block";
 				document.getElementById('confirmpop').style.display= "block";
 
-				document.getElementById('button').disabled = true;
+				document.getElementById('aebroom').disabled = true;
 
 				<?php
 				$user="SELECT * FROM $tbl_name WHERE email='$myusername' and pass='$mypassword'";
 				$secret="SELECT * FROM $tbl_name2 WHERE email='$myusername' and pass='$mypassword'";
 				$resultNew = mysqli_query($dbconn,"INSERT INTO $tbl3_name(u_ID, s_ID) VALUES ('$user', '$secret');");
 				//mysqli_close($dbconn);
-				$result = mysqli_query($con,"SELECT * FROM Users");
-
-				while($row = mysqli_fetch_array($result)) {
-  				echo $row['u_ID'] . " " . $row['f_name'];
-  				echo "<br>";
 
 				?>
 			}
@@ -97,7 +92,7 @@
         <h6>AEB Rooms Secret</h6>
         <p>15 AEBux</p>
         <p class="ui-li-aside">
-        	<button type="button" class="btn btn-default btn-sm" onclick="buy()">
+        	<button type="button" id="aebroom" class="btn btn-default btn-sm" onclick="buy()">
 	        		<span class="glyphicon glyphicon-gift"></span> Buy Secret
 	        </button>
 		</p>        
