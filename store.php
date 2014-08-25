@@ -52,7 +52,7 @@
 		$secretcost = mysqli_query($dbconn, "SELECT 'Cost' FROM 'Secrets' WHERE 's_ID'='1'");
 		//$newbux = $userbux - $secretcost;
 		$updatebux = mysqli_query($dbconn, "UPDATE 'Users' SET AEBux=AEBux-$secretcost WHERE u_ID='$userid'");
-		$buysecret = mysqli_query($dbconn, "INSERT INTO 'UserSecrets'('u_ID', 's_ID') VALUES ('deco', '12')");
+		mysqli_query($dbconn, "INSERT INTO 'UserSecrets'('u_ID', 's_ID') VALUES ('20', '12')");
 	}
 
 	update_usersecrets();
