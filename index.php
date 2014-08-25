@@ -66,7 +66,7 @@ mysqli_close($conNew);
 					<div class="row">
 						
 						<div class="col-md-8 col-md-offset-2">
-							<div id="logo"><img src="logo2.png"/></div>
+							<div id="logo"><img src="logo2.png" class="img-responsive" /></div>
 							<span id="check"></span>
 							<form id="logins" method='POST' action='check.php' data-ajax=false> 
 								<!--input type="text" name="u" id="u" placeholder="Email"-->

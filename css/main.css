@@ -1,4 +1,4 @@
-/**
+﻿/**
 $pink = #ee4055;
 $red = #e03838;
 $orange = #ef4f23;
@@ -21,6 +21,34 @@ $purple = #883c96;
 	width:100%;
 	border-radius:16px;
 }
+
+
+.intro-body {
+	
+	  display: block;
+   margin-left: auto;
+    margin-right: auto;
+    
+    }
+    
+.container {
+
+  display: block;
+  margin-left: auto;
+    margin-right: auto;
+ 
+	
+	}
+
+.row {
+	
+	  display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+    }
+
+
 .intro {
     display: table;
     width: 100%;
@@ -28,7 +56,9 @@ $purple = #883c96;
     padding: 80px 0;
     text-align: center;
     color: #fff;
-    background: url(../images/intro-bg.jpg) no-repeat bottom center scroll;
+    background: url(../images/intro-bg.jpg) no-repeat bottom center scroll; 
+        
+      
     background-color: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -87,9 +117,12 @@ $purple = #883c96;
 .profile_content .glyphicon{
 	color:#ee4055;
 }
+
 #logo{
 	padding-bottom: 50px;
-}
+		
+	}
+	
 #fb_login{
 	padding-top: 30px;
 }
