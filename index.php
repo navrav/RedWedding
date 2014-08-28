@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 
 <?php
-$conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Viking8Chief+latch","aeb");
-if (mysqli_connect_errno()) {
-        echo "Failed to connect to MySQL: " . mysqli_connect_error();
-      }
-
-mysqli_close($conNew);
+	include("servercon.php");
 ?>
 
 <html class="ui-mobile">
