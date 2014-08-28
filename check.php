@@ -49,7 +49,7 @@ if($count==1)
 else
 {
     echo "Wrong Username or Password";
-	header("location:/index.php?status=");
+	header("location:/index.php?status=fail");
 }
 
 

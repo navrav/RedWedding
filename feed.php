@@ -5,10 +5,22 @@
 session_start();
 
 
-if (!isset($_SESSION['username']))
-{
+if (!isset($_SESSION['username'])) {
     header("location:index.php");
 }
+
+$user = $_SESSION["username"];
+
+$name = "SELECT `f_name`, `l_name` FROM `Users` WHERE `email` = 'username' ";
+
+ if($name != ""){
+        if(!$result = $dbconn->query($name)){
+                die("There was an error running the name query [".$db->error."]");
+            }
+    }
+    
+    $row = $result->fetch_assoc();
+
 ?>
 
 <html>
@@ -79,7 +91,9 @@ function setOptions(feed) {
           	<span>
           	<img src="Team/zoe.jpg" width="40px" height="40px" class="img-circle"/>  
           	</span> 
-            Zoe Stewart</h2>
+            <?php
+            echo $row[f_name] . " " . $row[l_name];
+            ?></h2>
             <p>Zoe felt very hot at 370 </p>
             <p class="ui-li-aside">10:38 pm</p>
           </li>
