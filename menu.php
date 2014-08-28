@@ -1,4 +1,24 @@
+<?php
+  session_start();
+  include("servercon.php");
 
+  if (!isset($_SESSION['username']))
+  {
+      header("location:index.php");
+  }
+
+  $user = $_SESSION["username"];
+
+  $stat = "SELECT `f_name`,`l_name` FROM `Users` WHERE `email` = '$user'";
+    if($stat != ""){
+        if(!$result = $dbconn->query($stat)){
+                die("There was an error running the stat query [".$db->error."]");
+            }
+    }
+    $row = $result->fetch_assoc();
+    $fname = $row['f_name'];
+    $lname = $row['l_name'];
+?>
 <section data-role="panel" id="nav" data-display="overlay"> 
    	 		
     <ul data-role="listview">
@@ -7,7 +27,7 @@
 		  	<a href="profile.php" style="background-color:#ee4055;">
 		  		<h4>
 		  		<img src="Team/will.jpg" width="50px" height="50px" class="img-circle" hspace="10" />
-		  		Will Appleseed <br>
+		  		<?php echo $fname ." ". $lname?><br>
 		  		<h4 style ="size: 10px">
 		  		
 		  		</h4>
