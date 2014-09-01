@@ -29,9 +29,9 @@ $myusername=$dbconn->real_escape_string($_POST['user']);
 $mypassword=$dbconn->real_escape_string($_POST['pass']);
 
 
-$sql="SELECT * FROM $tbl_name WHERE email='$myusername' and pass='$mypassword'";
-if(!$result = $dbconn->query($sql)){
-die('There was an error running the query [' . $db->error . ']');
+$check="SELECT * FROM $tbl_name WHERE email='$myusername' and pass='$mypassword'";
+if(!$result = $dbconn->query($check)){
+	die('There was an error running the query [' . $db->error . ']');
 }
 // Mysql_num_row is counting table row
 $count=$result->num_rows;
@@ -49,7 +49,7 @@ if($count==1)
 else
 {
     echo "Wrong Username or Password";
-	header("location:/index.php?status=");
+	header("location:/index.php?status=fail");
 }
 
 

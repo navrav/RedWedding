@@ -174,8 +174,8 @@
 	                        <div class="">
 	                        	<div class="col-md-4 col-md-offset-4">
 	                        	<img src="Team/will.jpg" width="100px" height="105px" class="img-circle"/>
-	                        	<h4> Will Appleseed </h4>
-	                        	<h5> 25 Points | <a href="store.php">Buy Secrets</a> </h5>
+	                        	<h4> <?php echo $fname ." ". $lname;?> </h4>
+	                        	<h5> <?php echo $aebux; ?> AEBux | <a href="store.php">Buy Secrets</a> </h5>
 	                        	
 	                        	</div>
 	                         </div>

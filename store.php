@@ -12,7 +12,7 @@
 		
 		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 		<script src="jquery.mobile-1.4.2.js"></script>
-		
+		<script src="store.js"></script>
 		
 		<!--Need to know:
 			User ID
@@ -35,8 +35,27 @@
 	// Connect to server and select databse.
 	$dbconn = new mysqli($host, $username, $password, $db_name);
 	if($dbconn->connect_errno > 0){
-			die("Unable to connect to database [".$db->connect_error."]");
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+			//die("Unable to connect to database [".$db->connect_error."]");
 		}
+
+	function update_usersecrets(){
+		echo("<script>console.log('launching function...');</script>");
+		$user='deco';
+		$secretid='12';
+		$userid = mysqli_query($dbconn, "SELECT 'u_ID' FROM 'Users' WHERE 'email'='deco'");
+		if (mysql_errno()){
+			echo("<script>console.log('Failed to connect');</script>");
+		}
+		echo("<script>console.log('Still running...');</script>");
+		$userbux = mysqli_query($dbconn, "SELECT 'AEBux' FROM 'Users' WHERE 'u_ID'=$userid");
+		$secretcost = mysqli_query($dbconn, "SELECT 'Cost' FROM 'Secrets' WHERE 's_ID'='1'");
+		//$newbux = $userbux - $secretcost;
+		$updatebux = mysqli_query($dbconn, "UPDATE 'Users' SET AEBux=AEBux-$secretcost WHERE u_ID='$userid'");
+		mysqli_query($dbconn, "INSERT INTO 'UserSecrets'('u_ID', 's_ID') VALUES ('20', '12')");
+	}
+
+	update_usersecrets();
 	?>	
 
 		<!--		//$conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Viking8Chief+latch","aeb");
@@ -44,25 +63,6 @@
       	//if (mysqli_connect_errno()) {
         //	echo "Failed to connect to MySQL: " . mysqli_connect_error();
       	//}-->
-
-      <script>
-			function buy(){
-				document.getElementById('layover').style.display= "block";
-				document.getElementById('confirmpop').style.display= "block";
-
-				document.getElementById('aebroom').disabled = true;
-
-				<?php
-				$user="SELECT * FROM $tbl_name WHERE email='$myusername' and pass='$mypassword'";
-				$secret="SELECT * FROM $tbl_name2 WHERE email='$myusername' and pass='$mypassword'";
-				$resultNew = mysqli_query($dbconn,"INSERT INTO $tbl3_name(u_ID, s_ID) VALUES ('$user', '$secret');");
-				//mysqli_close($dbconn);
-
-				?>
-			}
-
-
-	</script>
 		
 	</head>
 	
@@ -111,7 +111,7 @@
         <h6>AEB Benches Secret</h6>
         <p>30 AEBux</p>
         <p class="ui-li-aside">
-        	<button type="button" class="btn btn-default btn-sm" onclick="Buy();">
+        	<button type="button" class="btn btn-default btn-sm" onclick="buy();">
 	        		<span class="glyphicon glyphicon-gift"></span> Buy Secret
 	        </button>
 		</p>                

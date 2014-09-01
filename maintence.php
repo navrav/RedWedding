@@ -1,3 +1,24 @@
+<?php
+$to = 'corkisland@gmail.com';
+$subject = 'AEBSpace Maintenance Issue Report';
+
+$message = '<html><body>';
+//$message = 'Hello. This is a test message to see if this works.'
+
+
+$message = 'issue';
+$message = wordwrap($message, 70, "\r\n");
+//mail($to, $subject, $message)
+if (mail($to, $subject, $message)){
+	echo 'Your message has been sent.';
+	echo("<script>console.log('Your message has been sent');</script>");
+} else {
+	echo'There was a problem sending the email.';
+	echo("<script>console.log('Houston we have a problem');</script>");
+}
+
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -98,11 +119,11 @@
 		                        	<p>
 		                        		If you have any issue regarding the maintenance of the building
 		                        		fill out the form below and an email will be send to the appropriate
-		                        		person. 
+		                        		person. Testing.
 		                        	</p>
 		                        	<br><br>
 		                        	<p>
-		                        		<form>
+		                        		<form action="maintenance.php">
 		                        		
 		                        			First name: <input type="text" name="FirstName" ><br>
 											Last name: <input type="text" name="LastName" ><br>

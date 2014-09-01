@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <!DOCTYPE html>
 
+<?php
+  session_start();
+  include("servercon.php");
+
+  if (!isset($_SESSION['username']))
+  {
+      header("location:index.php");
+  }
+
+  $user = $_SESSION["username"];
+
+  $sql = "SELECT `f_name`, `l_name` FROM `Users` WHERE `email` = '$user'";
+    if($sql != ""){
+        if(!$result = $dbconn->query($sql)){
+                die("There was an error running the sql query [".$db->error."]");
+            }
+    }
+?>
+
 <html>
 
 <head>
@@ -71,6 +90,11 @@ function setOptions(feed) {
           	</span> 
             Zoe Stewart</h2>
             <p>Zoe felt very hot at 370 </p>
+            <?php
+            while($row = $result->fetch_assoc()){
+              echo $row[f_name]. " " . $row[l_name];
+            }
+            ?>
             <p class="ui-li-aside">10:38 pm</p>
           </li>
 
@@ -171,7 +195,7 @@ function setOptions(feed) {
 			</ul>
       
       </div>
-      
+  
     </div> 
 
 </body>
