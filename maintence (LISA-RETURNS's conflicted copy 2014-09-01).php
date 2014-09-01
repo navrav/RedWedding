@@ -3,18 +3,16 @@ $to = 'corkisland@gmail.com';
 $subject = 'AEBSpace Maintenance Issue Report';
 
 $message = '<html><body>';
-//$message = 'Hello. This is a test message to see if this works.'
+$message .= 
 
 
 $message = 'issue';
 $message = wordwrap($message, 70, "\r\n");
-//mail($to, $subject, $message)
+
 if (mail($to, $subject, $message)){
 	echo 'Your message has been sent.';
-	echo("<script>console.log('Your message has been sent');</script>");
 } else {
 	echo'There was a problem sending the email.';
-	echo("<script>console.log('Houston we have a problem');</script>");
 }
 
 ?>
