@@ -59,5 +59,19 @@
 			</a>
 		</li>
 		
+		<li>
+			<a href="javascript:void(0)" Onclick="logout()";  data-ajax="false"  style="background-color:#CE6786;">
+			<span><img src="icons/logout.png" height="15px" width="15px"/></span>
+			Log Out
+			</a>
+		</li>
+		
     </ul> 
 </section>
+<script>
+function logout(){
+location.href="/index.php";
+
+}
+
+</script>

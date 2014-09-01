@@ -67,15 +67,15 @@
     <ul data-role="listview" data-inset="true">
 	  <li style="background-color:#883c96; border:none;">
 	  		<div style="text-align:center;">FRIENDS </div>
-		  <div  style="position:absolute; right:15px; top:0px;"><button type="button" class="btn btn-default btn-sm" onclick="Add();">+</button></div>
+		  <div  style="position:absolute; right:15px; top:0px;"><button type="button" class="btn btn-default btn-sm" onClick="Add();">+</button></div>
 	  </li> 
 	 
       <li data-icon="false"><a href="friend.php">
       	<h6><img src="Team/zoe.jpg" width="50px" height="50px" class="img-circle" style/>
       		Zoe Stewart</h6>
         <p><span class="glyphicon glyphicon-tower"></span> Rank: Adventurer</p></a>
-        <p class="ui-li-aside">
-        	<button type="button" class="btn btn-default btn-sm" onclick="Delete();">
+        <p style="position: absolute;top: 1em;padding-top:30px;right: 0.3em;margin: 0;text-align: right;">
+        	<button type="button" class="btn btn-default btn-sm" style="float:right;" onClick="Delete();">
 	        		<span class="glyphicon glyphicon-trash"></span> Delete
 	        </button>
 		</p>
@@ -84,7 +84,7 @@
         <h6><img src="Team/adee.jpg" width="50px" height="50px" class="img-circle"/>
       		Adeleen Pavia</h6>
         <p><span class="glyphicon glyphicon-tower"></span> Rank: Adventurer</p> </a> 
-        <p class="ui-li-aside">
+        <p style="position: absolute;top: 1em;padding-top:30px;right: 0.3em;margin: 0;text-align: right;">
         	<button type="button" class="btn btn-default btn-sm">
 	        		<span class="glyphicon glyphicon-trash"></span> Delete
 	        </button>
@@ -97,7 +97,7 @@
       		William Forsyth
       	</h6>
         <p><span class="glyphicon glyphicon-tower"></span> Rank: Adventurer</p> </a> 
-        <p class="ui-li-aside">
+        <p style="position: absolute;top: 1em;padding-top:30px;right: 0.3em;margin: 0;text-align: right;">
         	<button type="button" class="btn btn-default btn-sm">
 	        		<span class="glyphicon glyphicon-trash"></span> Delete
 	        </button>
@@ -107,7 +107,7 @@
         <h6><img src="Team/andre.jpg" width="50px" height="50px" class="img-circle"/>
       		Andre Hermanto</h6>
         <p><span class="glyphicon glyphicon-tower"></span> Rank: Adventurer</p> </a> 
-        <p class="ui-li-aside">
+        <p style="position: absolute;top: 1em;padding-top:30px;right: 0.3em;margin: 0;text-align: right;">
         	<button type="button" class="btn btn-default btn-sm">
 	        		<span class="glyphicon glyphicon-trash"></span> Delete
 	        </button>
@@ -118,7 +118,7 @@
         <h6><img src="Team/felix.jpg" width="50px" height="50px" class="img-circle"/>
       		Felix Lee</h6>
         <p><span class="glyphicon glyphicon-tower"></span> Rank: Adventurer</p>   </a> 
-        <p class="ui-li-aside">
+        <p style="position: absolute;top: 1em;padding-top:30px;right: 0.3em;margin: 0;text-align: right;">
         	<button type="button" class="btn btn-default btn-sm">
 	        		<span class="glyphicon glyphicon-trash"></span> Delete
 	        </button>
@@ -131,15 +131,15 @@
 	<div id="layover" style="display:none; position:fixed; top:0%; left:0%; width:100%; height:100%; background-color:black; opacity: .50;" > </div>
 					
 					
-	<div id="confirmpop" style="display:none; position:fixed; left:20%; top:40%; "> 
+	<div id="confirmpop" style="display:none; position:fixed; left:50%; top:50%;margin-left:-125px;margin-top:-74.5px; "> 
 		<div class="modal-content" style="background-color:#262626; width:250px">
 				<div class="modal-body"  style="padding: 15px; padding-bottom: 5px;">
 					<p> Are you sure you want to delete this friend?</p>
 				</div>
 				
 				<div class="modal-footer" style="padding-top: 10px; padding-bottom: 10px;">
-					<button type="button" style="font-size: 13px; padding: 5px; width: 100px; float: right; margin-left: 5px;" id = "yes" onclick="window.location.href='/friends1.php'">Yes</button>
-					<button type="button" style="font-size: 13px; padding: 5px; width: 100px; float: right;" id="no" onclick="window.location.href='/friends.php'">No</button>
+					<button type="button" style="font-size: 13px; padding: 5px; width: 100px; float: right; margin-left: 5px;" id = "yes" onClick="window.location.href='/friends1.php'">Yes</button>
+					<button type="button" style="font-size: 13px; padding: 5px; width: 100px; float: right;" id="no" onClick="window.location.href='/friends.php'">No</button>
 				</div>
 			</div>
 	</div>
@@ -150,10 +150,10 @@
 		
 				<div class="modal-body" style="padding: 15px; padding-bottom: 5px;">
 					<p> Enter Friends Email to Add:</p>
-					<button type="button" style="position: absolute; top:0px; right: 7px; width: 20px; background-color: transparent; border: none; box-shadow: none; text-align: center; padding: 5px;" onclick="Close();">&times;</button>
+					<button type="button" style="position: absolute; top:0px; right: 7px; width: 20px; background-color: transparent; border: none; box-shadow: none; text-align: center; padding: 5px;" onClick="Close();">&times;</button>
 					<p> Email: <input type="text" name="email"></p>
 					
-					<button type="button" style="font-size: 13px; padding: 5px; width:100px ; margin-left: 105px;" id = "search" onclick="AddSearch();">Search</button>
+					<button type="button" style="font-size: 13px; padding: 5px; width:100px ; margin-left: 105px;" id = "search" onClick="AddSearch();">Search</button>
 					
 				</div>
 			
@@ -177,8 +177,8 @@
 				</div>
 				
 				<div class="modal-footer" style="padding-top: 10px; padding-bottom: 10px;background-color:#262626;">
-					<button type="button" style="font-size: 13px; padding: 5px; width: 100px; float: right; margin-left: 5px;" id = "yes" onclick="window.location.href='/friends2.php'">Yes</button>
-					<button type="button" style="font-size: 13px; padding: 5px; width: 100px; float: right;" id="no" onclick="Add();">No</button>
+					<button type="button" style="font-size: 13px; padding: 5px; width: 100px; float: right; margin-left: 5px;" id = "yes" onClick="window.location.href='/friends2.php'">Yes</button>
+					<button type="button" style="font-size: 13px; padding: 5px; width: 100px; float: right;" id="no" onClick="Add();">No</button>
 				</div>
 			</div>
 	</div>
