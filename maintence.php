@@ -8,7 +8,16 @@ $message = '<html><body>';
 
 $message = 'issue';
 $message = wordwrap($message, 70, "\r\n");
-//mail($to, $subject, $message)
+//mail($to, $subject, $message);
+
+/*$smtp = Mail::factory('smtp', array(
+	'host' => 'ssl://smtp.gmail.com',
+	'port' => '465',
+	'auth' => true,
+	'username' => 'corkisland@gmail.com',
+	'password' => 'naveenkumar2014'
+));*/
+
 if (mail($to, $subject, $message)){
 	echo 'Your message has been sent.';
 	echo("<script>console.log('Your message has been sent');</script>");
@@ -35,10 +44,10 @@ if (mail($to, $subject, $message)){
 		<script src="jquery.mobile-1.4.2.js"></script>
 		<script>
 			function Submit() {
-					
-				setTimeout(function() {window.location.href = "feed.php"}, 3000);
-				document.getElementById('layover').style.display= "block";
-				document.getElementById('confirmpop').style.display= "block";
+				$.get("maintence.php");
+				//setTimeout(function() {window.location.href = "feed.php"}, 3000);
+				//document.getElementById('layover').style.display= "block";
+				//document.getElementById('confirmpop').style.display= "block";
 			}
 		</script>
 		<style>
@@ -123,7 +132,7 @@ if (mail($to, $subject, $message)){
 		                        	</p>
 		                        	<br><br>
 		                        	<p>
-		                        		<form action="maintenance.php">
+		                        		<form action="maintence.php">
 		                        		
 		                        			First name: <input type="text" name="FirstName" ><br>
 											Last name: <input type="text" name="LastName" ><br>

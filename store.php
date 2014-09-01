@@ -36,23 +36,25 @@
 	$dbconn = new mysqli($host, $username, $password, $db_name);
 	if($dbconn->connect_errno > 0){
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
-			//die("Unable to connect to database [".$db->connect_error."]");
+			die("Unable to connect to database [".$db->connect_error."]");
 		}
+
+	$sql = mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (22,12)");
+	$sqli = mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (690,69)");
+
+
 
 	function update_usersecrets(){
 		echo("<script>console.log('launching function...');</script>");
 		$user='deco';
 		$secretid='12';
-		$userid = mysqli_query($dbconn, "SELECT 'u_ID' FROM 'Users' WHERE 'email'='deco'");
-		if (mysql_errno()){
-			echo("<script>console.log('Failed to connect');</script>");
-		}
+
 		echo("<script>console.log('Still running...');</script>");
-		$userbux = mysqli_query($dbconn, "SELECT 'AEBux' FROM 'Users' WHERE 'u_ID'=$userid");
-		$secretcost = mysqli_query($dbconn, "SELECT 'Cost' FROM 'Secrets' WHERE 's_ID'='1'");
+		//$userbux = mysqli_query($dbconn, "SELECT 'AEBux' FROM 'Users' WHERE 'u_ID'=$userid");
+		//$secretcost = mysqli_query($dbconn, "SELECT 'Cost' FROM 'Secrets' WHERE 's_ID'='1'");
 		//$newbux = $userbux - $secretcost;
-		$updatebux = mysqli_query($dbconn, "UPDATE 'Users' SET AEBux=AEBux-$secretcost WHERE u_ID='$userid'");
-		mysqli_query($dbconn, "INSERT INTO 'UserSecrets'('u_ID', 's_ID') VALUES ('20', '12')");
+		//$updatebux = mysqli_query($dbconn, "UPDATE 'Users' SET AEBux=AEBux-$secretcost WHERE u_ID='$userid'");
+		$sqli = mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (6969,69)");
 	}
 
 	update_usersecrets();
