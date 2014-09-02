@@ -42,7 +42,7 @@ $.get('ajax_check.php?t='+Math.random(),{pass:$("#pass").val(),user:$("#user").v
 if(j=="ok"){window.location.href='/feed.php';}
 else{
 $("#status").text('Wrong Username or Password').show();
-setTimeout(function(){$("#status").html('&nbsp;')},1500);
+//setTimeout(function(){$("#status").html('&nbsp;')},1500);
 }
 
 });

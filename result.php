@@ -64,10 +64,9 @@
   
   <div data-role="main" class="ui-content" >
 		
-		<div id="choosing">
-		<div style ="float:left; width: 50%; padding-right:10px ">
-		<h5>Floor Level</h5>
-		<select name="flo" id="flo" onchange="showHeat(document.getElementById('flo').value,document.getElementById('categ').value)" >
+		<div id="choosing">	<h5>Floor Level</h5>
+		<div width: 100%; padding-right:10px ">
+		<select name="flo" id="flo" onChange="showHeat(document.getElementById('flo').value,document.getElementById('categ').value)" >
 						<option value="1">1</option> 
 						<option value="2">2</option>
 						<option value="3">3</option>
@@ -76,9 +75,10 @@
 						<option value="6">6</option>
 		</select>
 		</div>
+		</br>
 		<h5>Sort By?</h5>
 		
-		<select name="flo" id="categ" onchange="showHeat(document.getElementById('flo').value,document.getElementById('categ').value)">
+		<select name="flo" id="categ" onChange="showHeat(document.getElementById('flo').value,document.getElementById('categ').value)">
 						<option value="8">Temperature</option>
 						<option value="9">Light</option>
 						<option value="10">Noise</option>
