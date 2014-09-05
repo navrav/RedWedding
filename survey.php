@@ -3,19 +3,19 @@
 <head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
-		<link rel="stylesheet" href="jquery.mobile-1.4.2.css">
+		<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css">
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/main.css" type="text/css">
 		
 		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-		<script src="jquery.mobile-1.4.2.js"></script>
-		<script src="jquery-1.11.0.min.js"></script>
-		<script src="ion.rangeSlider.js"></script>
+		<script src="js/jquery.mobile-1.4.2.js"></script>
+		<script src="js/jquery-1.11.0.min.js"></script>
+		<script src="js/ion.rangeSlider.min.js"></script>
 
 
-		<link rel="stylesheet" href="normalize.min.css" />
-   		<link rel="stylesheet" href="ion.rangeSlider.css" />
-    	<link rel="stylesheet" href="ion.rangeSlider.skinNice.css" />
+		<link rel="stylesheet" href="css/normalize.min.css" />
+   		<link rel="stylesheet" href="css/ion.rangeSlider.css" />
+    	<link rel="stylesheet" href="css/ion.rangeSlider.skinNice.css" />
 		
 		<script>
 		

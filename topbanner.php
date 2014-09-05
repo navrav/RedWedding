@@ -19,7 +19,7 @@
     $aebux = $row['AEBux'];
     $rank = $row['rank'];
 ?>
-		    <h1><img src="logo1.png" width="101.25px" height="55.5px"/></h1>
+		    <h1><img src="images/logo1.png" width="101.25px" height="55.5px"/></h1>
 		    <!--a href="#nav" class="ui-btn ui-corner-all ui-icon-bullets ui-btn-icon-left ui-btn-icon-notext"></a-->
 		    <a href="#nav"> <span class="glyphicon glyphicon-th-list"> </span></a>
 				<span style="position: absolute; right: 10px; top: 10px;font-size:11px">Rank: <?php echo $rank; ?> </span>

@@ -9,17 +9,16 @@
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1" >
 	
-	<link rel="stylesheet" href="jquery.mobile-1.4.2.css" />
-		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="css/main.css" type="text/css" />
-		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" />
+	<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css" />
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/main.css" type="text/css" />
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" />
 		
 	
-	<script src="jquery-1.8.2.min.js"></script>
-	
-	<script src="jquery.mobile-1.4.2.js"></script>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="js/jquery.mobile-1.4.2.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<!-- <script src="fb.js"></script> -->
+	<!-- <script src="js/fb.js"></script> -->
 	<!-- script src="//connect.facebook.net/en_US/all.js"></script -->
 	
 	<!--checking submit-->
@@ -82,7 +81,7 @@ $("#status").text('Wrong Username or Password').show();
 					<div class="row">
 						
 						<div class="col-md-8 col-md-offset-2">
-							<div id="logo"><img src="logo2.png" class="img-responsive" /></div>
+							<div id="logo"><img src="images/logo2.png" class="img-responsive" /></div>
 							 
 					<div style="color:red;margin:0 auto;" id="status">&nbsp;</div>
 										<!--input type="text" name="u" id="u" placeholder="Email"-->

@@ -5,7 +5,7 @@
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1" >
 	
-	<link rel="stylesheet" href="jquery.mobile-1.4.2.css" />
+	<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css" />
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/main.css" type="text/css" />
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" />
@@ -13,7 +13,7 @@
 	
 	<script src="http://code.jquery.com/jquery-1.10.2.min.js" </script>
 	
-	<script src="jquery.mobile-1.4.2.js"></script>
+	<script src="js/jquery.mobile-1.4.2.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<!-- <script src="fb.js"></script> -->
 	<!-- script src="//connect.facebook.net/en_US/all.js"></script -->
