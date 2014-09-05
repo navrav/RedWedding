@@ -9,7 +9,7 @@
 		$room = $_GET['opttwo'];
 		$user = 1;
 		
-		$conNew=mysqli_connect("deco3800-12.zones.eait.uq.edu.au","root","Hebrew*Read+dire","aeb");
+		$conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Viking8Chief+latch","aeb");
 		if($tag != "a"){
 			$resultNew = mysqli_query($conNew,"INSERT INTO CheckIn (u_ID, room, tag) VALUES ('$user', '$room', '$tag');");
 		}

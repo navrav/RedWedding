@@ -1,7 +1,7 @@
 <?php
 $floor = $_REQUEST["q"];
 $category = $_REQUEST["l"];
-$conNew=mysqli_connect("deco3800-12.zones.eait.uq.edu.au","root","Hebrew*Read+dire","aeb");
+$conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Viking8Chief+latch","aeb");
 if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error(); 
       }
