@@ -42,22 +42,20 @@
 	$sql = mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (22,12)");
 	$sqli = mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (690,69)");
 
+	if(isset($_POST['buysecret'])){ //The ID of the form we used is 'submit' so when that is clicked it will execute this
+    function updateSecrets()
+    {
+        $data = mysql_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (42,10)");
+        $datai = mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (691,69)");
+    
+                if(!$data)
+                {
+                    die("Invalid Query: " . mysql_error());
+                }
+            }
 
-
-	function update_usersecrets(){
-		echo("<script>console.log('launching function...');</script>");
-		$user='deco';
-		$secretid='12';
-
-		echo("<script>console.log('Still running...');</script>");
-		//$userbux = mysqli_query($dbconn, "SELECT 'AEBux' FROM 'Users' WHERE 'u_ID'=$userid");
-		//$secretcost = mysqli_query($dbconn, "SELECT 'Cost' FROM 'Secrets' WHERE 's_ID'='1'");
-		//$newbux = $userbux - $secretcost;
-		//$updatebux = mysqli_query($dbconn, "UPDATE 'Users' SET AEBux=AEBux-$secretcost WHERE u_ID='$userid'");
-		$sqli = mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (6969,69)");
+	updateSecrets();
 	}
-
-	update_usersecrets();
 	?>	
 
 		<!--		//$conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Viking8Chief+latch","aeb");
@@ -94,9 +92,11 @@
         <h6>AEB Rooms Secret</h6>
         <p>15 AEBux</p>
         <p class="ui-li-aside">
+        	<form method="post" id="buysecret" action="<?php echo $_SERVER['PHP_SELF']; ?>">
         	<button type="button" id="aebroom" class="btn btn-default btn-sm" onclick="buy()">
 	        		<span class="glyphicon glyphicon-gift"></span> Buy Secret
 	        </button>
+	    </form>
 		</p>        
       </li>
       
