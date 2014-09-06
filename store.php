@@ -12,7 +12,7 @@
 		
 		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 		<script src="js/jquery.mobile-1.4.2.js"></script>
-		<script src="store.js"></script>
+		
 		
 		<!--Need to know:
 			User ID
@@ -39,23 +39,26 @@
 			die("Unable to connect to database [".$db->connect_error."]");
 		}
 
-	$sql = mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (22,12)");
-	$sqli = mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (690,69)");
+	$sqlt = mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (100,aebroom)");
+	//$sqli = mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (690,69)");
+	echo("<script>console.log('Opening page...');</script>");
+	
+	$secretlist = mysqli_query($dbconn, "SELECT * FROM `UserSecrets` WHERE `u_ID`=100");
+		if(!$secretlist){
+			echo("<script>console.log('No data from table');</script>");
+		} else{
+			echo("<script>console.log('Data found');</script>");
+		}
+	while($row = mysqli_fetch_array($secretlist)) {
+ 	 //echo("<script>console.log('$row['s_ID']');</script>");
+ 	 //echo '<script type="text/javascript">', 'checkSecrets($row['s_ID']);', '</script>';
+ 
+	}	
+	//echo("<script>console.log("$secretlist");</script>");
+	//echo("<script>console.log('PHP: ".$data."');</script>");
 
-	if(isset($_POST['buysecret'])){ //The ID of the form we used is 'submit' so when that is clicked it will execute this
-    function updateSecrets()
-    {
-        $data = mysql_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (42,10)");
-        $datai = mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (691,69)");
-    
-                if(!$data)
-                {
-                    die("Invalid Query: " . mysql_error());
-                }
-            }
 
-	updateSecrets();
-	}
+
 	?>	
 
 		<!--		//$conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Viking8Chief+latch","aeb");
@@ -63,10 +66,27 @@
       	//if (mysqli_connect_errno()) {
         //	echo "Failed to connect to MySQL: " . mysqli_connect_error();
       	//}-->
+    <script>
+
+
+	function checkSecrets(s_ID){
+		document.getElementById(s_ID).disabled = true;
+	}
+
+	</script>
+
+	<?php
+	//Aim is to check the database table and find the list of secrets already bought
+	// by a user, and store the s_ID values in a list that is iterated over by a jscript 
+	// function in order to disable all the buttons for secrets already bought
+
+	?>
 		
 	</head>
 	
-	<body>
+
+
+	<body onload="checkSecrets()">
 
 		<!--top bar-->
 		<div data-role="page" data-theme="b" style="background-color:white;">
@@ -92,14 +112,32 @@
         <h6>AEB Rooms Secret</h6>
         <p>15 AEBux</p>
         <p class="ui-li-aside">
-        	<form method="post" id="buysecret" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-        	<button type="button" id="aebroom" class="btn btn-default btn-sm" onclick="buy()">
+        	<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
+        	<button type="submit" name="buysecret" class="btn btn-default btn-sm" id="aebroom">
 	        		<span class="glyphicon glyphicon-gift"></span> Buy Secret
 	        </button>
-	    </form>
+	    	</form>
 		</p>        
       </li>
       
+      <?php
+
+      if (isset($_POST['buysecret'])) {
+      	$sqlt = mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (222,120)");
+		//$(this).find('button[type="submit"]').prop("disabled", true);
+		echo("<script>console.log('Calling function...');</script>");
+        //updateDisable();
+		//echo '<script type="text/javascript">', 'updateDisable();', '</script>';
+
+    	}
+
+	?>
+
+
+
+
+
+
 	  <li data-icon="false">
 	  	<h6>AEB Hallway Secret</h6>
         <p>15 AEBux</p>
