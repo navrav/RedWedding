@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html class="ui-mobile">
-
+<script>function back(){location.href='index.php';}</script>
 <head>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1" >
@@ -61,10 +61,14 @@ function check(){
 								<label for="email">Email</label>
 								<input type="email" class="form-control input-control" placeholder="Email" name="email" id="email">
 								</div>                    								
+								<table style="width:100%;margin:0 auto"><tr><td width="50%">
 								
-								<div class="form-group col-md-6 col-md-offset-3">
-								<button type="button" class="btn btn-danger btn_reg" onclick="check();">Sign Up</button>
-								</div>
+								<button type="button" class="btn btn-danger btn_reg" style="width:80%" onClick="check();">Sign Up</button></td><td>
+							
+					
+									
+								<button type="button" class="btn btn-danger btn_reg" style="width:80%"  onClick="back();">Back</button></td></tr></table>
+								
 							</form>
 					  
 						</div>

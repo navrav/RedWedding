@@ -34,7 +34,8 @@
 	document.getElementById('log').disabled=true;
 	}
 	});
-
+var ll="<?=isset($_GET['ll']) ? $_GET['ll'] : '0'?>";
+if(ll==1){$("#status").text('logout successfully').show();}
 	$("#log").click(function(){
 
 $.get('ajax_check.php?t='+Math.random(),{pass:$("#pass").val(),user:$("#user").val()},function(j){
