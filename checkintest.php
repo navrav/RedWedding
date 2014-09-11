@@ -1,6 +1,6 @@
 <?php
 		$user = 1;
-		$room = $_POST['room'];
+		$room = $_POST['opttwo']; // was originally 'room'
 		$tag = $_POST['tag'];
 		
 		$conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Viking8Chief+latch","aeb");

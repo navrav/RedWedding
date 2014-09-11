@@ -28,7 +28,7 @@
 				 
 				selbox.options.length = 0;
 				if (chosen == " ") {
-				  selbox.options[selbox.options.length] = new Option('Floor',' ');		 
+				  selbox.options[selbox.options.length] = new Option('Change level for room list',' ');		 
 				}
 				if (chosen == "1") {
 					selbox.options[selbox.options.length] = new Option('101','101');
@@ -207,7 +207,7 @@
 							<option value="6">Level 6</option>
 						</select>
 						<select name="opttwo" id="opttwo" value = "" size="1">
-							<option value=" " selected="selected" >Room</option>
+							<option value=" " selected="selected" >Change level for room list</option>
 						</select>
 			
 					</div>
