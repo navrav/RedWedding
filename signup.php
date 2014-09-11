@@ -27,7 +27,7 @@ function check(){
 	form.submit();
 	}
 	else{
-	document.getElementById("check").innerHTML = "Password does not match.";
+	document.getElementById("check").innerHTML = "Passwords do not match.";
 	}
 }
 </script>

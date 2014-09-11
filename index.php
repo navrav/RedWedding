@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+	// Database access - set variables and connect
 	include("servercon.php");
 ?>
 
@@ -9,6 +10,7 @@
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1" >
 	
+	<!-- Import libraries -->
 	<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css" />
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="css/main.css" type="text/css" />
@@ -18,10 +20,10 @@
 	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script src="js/jquery.mobile-1.4.2.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<!-- <script src="js/fb.js"></script> -->
-	<!-- script src="//connect.facebook.net/en_US/all.js"></script -->
+		<!-- <script src="js/fb.js"></script> -->
+		<!-- script src="//connect.facebook.net/en_US/all.js"></script -->
 	
-	<!--checking submit-->
+	<!-- Check submitted data -->
 	<script>
 	$(document).ready(function(){
 
@@ -35,7 +37,7 @@
 	}
 	});
 var ll="<?=isset($_GET['ll']) ? $_GET['ll'] : '0'?>";
-if(ll==1){$("#status").text('logout successfully').show();}
+if(ll==1){$("#status").text('logout successful').show();}
 	$("#log").click(function(){
 
 $.get('ajax_check.php?t='+Math.random(),{pass:$("#pass").val(),user:$("#user").val()},function(j){
@@ -80,32 +82,39 @@ $("#status").text('Wrong Username or Password').show();
 			<div class="intro-body">
 				<div class="container">
 					<div class="row">
-						
 						<div class="col-md-8 col-md-offset-2">
+							<!-- logo image -->
 							<div id="logo"><img src="images/logo2.png" class="img-responsive" /></div>
 							 
-					<div style="color:red;margin:0 auto;" id="status">&nbsp;</div>
-										<!--input type="text" name="u" id="u" placeholder="Email"-->
-								<div class="form-group col-lg-12">
-								
-								<input type="text" class="form-control input-control" id="user" placeholder="Email" name="user" value=""></div>
-								<!--input type="password" name="p" id="p" placeholder="Password"-->	
-								<div class="form-group col-lg-12">
+							<!-- status message -->
+							<div style="color:red;margin:0 auto;" id="status">&nbsp;</div>
+							
+							<!-- email field for login -->
+							<div class="form-group col-lg-12">
+								<input type="text" class="form-control input-control" id="user" placeholder="Email" name="user" value="">
+							</div>
+							
+							<!-- password field for login -->
+							<div class="form-group col-lg-12">
 								<input type="password" class="form-control" id="pass" placeholder="Password" name="pass" value="">
-								</div>                   
-								<div class="form-group col-md-6 col-md-offset-3"> 
+							</div>
+							
+							<!-- login button -->
+							<div class="form-group col-md-6 col-md-offset-3"> 
 								<button type="submit" class="btn btn-success btn_login" value="Login" id="log" disabled>Login</button>
-								</div>
-								
-								<div class="form-group col-md-6 col-md-offset-3">
+							</div>
+							
+							<!-- sign up button -->
+							<div class="form-group col-md-6 col-md-offset-3">
 								<button type="button" class="btn btn-danger btn_reg" value="Register" onClick="signup();" >Sign Up</button>
-								</div>
-					
+							</div>
+				
+							<!-- facebook login button (disabled for now) -->
+								<!--
 								<div class="form-group" col-md-6 col-md-offset-3 id="fb_login">
-								<button type="button" class="btn btn-primary btn_fb">Login using Facebook</button>
+									<button type="button" class="btn btn-primary btn_fb">Login using Facebook</button>
 								</div>
-						
-					  
+								-->
 						</div>
 					</div>
 				</div>
