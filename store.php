@@ -150,12 +150,6 @@
 	    	</form>
 		</p>        
       </li>
-      
-      <?php
-
-
-	?>
-
 
 	  <li data-icon="false">
 	  	<h6>AEB Hallway Secret</h6>
