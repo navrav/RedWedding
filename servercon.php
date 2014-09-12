@@ -1,4 +1,11 @@
 <?php
+
+/***************************************************
+ *	SERVERCON.PHP - Establishes database connection
+ *
+ *		Runs every time a page is opened.
+ */
+
 	// variables for accessing the database
 	// Host for the database, usually this will be localhost (ie. it is hosted in the same place as the rest of your files
 	$dbhost = "deco3801-01.zones.eait.uq.edu.au";

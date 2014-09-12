@@ -1,10 +1,11 @@
 <?php
 
-/***************************************************************************
- *	REGISTER.PHP - Create new user record in database
+/***********************************************************
+ *	REGISTER.PHP - Creates new user record in database
  *
- *		Takes user's fname, lname, password and email from register web page
- *		Uses an insert query to create a record in the user table of db
+ *		Takes user's details from register web page
+ *			- fname, lname, password and email
+ *		Uses an insert query to create a user record in db.
  */
 
 $fname = $_POST["fname"];
