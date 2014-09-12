@@ -264,7 +264,6 @@
 			</div>
 			
 			
-			
 			<div id="hash-tag">
 				<h4> Room Temperature </h4>
 				<input type="text" id ="slider" name ="slider" value = "" />
