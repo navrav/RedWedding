@@ -49,7 +49,11 @@
 		} else{
 			echo("<script>console.log('Data found');</script>");
 		}
+
 	while($row = mysqli_fetch_array($secretlist)) {
+		echo("<script>console.log('entering while loop...');</script>");
+		echo $sID = $row['s_ID'];
+		echo("<script>console.log({$sID});</script>");
  	 //echo("<script>console.log('$row['s_ID']');</script>");
  	 //echo '<script type="text/javascript">', 'checkSecrets($row['s_ID']);', '</script>';
  
@@ -69,7 +73,11 @@
     <script>
 
 
-	function checkSecrets(s_ID){
+	function checkSecrets(){
+		for secret in table:{
+			s_ID = 
+		}
+		console.log('checkSecrets function launched...');
 		document.getElementById(s_ID).disabled = true;
 	}
 
@@ -80,6 +88,14 @@
 	// by a user, and store the s_ID values in a list that is iterated over by a jscript 
 	// function in order to disable all the buttons for secrets already bought
 
+	function checkSecrets(){
+		echo("<script>console.log('Calling php function...');</script>");
+		while($row = mysqli_fetch_array($result)) {
+  			echo $sID = $row['s_ID'];
+  			echo("<script>console.log({$sID});</script>");
+  			//echo '<script type="text/javascript">', "updateButtons({$sID});", '</script>';
+			}
+	}
 	?>
 		
 	</head>
@@ -127,7 +143,7 @@
 		//$(this).find('button[type="submit"]').prop("disabled", true);
 		echo("<script>console.log('Calling function...');</script>");
         //updateDisable();
-		//echo '<script type="text/javascript">', 'updateDisable();', '</script>';
+		//echo '<script type="text/javascript">', 'updateButtons();', '</script>';
 
     	}
 
