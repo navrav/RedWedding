@@ -14,13 +14,27 @@
 		<script src="js/jquery.mobile-1.4.2.js"></script>
 		
 		
-		<!--Need to know:
+		<!-- Need to know:
 			User ID
 			Secret ID
 			Secret Cost
 		-->
 
 	<?php
+	/***************************************************************************
+	*	
+	*	STORE.PHP - Updates the userSecret table and AEBux totals depending
+	* 				on which secrets the user has purchased
+	*
+	*	Functionality:
+	*		- Establishes connection to the database
+	*		- Grabs data from UserSecrets to generate a list of puchased secrets
+	*		- Updates the disabled property of each button depending on whether 
+	*		  a user has purchased that secret
+	*		- Updates the UserSecrets table and AEBux value when a user purchases
+	*		  a new secret
+	*/
+
 	session_start();
 
 	$host="deco3801-01.zones.eait.uq.edu.au"; // Host name
@@ -39,8 +53,17 @@
 			die("Unable to connect to database [".$db->connect_error."]");
 		}
 
-	$sqlt = mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (100,aebroom)");
-	//$sqli = mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (690,69)");
+
+	// Updates the database tables with UserSecret information on the click of the button
+	if (isset($_POST['buysecret'])) {
+    $sqlt = mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (222,120)");
+	//$(this).find('button[type="submit"]').prop("disabled", true);
+	echo("<script>console.log('Calling function...');</script>");
+    }
+    //
+
+	//$sqlt = mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (100,aebroom)");
+	
 	echo("<script>console.log('Opening page...');</script>");
 	
 	$secretlist = mysqli_query($dbconn, "SELECT * FROM `UserSecrets` WHERE `u_ID`=100");
@@ -51,6 +74,7 @@
 		}
 
 	while($row = mysqli_fetch_array($secretlist)) {
+		// Console output for error checking
 		echo("<script>console.log('entering while loop...');</script>");
 		echo $sID = $row['s_ID'];
 		echo("<script>console.log({$sID});</script>");
@@ -58,48 +82,39 @@
  	 //echo '<script type="text/javascript">', 'checkSecrets($row['s_ID']);', '</script>';
  
 	}	
-	//echo("<script>console.log("$secretlist");</script>");
-	//echo("<script>console.log('PHP: ".$data."');</script>");
 
-
-
-	?>	
-
-		<!--		//$conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Viking8Chief+latch","aeb");
-      	// Check connection
-      	//if (mysqli_connect_errno()) {
-        //	echo "Failed to connect to MySQL: " . mysqli_connect_error();
-      	//}-->
-    <script>
-
-
-	function checkSecrets(){
-		for secret in table:{
-			s_ID = 
-		}
-		console.log('checkSecrets function launched...');
-		document.getElementById(s_ID).disabled = true;
-	}
-
-	</script>
-
-	<?php
-	//Aim is to check the database table and find the list of secrets already bought
-	// by a user, and store the s_ID values in a list that is iterated over by a jscript 
-	// function in order to disable all the buttons for secrets already bought
+	/* Aim is to check the database table and find the list of secrets already bought
+	   by a user, and store the s_ID values in a list that is iterated over by a jscript 
+	   function in order to disable all the buttons for secrets already bought
+	*/
 
 	function checkSecrets(){
 		echo("<script>console.log('Calling php function...');</script>");
 		while($row = mysqli_fetch_array($result)) {
   			echo $sID = $row['s_ID'];
   			echo("<script>console.log({$sID});</script>");
-  			//echo '<script type="text/javascript">', "updateButtons({$sID});", '</script>';
+  			// Calls function to update the disabled setting of each button
+  			echo '<script type="text/javascript">', "updateButtons({$sID});", '</script>';
 			}
 	}
-	?>
+	/*****************************************************************************/
+	?>	
+
+    <script>
+    /* Contains Javascript functions for interacting with the HTML components
+    	on the webpage
+    */
+
+	function updateButtons(sID){
+		/* Function updates the disabled setting of each 'Buy' button
+		*/
+		console.log('updateButtons function launched...');
+		document.getElementById(s_ID).disabled = true;
+	}
+
+	</script>
 		
 	</head>
-	
 
 
 	<body onload="checkSecrets()">
@@ -138,20 +153,8 @@
       
       <?php
 
-      if (isset($_POST['buysecret'])) {
-      	$sqlt = mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (222,120)");
-		//$(this).find('button[type="submit"]').prop("disabled", true);
-		echo("<script>console.log('Calling function...');</script>");
-        //updateDisable();
-		//echo '<script type="text/javascript">', 'updateButtons();', '</script>';
-
-    	}
 
 	?>
-
-
-
-
 
 
 	  <li data-icon="false">
