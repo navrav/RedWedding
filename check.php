@@ -1,5 +1,15 @@
 <?php
 
+/************************************************************
+ *	CHECK.PHP - Sets logged in user profile
+ *
+ *		Sets necessary database access variables
+ *		Connects to database
+ *		Checks if username and password entered exists in db
+ *			If match found, set as active profile
+ *			Else, print error message to index.
+ */
+
 session_start();
 
 $host="deco3801-01.zones.eait.uq.edu.au";	// Host name
