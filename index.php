@@ -27,31 +27,29 @@
 	<script>
 	$(document).ready(function(){
 
-	$("*").keyup(function(){
-	if($("#user").val()!="" && $("#pass").val()!="")
-	{
-	document.getElementById('log').disabled=false;
-	}else {
-	
-	document.getElementById('log').disabled=true;
-	}
-	});
-var ll="<?=isset($_GET['ll']) ? $_GET['ll'] : '0'?>";
-if(ll==1){$("#status").text('logout successful').show();}
-	$("#log").click(function(){
-
-$.get('ajax_check.php?t='+Math.random(),{pass:$("#pass").val(),user:$("#user").val()},function(j){
-if(j=="ok"){window.location.href='/feed.php';} //callback function, math.random here to wipe cache of IE explorer
-else{
-$("#status").text('Wrong Username or Password').show();
-//setTimeout(function(){$("#status").html('&nbsp;')},1500);
-}
-
-});
+		$("*").keyup(function(){
+			if($("#user").val()!="" && $("#pass").val()!="") {
+				document.getElementById('log').disabled=false;
+			} else {
+				document.getElementById('log').disabled=true;
+			}
+		});
 		
-	});
-	
-	
+		var logout="<?=isset($_GET['logout']) ? $_GET['logout'] : '0'?>";
+		
+		if(logout==1) {
+			$("#status").text('logout successful').show();
+		}
+
+		$("#log").click(function(){
+			$.get('check.php?t='+Math.random(), {pass:$("#pass").val(), user:$("#user").val()}, function(check_response) {
+				if(check_response=="true") {
+					window.location.href='/feed.php'; // callback function, math.random here to wipe cache of IE explorer
+				} else {
+					$("#status").text('Wrong Username or Password').show();
+				}
+			});
+		});
 	});
 	
 

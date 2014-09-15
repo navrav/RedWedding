@@ -90,7 +90,8 @@
 </section>
 <script>
 function logout(){
-location.href="/index.php?ll=1";
+
+location.href="/logout.php";
 
 }
 

@@ -47,22 +47,15 @@ $check="SELECT * FROM $tbl_name WHERE email='$myusername' and pass='$mypassword'
 $count=$result->num_rows;
 // If the previous check found a match, there should be exactly 1 row in the query result
 if($count==1) {
-//    session_regenerate_id();
+//session_regenerate_id();
 	// set current user
     $_SESSION['username'] = $myusername;
 	// status = logged in
     $_SESSION['loggedIn'] = true;
     // close the session
  //   session_write_close();
-    header("location:/feed.php");
-    exit();
+    echo "true";
 } else { // no match found in db
-    echo "Wrong Username or Password";
-	header("location:/index.php?status=fail");
+    echo "false";
 }
-
-
-
-
-
 ?>
