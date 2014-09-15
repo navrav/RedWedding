@@ -37,9 +37,9 @@ $myusername=$dbconn->real_escape_string($_POST['user']);
 $mypassword=$dbconn->real_escape_string($_POST['pass']);
 
 // Check if the username/pw combination exists in db
-$check="SELECT * FROM $tbl_name WHERE email='$myusername' and pass='$mypassword'";
+$sql="SELECT * FROM $tbl_name WHERE email='$myusername' and pass='$mypassword'";
 	// If does not exist, error message
-	if(!$result = $dbconn->query($check)) {
+	if(!$result = $dbconn->query($sql)) {
 		die('There was an error running the query [' . $db->error . ']');
 	}
 
