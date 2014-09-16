@@ -37,9 +37,9 @@ $myusername=$dbconn->real_escape_string($_POST['user']);
 $mypassword=$dbconn->real_escape_string($_POST['pass']);
 
 // Check if the username/pw combination exists in db
-$sql="SELECT * FROM $tbl_name WHERE email='$myusername' and pass='$mypassword'";
+$check="SELECT * FROM $tbl_name WHERE email='$myusername' and pass='$mypassword'";
 	// If does not exist, error message
-	if(!$result = $dbconn->query($sql)) {
+	if(!$result = $dbconn->query($check)) {
 		die('There was an error running the query [' . $db->error . ']');
 	}
 
@@ -47,15 +47,22 @@ $sql="SELECT * FROM $tbl_name WHERE email='$myusername' and pass='$mypassword'";
 $count=$result->num_rows;
 // If the previous check found a match, there should be exactly 1 row in the query result
 if($count==1) {
-//session_regenerate_id();
+//    session_regenerate_id();
 	// set current user
     $_SESSION['username'] = $myusername;
 	// status = logged in
     $_SESSION['loggedIn'] = true;
     // close the session
  //   session_write_close();
-    echo "true";
+    header("location:/feed.php");
+    exit();
 } else { // no match found in db
-    echo "false";
+    echo "Wrong Username or Password";
+	header("location:/index.php?status=fail");
 }
+
+
+
+
+
 ?>
