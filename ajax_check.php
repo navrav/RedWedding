@@ -1,22 +1,8 @@
 <?php
 
 session_start();
-
-$host="deco3801-01.zones.eait.uq.edu.au"; // Host name
-$username="root"; // Mysql username
-$password="Viking8Chief+latch"; // Mysql password
-$db_name="aeb"; // Database name
+include("servercon.php");
 $tbl_name="Users"; // Table name
-error_reporting(E_ALL);
-
-// Connect to server and select databse.
-$dbconn = new mysqli($host, $username, $password, $db_name);
-if($dbconn->connect_errno > 0){
-		die("Unable to connect to database [".$db->connect_error."]");
-	}
-
-
-
 
 
 //Use this for security -- not yet implemented
