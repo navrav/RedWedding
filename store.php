@@ -53,6 +53,10 @@
 			die("Unable to connect to database [".$db->connect_error."]");
 		}
 
+	echo("<script>console.log('Updating values...')</script>");
+	//$user = $_SESSION['u_ID'];
+	$secretslist = mysqli_query($dbconn, "SELECT * FROM 'UserSecrets' WHERE 'u_ID'=$user");
+	echo("<script>console.log("$secretslist")</script>");
 
 	// Updates the database tables with UserSecret information on the click of the button
 	if (isset($_POST['buysecret'])) {
