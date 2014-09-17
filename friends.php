@@ -1,4 +1,31 @@
 <!DOCTYPE html>
+<?php
+  session_start();
+  include("servercon.php");
+
+  if (!isset($_SESSION['username']))
+  {
+      header("location:index.php");
+  }
+
+  $user = $_SESSION["username"];
+
+  $friend2 = "SELECT `ID_2` FROM `Friends` WHERE `ID_1` = 1";
+    if($friend2 != ""){
+        if(!$result = $dbconn->query($friend2)){
+                die("There was an error running the sql query [".$db->error."]");
+            }
+    }
+  
+  $friend1 = "SELECT `ID_1` FROM `Friends` WHERE `ID_2` = 1";
+    if($friend1 != ""){
+        if(!$result = $dbconn->query($friend1)){
+                die("There was an error running the sql query [".$db->error."]");
+            }
+    }
+
+
+?>
 
 <html>
 	<head>
@@ -69,7 +96,14 @@
 	  		<div style="text-align:center;">FRIENDS </div>
 		  <div  style="position:absolute; right:15px; top:0px;"><button type="button" class="btn btn-default btn-sm" onClick="Add();">+</button></div>
 	  </li> 
-	 
+	 <?php
+	 	//while($friend = $friend2->fetch_assoc()){
+	 	//	$tempfriend = $friend[ID_2];
+
+	 echo $friend2;
+	 echo $friend1;
+
+	 ?>
       <li data-icon="false"><a href="friend.php">
       	<h6><img src="Team/zoe.jpg" width="50px" height="50px" class="img-circle" style/>
       		Zoe Stewart</h6>
@@ -80,6 +114,7 @@
 	        </button>
 		</p>
       </li>
+
       <li data-icon="false"> <a href="felix.php"> 
         <h6><img src="Team/adee.jpg" width="50px" height="50px" class="img-circle"/>
       		Adeleen Pavia</h6>
@@ -102,7 +137,8 @@
 	        		<span class="glyphicon glyphicon-trash"></span> Delete
 	        </button>
 		</p>
-     </li>   
+     </li>  
+
       <li data-icon="false"><a href="felix.php">
         <h6><img src="Team/andre.jpg" width="50px" height="50px" class="img-circle"/>
       		Andre Hermanto</h6>
@@ -113,6 +149,7 @@
 	        </button>
 		</p>    
       </li>	  
+
       <li data-icon="false">
         <a href="felix.php">
         <h6><img src="Team/felix.jpg" width="50px" height="50px" class="img-circle"/>
