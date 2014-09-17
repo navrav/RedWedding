@@ -19,6 +19,16 @@
 			Secret ID
 			Secret Cost
 		-->
+	<script type="text/javascript">
+
+	function disableButton(button){
+    	console.log('Disabling buttons... bear with us');
+    	
+    	var buttonID = button.toString();
+    	console.log(typeof buttonID, buttonID);
+    	document.getElementById("/buttonID/").setAttribute('disabled', 'disabled');
+    }
+    </script>
 
 	<?php
 	/***************************************************************************
@@ -53,10 +63,13 @@
 			die("Unable to connect to database [".$db->connect_error."]");
 		}
 
+	// Grab username for currently logged in user
 	echo("<script>console.log('Updating values...')</script>");
+	echo("<script>console.log('Starting page...')</script>");
 	//$user = $_SESSION['u_ID'];
-	$secretslist = mysqli_query($dbconn, "SELECT * FROM 'UserSecrets' WHERE 'u_ID'=$user");
-	echo("<script>console.log("$secretslist")</script>");
+	$user = '1';
+	$secretslist = mysqli_query($dbconn, "SELECT * FROM 'UserSecrets' WHERE 'u_ID'='1'");
+	//echo("<script>console.log("$secretslist")</script>");
 
 	// Updates the database tables with UserSecret information on the click of the button
 	if (isset($_POST['buysecret'])) {
@@ -70,37 +83,44 @@
 	
 	echo("<script>console.log('Opening page...');</script>");
 	
-	$secretlist = mysqli_query($dbconn, "SELECT * FROM `UserSecrets` WHERE `u_ID`=100");
-		if(!$secretlist){
+	$result = mysqli_query($dbconn, "SELECT * FROM `UserSecrets` WHERE `u_ID`='1'");
+		if(!$result){
 			echo("<script>console.log('No data from table');</script>");
 		} else{
 			echo("<script>console.log('Data found');</script>");
+			//echo("<script>console.log("$secretlist");</script>");
 		}
+	echo("<script>console.log('continuing function');</script>");
+	while($row = mysqli_fetch_array($result)) {
+  		echo("<script>console.log('entered loop...');</script>");
+  		echo("<script>console.log(".$row['s_ID'].");</script>");
+  		echo '<script type="text/javascript"> disableButton('.$row['s_ID'].'); </script>';
+}
 
-	while($row = mysqli_fetch_array($secretlist)) {
-		// Console output for error checking
-		echo("<script>console.log('entering while loop...');</script>");
-		echo $sID = $row['s_ID'];
-		echo("<script>console.log({$sID});</script>");
- 	 //echo("<script>console.log('$row['s_ID']');</script>");
- 	 //echo '<script type="text/javascript">', 'checkSecrets($row['s_ID']);', '</script>';
+	// while($row = mysqli_fetch_array($secretlist)) {
+	// 	// Console output for error checking
+	// 	echo("<script>console.log('entering while loop...');</script>");
+	// 	echo $sID = $row['s_ID'];
+	// 	echo("<script>console.log(".$row['s_ID'].");</script>");
+ // 	 //echo("<script>console.log('$row['s_ID']');</script>");
+ // 	 //echo '<script type="text/javascript">', 'checkSecrets($row['s_ID']);', '</script>';
  
-	}	
+	// }	
 
 	/* Aim is to check the database table and find the list of secrets already bought
 	   by a user, and store the s_ID values in a list that is iterated over by a jscript 
 	   function in order to disable all the buttons for secrets already bought
 	*/
 
-	function checkSecrets(){
-		echo("<script>console.log('Calling php function...');</script>");
-		while($row = mysqli_fetch_array($result)) {
-  			echo $sID = $row['s_ID'];
-  			echo("<script>console.log({$sID});</script>");
-  			// Calls function to update the disabled setting of each button
-  			echo '<script type="text/javascript">', "updateButtons({$sID});", '</script>';
-			}
-	}
+	// function checkSecrets(){
+	// 	echo("<script>console.log('Calling php function...');</script>");
+	// 	while($row = mysqli_fetch_array($result)) {
+ //  			echo $sID = $row['s_ID'];
+ //  			echo("<script>console.log({$sID});</script>");
+ //  			// Calls function to update the disabled setting of each button
+ //  			echo '<script type="text/javascript">', "updateButtons({$sID});", '</script>';
+	// 		}
+	// }
 	/*****************************************************************************/
 	?>	
 
@@ -108,12 +128,15 @@
     /* Contains Javascript functions for interacting with the HTML components
     	on the webpage
     */
+    console.log("Disabling button with ID = 1");
+    document.getElementById("1").setAttribute('disabled', 'disabled');
+    
 
-	function updateButtons(sID){
+	function buySecret(){
 		/* Function updates the disabled setting of each 'Buy' button
 		*/
 		console.log('updateButtons function launched...');
-		document.getElementById(s_ID).disabled = true;
+		document.getElementById("1").disabled = true;
 	}
 
 	</script>
@@ -147,8 +170,8 @@
         <h6>AEB Rooms Secret</h6>
         <p>15 AEBux</p>
         <p class="ui-li-aside">
-        	<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
-        	<button type="submit" name="buysecret" class="btn btn-default btn-sm" id="aebroom">
+        	<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        	<button type="submit" name="buysecret" class="btn btn-default btn-sm">
 	        		<span class="glyphicon glyphicon-gift"></span> Buy Secret
 	        </button>
 	    	</form>
@@ -159,7 +182,7 @@
 	  	<h6>AEB Hallway Secret</h6>
         <p>15 AEBux</p>
         <p class="ui-li-aside">
-        	<button type="button" class="btn btn-default btn-sm">
+        	<button type="button" class="btn btn-default btn-sm" id="3">
 	        		<span class="glyphicon glyphicon-gift"></span> Buy Secret
 	        </button>
 		</p>
@@ -168,7 +191,7 @@
         <h6>AEB Benches Secret</h6>
         <p>30 AEBux</p>
         <p class="ui-li-aside">
-        	<button type="button" class="btn btn-default btn-sm" onclick="buy();">
+        	<button type="button" class="btn btn-default btn-sm" id="5">
 	        		<span class="glyphicon glyphicon-gift"></span> Buy Secret
 	        </button>
 		</p>                
@@ -177,7 +200,7 @@
         <h6>Building Architecture Secret</h6>
         <p>45 AEBux</p>  
         <p class="ui-li-aside">
-        	<button type="button" class="btn btn-default btn-sm">
+        	<button type="button" class="btn btn-default btn-sm" id="7">
 	        		<span class="glyphicon glyphicon-gift"></span> Buy Secret
 	        </button>
 		</p>      
@@ -186,7 +209,7 @@
         <h6>Power Supply Secret</h6>
         <p>50 AEBux</p>     
         <p class="ui-li-aside">
-        	<button type="button" class="btn btn-default btn-sm">
+        	<button type="button" class="btn btn-default btn-sm" id="9">
 	        		<span class="glyphicon glyphicon-gift"></span> Buy Secret
 	        </button>
 		</p>           
@@ -195,7 +218,7 @@
         <h6>Power Supply Secret</h6>
         <p>50 AEBux</p>     
         <p class="ui-li-aside">
-        	<button type="button" class="btn btn-default btn-sm">
+        	<button type="button" class="btn btn-default btn-sm" id="1">
 	        		<span class="glyphicon glyphicon-gift"></span> Buy Secret
 	        </button>
 		</p>           
