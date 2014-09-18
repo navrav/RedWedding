@@ -1,3 +1,6 @@
+<?php 
+ include("servercon.php");
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -235,29 +238,29 @@ if (mysqli_connect_errno()) {
 		createHeat("circle3",tot33*10,220,170,color33);
 		createHeat("circle4",tot34*10,200,300,color34); 
 		
-		createHeat("legend",10,50,900,color(2,1,1));
-		createHeat("legend2",10,50,930,color(2,2,1));
-		createHeat("legend3",10,50,960,color(1,1,1));
-		createHeat("legend4",10,50,990,color(1,2,2));
-		createHeat("legend5",10,50,1020,color(1,1,2));
+		createHeat("legend",10,50,800,color(2,1,1));
+		createHeat("legend2",10,50,830,color(2,2,1));
+		createHeat("legend3",10,50,860,color(1,1,1));
+		createHeat("legend4",10,50,890,color(1,2,2));
+		createHeat("legend5",10,50,920,color(1,1,2));
 		
-		document.getElementById("d1").style.top ="890px";
+		document.getElementById("d1").style.top ="790px";
 		document.getElementById("d1").style.color="Red";
 		document.getElementById("d1").innerHTML = "Hot";
 		
-		document.getElementById("d2").style.top ="920px";
+		document.getElementById("d2").style.top ="820px";
 		document.getElementById("d2").style.color="Orange";
 		document.getElementById("d2").innerHTML = "Warm";
 		
-		document.getElementById("d3").style.top ="950px";
+		document.getElementById("d3").style.top ="850px";
 		document.getElementById("d3").style.color="Green";
 		document.getElementById("d3").innerHTML = "Normal";
 		
-		document.getElementById("d4").style.top ="980px";
+		document.getElementById("d4").style.top ="880px";
 		document.getElementById("d4").style.color="Aqua";
 		document.getElementById("d4").innerHTML = "Cold";
 		
-		document.getElementById("d5").style.top ="1010px";
+		document.getElementById("d5").style.top ="910px";
 		document.getElementById("d5").style.color="Blue";
 		document.getElementById("d5").innerHTML = "Freezing";
 
