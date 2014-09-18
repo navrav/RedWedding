@@ -49,10 +49,9 @@
 						//callback function, math.random here to wipe cache of IE explorer
 						window.location.href = '/feed.php';
 					} else {
-						$("#status").text('Wrong Username or Password').show();
+						$("#status").text('Wrong username or password').show();
 							//setTimeout(function(){$("#status").html('&nbsp;')},1500);
 					}
-
 				});
 			});
 		});
@@ -66,7 +65,7 @@
 				document.getElementById("check").innerHTML = "Please enter email";
 				return false;
 			} else if (document.getElementById("pass").value == "") {
-				document.getElementById("check").innerHTML = "Please enter Password";
+				document.getElementById("check").innerHTML = "Please enter password";
 				return false;
 			} else {
 				window.location.href = '/check.php';
