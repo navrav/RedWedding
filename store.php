@@ -32,28 +32,26 @@
 
 	<?php
 	/***************************************************************************
-	*	
-	*	STORE.PHP - Updates the userSecret table and AEBux totals depending
-	* 				on which secrets the user has purchased
-	*
-	*	Functionality:
-	*		- Establishes connection to the database
-	*		- Grabs data from UserSecrets to generate a list of puchased secrets
-	*		- Updates the disabled property of each button depending on whether 
-	*		  a user has purchased that secret
-	*		- Updates the UserSecrets table and AEBux value when a user purchases
-	*		  a new secret
-	*/
+	 *	STORE.PHP - Updates the userSecret table and AEBux totals depending
+	 * 				on which secrets the user has purchased
+	 *
+	 *		Establishes connection to the database
+	 *		Grabs data from UserSecrets to generate a list of purchased secrets
+	 *		Updates the disabled property of each button depending on whether 
+	 *			a user has purchased that secret
+	 *		Updates the UserSecrets table and AEBux value when a user purchases
+	 *			a new secret
+	 */
 
 	session_start();
 
-	$host="deco3801-01.zones.eait.uq.edu.au"; // Host name
-	$username="root"; // Mysql username
-	$password="Viking8Chief+latch"; // Mysql password
-	$db_name="aeb"; // Database name
-	$tbl_name="Users"; // Table name u_ID
-	$tbl_name2="Secrets"; //Table name s_ID
-	$tbl3_name="UserSecrets"; //Table name
+	$host="deco3801-01.zones.eait.uq.edu.au";	// Host name
+	$username="root";							// Mysql username
+	$password="Viking8Chief+latch";				// Mysql password
+	$db_name="aeb";								// Database name
+	$tbl_name="Users";							// Table name u_ID
+	$tbl_name2="Secrets";						//Table name s_ID
+	$tbl3_name="UserSecrets";					//Table name
 	error_reporting(E_ALL);
 
 	// Connect to server and select databse.
