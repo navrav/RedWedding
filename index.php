@@ -25,55 +25,53 @@
 	
 	<!-- Check submitted data -->
 	<script>
-	
-	$(document).ready(function(){
-	$("*").keyup(function(){
-	if($("#user").val()!="" && $("#pass").val()!="")
-	{
-	document.getElementById('log').disabled=false;
-	}else {
-	
-	document.getElementById('log').disabled=true;
-	}
-	});
-var log_out="<?=isset($_GET['log_out']) ? $_GET['log_out'] : '0'?>";
-if(log_out==1)$("#status").text('logout successful!').show();
+		$(document).ready(function() {
+			$("*").keyup(function() {
+				if ($("#user").val() != "" &&
+					$("#pass").val() != "") {
+					document.getElementById('log').disabled = false;
+				} else {
+					document.getElementById('log').disabled = true;
+				}
+			});
+			
+			var log_out = "<?=isset($_GET['log_out']) ? $_GET['log_out'] : '0'?>";
+			
+			if (log_out == 1) {
+				$("#status").text('Logout successful.').show();
+			}
 
-	$("#log").click(function(){
+			$("#log").click(function() {
+				$.get('ajax_check.php?t='+Math.random(),
+					  {pass:$("#pass").val(), user:$("#user").val()},
+					  function(checkresponse) {
+					if (checkresponse == "ok") {
+						//callback function, math.random here to wipe cache of IE explorer
+						window.location.href = '/feed.php';
+					} else {
+						$("#status").text('Wrong Username or Password').show();
+							//setTimeout(function(){$("#status").html('&nbsp;')},1500);
+					}
 
-$.get('ajax_check.php?t='+Math.random(),{pass:$("#pass").val(),user:$("#user").val()},function(checkresponse){
-if(checkresponse=="ok"){window.location.href='/feed.php';} //callback function, math.random here to wipe cache of IE explorer
-else{
-$("#status").text('Wrong Username or Password').show();
-//setTimeout(function(){$("#status").html('&nbsp;')},1500);
-}
-
-});
-		
-	});
+				});
+			});
+		});
 	
-	
-	});
-	
-
-	
-		function signup(){
-			window.location.href='/signup.php';
+		function signup() {
+			window.location.href = '/signup.php';
 		}
 
-		function checkForm(){
-			if(document.getElementById("user").value == ""){
-				document.getElementById("check").innerHTML = "Please enter Email";
+		function checkForm() {
+			if (document.getElementById("user").value == "") {
+				document.getElementById("check").innerHTML = "Please enter email";
 				return false;
-			} else if(document.getElementById("pass").value == "" ){
+			} else if (document.getElementById("pass").value == "") {
 				document.getElementById("check").innerHTML = "Please enter Password";
 				return false;
+			} else {
+				window.location.href = '/check.php';
 			}
-			else {
-				window.location.href='/check.php'
-			}
-		}
-			
+		}		
 	</script>
 
 </head>
