@@ -56,6 +56,9 @@
 		if (!$result = $dbconn->query($query)){
 			die("There was an error running the query [".$db->error."]");
 		}
+	}else{
+		echo("<script>console.log('Data was found');</script>");
+		echo("<script>console.log(".mysqli_fetch_array($query).");</script>");
 	}
 
 	// while($row = mysqli_fetch_array($queryarray)) {
@@ -67,6 +70,9 @@
 
 
 	$queryarray = mysqli_fetch_array($query);
+	while($row = mysqli_fetch_array($query)){
+		echo("<script>console.log(".$row['s_ID'].");</script>");
+	}
 
 
 	//$user = $_SESSION['u_ID'];
@@ -131,6 +137,7 @@
 
 	
 	while($row = mysqli_fetch_array($result)){
+
 		echo("<script>console.log(".$row['s_ID'].");</script>");
 	?>
 	<li data-icon="false">
