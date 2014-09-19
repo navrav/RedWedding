@@ -14,11 +14,11 @@
 		<script src="js/bootstrap.min.js"></script>
 		
 		
-		<!--drop down menu's-->	
+		<!-- drop down menus -->	
 		<script>
 			
 			// I am hard coding this but there are way to call from tables
-			// in php that would make this a lot easier. 
+			// in php that would make this a lot easier.
 			
 			function setOptions(chosen) {
 			
@@ -86,7 +86,7 @@
 			
 		</script>
 		
-		<!--checking submit-->
+		<!-- checking submit -->
 		<script>
 		
 			function Submit() {
@@ -101,7 +101,7 @@
 		
 		
 	
-		<!--friends popover-->
+		<!-- friends popover -->
 		<script>
 			
 			var bootstrapButton = $.fn.button.noConflict()
@@ -121,7 +121,7 @@
 			});
 	
 		</script>
-		<!--friends popover style-->
+		<!-- friends popover style -->
 		<style>
 			@popoverArrowColor: #f938ab;
 			
@@ -156,13 +156,13 @@
 	</head>
 	<body>
 
-		<!--top bar-->		
+		<!-- top bar -->		
 		<div data-role="page" data-theme="b">
 			<div data-role="header" id="header_orange">
 		    	<?php require("topbanner.php"); ?>
 		</div>
    
-		<!--nav bar-->
+		<!-- nav bar -->
   	 	<?php require("menu.php"); ?>	
     
 		    
@@ -193,7 +193,7 @@
 	
 				<form name="submit"  method="get" id="submited" action="checkintest.php">
 					
-					<!--room select-->
+					<!-- room select -->
 					<div id="checkin_location">
 						<h2>Where are you?</h2>
 						
@@ -212,7 +212,7 @@
 			
 					</div>
 					
-					<!--hash tags-->
+					<!-- hash tags -->
 					<div id="hash-tag">
 					
 						<h2>How are you feeling?</h2>
@@ -228,22 +228,23 @@
 				
 					</div>
 				
-					<!--comment and friends-->
+					<!-- comment and friends -->
 					<div id="checkin_location" style="height:150px;"> 
-						<!--comment-->
+						<!-- comment -->
 						<div style ="float:left; width: 50%; padding-right:10px">
 						<h2>Comment</h2>
 						
 						
-<!-- 
-						massive bug here in that the textarea grows past the bottom of the div, no matter what i do i can not change it
-						it has something to do with the jquery mobile, and that i have no idea how to turn of just sections, you can add data-role:none
-						but that gets rid of all styling
- -->
+<!--
+FROM THE PREVIOUS GROUP:
+massive bug here in that the textarea grows past the bottom of the div, no matter what i do i can not change it
+it has something to do with the jquery mobile, and that i have no idea how to turn of just sections, you can add data-role:none
+but that gets rid of all styling
+-->
 						<textarea   id ="comment" rows="1"  placeholder="Any thing else you want to add." style=" height: 50px;  max-height: 100px; resize: none;"></textarea>
 						
 						</div>
-						<!--friends-->
+						<!-- friends -->
 						<div style ="float:left;">
 						
 						<h2>Who are you with</h2>
@@ -266,7 +267,7 @@
 						
 					</div>
 					
-					<!--to survey-->
+					<!-- to survey -->
 					<div id="select1">
 						<input type="button" value="Get More AEBux" onClick="window.location.href='survey.php'" />
 					</div>
@@ -278,7 +279,7 @@
 						<input type="hidden" name="tag3" id="tag3" value="a" />
 						<input type="hidden" name="tag4" id="tag4" value="a" />
 						<input type="submit" name="submit" id="submit" value="Check In" /> 
-						<!-- data-toggle="modal" data-target="#myModal"  -->
+						<!-- data-toggle="modal" data-target="#myModal" -->
 					
 					</div>
 					
