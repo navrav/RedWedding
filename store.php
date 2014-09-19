@@ -43,19 +43,18 @@
 	*/
 
 	session_start();
-	include("servercon.php");
+	include_once("servercon.php");
 	if (!isset($_SESSION['username']))
 	{
 		header("location:index.php");
 	}
 
-	$query = "SELECT * FROM `Secrets` ORDER BY `s_ID`";
+	$query = mysqli_query($dbconn, "SELECT * FROM `Secrets` ORDER BY `cost`");
+
 	//$queryarray = mysqli_fetch_array($query);
 	echo("<script>console.log('Opening page!');</script>");
 	if ($query != ""){
-		if (!$result = $dbconn->query($query)){
-			die("There was an error running the query [".$db->error."]");
-		}
+		echo("<script>console.log('Data is not found...');</script>");
 	}else{
 		echo("<script>console.log('Data was found');</script>");
 		echo("<script>console.log(".mysqli_fetch_array($query).");</script>");
@@ -68,12 +67,7 @@
 	// }
 
 
-echo "Hello";
-	$queryarray = mysqli_fetch_array($query);
-	while($row = mysqli_fetch_array($query)){
-		echo("<script>console.log(".$row['s_ID'].");</script>");
-	}
-echo "test";
+
 
 	//$user = $_SESSION['u_ID'];
 	$user = '1';
@@ -127,38 +121,37 @@ echo "test";
    	 	<?php require("menu.php"); ?>
 	
 		<!--end nav bar-->
-		  
-  <div data-role="main" class="ui-content" id="store_list">
-	
-    <ul data-role="listview" data-inset="true">
-	  <li style="background-color:#ee4055; border:none; text-align:center;">STORE
-		  
-	<?php
-	//pdo class
+	<div data-role="main" class="ui-content" id="store_list">
+			
+	<ul data-role="listview" data-inset="true">
+	<li style="background-color:#ee4055; border:none; text-align:center;">STORE
+				  
+		 <?php 
 	
 	while($row = mysqli_fetch_array($query)){
+		?>
+		  
 
-		echo("<script>console.log(".$row['s_ID'].");</script>");
-	?>
-	<li data-icon="false">
-		<h6><?php
-			echo $row['name'];
-			?>
-		</h6>
-		<p><?php
-			echo $row['cost'];
-			?>
-		</p>
-		<p class="ui-li-aside">
-			<form method="POST" action="<php echo $_SERVER['PHP_SELF']; ?>">
-				<button type="submit" name="buysecret" class="btn btn-default btn-sm" id="<?php echo $row['s_ID'] ?>">
-				<span class="glyphicon glyphicon-gift"></span> Buy Secret
-				</button>
-				</form>
-		</p>
-		</li>
+			<li data-icon="false">
+				<h6><?php
+					echo $row['name'];
+					?>
+				</h6>
+				<p><?php
+					echo $row['cost'];
+					echo " AEBux";
+					?>
+				</p>
+				<p class="ui-li-aside">
+					<form method="POST" action="<php echo $_SERVER['PHP_SELF']; ?>">
+						<button type="submit" name="buysecret" class="btn btn-default btn-sm" id="<?php echo $row['s_ID'] ?>">
+						<span class="glyphicon glyphicon-gift"></span> Buy Secret
+						</button>
+						</form>
+				</p>
+				</li>
 
-	<?php
+			<?php
 	}
 	?>
 	</ul>
