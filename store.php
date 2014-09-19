@@ -51,7 +51,7 @@
 
 	$query = "SELECT * FROM `Secrets` ORDER BY `s_ID`";
 	//$queryarray = mysqli_fetch_array($query);
-
+	echo("<script>console.log('Opening page!');</script>");
 	if ($query != ""){
 		if (!$result = $dbconn->query($query)){
 			die("There was an error running the query [".$db->error."]");
@@ -68,12 +68,12 @@
 	// }
 
 
-
+echo "Hello";
 	$queryarray = mysqli_fetch_array($query);
 	while($row = mysqli_fetch_array($query)){
 		echo("<script>console.log(".$row['s_ID'].");</script>");
 	}
-
+echo "test";
 
 	//$user = $_SESSION['u_ID'];
 	$user = '1';
@@ -134,9 +134,9 @@
 	  <li style="background-color:#ee4055; border:none; text-align:center;">STORE
 		  
 	<?php
-
+	//pdo class
 	
-	while($row = mysqli_fetch_array($result)){
+	while($row = mysqli_fetch_array($query)){
 
 		echo("<script>console.log(".$row['s_ID'].");</script>");
 	?>

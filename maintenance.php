@@ -1,4 +1,7 @@
 <?php
+
+
+/*
 $to = 'corkisland@gmail.com';
 $subject = 'AEBSpace Maintenance Issue Report';
 
@@ -17,14 +20,51 @@ $message = wordwrap($message, 70, "\r\n");
 	'username' => 'corkisland@gmail.com',
 	'password' => 'naveenkumar2014'
 ));*/
-
+/*
 if (mail($to, $subject, $message)){
 	echo 'Your message has been sent.';
 	echo("<script>console.log('Your message has been sent');</script>");
 } else {
 	echo'There was a problem sending the email.';
 	echo("<script>console.log('Houston we have a problem');</script>");
-}
+}*/
+
+$from = 'email'
+$to = 'aebspace@gmai.com';
+$subject = 'AEBSpace Maintenance Issue Report';
+$msg = 'issue';
+
+sendmail($from,$to,$subject,$msg);
+
+function sendmail($from,$to,$subject,$msg) {
+
+// Downloaded from https://github.com/PHPMailer/PHPMailer
+  include_once('inc/class.phpmailer.php');
+
+  $mail = new phpmailer();
+  $mail->SMTPDebug = 0;                            // debugging: 1 = errors and messages, 2 = messages only, 0 = off
+  $mail->IsSMTP();                                 // Set mailer to use SMTP
+  $mail->Host = 'mailhub.eait.uq.edu.au';                  // Specify server
+  $mail->Port = 25;                               // Server port: 465 ssl OR  587 tls  
+  //  $mail->SMTPSecure = 'tls';                       // Enable encryption, 'ssl' also accepted
+  $mail->SMTPAuth = false;                          // Enable SMTP authentication
+  $mail->Username = 's4204765@student.uq.edu.au';             // SMTP username
+  $mail->Password = '********';    // SMTP password
+  $mail->SetFrom($from,'MyApp');                   // Sender
+  $mail->AddReplyTo($from,'Support');              // Set an alternative reply-to address
+  $mail->AddAddress($to,'User');                   // Set who the message is to be sent to
+  $mail->Subject = $subject;                       // Set the subject lin// Prepares message for html (see doc for details http://phpmailer.worxware.com/?pg=tutorial)
+  $mail->MsgHTML($msg);// Send the message, check for errors 
+  $ok = $mail->Send(); 
+  return $ok;
+  
+  }
+
+
+
+
+
+
 
 ?>
 
