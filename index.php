@@ -42,7 +42,7 @@
 			}
 
 			$("#log").click(function() {
-				$.get('ajax_check.php?t='+Math.random(),
+				$.get('check.php?t='+Math.random(),
 					  {pass:$("#pass").val(), user:$("#user").val()},
 					  function(checkresponse) {
 					if (checkresponse == "ok") {
