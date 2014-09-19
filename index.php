@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 	// Database access - set variables and connect
-	include("servercon.php");
+	include_once("servercon.php");
 ?>
 
 <html class="ui-mobile">

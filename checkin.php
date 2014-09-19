@@ -31,7 +31,7 @@
 				  selbox.options[selbox.options.length] = new Option('Change level for room list',' ');		 
 				}
 				if (chosen == "1") {
-					selbox.options[selbox.options.length] = new Option('101','101');
+					selbox.options[selbox.options.length] = new Option('101','101').setAttribute("selected", "selected");
 					selbox.options[selbox.options.length] = new Option('102','102');
 					selbox.options[selbox.options.length] = new Option('103','103');
 					selbox.options[selbox.options.length] = new Option('104','104');
@@ -40,7 +40,7 @@
 				}
 				
 				if (chosen == "2") {
-					selbox.options[selbox.options.length] = new Option('201','201');
+					selbox.options[selbox.options.length] = new Option('201','201').setAttribute("selected", "selected");
 					selbox.options[selbox.options.length] = new Option('202','202');
 					selbox.options[selbox.options.length] = new Option('203','203');
 					selbox.options[selbox.options.length] = new Option('204','204');
@@ -49,7 +49,7 @@
 				 
 				}
 				if (chosen == "3") {
-					selbox.options[selbox.options.length] = new Option('301','301');
+					selbox.options[selbox.options.length] = new Option('301','301').setAttribute("selected", "selected");
 					selbox.options[selbox.options.length] = new Option('302','302');
 					selbox.options[selbox.options.length] = new Option('316','316');
 					selbox.options[selbox.options.length] = new Option('317','317');
@@ -57,7 +57,7 @@
 					selbox.options[selbox.options.length] = new Option('319','319');
 				}
 				if (chosen == "4") {
-					selbox.options[selbox.options.length] = new Option('401','401');
+					selbox.options[selbox.options.length] = new Option('401','401').setAttribute("selected", "selected");
 					selbox.options[selbox.options.length] = new Option('402','402');
 					selbox.options[selbox.options.length] = new Option('405','405');
 					selbox.options[selbox.options.length] = new Option('406','406');
@@ -66,7 +66,7 @@
 				}
 				
 				if (chosen == "5") {
-					selbox.options[selbox.options.length] = new Option('506','506');
+					selbox.options[selbox.options.length] = new Option('506','506').setAttribute("selected", "selected");
 					selbox.options[selbox.options.length] = new Option('507','507');
 					selbox.options[selbox.options.length] = new Option('513','513');
 					selbox.options[selbox.options.length] = new Option('519','519');
@@ -75,7 +75,7 @@
 				}
 				
 				if (chosen == "6") {
-					selbox.options[selbox.options.length] = new Option('603','603');
+					selbox.options[selbox.options.length] = new Option('603','603').setAttribute("selected", "selected");
 					selbox.options[selbox.options.length] = new Option('605','605');
 					selbox.options[selbox.options.length] = new Option('606','606');
 					selbox.options[selbox.options.length] = new Option('608','608');
@@ -191,7 +191,7 @@
 						<h2>CHECK IN</h2>
 				</span>
 	
-				<form name="submit"  method="get" id="submited" action="checkintest.php">
+				<form name="submit" method="get" id="submited" action="checkin_submit.php">
 					
 					<!-- room select -->
 					<div id="checkin_location">
@@ -209,8 +209,16 @@
 						<select name="opttwo" id="opttwo" value = "" size="1">
 							<option value=" " selected="selected" >Change level for room list</option>
 						</select>
-			
 					</div>
+					
+					<script>
+						var selectedRoom = document.getElementById("opttwo");
+						var room = document.getElementById("room");
+						
+						room.onchange = function() {
+							room.setAttribute("value", selectedRoom.value);
+						}
+					</script>
 					
 					<!-- hash tags -->
 					<div id="hash-tag">
@@ -223,8 +231,8 @@
 						<span id="dark" class="hashtag">#Dark</span>
 						<span id="comfy" class="hashtag">#Comfortable</span>
 						<span id="bright" class="hashtag">#Bright</span>
-						<span id ="crowded" class="hashtag">#Crowded</span>
-						<span id="peaceful" class="hashtag">#Peaceful</span>	
+						<span id="crowded" class="hashtag">#Crowded</span>
+						<span id="peaceful" class="hashtag">#Peaceful</span>
 				
 					</div>
 				
@@ -274,6 +282,7 @@ but that gets rid of all styling
 					
 					<!-- Check in alert -->
 					<div id="select2">
+						<input type="hidden" name="room" id="room" value="a" />
 						<input type="hidden" name="tag" id="tag" value="a" />
 						<input type="hidden" name="tag2" id="tag2" value="a" />
 						<input type="hidden" name="tag3" id="tag3" value="a" />

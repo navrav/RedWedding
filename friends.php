@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
   session_start();
-  include("servercon.php");
+  include_once("servercon.php");
 
   if (!isset($_SESSION['username']))
   {
