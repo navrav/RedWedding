@@ -249,7 +249,7 @@ massive bug here in that the textarea grows past the bottom of the div, no matte
 it has something to do with the jquery mobile, and that i have no idea how to turn of just sections, you can add data-role:none
 but that gets rid of all styling
 -->
-						<textarea   id ="comment" rows="1"  placeholder="Any thing else you want to add." style=" height: 50px;  max-height: 100px; resize: none;"></textarea>
+						<textarea id ="comment" rows="1" placeholder="Any thing else you want to add." style="height: 50px; max-height: 100px; resize: none;"></textarea>
 						
 						</div>
 						<!-- friends -->
@@ -288,7 +288,7 @@ but that gets rid of all styling
 						<input type="hidden" name="tag3" id="tag3" value="a" />
 						<input type="hidden" name="tag4" id="tag4" value="a" />
 						<input type="submit" name="submit" id="submit" value="Check In" /> 
-						<!-- data-toggle="modal" data-target="#myModal" -->
+							<!-- data-toggle="modal" data-target="#myModal" -->
 					
 					</div>
 					
