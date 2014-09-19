@@ -21,49 +21,54 @@
 		-->
 	<script type="text/javascript">
 
-	function disableButton(button){
-    	console.log('Disabling buttons... bear with us');
-    	
-    	var buttonID = button.toString();
-    	console.log(typeof buttonID, buttonID);
-    	document.getElementById("/buttonID/").setAttribute('disabled', 'disabled');
+	function disableButton(buttonID){
+    	document.getElementById(buttonID).disabled = true;
     }
     </script>
 
 	<?php
+
 	/***************************************************************************
-	 *	STORE.PHP - Updates the userSecret table and AEBux totals depending
-	 * 				on which secrets the user has purchased
-	 *
-	 *		Establishes connection to the database
-	 *		Grabs data from UserSecrets to generate a list of purchased secrets
-	 *		Updates the disabled property of each button depending on whether 
-	 *			a user has purchased that secret
-	 *		Updates the UserSecrets table and AEBux value when a user purchases
-	 *			a new secret
-	 */
+	*	
+	*	STORE.PHP - Updates the userSecret table and AEBux totals depending
+	* 				on which secrets the user has purchased
+	*
+	*	Functionality:
+	*		- Establishes connection to the database
+	*		- Grabs data from UserSecrets to generate a list of puchased secrets
+	*		- Updates the disabled property of each button depending on whether 
+	*		  a user has purchased that secret
+	*		- Updates the UserSecrets table and AEBux value when a user purchases
+	*		  a new secret
+	*/
 
 	session_start();
+	include("servercon.php");
+	if (!isset($_SESSION['username']))
+	{
+		header("location:index.php");
+	}
 
-	$host="deco3801-01.zones.eait.uq.edu.au";	// Host name
-	$username="root";							// Mysql username
-	$password="Viking8Chief+latch";				// Mysql password
-	$db_name="aeb";								// Database name
-	$tbl_name="Users";							// Table name u_ID
-	$tbl_name2="Secrets";						//Table name s_ID
-	$tbl3_name="UserSecrets";					//Table name
-	error_reporting(E_ALL);
+	$query = "SELECT * FROM `Secrets` ORDER BY `s_ID`";
+	//$queryarray = mysqli_fetch_array($query);
 
-	// Connect to server and select databse.
-	$dbconn = new mysqli($host, $username, $password, $db_name);
-	if($dbconn->connect_errno > 0){
-		echo "Failed to connect to MySQL: " . mysqli_connect_error();
-			die("Unable to connect to database [".$db->connect_error."]");
+	if ($query != ""){
+		if (!$result = $dbconn->query($query)){
+			die("There was an error running the query [".$db->error."]");
 		}
+	}
 
-	// Grab username for currently logged in user
-	echo("<script>console.log('Updating values...')</script>");
-	echo("<script>console.log('Starting page...')</script>");
+	// while($row = mysqli_fetch_array($queryarray)) {
+	// 	echo("<script>console.log('Testing array...');</script>");
+	// 	echo("<script>console.log(".$row['s_ID']).");</script>");
+	// 		//echo("<script>console.log("$secretlist");</script>");
+	// }
+
+
+
+	$queryarray = mysqli_fetch_array($query);
+
+
 	//$user = $_SESSION['u_ID'];
 	$user = '1';
 	$secretslist = mysqli_query($dbconn, "SELECT * FROM 'UserSecrets' WHERE 'u_ID'='1'");
@@ -79,37 +84,9 @@
 
 	//$sqlt = mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (100,aebroom)");
 	
-	echo("<script>console.log('Opening page...');</script>");
-	$sect = mysqli_query($dbconn, "SELECT * FROM `UserSecrets` WHERE `u_ID`='2'");
-	$uID = mysqli_fetch_array($sect);
-	echo("<script>console.log('Selecting from database...');</script>");
-	echo("<script>console.log('UserID is: ');</script>");
-	echo("<script>console.log(".$uID['u_ID'].");</script>");
-	echo("<script>console.log(' ');</script>");
 
-	$result = mysqli_query($dbconn, "SELECT * FROM `UserSecrets` WHERE `u_ID`='1'");
-		if(!$result){
-			echo("<script>console.log('No data from table');</script>");
-		} else{
-			echo("<script>console.log('Data found');</script>");
-			//echo("<script>console.log("$secretlist");</script>");
-		}
-	echo("<script>console.log('continuing function');</script>");
-	while($row = mysqli_fetch_array($result)) {
-  		echo("<script>console.log('entered loop...');</script>");
-  		echo("<script>console.log(".$row['s_ID'].");</script>");
-  		echo '<script type="text/javascript"> disableButton('.$row['s_ID'].'); </script>';
-}
 
-	// while($row = mysqli_fetch_array($secretlist)) {
-	// 	// Console output for error checking
-	// 	echo("<script>console.log('entering while loop...');</script>");
-	// 	echo $sID = $row['s_ID'];
-	// 	echo("<script>console.log(".$row['s_ID'].");</script>");
- // 	 //echo("<script>console.log('$row['s_ID']');</script>");
- // 	 //echo '<script type="text/javascript">', 'checkSecrets($row['s_ID']);', '</script>';
- 
-	// }	
+	
 
 	/* Aim is to check the database table and find the list of secrets already bought
 	   by a user, and store the s_ID values in a list that is iterated over by a jscript 
@@ -126,29 +103,10 @@
 	// 		}
 	// }
 	/*****************************************************************************/
-	?>	
-
-    <script>
-    /* Contains Javascript functions for interacting with the HTML components
-    	on the webpage
-    */
-    console.log("Disabling button with ID = 1");
-    document.getElementById("1").setAttribute('disabled', 'disabled');
-    
-
-	function buySecret(){
-		/* Function updates the disabled setting of each 'Buy' button
-		*/
-		console.log('updateButtons function launched...');
-		document.getElementById("1").disabled = true;
-	}
-
-	</script>
-		
+	?>			
 	</head>
 
-
-	<body onload="checkSecrets()">
+	<body>
 
 		<!--top bar-->
 		<div data-role="page" data-theme="b" style="background-color:white;">
@@ -169,13 +127,45 @@
     <ul data-role="listview" data-inset="true">
 	  <li style="background-color:#ee4055; border:none; text-align:center;">STORE
 		  
-	  
-      <li data-icon="false">  
+	<?php
+
+	
+	while($row = mysqli_fetch_array($result)){
+		echo("<script>console.log(".$row['s_ID'].");</script>");
+	?>
+	<li data-icon="false">
+		<h6><?php
+			echo $row['name'];
+			?>
+		</h6>
+		<p><?php
+			echo $row['cost'];
+			?>
+		</p>
+		<p class="ui-li-aside">
+			<form method="POST" action="<php echo $_SERVER['PHP_SELF']; ?>">
+				<button type="submit" name="buysecret" class="btn btn-default btn-sm" id="<?php echo $row['s_ID'] ?>">
+				<span class="glyphicon glyphicon-gift"></span> Buy Secret
+				</button>
+				</form>
+		</p>
+		</li>
+
+	<?php
+	}
+	?>
+	</ul>
+
+
+
+
+
+     <!--  <li data-icon="false">  
         <h6>AEB Rooms Secret</h6>
         <p>15 AEBux</p>
         <p class="ui-li-aside">
         	<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-        	<button type="submit" name="buysecret" class="btn btn-default btn-sm">
+        	<button type="submit" name="buysecret" class="btn btn-default btn-sm" id="1">
 	        		<span class="glyphicon glyphicon-gift"></span> Buy Secret
 	        </button>
 	    	</form>
@@ -222,7 +212,7 @@
         <h6>Power Supply Secret</h6>
         <p>50 AEBux</p>     
         <p class="ui-li-aside">
-        	<button type="button" class="btn btn-default btn-sm" id="1">
+        	<button type="button" class="btn btn-default btn-sm">
 	        		<span class="glyphicon glyphicon-gift"></span> Buy Secret
 	        </button>
 		</p>           
@@ -236,7 +226,7 @@
 	        </button>
 		</p>           
       </li>
-    </ul>
+    </ul> -->
   </div>
   
   	<div id="layover" style="display:none; position:fixed; top:0%; left:0%; width:100%; height:100%; background-color:black; opacity: .50;" > </div>
@@ -259,4 +249,18 @@
 </div> 
 
 </body>
+<?php
+// 	$result = mysqli_query($dbconn, "SELECT * FROM `UserSecrets` WHERE `u_ID`='1'");
+// 	if(!$result){
+// 			echo("<script>console.log('');</script>");
+// 			echo("<script>console.log('No data from table');</script>");
+// 		} else{
+// 			echo("<script>console.log('Data found');</script>");
+// 			//echo("<script>console.log("$secretlist");</script>");
+// 		}
+// 	echo("<script>console.log('continuing function');</script>");
+// 	while($row = mysqli_fetch_array($result)) {
+//    		echo '<script type="text/javascript"> disableButton('.$row['s_ID'].'); </script>';
+// }
+?>
 </html>
