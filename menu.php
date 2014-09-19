@@ -73,7 +73,7 @@
 			</a>
 		</li>
 		<li>
-			<a href="maintence.php" data-ajax="false" style="background-color:#CD4F39;">
+			<a href="maintenance.php" data-ajax="false" style="background-color:#CD4F39;">
 			<span class="glyphicon glyphicon-warning-sign"></span>
 			Maintenance/Contact
 			</a>
