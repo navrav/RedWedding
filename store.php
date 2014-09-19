@@ -80,7 +80,13 @@
 	//$sqlt = mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (100,aebroom)");
 	
 	echo("<script>console.log('Opening page...');</script>");
-	
+	$sect = mysqli_query($dbconn, "SELECT * FROM `UserSecrets` WHERE `u_ID`='2'");
+	$uID = mysqli_fetch_array($sect);
+	echo("<script>console.log('Selecting from database...');</script>");
+	echo("<script>console.log('UserID is: ');</script>");
+	echo("<script>console.log(".$uID['u_ID'].");</script>");
+	echo("<script>console.log(' ');</script>");
+
 	$result = mysqli_query($dbconn, "SELECT * FROM `UserSecrets` WHERE `u_ID`='1'");
 		if(!$result){
 			echo("<script>console.log('No data from table');</script>");
