@@ -42,9 +42,7 @@
 			}
 
 			$("#log").click(function() {
-				$.get('check.php?t='+Math.random(),
-					  {pass:$("#pass").val(), user:$("#user").val()},
-					  function(checkresponse) {
+				$.get('check.php?t='+Math.random(),{pass:$("#pass").val(),user:$("#user").val()},function(checkresponse){
 					if (checkresponse == "ok") {
 						//callback function, math.random here to wipe cache of IE explorer
 						window.location.href = '/feed.php';
