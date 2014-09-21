@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 	// Database access - set variables and connect
-	include_once("servercon.php");
+	include("servercon.php");
 ?>
 
 <html class="ui-mobile">
@@ -42,10 +42,11 @@
 			}
 
 			$("#log").click(function() {
-				$.get('check.php?t=' + Math.random(), //callback function, math.random here to wipe cache of IE explorer
-					  {pass: $("#pass").val(), user: $("#user").val()},
+				$.get('ajax_check.php?t='+Math.random(),
+					  {pass:$("#pass").val(), user:$("#user").val()},
 					  function(checkresponse) {
 					if (checkresponse == "ok") {
+						//callback function, math.random here to wipe cache of IE explorer
 						window.location.href = '/feed.php';
 					} else {
 						$("#status").text('Wrong username or password').show();
@@ -59,7 +60,6 @@
 			window.location.href = '/signup.php';
 		}
 
-		/* Don't believe the following function is required anymore.
 		function checkForm() {
 			if (document.getElementById("user").value == "") {
 				document.getElementById("check").innerHTML = "Please enter email";
@@ -70,8 +70,7 @@
 			} else {
 				window.location.href = '/check.php';
 			}
-		}
-		*/
+		}		
 	</script>
 
 </head>
