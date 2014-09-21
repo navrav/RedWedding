@@ -25,7 +25,6 @@
 	
 	<!-- Check submitted data -->
 	<script>
-	/*
 		$(document).ready(function() {
 			$("*").keyup(function() {
 				if ($("#user").val() != "" &&
@@ -43,8 +42,11 @@
 			}
 
 			$("#log").click(function() {
-				$.get('check.php?t='+Math.random(),{pass:$("#pass").val(),user:$("#user").val()},function(checkresponse){
+				$.get('check.php?t=' + Math.random(),
+					  {pass: $("#pass").val(), user: $("#user").val()},
+					  function(checkresponse) {
 					if (checkresponse == "ok") {
+						$("#status").text('DEBUG MESSAGE').show();// remove once done with
 						//callback function, math.random here to wipe cache of IE explorer
 						window.location.href = '/feed.php';
 					} else {
@@ -54,42 +56,12 @@
 				});
 			});
 		});
-	*/
-	
-	// old code begin
-	$(document).ready(function(){
-	$("*").keyup(function(){
-	if($("#user").val()!="" && $("#pass").val()!="")
-	{
-	document.getElementById('log').disabled=false;
-	}else {
-	
-	document.getElementById('log').disabled=true;
-	}
-	});
-var log_out="<?=isset($_GET['log_out']) ? $_GET['log_out'] : '0'?>";
-if(log_out==1)$("#status").text('logout successful!').show();
-
-	$("#log").click(function(){
-
-$.get('check.php?t='+Math.random(),{pass:$("#pass").val(),user:$("#user").val()},function(checkresponse){
-if(checkresponse=="ok"){window.location.href='/feed.php';} //callback function, math.random here to wipe cache of IE explorer
-else{
-$("#status").text('Wrong Username or Password').show();
-//setTimeout(function(){$("#status").html('&nbsp;')},1500);
-}
-});
-		
-	});
-	
-	
-	});
-	// old code end
 	
 		function signup() {
 			window.location.href = '/signup.php';
 		}
 
+		/* Don't believe the following function is required anymore.
 		function checkForm() {
 			if (document.getElementById("user").value == "") {
 				document.getElementById("check").innerHTML = "Please enter email";
@@ -100,7 +72,8 @@ $("#status").text('Wrong Username or Password').show();
 			} else {
 				window.location.href = '/check.php';
 			}
-		}		
+		}
+		*/
 	</script>
 
 </head>
