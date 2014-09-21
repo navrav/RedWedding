@@ -14,11 +14,11 @@
 		<script src="js/bootstrap.min.js"></script>
 		
 		
-		<!--drop down menu's-->	
+		<!-- drop down menus -->	
 		<script>
 			
 			// I am hard coding this but there are way to call from tables
-			// in php that would make this a lot easier. 
+			// in php that would make this a lot easier.
 			
 			function setOptions(chosen) {
 			
@@ -31,7 +31,7 @@
 				  selbox.options[selbox.options.length] = new Option('Change level for room list',' ');		 
 				}
 				if (chosen == "1") {
-					selbox.options[selbox.options.length] = new Option('101','101');
+					selbox.options[selbox.options.length] = new Option('101','101').setAttribute("selected", "selected");
 					selbox.options[selbox.options.length] = new Option('102','102');
 					selbox.options[selbox.options.length] = new Option('103','103');
 					selbox.options[selbox.options.length] = new Option('104','104');
@@ -40,7 +40,7 @@
 				}
 				
 				if (chosen == "2") {
-					selbox.options[selbox.options.length] = new Option('201','201');
+					selbox.options[selbox.options.length] = new Option('201','201').setAttribute("selected", "selected");
 					selbox.options[selbox.options.length] = new Option('202','202');
 					selbox.options[selbox.options.length] = new Option('203','203');
 					selbox.options[selbox.options.length] = new Option('204','204');
@@ -49,7 +49,7 @@
 				 
 				}
 				if (chosen == "3") {
-					selbox.options[selbox.options.length] = new Option('301','301');
+					selbox.options[selbox.options.length] = new Option('301','301').setAttribute("selected", "selected");
 					selbox.options[selbox.options.length] = new Option('302','302');
 					selbox.options[selbox.options.length] = new Option('316','316');
 					selbox.options[selbox.options.length] = new Option('317','317');
@@ -57,7 +57,7 @@
 					selbox.options[selbox.options.length] = new Option('319','319');
 				}
 				if (chosen == "4") {
-					selbox.options[selbox.options.length] = new Option('401','401');
+					selbox.options[selbox.options.length] = new Option('401','401').setAttribute("selected", "selected");
 					selbox.options[selbox.options.length] = new Option('402','402');
 					selbox.options[selbox.options.length] = new Option('405','405');
 					selbox.options[selbox.options.length] = new Option('406','406');
@@ -66,7 +66,7 @@
 				}
 				
 				if (chosen == "5") {
-					selbox.options[selbox.options.length] = new Option('506','506');
+					selbox.options[selbox.options.length] = new Option('506','506').setAttribute("selected", "selected");
 					selbox.options[selbox.options.length] = new Option('507','507');
 					selbox.options[selbox.options.length] = new Option('513','513');
 					selbox.options[selbox.options.length] = new Option('519','519');
@@ -75,7 +75,7 @@
 				}
 				
 				if (chosen == "6") {
-					selbox.options[selbox.options.length] = new Option('603','603');
+					selbox.options[selbox.options.length] = new Option('603','603').setAttribute("selected", "selected");
 					selbox.options[selbox.options.length] = new Option('605','605');
 					selbox.options[selbox.options.length] = new Option('606','606');
 					selbox.options[selbox.options.length] = new Option('608','608');
@@ -86,7 +86,7 @@
 			
 		</script>
 		
-		<!--checking submit-->
+		<!-- checking submit -->
 		<script>
 		
 			function Submit() {
@@ -101,7 +101,7 @@
 		
 		
 	
-		<!--friends popover-->
+		<!-- friends popover -->
 		<script>
 			
 			var bootstrapButton = $.fn.button.noConflict()
@@ -121,7 +121,7 @@
 			});
 	
 		</script>
-		<!--friends popover style-->
+		<!-- friends popover style -->
 		<style>
 			@popoverArrowColor: #f938ab;
 			
@@ -156,13 +156,13 @@
 	</head>
 	<body>
 
-		<!--top bar-->		
+		<!-- top bar -->		
 		<div data-role="page" data-theme="b">
 			<div data-role="header" id="header_orange">
 		    	<?php require("topbanner.php"); ?>
 		</div>
    
-		<!--nav bar-->
+		<!-- nav bar -->
   	 	<?php require("menu.php"); ?>	
     
 		    
@@ -191,9 +191,9 @@
 						<h2>CHECK IN</h2>
 				</span>
 	
-				<form name="submit"  method="get" id="submited" action="checkintest.php">
+				<form name="submit" method="get" id="submited" action="checkin_submit.php">
 					
-					<!--room select-->
+					<!-- room select -->
 					<div id="checkin_location">
 						<h2>Where are you?</h2>
 						
@@ -209,10 +209,18 @@
 						<select name="opttwo" id="opttwo" value = "" size="1">
 							<option value=" " selected="selected" >Change level for room list</option>
 						</select>
-			
 					</div>
 					
-					<!--hash tags-->
+					<script>
+						var selectedRoom = document.getElementById("opttwo");
+						var room = document.getElementById("room");
+						
+						room.onchange = function() {
+							room.setAttribute("value", selectedRoom.value);
+						}
+					</script>
+					
+					<!-- hash tags -->
 					<div id="hash-tag">
 					
 						<h2>How are you feeling?</h2>
@@ -223,27 +231,28 @@
 						<span id="dark" class="hashtag">#Dark</span>
 						<span id="comfy" class="hashtag">#Comfortable</span>
 						<span id="bright" class="hashtag">#Bright</span>
-						<span id ="crowded" class="hashtag">#Crowded</span>
-						<span id="peaceful" class="hashtag">#Peaceful</span>	
+						<span id="crowded" class="hashtag">#Crowded</span>
+						<span id="peaceful" class="hashtag">#Peaceful</span>
 				
 					</div>
 				
-					<!--comment and friends-->
+					<!-- comment and friends -->
 					<div id="checkin_location" style="height:150px;"> 
-						<!--comment-->
+						<!-- comment -->
 						<div style ="float:left; width: 50%; padding-right:10px">
 						<h2>Comment</h2>
 						
 						
-<!-- 
-						massive bug here in that the textarea grows past the bottom of the div, no matter what i do i can not change it
-						it has something to do with the jquery mobile, and that i have no idea how to turn of just sections, you can add data-role:none
-						but that gets rid of all styling
- -->
-						<textarea   id ="comment" rows="1"  placeholder="Any thing else you want to add." style=" height: 50px;  max-height: 100px; resize: none;"></textarea>
+<!--
+FROM THE PREVIOUS GROUP:
+massive bug here in that the textarea grows past the bottom of the div, no matter what i do i can not change it
+it has something to do with the jquery mobile, and that i have no idea how to turn of just sections, you can add data-role:none
+but that gets rid of all styling
+-->
+						<textarea id ="comment" rows="1" placeholder="Any thing else you want to add." style="height: 50px; max-height: 100px; resize: none;"></textarea>
 						
 						</div>
-						<!--friends-->
+						<!-- friends -->
 						<div style ="float:left;">
 						
 						<h2>Who are you with</h2>
@@ -266,19 +275,20 @@
 						
 					</div>
 					
-					<!--to survey-->
+					<!-- to survey -->
 					<div id="select1">
 						<input type="button" value="Get More AEBux" onClick="window.location.href='survey.php'" />
 					</div>
 					
 					<!-- Check in alert -->
 					<div id="select2">
+						<input type="hidden" name="room" id="room" value="a" />
 						<input type="hidden" name="tag" id="tag" value="a" />
 						<input type="hidden" name="tag2" id="tag2" value="a" />
 						<input type="hidden" name="tag3" id="tag3" value="a" />
 						<input type="hidden" name="tag4" id="tag4" value="a" />
 						<input type="submit" name="submit" id="submit" value="Check In" /> 
-						<!-- data-toggle="modal" data-target="#myModal"  -->
+							<!-- data-toggle="modal" data-target="#myModal" -->
 					
 					</div>
 					
