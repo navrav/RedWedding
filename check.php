@@ -2,7 +2,7 @@
 // Previously known as "ajax_check.php"
 
 session_start();
-include_once("servercon.php");
+include("servercon.php");
 $tbl_name="Users"; // Table name
 
 

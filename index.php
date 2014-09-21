@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 	// Database access - set variables and connect
-	include_once("servercon.php");
+	include("servercon.php");
 ?>
 
 <html class="ui-mobile">
@@ -42,14 +42,11 @@
 			}
 
 			$("#log").click(function() {
-				$.get('check.php?t=' + Math.random(),
+				$.get('check.php?t=' + Math.random(), //callback function, math.random here to wipe cache of IE explorer
 					  {pass: $("#pass").val(), user: $("#user").val()},
 					  function(checkresponse) {
 					if (checkresponse == "ok") {
-						$("#status").text('DEBUG MESSAGE').show();// remove once done with
-						//callback function, math.random here to wipe cache of IE explorer
 						window.location.href = '/feed.php';
-						$("#status").text('should be redirecting now').show();
 					} else {
 						$("#status").text('Wrong username or password').show();
 							//setTimeout(function(){$("#status").html('&nbsp;')},1500);
