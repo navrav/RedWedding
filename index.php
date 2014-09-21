@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 	// Database access - set variables and connect
-	include("servercon.php");
+	include_once("servercon.php");
 ?>
 
 <html class="ui-mobile">
@@ -46,7 +46,7 @@
 					  {pass: $("#pass").val(), user: $("#user").val()},
 					  function(checkresponse) {
 					if (checkresponse == "ok") {
-						window.location.href = '/feed.php';
+						window.location.href = '/building.php'; // redirecting to different page
 					} else {
 						$("#status").text('Wrong username or password').show();
 							//setTimeout(function(){$("#status").html('&nbsp;')},1500);
