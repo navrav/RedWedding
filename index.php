@@ -72,7 +72,7 @@ if(log_out==1)$("#status").text('logout successful!').show();
 
 	$("#log").click(function(){
 
-$.get('ajax_check.php?t='+Math.random(),{pass:$("#pass").val(),user:$("#user").val()},function(checkresponse){
+$.get('check.php?t='+Math.random(),{pass:$("#pass").val(),user:$("#user").val()},function(checkresponse){
 if(checkresponse=="ok"){window.location.href='/feed.php';} //callback function, math.random here to wipe cache of IE explorer
 else{
 $("#status").text('Wrong Username or Password').show();
