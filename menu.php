@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include_once("servercon.php");
+  include("servercon.php");
 
   if (!isset($_SESSION['username']))
   {
@@ -9,15 +9,13 @@
 
   $user = $_SESSION["username"];
 
-  $stat = mysqli_query(dbconn, "SELECT `f_name`,`l_name` FROM `Users` WHERE `email` = '$user'");
-    /*
-		if($stat != ""){
-			if(!$result = $dbconn->query($stat)){
-					die("There was an error running the stat query [".$db->error."]");
-				}
-		}
-	*/
-    $row = mysqli_fetch_array($result);
+  $stat = "SELECT `f_name`,`l_name` FROM `Users` WHERE `email` = '$user'";
+    if($stat != ""){
+        if(!$result = $dbconn->query($stat)){
+                die("There was an error running the stat query [".$db->error."]");
+            }
+    }
+    $row = $result->fetch_assoc();
     $fname = $row['f_name'];
     $lname = $row['l_name'];
 ?>
@@ -75,7 +73,7 @@
 			</a>
 		</li>
 		<li>
-			<a href="maintenance.php" data-ajax="false" style="background-color:#CD4F39;">
+			<a href="maintence.php" data-ajax="false" style="background-color:#CD4F39;">
 			<span class="glyphicon glyphicon-warning-sign"></span>
 			Maintenance/Contact
 			</a>

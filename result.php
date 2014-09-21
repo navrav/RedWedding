@@ -1,5 +1,5 @@
 <?php 
- include_once("servercon.php");
+ include("servercon.php");
 ?>
 <!DOCTYPE html>
 <html>
