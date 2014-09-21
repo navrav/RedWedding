@@ -46,7 +46,7 @@
 					  {pass: $("#pass").val(), user: $("#user").val()},
 					  function(checkresponse) {
 					if (checkresponse == "ok") {
-						window.location.href = '/building.php'; // redirecting to different page
+						window.location.href = '/feed.php';
 					} else {
 						$("#status").text('Wrong username or password').show();
 							//setTimeout(function(){$("#status").html('&nbsp;')},1500);
