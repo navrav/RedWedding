@@ -49,6 +49,7 @@
 						$("#status").text('DEBUG MESSAGE').show();// remove once done with
 						//callback function, math.random here to wipe cache of IE explorer
 						window.location.href = '/feed.php';
+						$("#status").text('should be redirecting now').show();
 					} else {
 						$("#status").text('Wrong username or password').show();
 							//setTimeout(function(){$("#status").html('&nbsp;')},1500);
