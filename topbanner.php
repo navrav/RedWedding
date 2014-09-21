@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include("servercon.php");
+  include_once("servercon.php");
 
   if (!isset($_SESSION['username']))
   {
@@ -9,13 +9,15 @@
 
   $user = $_SESSION["username"];
 
-  $stat = "SELECT `AEBux`,`rank` FROM `Users` WHERE `email` = '$user'";
-    if($stat != ""){
-        if(!$result = $dbconn->query($stat)){
-                die("There was an error running the stat query [".$db->error."]");
-            }
-    }
-    $row = $result->fetch_assoc();
+  $stat = mysqli_query(dbconn, "SELECT `AEBux`,`rank` FROM `Users` WHERE `email` = '$user'");
+	/*
+		if($stat != ""){
+			if(!$result = $dbconn->query($stat)){
+					die("There was an error running the stat query [".$db->error."]");
+			}
+		}
+	*/
+    $row = mysqli_fetch_array($result);
     $aebux = $row['AEBux'];
     $rank = $row['rank'];
 ?>
