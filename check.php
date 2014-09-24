@@ -32,6 +32,7 @@ if($count==1)
 	// Extracts uID from the row of data about the user
 	$uID = $userdata['u_ID'];
     $_SESSION['username']  = $uID;
+  //  echo("<script>console.log('uID:".$uID.");</script>");
     $_SESSION['username']  = $myusername;
     $_SESSION['loggedIn'] = true;
     // close the session
