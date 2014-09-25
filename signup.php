@@ -23,11 +23,11 @@ function check(){
 	var cpass = document.getElementById("cpass").value;
 	var form = document.getElementById("signup");
 	
-	if(pass == cpass){
-	form.submit();
-	}
-	else{
-	document.getElementById("check").innerHTML = "Passwords do not match.";
+	if (pass == cpass) {
+		// results sent to register.php
+		form.submit();
+	} else {
+		document.getElementById("check").innerHTML = "Passwords do not match.";
 	}
 }
 </script>

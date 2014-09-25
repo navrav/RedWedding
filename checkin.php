@@ -24,7 +24,7 @@
 			
 				console.log(chosen);
 				
-				var selbox = document.submit.opttwo;			
+				var selbox = document.checkInForm.opttwo;			
 				 
 				selbox.options.length = 0;
 				if (chosen == " ") {
@@ -86,18 +86,19 @@
 			
 		</script>
 		
-		<!-- checking submit -->
+		<!-- validate form input -->
 		<script>
-		
-			function Submit() {
+			/* I don't think this does anything...
+			
+				function Submit() {
 
-					setTimeout(function() {window.location.href = "feed.php"}, 100000);
-					document.getElementById('layover').style.display= "block";
-					document.getElementById('confirmpop').style.display= "block";
-				
-			}
+						setTimeout(function() {window.location.href = "feed.php"}, 100000);
+						document.getElementById('layover').style.display= "block";
+						document.getElementById('confirmpop').style.display= "block";
+					
+				}
+			*/
 		</script>
-		
 		
 		
 	
@@ -187,256 +188,237 @@
         </section>
     
 		<div data-role="main" class="ui-content" id="survey" >
-				<span id="check-in-title">
-						<h2>CHECK IN</h2>
-				</span>
+			<span id="check-in-title">
+					<h2>CHECK IN</h2>
+			</span>
 	
-				<form name="submit" method="get" id="submited" action="checkin_submit.php">
-					
-					<!-- room select -->
-					<div id="checkin_location">
-						<h2>Where are you?</h2>
-						
-						<select size="1" onchange="setOptions(this.options[this.selectedIndex].value);">
-							<option value=" " selected="selected">Level</option>
-							<option value="1">Level 1</option>
-							<option value="2">Level 2</option>
-							<option value="3">Level 3</option>
-							<option value="4">Level 4</option>
-							<option value="5">Level 5</option>
-							<option value="6">Level 6</option>
-						</select>
-						<select name="opttwo" id="opttwo" value = "" size="1">
-							<option value=" " selected="selected" >Change level for room list</option>
-						</select>
-					</div>
-					
-					<script>
-						var selectedRoom = document.getElementById("opttwo");
-						var room = document.getElementById("room");
-						
-						room.onchange = function() {
-							room.setAttribute("value", selectedRoom.value);
-						}
-					</script>
-					
-					<!-- hash tags -->
-					<div id="hash-tag">
-					
-						<h2>How are you feeling?</h2>
-						
-						<span id="hot" class="hashtag">#Hot</span>
-						<span id="warm" class="hashtag">#Warm</span>
-						<span id="cold" class="hashtag">#Cold</span>
-						<span id="dark" class="hashtag">#Dark</span>
-						<span id="comfy" class="hashtag">#Comfortable</span>
-						<span id="bright" class="hashtag">#Bright</span>
-						<span id="crowded" class="hashtag">#Crowded</span>
-						<span id="peaceful" class="hashtag">#Peaceful</span>
+			<form name="checkInForm" method="post" id="submited" action="checkin_submit.php">
 				
-					</div>
+				<!-- room select -->
+				<div id="checkin_location">
+					<h2>Where are you?</h2>
+					
+					<select size="1" onchange="setOptions(this.options[this.selectedIndex].value);">
+						<option value=" " selected="selected">Level</option>
+						<option value="1">Level 1</option>
+						<option value="2">Level 2</option>
+						<option value="3">Level 3</option>
+						<option value="4">Level 4</option>
+						<option value="5">Level 5</option>
+						<option value="6">Level 6</option>
+					</select>
+					<select name="opttwo" id="opttwo" value = "" size="1">
+						<option value=" " selected="selected" >Change level for room list</option>
+					</select>
+				</div>
 				
-					<!-- comment and friends -->
-					<div id="checkin_location" style="height:150px;"> 
-						<!-- comment -->
-						<div style ="float:left; width: 50%; padding-right:10px">
+				<!-- script to save room choice -->
+				<script>
+					var selectedRoom = document.getElementById("opttwo");
+					var room = document.getElementById("room");
+					
+					selectedRoom.onchange = function() {
+						room.setAttribute("value", selectedRoom.value);
+					}
+				</script>
+				
+				<!-- hash tags -->
+				<div id="hash-tag">
+				
+					<h2>How are you feeling?</h2>
+					
+					<span id="hot" class="hashtag">#Hot</span>
+					<span id="warm" class="hashtag">#Warm</span>
+					<span id="cold" class="hashtag">#Cold</span>
+					<span id="dark" class="hashtag">#Dark</span>
+					<span id="comfy" class="hashtag">#Comfortable</span>
+					<span id="bright" class="hashtag">#Bright</span>
+					<span id="crowded" class="hashtag">#Crowded</span>
+					<span id="peaceful" class="hashtag">#Peaceful</span>
+			
+				</div>
+			
+				<!-- comment and friends -->
+				<div id="checkin_location" style="height:150px;"> 
+					<!-- comment box -->
+					<div style ="float:left; width: 50%; padding-right:10px">
 						<h2>Comment</h2>
-						
-						
-<!--
-FROM THE PREVIOUS GROUP:
-massive bug here in that the textarea grows past the bottom of the div, no matter what i do i can not change it
-it has something to do with the jquery mobile, and that i have no idea how to turn of just sections, you can add data-role:none
-but that gets rid of all styling
--->
-						<textarea id ="comment" rows="1" placeholder="Any thing else you want to add." style="height: 50px; max-height: 100px; resize: none;"></textarea>
-						
-						</div>
-						<!-- friends -->
-						<div style ="float:left;">
-						
+						<textarea id="comment" rows="1" placeholder="Anything else you want to add?" style="height: 50px; max-height: 100px; resize: none;"></textarea>
+					</div>
+					<!-- friends -->
+					<div style ="float:left;">
+					
 						<h2>Who are you with</h2>
 						
- 							<a href="#" id ="friends"  data-toggle="popover" role="button" >
- 								<img id="friend" src="images/AddFriends.png" alt="addFriends" height="30" style="margin-left:15px; margin-top: 3px;"> </img></a>
+						<a href="#" id ="friends"  data-toggle="popover" role="button">
+							<img id="friend" src="images/AddFriends.png" alt="addFriends" height="30" style="margin-left:15px; margin-top: 3px;"></img>
+						</a>
+						
+						<!-- can make this dynamic -->
+						<div id="popover_content_wrapper" style="display: none">
 							
-							<!-- can make this dynamic -->
- 							<div id="popover_content_wrapper" style="display: none">
-							  	
-							  	<div>
-							  		<span id="friend1" class="hashtag">Zoe Stewart</span><br />
-							  		<span id="friend2" class="hashtag">Adee</span><br />
-							  		<span id="friend3" class="hashtag">Faisal</span><br />
-							  	</div>
-							  	
+							<div>
+								<span id="friend1" class="hashtag">Zoe Stewart</span><br />
+								<span id="friend2" class="hashtag">Adee</span><br />
+								<span id="friend3" class="hashtag">Faisal</span><br />
 							</div>
-						
+							
 						</div>
-						
-					</div>
-					
-					<!-- to survey -->
-					<div id="select1">
-						<input type="button" value="Get More AEBux" onClick="window.location.href='survey.php'" />
-					</div>
-					
-					<!-- Check in alert -->
-					<div id="select2">
-						<input type="hidden" name="room" id="room" value="a" />
-						<input type="hidden" name="tag" id="tag" value="a" />
-						<input type="hidden" name="tag2" id="tag2" value="a" />
-						<input type="hidden" name="tag3" id="tag3" value="a" />
-						<input type="hidden" name="tag4" id="tag4" value="a" />
-						<input type="submit" name="submit" id="submit" value="Check In" /> 
-							<!-- data-toggle="modal" data-target="#myModal" -->
 					
 					</div>
 					
-						<div id="layover" style="display:none; position:fixed; top:0%; left:0%; width:100%; height:100%; background-color:black; opacity: .50;" > </div>
-					
-					
-						<div id="confirmpop" style="display:none; position:fixed; left:30%; right:30%; top:40%; "> 
-							<div class="modal-content">
-									
-					
-									
-									<div  id="checkin_location">
-										<p>Thank you for your submission, 5 AEBuxs have been added to your account </p>
-									</div>
-									
-								</div>
-						</div> 
-						
- 					
-				</form>
+				</div>
 				
+				<!-- to survey -->
+				<div id="select1">
+					<input type="button" value="Get More AEBux" onClick="window.location.href='survey.php'" />
+				</div>
 				
-				<script>
-					var hot = document.getElementById("hot");
-					var warm = document.getElementById("warm");
-					var cold = document.getElementById("cold");
-					var dark = document.getElementById("dark");
-					var bright = document.getElementById("bright");
-					var comfy = document.getElementById("comfy");
-					var crowded = document.getElementById("crowded");
-					var peaceful = document.getElementById("peaceful");
-					var tag = document.getElementById("tag");
-					var tag2 = document.getElementById("tag2");
-					var tag3 = document.getElementById("tag3");
-					var tag4 = document.getElementById("tag4");
-					
-					hot.style.cursor = 'pointer';
-					hot.onclick = function(){
-						if(document.getElementById("tag").value == "warm" || document.getElementById("tag").value == "cold"){						 
-							warm.style.color= "white";
-							cold.style.color= "white";
-						}
-						hot.style.color= "red";
-						tag.setAttribute("value","hot");
-					};
-					
-					warm.style.cursor = 'pointer';
-					warm.onclick = function(){
-						if(document.getElementById("tag").value == "hot" || document.getElementById("tag").value == "cold"){						 
-							hot.style.color= "white";
-							cold.style.color= "white";
-						}
-						warm.style.color= "red";
-						tag.setAttribute("value","warm");					
-					};
-					
-					cold.style.cursor = 'pointer';
-					cold.onclick = function(){
-						if(document.getElementById("tag").value == "warm" || document.getElementById("tag").value == "hot"){						 
-							hot.style.color= "white";
-							warm.style.color= "white";
-						}
-						cold.style.color= "red";
-						tag.setAttribute("value","cold");					
-					};
-					
-					dark.style.cursor = 'pointer';
-					dark.onclick = function(){
-						if(document.getElementById("tag2").value == "bright" || document.getElementById("tag2").value == "comfy"){						 
-							bright.style.color= "white";
-							comfy.style.color= "white";
-						}
-						dark.style.color= "blue";
-						tag2.setAttribute("value","dark");					
-					};
-					
-					comfy.style.cursor = 'pointer';
-					comfy.onclick = function(){
-						if(document.getElementById("tag2").value == "bright" || document.getElementById("tag2").value == "dark"){						 
-							bright.style.color= "white";
-							dark.style.color= "white";
-						}
-						comfy.style.color= "blue";
-						tag2.setAttribute("value","comfy");					
-					};
-					
-					bright.style.cursor = 'pointer';
-					bright.onclick = function(){
-						if(document.getElementById("tag2").value == "comfy" || document.getElementById("tag2").value == "dark"){						 
-							comfy.style.color= "white";
-							dark.style.color= "white";
-						}
-						bright.style.color= "blue";
-						tag2.setAttribute("value","bright");
-						
-					};
-					
-					crowded.style.cursor = 'pointer';
-					crowded.onclick = function(){
-						if(document.getElementById("tag3").value == "peaceful"){						 
-							peaceful.style.color= "white";
-						}
-						crowded.style.color= "green";
-						tag3.setAttribute("value","crowded");						
-					};
-					
-					peaceful.style.cursor = 'pointer';
-					peaceful.onclick = function(){
-						if(document.getElementById("tag3").value == "crowded"){						 
-							crowded.style.color= "white";
-						}
-						peaceful.style.color= "green";
-						tag3.setAttribute("value","peaceful");						
-					};
-	
-					friend1.style.cursor = 'pointer';
-					
-					friend1.onclick = function(){
-						if(document.getElementById("tag4").value == "friend2" || document.getElementById("tag4").value == "friend3" ){						 
-							friend2.style.color= "white";
-						}
-						friend1.style.color= "blue";
-						tag4.setAttribute("value","friend1");		
-										
-					};
-					
-					friend2.style.cursor = 'pointer';
-					friend2.onclick = function(){
-						if(document.getElementById("tag4").value == "friend1" || document.getElementById("tag4").value == "friend2" ){						 
-							friend1.style.color= "white";
-						}
-						friend2.style.color= "blue";
-						tag4.setAttribute("value","friend2");	
-										
-					};
-					
-					friend3.style.cursor = 'pointer';
-					friend3.onclick = function(){
-						if(document.getElementById("tag4").value == "friend1" || document.getElementById("tag4").value == "friend2" ){						 
-							friend1.style.color= "white";
-						}
-						friend3.style.color= "blue";
-						tag4.setAttribute("value","friend3");	
-										
-					};
-					
-				</script>
+				<div id="select2">
+					<!-- temporary storage for room and tag choices -->
+					<input type="hidden" name="room" id="room" value="" />
+					<input type="hidden" name="tag1" id="tag1" value="" />
+					<input type="hidden" name="tag2" id="tag2" value="" />
+					<input type="hidden" name="tag3" id="tag3" value="" />
+					<input type="hidden" name="tag4" id="tag4" value="" />
+					<!-- submit button -->
+					<input type="submit" name="submit" id="submit" value="Check In" /> 
+						<!-- data-toggle="modal" data-target="#myModal" -->
+				</div>
+				
+				<div id="layover" style="display:none; position:fixed; top:0%; left:0%; width:100%; height:100%; background-color:black; opacity: .50;" > </div>
 			
+				<div id="confirmpop" style="display:none; position:fixed; left:30%; right:30%; top:40%; "> 
+					<div class="modal-content">
+						<div id="checkin_location">
+							<p>Thank you for your submission, 5 AEBuxs have been added to your account </p>
+						</div>
+					</div>
+				</div> 
+			</form>
+				
+			<!-- stores tag choices
+					and controls the tags lighting up with different colours when selected. -->
+			<script>
+				var hot = document.getElementById("hot");
+				var warm = document.getElementById("warm");
+				var cold = document.getElementById("cold");
+				var dark = document.getElementById("dark");
+				var bright = document.getElementById("bright");
+				var comfy = document.getElementById("comfy");
+				var crowded = document.getElementById("crowded");
+				var peaceful = document.getElementById("peaceful");
+				var tag1 = document.getElementById("tag1");
+				var tag2 = document.getElementById("tag2");
+				var tag3 = document.getElementById("tag3");
+				var tag4 = document.getElementById("tag4");
+				
+				hot.style.cursor = 'pointer';
+				hot.onclick = function(){
+					if(document.getElementById("tag1").value == "warm" || document.getElementById("tag1").value == "cold"){						 
+						warm.style.color= "white";
+						cold.style.color= "white";
+					}
+					hot.style.color= "red";
+					tag1.setAttribute("value","hot");
+				};
+				
+				warm.style.cursor = 'pointer';
+				warm.onclick = function(){
+					if(document.getElementById("tag1").value == "hot" || document.getElementById("tag1").value == "cold"){						 
+						hot.style.color= "white";
+						cold.style.color= "white";
+					}
+					warm.style.color= "red";
+					tag1.setAttribute("value","warm");					
+				};
+				
+				cold.style.cursor = 'pointer';
+				cold.onclick = function(){
+					if(document.getElementById("tag1").value == "warm" || document.getElementById("tag1").value == "hot"){						 
+						hot.style.color= "white";
+						warm.style.color= "white";
+					}
+					cold.style.color= "red";
+					tag1.setAttribute("value","cold");					
+				};
+				
+				dark.style.cursor = 'pointer';
+				dark.onclick = function(){
+					if(document.getElementById("tag2").value == "bright" || document.getElementById("tag2").value == "comfy"){						 
+						bright.style.color= "white";
+						comfy.style.color= "white";
+					}
+					dark.style.color= "blue";
+					tag2.setAttribute("value","dark");					
+				};
+				
+				comfy.style.cursor = 'pointer';
+				comfy.onclick = function(){
+					if(document.getElementById("tag2").value == "bright" || document.getElementById("tag2").value == "dark"){						 
+						bright.style.color= "white";
+						dark.style.color= "white";
+					}
+					comfy.style.color= "blue";
+					tag2.setAttribute("value","comfy");					
+				};
+				
+				bright.style.cursor = 'pointer';
+				bright.onclick = function(){
+					if(document.getElementById("tag2").value == "comfy" || document.getElementById("tag2").value == "dark"){						 
+						comfy.style.color= "white";
+						dark.style.color= "white";
+					}
+					bright.style.color= "blue";
+					tag2.setAttribute("value","bright");
+				};
+				
+				crowded.style.cursor = 'pointer';
+				crowded.onclick = function(){
+					if(document.getElementById("tag3").value == "peaceful"){						 
+						peaceful.style.color= "white";
+					}
+					crowded.style.color= "green";
+					tag3.setAttribute("value","crowded");						
+				};
+				
+				peaceful.style.cursor = 'pointer';
+				peaceful.onclick = function(){
+					if(document.getElementById("tag3").value == "crowded"){						 
+						crowded.style.color= "white";
+					}
+					peaceful.style.color= "green";
+					tag3.setAttribute("value","peaceful");						
+				};
+
+				friend1.style.cursor = 'pointer';
+				
+				friend1.onclick = function(){
+					if(document.getElementById("tag4").value == "friend2" || document.getElementById("tag4").value == "friend3" ){						 
+						friend2.style.color= "white";
+					}
+					friend1.style.color= "blue";
+					tag4.setAttribute("value","friend1");
+				};
+				
+				friend2.style.cursor = 'pointer';
+				friend2.onclick = function(){
+					if(document.getElementById("tag4").value == "friend1" || document.getElementById("tag4").value == "friend2" ){						 
+						friend1.style.color= "white";
+					}
+					friend2.style.color= "blue";
+					tag4.setAttribute("value","friend2");
+				};
+				
+				friend3.style.cursor = 'pointer';
+				friend3.onclick = function(){
+					if(document.getElementById("tag4").value == "friend1" || document.getElementById("tag4").value == "friend2" ){						 
+						friend1.style.color= "white";
+					}
+					friend3.style.color= "blue";
+					tag4.setAttribute("value","friend3");
+				};
+			</script>
   		</div> 
 	</body>
 </html>

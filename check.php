@@ -28,15 +28,15 @@ $userdata = mysqli_fetch_array($sql);
 // If result matched $myusername and $mypassword, table row must be 1 row
 if($count==1)
 {
-//    session_regenerate_id();
+		// session_regenerate_id();
 	// Extracts uID from the row of data about the user
 	$uID = $userdata['u_ID'];
     $_SESSION['username']  = $uID;
-  //  echo("<script>console.log('uID:".$uID.");</script>");
+		// echo("<script>console.log('uID:".$uID.");</script>"); (By Nikita)
     $_SESSION['username']  = $myusername;
     $_SESSION['loggedIn'] = true;
     // close the session
- //   session_write_close();
+		// session_write_close();
    echo "ok";
 }
 else
