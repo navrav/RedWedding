@@ -2,6 +2,7 @@
 
 <html>
 	<head>
+		<title>AEB Space - Bulding Information</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css">

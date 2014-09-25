@@ -8,14 +8,15 @@
     	  header("location:index.php");
   	}
 
-  	$user = $_SESSION["username"];
+  	$user = 1;
 
-   	$resultNew = mysqli_query($dbconn,"SELECT f_name, l_name, pic, rank FROM Users WHERE u_ID IN (SELECT ID_2 FROM Friends WHERE ID_1 =1)");
+   	$resultNew = mysqli_query($dbconn,"SELECT u_ID, f_name, l_name, pic, rank FROM Users WHERE u_ID IN (SELECT ID_2 FROM Friends WHERE ID_1 ='{$user}')");
 
 ?>
 
 <html>
 	<head>
+		<title>AEB Space - Friends</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css">
@@ -28,12 +29,21 @@
 		<script src="js/jquery.mobile-1.4.2.js"></script>
 		
 		<script>
-			function Delete(){
+			function Deletepop(){
 				document.getElementById('layover').style.display= "block";
 				document.getElementById('confirmpop').style.display= "block";
+
 			}
 		</script>
 		
+		<script>
+			function Delete(){
+				document.getElementById('layover').style.display= "block";
+				document.getElementById('confirmpop').style.display= "block";
+
+			}
+		</script>
+
 		<script>
 			function Add(){
 				document.getElementById('layover').style.display= "block";
@@ -99,7 +109,7 @@
          <?php echo $friendList['rank'] ?> 
      	</p></a>
         <p style="position: absolute;top: 1em;padding-top:30px;right: 0.3em;margin: 0;text-align: right;">
-        	<button type="button" class="btn btn-default btn-sm" style="float:right;" onClick="Delete();">
+        	<button type="button" class="btn btn-default btn-sm" style="float:right;" id="<?php echo $friendList['u_ID'] ?>" onClick="Deletepop();">
 	        		<span class="glyphicon glyphicon-trash"></span> Delete
 	        </button>
 		</p>
@@ -122,7 +132,7 @@
 				</div>
 				
 				<div class="modal-footer" style="padding-top: 10px; padding-bottom: 10px;">
-					<button type="button" style="font-size: 13px; padding: 5px; width: 100px; float: right; margin-left: 5px;" id = "yes" onClick="window.location.href='/friends1.php'">Yes</button>
+					<button type="button" style="font-size: 13px; padding: 5px; width: 100px; float: right; margin-left: 5px;" id = "yes" onClick="Delete();'">Yes</button>
 					<button type="button" style="font-size: 13px; padding: 5px; width: 100px; float: right;" id="no" onClick="window.location.href='/friends.php'">No</button>
 				</div>
 			</div>

@@ -2,7 +2,7 @@
 <html class="ui-mobile">
 <script>function back(){location.href='index.php';}</script>
 <head>
-	
+	<title>AEB Space - Sign Up</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1" >
 	
 	<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css" />

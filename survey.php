@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-<head>
+	<head>
+		<title>AEB Space - Survey</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css">
@@ -221,113 +222,113 @@
 		
 		
 		</style>
-</head>
-<body>
+	</head>
+	<body>
 
-	<div data-role="page" data-theme="b">
-		  <div data-role="header" id="header_yellow">
-		    <?php require("topbanner.php"); ?>
-		</div>
-		<!--end top bar-->
-  
-  
-		<!--nav bar-->
+		<div data-role="page" data-theme="b">
+			  <div data-role="header" id="header_yellow">
+			    <?php require("topbanner.php"); ?>
+			</div>
+			<!--end top bar-->
+	  
+	  
+			<!--nav bar-->
 
-   	 	<?php require("menu.php"); ?>
-	
-		<!--end nav bar-->
-    	
-    	
-    	<div data-role="main" class="ui-content" id="extendedsurvey" >
-    	
-    	<h2>Give Some More Feedback?</h2>
-	
-		<form name="submit">
-					
+	   	 	<?php require("menu.php"); ?>
 		
-			<div id="checkin_location">
-				<h4>Where are you?</h4>
-				
-				<select name="rno" size="1" onchange="setOptions(this.options[this.selectedIndex].value);" id="levelID">
-					<option value=" " selected="selected">Level</option>
-					<option value="1">Level 1</option>
-					<option value="2">Level 2</option>
-					<option value="3">Level 3</option>
-					<option value="4">Level 4</option>
-					<option value="5">Level 5</option>
-					<option value="6">Level 6</option>
-				</select>
-				<select name="opttwo" size="1" id="roomID">
-					<option value=" " selected="selected">Room</option>
-				</select>
-				
-			</div>
+			<!--end nav bar-->
+	    	
+	    	
+	    	<div data-role="main" class="ui-content" id="extendedsurvey" >
+	    	
+	    	<h2>Give Some More Feedback?</h2>
+		
+			<form name="submit">
+						
 			
-			
-			
-			<div id="hash-tag">
-				<h4> Room Temperature </h4>
-				<input type="text" id ="slider" name ="slider" value = "" />
-				
-			</div>
-			
-			<div id="checkin_location">
-				<h4> Humidity </h4>
-				<input type="text" id ="slider2" name ="slider" value = "" />
-				
-			</div>
-			
-			<div id="hash-tag">
-				<h4> Noise Level </h4>
-				<input type="text" id ="slider3" name ="slider" value = "" />
-				
-			</div>
-			
-			<div id="checkin_location">
-				<h4> Light Levels </h4>
-				<input type="text" id ="slider4" name ="slider" value = "" />
-				
-			</div>
-			
-			
-			<div id="select2">
-				<input type="button" name="submit" id="submit" value="Submit" onclick="Submit();"/> 
-			
-			
-			
-			
-		</form>
-
-		<div id="layover" style="display:none; position:fixed; top:0%; left:0%; width:100%; height:100%; background-color:black; opacity: .50;" > </div>
+				<div id="checkin_location">
+					<h4>Where are you?</h4>
 					
-					
-		<div id="confirmpop" style="display:none; position:fixed; left:30%; right:30%; top:40%; "> 
-			<div class="modal-content">
-					
-	
-					
-					<div  id="checkin_location">
-						<p>Thank you for your submission, 10 AEBuxs have been added to your account </p>
-					</div>
+					<select name="rno" size="1" onchange="setOptions(this.options[this.selectedIndex].value);" id="levelID">
+						<option value=" " selected="selected">Level</option>
+						<option value="1">Level 1</option>
+						<option value="2">Level 2</option>
+						<option value="3">Level 3</option>
+						<option value="4">Level 4</option>
+						<option value="5">Level 5</option>
+						<option value="6">Level 6</option>
+					</select>
+					<select name="opttwo" size="1" id="roomID">
+						<option value=" " selected="selected">Room</option>
+					</select>
 					
 				</div>
-		</div>
-		
-		<div id="errorpop" style="display:none; position:fixed; left:30%; right:30%; top:40%; "> 
-			<div class="modal-content">
-					
-	
-					
-					<div  id="checkin_location">
-						<p>Please select a level and floor</p>
-					</div>
+				
+				
+				
+				<div id="hash-tag">
+					<h4> Room Temperature </h4>
+					<input type="text" id ="slider" name ="slider" value = "" />
 					
 				</div>
+				
+				<div id="checkin_location">
+					<h4> Humidity </h4>
+					<input type="text" id ="slider2" name ="slider" value = "" />
+					
+				</div>
+				
+				<div id="hash-tag">
+					<h4> Noise Level </h4>
+					<input type="text" id ="slider3" name ="slider" value = "" />
+					
+				</div>
+				
+				<div id="checkin_location">
+					<h4> Light Levels </h4>
+					<input type="text" id ="slider4" name ="slider" value = "" />
+					
+				</div>
+				
+				
+				<div id="select2">
+					<input type="button" name="submit" id="submit" value="Submit" onclick="Submit();"/> 
+				
+				
+				
+				
+			</form>
+
+			<div id="layover" style="display:none; position:fixed; top:0%; left:0%; width:100%; height:100%; background-color:black; opacity: .50;" > </div>
+						
+						
+			<div id="confirmpop" style="display:none; position:fixed; left:30%; right:30%; top:40%; "> 
+				<div class="modal-content">
+						
+		
+						
+						<div  id="checkin_location">
+							<p>Thank you for your submission, 10 AEBuxs have been added to your account </p>
+						</div>
+						
+					</div>
+			</div>
+			
+			<div id="errorpop" style="display:none; position:fixed; left:30%; right:30%; top:40%; "> 
+				<div class="modal-content">
+						
+		
+						
+						<div  id="checkin_location">
+							<p>Please select a level and floor</p>
+						</div>
+						
+					</div>
+			</div>
+			
 		</div>
 		
-	</div>
-	
-</body>
+	</body>
 </html>
 
 
