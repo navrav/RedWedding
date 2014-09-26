@@ -2,7 +2,7 @@
 <html class="ui-mobile">
 <script>function back(){location.href='index.php';}</script>
 <head>
-	<title>AEB Space - Sign Up</title>
+	<title>AEB Space - Sign Up </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1" >
 	
 	<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css" />
@@ -18,6 +18,19 @@
 	<!-- <script src="fb.js"></script> -->
 	<!-- script src="//connect.facebook.net/en_US/all.js"></script -->
 <script>
+	$(document).ready(function() {
+		$("*").keyup(function() {
+			if ($("#fname").val() != "" &&
+			$("#lname").val() != "" &&
+			$("#pass").val() != "" &&
+			$("#email").val() !="") {
+				document.getElementById('signup').disabled = false;
+			} else {
+				document.getElementById('signup').disabled = true;
+			}
+		});
+	});
+
 function check(){
 	var pass = document.getElementById("pass").value;
 	var cpass = document.getElementById("cpass").value;
@@ -42,28 +55,37 @@ function check(){
 							<span id="check"></span>
 							<form id="signup" method='POST' action='register.php'> 							
 								<div class="form-group col-lg-12">
-								<label for="fname">First Name</label>
-								<input type="text" class="form-control input-control" placeholder="First Name" name="fname" id="fname">
+									<label for="fname">First Name</label>
+									<input type="text" class="form-control input-control" placeholder="First Name" name="fname" id="fname">
 								</div>
 								<div class="form-group col-lg-12">
-								<label for="laname">Last Name</label>
-								<input type="text" class="form-control input-control" placeholder="Last Name" name="lname" id="lname">
+									<label for="laname">Last Name</label>
+									<input type="text" class="form-control input-control" placeholder="Last Name" name="lname" id="lname">
 								</div>        
 								<div class="form-group col-lg-12">
-								<label for="pass">Password</label>
-								<input type="password" class="form-control input-control" placeholder="Password" name="pass" id="pass">
+									<label for="pass">Password</label>
+									<input type="password" class="form-control input-control" placeholder="Password" name="pass" id="pass">
 								</div>                    
 								<div class="form-group col-lg-12">
-								<label for="cpass">Confirm Password</label>
-								<input type="password" class="form-control input-control" placeholder="Confirm Password" name="cpass" id="cpass">
+									<label for="cpass">Confirm Password</label>
+									<input type="password" class="form-control input-control" placeholder="Confirm Password" name="cpass" id="cpass">
 								</div>                    
 								<div class="form-group col-lg-12">
-								<label for="email">Email</label>
-								<input type="email" class="form-control input-control" placeholder="Email" name="email" id="email">
+									<label for="email">Email</label>
+									<input type="email" class="form-control input-control" placeholder="Email" name="email" id="email">
 								</div>                    								
 								<table style="width:100%;margin:0 auto"><tr><td width="50%">
+
+								<div class="radio">
+							    	<label for="Gender1">Male</label>
+							    	<input type="radio" name="Gender" id="Gender1" value="m" checked>
+							  	</div>
+							  <div class="radio">
+							  	<label for="Gender2">Female</label>
+							  	<input type="radio" name="Gender" id="Gender2" value="f">
+							  </div>
 								
-								<button type="button" class="btn btn-danger btn_reg" style="width:80%" onClick="check();">Sign Up</button></td><td>
+								<button type="button" class="btn btn-danger btn_reg" id="signup" style="width:80%" onClick="check();" disabled>Sign Up</button></td><td>
 							
 					
 									

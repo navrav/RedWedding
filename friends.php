@@ -8,7 +8,7 @@
     	  header("location:index.php");
   	}
 
-  	$user = 1;
+  	$user = $_SESSION['username'];
 
    	$resultNew = mysqli_query($dbconn,"SELECT u_ID, f_name, l_name, pic, rank FROM Users WHERE u_ID IN (SELECT ID_2 FROM Friends WHERE ID_1 ='{$user}')");
 

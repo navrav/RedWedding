@@ -9,7 +9,7 @@
 
   $user = $_SESSION["username"];
 
-  $stat = mysqli_query(dbconn, "SELECT `f_name`,`l_name` FROM `Users` WHERE `email` = '$user'");
+  $stat = mysqli_query(dbconn, "SELECT `f_name`,`l_name` FROM `Users` WHERE `u_ID` = '{$user}'");
     /*
 		if($stat != ""){
 			if(!$result = $dbconn->query($stat)){
