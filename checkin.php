@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+<?php
+	session_start();
+  	include_once("servercon.php");
+
+  	if (!isset($_SESSION['username']))
+  	{
+    	  header("location:index.php");
+  	}
+?>
 <html>
 	<head>
 		<title>AEB Space - Check In</title>
@@ -29,19 +38,20 @@
 				 
 				selbox.options.length = 0;
 				if (chosen == " ") {
-				  selbox.options[selbox.options.length] = new Option('Change level for room list',' ');		 
+					selbox.options[selbox.options.length] = new Option('Change level for room list',' ');		 
 				}
 				if (chosen == "1") {
-					selbox.options[selbox.options.length] = new Option('101','101').setAttribute("selected", "selected");
+					selbox.options[selbox.options.length] = new Option('101','101');
+					selbox.options[0].setAttribute("selected", "selected");
 					selbox.options[selbox.options.length] = new Option('102','102');
 					selbox.options[selbox.options.length] = new Option('103','103');
 					selbox.options[selbox.options.length] = new Option('104','104');
 					selbox.options[selbox.options.length] = new Option('105','105');
 					selbox.options[selbox.options.length] = new Option('106','106');
 				}
-				
 				if (chosen == "2") {
-					selbox.options[selbox.options.length] = new Option('201','201').setAttribute("selected", "selected");
+					selbox.options[selbox.options.length] = new Option('201','201');
+					selbox.options[0].setAttribute("selected", "selected");
 					selbox.options[selbox.options.length] = new Option('202','202');
 					selbox.options[selbox.options.length] = new Option('203','203');
 					selbox.options[selbox.options.length] = new Option('204','204');
@@ -50,7 +60,8 @@
 				 
 				}
 				if (chosen == "3") {
-					selbox.options[selbox.options.length] = new Option('301','301').setAttribute("selected", "selected");
+					selbox.options[selbox.options.length] = new Option('301','301');
+					selbox.options[0].setAttribute("selected", "selected");
 					selbox.options[selbox.options.length] = new Option('302','302');
 					selbox.options[selbox.options.length] = new Option('316','316');
 					selbox.options[selbox.options.length] = new Option('317','317');
@@ -58,25 +69,26 @@
 					selbox.options[selbox.options.length] = new Option('319','319');
 				}
 				if (chosen == "4") {
-					selbox.options[selbox.options.length] = new Option('401','401').setAttribute("selected", "selected");
+					selbox.options[selbox.options.length] = new Option('401','401');
+					selbox.options[0].setAttribute("selected", "selected");
 					selbox.options[selbox.options.length] = new Option('402','402');
 					selbox.options[selbox.options.length] = new Option('405','405');
 					selbox.options[selbox.options.length] = new Option('406','406');
 					selbox.options[selbox.options.length] = new Option('407','407');
 					selbox.options[selbox.options.length] = new Option('408','408');
 				}
-				
 				if (chosen == "5") {
-					selbox.options[selbox.options.length] = new Option('506','506').setAttribute("selected", "selected");
+					selbox.options[selbox.options.length] = new Option('506','506');
+					selbox.options[0].setAttribute("selected", "selected");
 					selbox.options[selbox.options.length] = new Option('507','507');
 					selbox.options[selbox.options.length] = new Option('513','513');
 					selbox.options[selbox.options.length] = new Option('519','519');
 					selbox.options[selbox.options.length] = new Option('520','520');
 					selbox.options[selbox.options.length] = new Option('522','522');
 				}
-				
 				if (chosen == "6") {
-					selbox.options[selbox.options.length] = new Option('603','603').setAttribute("selected", "selected");
+					selbox.options[selbox.options.length] = new Option('603','603');
+					selbox.options[0].setAttribute("selected", "selected");
 					selbox.options[selbox.options.length] = new Option('605','605');
 					selbox.options[selbox.options.length] = new Option('606','606');
 					selbox.options[selbox.options.length] = new Option('608','608');
@@ -208,20 +220,12 @@
 						<option value="5">Level 5</option>
 						<option value="6">Level 6</option>
 					</select>
-					<select name="opttwo" id="opttwo" value = "" size="1">
+					<select name="opttwo" id="opttwo" value = "" size="1" onchange="saveRoom()">
 						<option value=" " selected="selected" >Change level for room list</option>
 					</select>
 				</div>
 				
-				<!-- script to save room choice -->
-				<script>
-					var selectedRoom = document.getElementById("opttwo");
-					var room = document.getElementById("room");
-					
-					selectedRoom.onchange = function() {
-						room.setAttribute("value", selectedRoom.value);
-					}
-				</script>
+				
 				
 				<!-- hash tags -->
 				<div id="hash-tag">
@@ -281,6 +285,7 @@
 				<div id="select2">
 					<!-- temporary storage for room and tag choices -->
 					<input type="hidden" name="room" id="room" value="" />
+					<input type="text" name="debugroom" id="debugroom" value="" />
 					<input type="hidden" name="tag1" id="tag1" value="" />
 					<input type="hidden" name="tag2" id="tag2" value="" />
 					<input type="hidden" name="tag3" id="tag3" value="" />
@@ -300,7 +305,18 @@
 					</div>
 				</div> 
 			</form>
-				
+			
+			<!-- script to save room choice -->
+				<script>
+					var selectedRoom = document.getElementById("opttwo");
+					var room = document.getElementById("room");
+					
+					function saveRoom() {
+						room.setAttribute("value", selectedRoom.value);
+						document.getElementById("debugroom").setAttribute("value", selectedRoom.value);
+					}
+				</script>
+			
 			<!-- stores tag choices
 					and controls the tags lighting up with different colours when selected. -->
 			<script>
