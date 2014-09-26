@@ -2,6 +2,12 @@
 <?php
   session_start();
   include_once("servercon.php");
+  
+  $user = $_SESSION["username"];
+  $user = "36";
+
+  $resultNew = mysqli_query($dbconn,"SELECT f_name, l_name, pic, rank FROM Users WHERE u_ID = 36");
+  $currentUser = mysqli_fetch_array($resultNew);
 ?>
 <html>
 	<head>
@@ -41,7 +47,7 @@
                     <div class="col-md-8 col-md-offset-2">
                         <div class="">
                         	<div class="col-md-4 col-md-offset-4">
-                        	<img src="Team/will.jpg" width="100px" height="105px" class="img-circle"/>
+                        	<img src="avatar/<?php echo currentUser["pic"]; ?>.png" width="100px" height="105px" class="img-circle"/>
 							<!-- The below two lines are coming from top banner. -->
                         	<h4> <?php echo $fname ." ". $lname;?> </h4>
                         	<h5> <?php echo $aebux; ?> AEBux | <a href="store.php">Buy Secrets</a> </h5>
