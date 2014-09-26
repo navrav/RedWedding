@@ -1,19 +1,20 @@
 <?php 
- include("servercon.php");
+ include_once("servercon.php");
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
+		<title>AEB Space - Map</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
-		<link rel="stylesheet" href="jquery.mobile-1.4.2.css">
+		<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css">
 		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/main.css" type="text/css">
 		
 		
 		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-		<script src="jquery.mobile-1.4.2.js"></script>
+		<script src="js/jquery.mobile-1.4.2.js"></script>
 			
 		<style>
 			#choosing{
@@ -81,7 +82,7 @@
 		</div>
 		<h5>Sort By?</h5>
 		
-		<select name="flo" id="categ" onchange="showHeat(document.getElementById('flo').value,document.getElementById('categ').value)">
+		<select name="flo" id="categ" onChange="showHeat(document.getElementById('flo').value,document.getElementById('categ').value)">
 						<option value="8">Temperature</option>
 						<option value="9">Light</option>
 						<option value="10">Noise</option>
@@ -91,7 +92,7 @@
 						<option value="12">Services</option> 
 		</select>
 		</div>
-		<div id="heatmapArea" style="position:relative; width:300px; height:450px; background-image:url('testmap.JPG');"> 
+		<div id="heatmapArea" style="position:relative; width:300px; height:450px; background-image:url('images/testmap.JPG');"> 
 			
 			
 			<h2 id="temp"><span style ="color: white; 
@@ -202,10 +203,10 @@ if (mysqli_connect_errno()) {
 		
 		
 ?>
-<script src="heat.js"></script>
-<script src="color.js"></script>
-<script src="colorlight.js"></script>
-<script src="colorpop.js"></script>
+<script src="js/heat.js"></script>
+<script src="js/color.js"></script>
+<script src="js/colorlight.js"></script>
+<script src="js/colorpop.js"></script>
 <script type="text/javascript">
 		var tot10 = <?php echo json_encode($tot10); ?>;
 		var totwarm10 = <?php echo json_encode($totwarm10); ?>;

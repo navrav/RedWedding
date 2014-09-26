@@ -1,5 +1,5 @@
 <?php
-include("servercon.php");
+include_once("servercon.php");
 $floor = $_REQUEST["q"];
 $category = $_REQUEST["l"];
 
