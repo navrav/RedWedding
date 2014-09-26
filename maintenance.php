@@ -48,8 +48,8 @@ function sendmail($from,$to,$subject,$msg) {
   $mail->Port = 25;                               // Server port: 465 ssl OR  587 tls  
   //  $mail->SMTPSecure = 'tls';                       // Enable encryption, 'ssl' also accepted
   $mail->SMTPAuth = false;                          // Enable SMTP authentication
-  $mail->Username = 's4204704@student.uq.edu.au';             // SMTP username
-  $mail->Password = '*****';    // SMTP password
+  $mail->Username = 's4204765@student.uq.edu.au';             // SMTP username
+  $mail->Password = 'tennis91';    // SMTP password
   $mail->SetFrom($from,'MyApp');                   // Sender
   $mail->AddReplyTo($from,'Support');              // Set an alternative reply-to address
   $mail->AddAddress($to,'User');                   // Set who the message is to be sent to
@@ -60,7 +60,7 @@ function sendmail($from,$to,$subject,$msg) {
   
   }
 echo("<script>console.log('Loaded fine');</script>");
-sendmail($from,$subject,$msg);
+sendmail($from,$to,$subject,$msg);
 echo("<script>console.log('Send happened');</script>");
 /*
 if (sendmail($from,$to, $subject, $msg)){

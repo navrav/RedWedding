@@ -61,23 +61,10 @@
 		echo("<script>console.log(".mysqli_fetch_array($query).");</script>");
 	}
 
-	// while($row = mysqli_fetch_array($queryarray)) {
-	// 	echo("<script>console.log('Testing array...');</script>");
-	// 	echo("<script>console.log(".$row['s_ID']).");</script>");
-	// 		//echo("<script>console.log("$secretlist");</script>");
-	// }
-
-
-
-
-	//$user = $_SESSION['u_ID'];
-	$user = '1';
-	$secretslist = mysqli_query($dbconn, "SELECT * FROM 'UserSecrets' WHERE 'u_ID'='1'");
-	//echo("<script>console.log("$secretslist")</script>");
-
 	// Updates the database tables with UserSecret information on the click of the button
 	if (isset($_POST['buysecret'])) {
-    $sqlt = mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (222,120)");
+	$uID = $_GET('id');
+    $sqlt = mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES ($uID, $sID)");
 	//$(this).find('button[type="submit"]').prop("disabled", true);
 	echo("<script>console.log('Calling function...');</script>");
     }
@@ -144,8 +131,8 @@
 					?>
 				</p>
 				<p class="ui-li-aside">
-					<form method="POST" action="<php echo $_SERVER['PHP_SELF']; ?>">
-						<button type="submit" name="buysecret" class="btn btn-default btn-sm" id="<?php echo $row['s_ID'] ?>">
+					<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+						<button type="submit" name="buysecret" class="btn btn-default btn-sm" id="id" value="<?php echo $row['s_ID'] ?>">
 						<span class="glyphicon glyphicon-gift"></span> Buy Secret
 						</button>
 						</form>
@@ -156,78 +143,6 @@
 	}
 	?>
 	</ul>
-
-
-
-
-
-     <!--  <li data-icon="false">  
-        <h6>AEB Rooms Secret</h6>
-        <p>15 AEBux</p>
-        <p class="ui-li-aside">
-        	<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-        	<button type="submit" name="buysecret" class="btn btn-default btn-sm" id="1">
-	        		<span class="glyphicon glyphicon-gift"></span> Buy Secret
-	        </button>
-	    	</form>
-		</p>        
-      </li>
-
-	  <li data-icon="false">
-	  	<h6>AEB Hallway Secret</h6>
-        <p>15 AEBux</p>
-        <p class="ui-li-aside">
-        	<button type="button" class="btn btn-default btn-sm" id="3">
-	        		<span class="glyphicon glyphicon-gift"></span> Buy Secret
-	        </button>
-		</p>
-     </li>   
-      <li data-icon="false">
-        <h6>AEB Benches Secret</h6>
-        <p>30 AEBux</p>
-        <p class="ui-li-aside">
-        	<button type="button" class="btn btn-default btn-sm" id="5">
-	        		<span class="glyphicon glyphicon-gift"></span> Buy Secret
-	        </button>
-		</p>                
-      </li>	  
-      <li data-icon="false">
-        <h6>Building Architecture Secret</h6>
-        <p>45 AEBux</p>  
-        <p class="ui-li-aside">
-        	<button type="button" class="btn btn-default btn-sm" id="7">
-	        		<span class="glyphicon glyphicon-gift"></span> Buy Secret
-	        </button>
-		</p>      
-      </li>
-	  <li data-icon="false">
-        <h6>Power Supply Secret</h6>
-        <p>50 AEBux</p>     
-        <p class="ui-li-aside">
-        	<button type="button" class="btn btn-default btn-sm" id="9">
-	        		<span class="glyphicon glyphicon-gift"></span> Buy Secret
-	        </button>
-		</p>           
-      </li>
-      <li data-icon="false">
-        <h6>Power Supply Secret</h6>
-        <p>50 AEBux</p>     
-        <p class="ui-li-aside">
-        	<button type="button" class="btn btn-default btn-sm">
-	        		<span class="glyphicon glyphicon-gift"></span> Buy Secret
-	        </button>
-		</p>           
-      </li>
-      <li data-icon="false">
-        <h6>Power Supply Secret</h6>
-        <p>50 AEBux</p>     
-        <p class="ui-li-aside">
-        	<button type="button" class="btn btn-default btn-sm">
-	        		<span class="glyphicon glyphicon-gift"></span> Buy Secret
-	        </button>
-		</p>           
-      </li>
-    </ul> -->
   </div>
   
   	<div id="layover" style="display:none; position:fixed; top:0%; left:0%; width:100%; height:100%; background-color:black; opacity: .50;" > </div>
