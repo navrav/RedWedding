@@ -227,13 +227,16 @@
 				<div id="hash-tag">
 				
 					<h2>How are you feeling?</h2>
+					<h2>Temperature</h2>
 					
 					<span id="hot" class="hashtag">#Hot</span>
 					<span id="warm" class="hashtag">#Warm</span>
 					<span id="cold" class="hashtag">#Cold</span>
+					<h2>Brightness</h2>
 					<span id="dark" class="hashtag">#Dark</span>
 					<span id="comfy" class="hashtag">#Comfortable</span>
 					<span id="bright" class="hashtag">#Bright</span>
+					<h2>Crowding</h2>
 					<span id="crowded" class="hashtag">#Crowded</span>
 					<span id="peaceful" class="hashtag">#Peaceful</span>
 			
