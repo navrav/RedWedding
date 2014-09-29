@@ -7,7 +7,7 @@
 <html class="ui-mobile">
 
 <head>
-	<title>AEB Space - Home</title>
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1" >
 	
 	<!-- Import libraries -->
@@ -46,6 +46,7 @@
 					  {pass: $("#pass").val(), user: $("#user").val()},
 					  function(checkresponse) {
 					if (checkresponse == "ok") {
+						
 						window.location.href = '/feed.php';
 					} else {
 						$("#status").text('Wrong username or password').show();
@@ -58,6 +59,8 @@
 		function signup() {
 			window.location.href = '/signup.php';
 		}
+		
+
 
 		/* Don't believe the following function is required anymore.
 		function checkForm() {

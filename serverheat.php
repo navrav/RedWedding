@@ -1,5 +1,5 @@
 <?php
-include("servercon.php");
+include_once("servercon.php");
 $floor = $_REQUEST["q"];
 $category = $_REQUEST["l"];
 
@@ -45,21 +45,21 @@ if($floor == "1"){
 
 if($floor == "1" && $category == "8"){
 		
-      	$warm10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101 AND tag = 'warm'");
-      	$hot10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101  AND tag = 'hot'");
-      	$cold10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101  AND tag = 'cold'");
+      	$warm10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101 AND tag1 = 'warm'");
+      	$hot10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101  AND tag1 = 'hot'");
+      	$cold10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101  AND tag1 = 'cold'");
 		
-		$warm22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag = 'warm'");
-      	$hot22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag = 'hot'");
-      	$cold22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag = 'cold'");
+		$warm22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag1 = 'warm'");
+      	$hot22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag1 = 'hot'");
+      	$cold22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag1 = 'cold'");
 		
-		$warm33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 103 AND tag = 'warm'");
-      	$hot33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 103 AND tag = 'hot'");
-      	$cold33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 103 AND tag = 'cold'");
+		$warm33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 103 AND tag1 = 'warm'");
+      	$hot33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 103 AND tag1 = 'hot'");
+      	$cold33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 103 AND tag1 = 'cold'");
 		
-		$warm34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 104 AND tag = 'warm'");
-      	$hot34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 104 AND tag = 'hot'");
-      	$cold34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 104 AND tag = 'cold'");
+		$warm34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 104 AND tag1 = 'warm'");
+      	$hot34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 104 AND tag1 = 'hot'");
+      	$cold34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 104 AND tag1 = 'cold'");
 		
 		$totwarm10 = 0;
 		$tothot10 = 0;
@@ -191,21 +191,21 @@ if($floor == "1" && $category == "8"){
 		';
 }
 elseif($floor == "1" && $category == "9"){
-      	$warm10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101 AND tag = 'comfy'");
-      	$hot10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101  AND tag = 'dark'");
-      	$cold10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101  AND tag = 'bright'");
+      	$warm10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101 AND tag2 = 'comfy'");
+      	$hot10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101  AND tag2 = 'dark'");
+      	$cold10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101  AND tag2 = 'bright'");
 		
-		$warm22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag = 'comfy'");
-      	$hot22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag = 'dark'");
-      	$cold22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag = 'bright'");
+		$warm22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag2 = 'comfy'");
+      	$hot22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag2 = 'dark'");
+      	$cold22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag2 = 'bright'");
 		
-		$warm33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag = 'comfy'");
-      	$hot33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag = 'dark'");
-      	$cold33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag = 'bright'");
+		$warm33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag2 = 'comfy'");
+      	$hot33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag2 = 'dark'");
+      	$cold33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag2 = 'bright'");
 		
-		$warm34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 105 AND tag = 'comfy'");
-      	$hot34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 105 AND tag = 'dark'");
-      	$cold34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 105 AND tag = 'bright'");
+		$warm34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 105 AND tag2 = 'comfy'");
+      	$hot34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 105 AND tag2 = 'dark'");
+      	$cold34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 105 AND tag2 = 'bright'");
 		
 		$totwarm10 = 0;
 		$tothot10 = 0;
@@ -333,17 +333,17 @@ elseif($floor == "1" && $category == "9"){
 		';
 }
 elseif($floor == "1" && $category == "10"){
-$hot10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101  AND tag = 'crowded'");
-      	$cold10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101  AND tag = 'peaceful'");
+		$hot10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101  AND tag3 = 'crowded'");
+      	$cold10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101  AND tag3 = 'peaceful'");
 		
-      	$hot22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag = 'crowded'");
-      	$cold22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag = 'peaceful'");
+      	$hot22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag3 = 'crowded'");
+      	$cold22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag3 = 'peaceful'");
 		
-      	$hot33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 103 AND tag = 'crowded'");
-      	$cold33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 103 AND tag = 'peaceful'");
+      	$hot33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 103 AND tag3 = 'crowded'");
+      	$cold33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 103 AND tag3 = 'peaceful'");
 		
-      	$hot34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 104 AND tag = 'crowded'");
-      	$cold34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 104 AND tag = 'peaceful'");
+      	$hot34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 104 AND tag3 = 'crowded'");
+      	$cold34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 104 AND tag3 = 'peaceful'");
 		
 		$tothot10 = 0;
 		$totcold10 = 0;
@@ -456,21 +456,21 @@ $hot10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101  AN
 		';
 }
 elseif($floor == "2" && $category == "8"){
-      	$warm10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 201 AND tag = 'warm'");
-      	$hot10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 201  AND tag = 'hot'");
-      	$cold10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 201  AND tag = 'cold'");
+      	$warm10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 201 AND tag1 = 'warm'");
+      	$hot10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 201  AND tag1 = 'hot'");
+      	$cold10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 201  AND tag1 = 'cold'");
 		
-		$warm22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 205 AND tag = 'warm'");
-      	$hot22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 205 AND tag = 'hot'");
-      	$cold22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 205 AND tag = 'cold'");
+		$warm22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 205 AND tag1 = 'warm'");
+      	$hot22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 205 AND tag1 = 'hot'");
+      	$cold22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 205 AND tag1 = 'cold'");
 		
-		$warm33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 203 AND tag = 'warm'");
-      	$hot33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 203 AND tag = 'hot'");
-      	$cold33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 203 AND tag = 'cold'");
+		$warm33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 203 AND tag1 = 'warm'");
+      	$hot33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 203 AND tag1 = 'hot'");
+      	$cold33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 203 AND tag1 = 'cold'");
 		
-		$warm34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 204 AND tag = 'warm'");
-      	$hot34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 204 AND tag = 'hot'");
-      	$cold34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 204 AND tag = 'cold'");
+		$warm34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 204 AND tag1 = 'warm'");
+      	$hot34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 204 AND tag1 = 'hot'");
+      	$cold34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 204 AND tag1 = 'cold'");
 		
 		$totwarm10 = 0;
 		$tothot10 = 0;
@@ -598,21 +598,21 @@ elseif($floor == "2" && $category == "8"){
 		';
 }
 elseif($floor == "2" && $category == "9"){
-      	$warm10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 201 AND tag = 'comfy'");
-      	$hot10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 201  AND tag = 'dark'");
-      	$cold10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 201  AND tag = 'bright'");
+      	$warm10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 201 AND tag2 = 'comfy'");
+      	$hot10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 201 AND tag2 = 'dark'");
+      	$cold10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 201 AND tag2 = 'bright'");
 		
-		$warm22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 205 AND tag = 'comfy'");
-      	$hot22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 205 AND tag = 'dark'");
-      	$cold22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 205 AND tag = 'bright'");
+		$warm22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 205 AND tag2 = 'comfy'");
+      	$hot22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 205 AND tag2 = 'dark'");
+      	$cold22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 205 AND tag2 = 'bright'");
 		
-		$warm33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 203 AND tag = 'comfy'");
-      	$hot33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 203 AND tag = 'dark'");
-      	$cold33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 203 AND tag = 'bright'");
+		$warm33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 203 AND tag2 = 'comfy'");
+      	$hot33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 203 AND tag2 = 'dark'");
+      	$cold33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 203 AND tag2 = 'bright'");
 		
-		$warm34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 204 AND tag = 'comfy'");
-      	$hot34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 204 AND tag = 'dark'");
-      	$cold34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 204 AND tag = 'bright'");
+		$warm34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 204 AND tag2 = 'comfy'");
+      	$hot34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 204 AND tag2 = 'dark'");
+      	$cold34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 204 AND tag2 = 'bright'");
 		
 		$totwarm10 = 0;
 		$tothot10 = 0;
@@ -740,17 +740,17 @@ elseif($floor == "2" && $category == "9"){
 		';
 }
 elseif($floor == "2" && $category == "10"){
-      	$hot10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 201  AND tag = 'crowded'");
-      	$cold10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 201  AND tag = 'peaceful'");
+      	$hot10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 201  AND tag3 = 'crowded'");
+      	$cold10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 201  AND tag3 = 'peaceful'");
 		
-      	$hot22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 205 AND tag = 'crowded'");
-      	$cold22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 205 AND tag = 'peaceful'");
+      	$hot22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 205 AND tag3 = 'crowded'");
+      	$cold22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 205 AND tag3 = 'peaceful'");
 		
-      	$hot33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 203 AND tag = 'crowded'");
-      	$cold33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 203 AND tag = 'peaceful'");
+      	$hot33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 203 AND tag3 = 'crowded'");
+      	$cold33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 203 AND tag3 = 'peaceful'");
 		
-      	$hot34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 204 AND tag = 'crowded'");
-      	$cold34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 204 AND tag = 'peaceful'");
+      	$hot34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 204 AND tag3 = 'crowded'");
+      	$cold34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 204 AND tag3 = 'peaceful'");
 		
 		$tothot10 = 0;
 		$totcold10 = 0;
@@ -861,21 +861,21 @@ elseif($floor == "2" && $category == "10"){
 		';
 }
 elseif($floor == "3" && $category == "8"){
-      	$warm10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 301 AND tag = 'warm'");
-      	$hot10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 301  AND tag = 'hot'");
-      	$cold10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 301  AND tag = 'cold'");
+      	$warm10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 301 AND tag1 = 'warm'");
+      	$hot10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 301  AND tag1 = 'hot'");
+      	$cold10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 301  AND tag1 = 'cold'");
 		
-		$warm22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 305 AND tag = 'warm'");
-      	$hot22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 305 AND tag = 'hot'");
-      	$cold22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 305 AND tag = 'cold'");
+		$warm22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 305 AND tag1 = 'warm'");
+      	$hot22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 305 AND tag1 = 'hot'");
+      	$cold22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 305 AND tag1 = 'cold'");
 		
-		$warm33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 307 AND tag = 'warm'");
-      	$hot33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 307 AND tag = 'hot'");
-      	$cold33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 307 AND tag = 'cold'");
+		$warm33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 307 AND tag1 = 'warm'");
+      	$hot33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 307 AND tag1 = 'hot'");
+      	$cold33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 307 AND tag1 = 'cold'");
 		
-		$warm34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 316 AND tag = 'warm'");
-      	$hot34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 316 AND tag = 'hot'");
-      	$cold34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 316 AND tag = 'cold'");
+		$warm34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 316 AND tag1 = 'warm'");
+      	$hot34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 316 AND tag1 = 'hot'");
+      	$cold34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 316 AND tag1 = 'cold'");
 		
 		$totwarm10 = 0;
 		$tothot10 = 0;
@@ -1003,21 +1003,21 @@ elseif($floor == "3" && $category == "8"){
 		';
 }
 elseif($floor == "3" && $category == "9"){
-		$warm10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 301 AND tag = 'comfy'");
-      	$hot10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 301  AND tag = 'dark'");
-      	$cold10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 301  AND tag = 'bright'");
+		$warm10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 301 AND tag2 = 'comfy'");
+      	$hot10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 301  AND tag2 = 'dark'");
+      	$cold10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 301  AND tag2 = 'bright'");
 		
-		$warm22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 305 AND tag = 'comfy'");
-      	$hot22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 305 AND tag = 'dark'");
-      	$cold22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 305 AND tag = 'bright'");
+		$warm22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 305 AND tag2 = 'comfy'");
+      	$hot22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 305 AND tag2 = 'dark'");
+      	$cold22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 305 AND tag2 = 'bright'");
 		
-		$warm33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 307 AND tag = 'comfy'");
-      	$hot33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 307 AND tag = 'dark'");
-      	$cold33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 307 AND tag = 'bright'");
+		$warm33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 307 AND tag2 = 'comfy'");
+      	$hot33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 307 AND tag2 = 'dark'");
+      	$cold33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 307 AND tag2 = 'bright'");
 		
-		$warm34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 316 AND tag = 'comfy'");
-      	$hot34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 316 AND tag = 'dark'");
-      	$cold34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 316 AND tag = 'bright'");
+		$warm34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 316 AND tag2 = 'comfy'");
+      	$hot34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 316 AND tag2 = 'dark'");
+      	$cold34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 316 AND tag2 = 'bright'");
 		
 		$totwarm10 = 0;
 		$tothot10 = 0;
@@ -1145,17 +1145,17 @@ elseif($floor == "3" && $category == "9"){
 		';
 }
 elseif($floor == "3" && $category == "10"){
-      	$hot10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 301  AND tag = 'crowded'");
-      	$cold10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 301  AND tag = 'peaceful'");
+      	$hot10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 301  AND tag3 = 'crowded'");
+      	$cold10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 301  AND tag3 = 'peaceful'");
 		
-      	$hot22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 305 AND tag = 'crowded'");
-      	$cold22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 305 AND tag = 'peaceful'");
+      	$hot22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 305 AND tag3 = 'crowded'");
+      	$cold22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 305 AND tag3 = 'peaceful'");
 		
-      	$hot33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 307 AND tag = 'crowded'");
-      	$cold33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 307 AND tag = 'peaceful'");
+      	$hot33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 307 AND tag3 = 'crowded'");
+      	$cold33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 307 AND tag3 = 'peaceful'");
 		
-      	$hot34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 316 AND tag = 'crowded'");
-      	$cold34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 316 AND tag = 'peaceful'");
+      	$hot34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 316 AND tag3 = 'crowded'");
+      	$cold34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 316 AND tag3 = 'peaceful'");
 		
 		$tothot10 = 0;
 		$totcold10 = 0;

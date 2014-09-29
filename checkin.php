@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+<?php
+	session_start();
+  	include_once("servercon.php");
+
+  	if (!isset($_SESSION['username']))
+  	{
+    	  header("location:index.php");
+  	}
+?>
 <html>
 	<head>
 		<title>AEB Space - Check In</title>
@@ -17,7 +26,7 @@
 		
 		<!-- drop down menus -->	
 		<script>
-			
+			// FROM PREVIOUS GROUP:
 			// I am hard coding this but there are way to call from tables
 			// in php that would make this a lot easier.
 			
@@ -29,59 +38,56 @@
 				 
 				selbox.options.length = 0;
 				if (chosen == " ") {
-				  selbox.options[selbox.options.length] = new Option('Change level for room list',' ');		 
-				}
-				if (chosen == "1") {
-					selbox.options[selbox.options.length] = new Option('101','101').setAttribute("selected", "selected");
+					selbox.options[selbox.options.length] = new Option('Change level for room list',' ');		 
+				} else if (chosen == "1") {
+					selbox.options[selbox.options.length] = new Option('101','101');
 					selbox.options[selbox.options.length] = new Option('102','102');
 					selbox.options[selbox.options.length] = new Option('103','103');
 					selbox.options[selbox.options.length] = new Option('104','104');
 					selbox.options[selbox.options.length] = new Option('105','105');
 					selbox.options[selbox.options.length] = new Option('106','106');
-				}
-				
-				if (chosen == "2") {
-					selbox.options[selbox.options.length] = new Option('201','201').setAttribute("selected", "selected");
+					selbox.options[0].selected = true;
+				} else if (chosen == "2") {
+					selbox.options[selbox.options.length] = new Option('201','201');
 					selbox.options[selbox.options.length] = new Option('202','202');
 					selbox.options[selbox.options.length] = new Option('203','203');
 					selbox.options[selbox.options.length] = new Option('204','204');
 					selbox.options[selbox.options.length] = new Option('205','205');
 					selbox.options[selbox.options.length] = new Option('206','206');
+					selbox.options[0].selected = true;
 				 
-				}
-				if (chosen == "3") {
-					selbox.options[selbox.options.length] = new Option('301','301').setAttribute("selected", "selected");
+				} else if (chosen == "3") {
+					selbox.options[selbox.options.length] = new Option('301','301');
 					selbox.options[selbox.options.length] = new Option('302','302');
 					selbox.options[selbox.options.length] = new Option('316','316');
 					selbox.options[selbox.options.length] = new Option('317','317');
 					selbox.options[selbox.options.length] = new Option('318','318');
 					selbox.options[selbox.options.length] = new Option('319','319');
-				}
-				if (chosen == "4") {
-					selbox.options[selbox.options.length] = new Option('401','401').setAttribute("selected", "selected");
+					selbox.options[0].selected = true;
+				} else if (chosen == "4") {
+					selbox.options[selbox.options.length] = new Option('401','401');
 					selbox.options[selbox.options.length] = new Option('402','402');
 					selbox.options[selbox.options.length] = new Option('405','405');
 					selbox.options[selbox.options.length] = new Option('406','406');
 					selbox.options[selbox.options.length] = new Option('407','407');
 					selbox.options[selbox.options.length] = new Option('408','408');
-				}
-				
-				if (chosen == "5") {
-					selbox.options[selbox.options.length] = new Option('506','506').setAttribute("selected", "selected");
+					selbox.options[0].selected = true;
+				} else if (chosen == "5") {
+					selbox.options[selbox.options.length] = new Option('506','506');
 					selbox.options[selbox.options.length] = new Option('507','507');
 					selbox.options[selbox.options.length] = new Option('513','513');
 					selbox.options[selbox.options.length] = new Option('519','519');
 					selbox.options[selbox.options.length] = new Option('520','520');
 					selbox.options[selbox.options.length] = new Option('522','522');
-				}
-				
-				if (chosen == "6") {
-					selbox.options[selbox.options.length] = new Option('603','603').setAttribute("selected", "selected");
+					selbox.options[0].selected = true;
+				} else if (chosen == "6") {
+					selbox.options[selbox.options.length] = new Option('603','603');
 					selbox.options[selbox.options.length] = new Option('605','605');
 					selbox.options[selbox.options.length] = new Option('606','606');
 					selbox.options[selbox.options.length] = new Option('608','608');
 					selbox.options[selbox.options.length] = new Option('610','610');
 					selbox.options[selbox.options.length] = new Option('612','612');
+					selbox.options[0].selected = true;
 				}
 			}
 			
@@ -89,7 +95,7 @@
 		
 		<!-- validate form input -->
 		<script>
-			/* I don't think this does anything...
+			/* Yong: I don't think this does anything...
 			
 				function Submit() {
 
@@ -176,7 +182,7 @@
 	                    <div class="col-md-8 col-md-offset-2">
 	                        <div class="">
 	                        	<div class="col-md-4 col-md-offset-4">
-	                        	<img src="Team/will.jpg" width="100px" height="105px" class="img-circle"/>
+	                        	<img src="avatar/<?php echo ($avatar); ?>.png" width="100px" height="105px" class="img-circle"/>
 	                        	<h4> <?php echo $fname ." ". $lname;?> </h4>
 	                        	<h5> <?php echo $aebux; ?> AEBux | <a href="store.php">Buy Secrets</a> </h5>
 	                        	
@@ -200,7 +206,7 @@
 					<h2>Where are you?</h2>
 					
 					<select size="1" onchange="setOptions(this.options[this.selectedIndex].value);">
-						<option value=" " selected="selected">Level</option>
+						<option value=" " selected>Level</option>
 						<option value="1">Level 1</option>
 						<option value="2">Level 2</option>
 						<option value="3">Level 3</option>
@@ -208,27 +214,15 @@
 						<option value="5">Level 5</option>
 						<option value="6">Level 6</option>
 					</select>
-					<select name="opttwo" id="opttwo" value = "" size="1">
-						<option value=" " selected="selected" >Change level for room list</option>
+					<select name="opttwo" id="opttwo" value = "" size="1" onchange="saveRoom()">
+						<option value=" " selected>Change level for room list</option>
 					</select>
 				</div>
 				
-				<!-- script to save room choice -->
-				<script>
-					var selectedRoom = document.getElementById("opttwo");
-					var room = document.getElementById("room");
-					
-					selectedRoom.onchange = function() {
-						room.setAttribute("value", selectedRoom.value);
-					}
-				</script>
-				
 				<!-- hash tags -->
 				<div id="hash-tag">
-				
 					<h2>How are you feeling?</h2>
 					<h2>Temperature</h2>
-					
 					<span id="hot" class="hashtag">#Hot</span>
 					<span id="warm" class="hashtag">#Warm</span>
 					<span id="cold" class="hashtag">#Cold</span>
@@ -239,7 +233,6 @@
 					<h2>Crowding</h2>
 					<span id="crowded" class="hashtag">#Crowded</span>
 					<span id="peaceful" class="hashtag">#Peaceful</span>
-			
 				</div>
 			
 				<!-- comment and friends -->
@@ -247,7 +240,7 @@
 					<!-- comment box -->
 					<div style ="float:left; width: 50%; padding-right:10px">
 						<h2>Comment</h2>
-						<textarea id="comment" rows="1" placeholder="Anything else you want to add?" style="height: 50px; max-height: 100px; resize: none;"></textarea>
+						<textarea name="comment" id="comment" rows="1" placeholder="Anything else you want to add?" style="height: 50px; max-height: 100px; resize: none;"></textarea>
 					</div>
 					<!-- friends -->
 					<div style ="float:left;">
@@ -300,7 +293,17 @@
 					</div>
 				</div> 
 			</form>
-				
+			
+			<!-- script to save room choice -->
+				<script>
+					var selectedRoom = document.getElementById("opttwo");
+					var room = document.getElementById("room");
+					
+					function saveRoom() {
+						room.setAttribute("value", selectedRoom.value);
+					}
+				</script>
+			
 			<!-- stores tag choices
 					and controls the tags lighting up with different colours when selected. -->
 			<script>

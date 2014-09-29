@@ -1,9 +1,10 @@
 <?php 
- include("servercon.php");
+ include_once("servercon.php");
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
+		<title>AEB Space - Map</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css">
@@ -81,7 +82,7 @@
 		</div>
 		<h5>Sort By?</h5>
 		
-		<select name="flo" id="categ" onchange="showHeat(document.getElementById('flo').value,document.getElementById('categ').value)">
+		<select name="flo" id="categ" onChange="showHeat(document.getElementById('flo').value,document.getElementById('categ').value)">
 						<option value="8">Temperature</option>
 						<option value="9">Light</option>
 						<option value="10">Noise</option>
@@ -122,21 +123,21 @@ $conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Viking8Chief+l
 if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
       }
-      	$warm10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101 AND tag = 'warm'");
-      	$hot10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101  AND tag = 'hot'");
-      	$cold10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101  AND tag = 'cold'");
+      	$warm10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101 AND tag1 = 'warm'");
+      	$hot10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101  AND tag1 = 'hot'");
+      	$cold10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101  AND tag1 = 'cold'");
 		
-		$warm22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag = 'warm'");
-      	$hot22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag = 'hot'");
-      	$cold22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag = 'cold'");
+		$warm22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag1 = 'warm'");
+      	$hot22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag1 = 'hot'");
+      	$cold22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag1 = 'cold'");
 		
-		$warm33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 103 AND tag = 'warm'");
-      	$hot33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 103 AND tag = 'hot'");
-      	$cold33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 103 AND tag = 'cold'");
+		$warm33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 103 AND tag1 = 'warm'");
+      	$hot33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 103 AND tag1 = 'hot'");
+      	$cold33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 103 AND tag1 = 'cold'");
 		
-		$warm34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 104 AND tag = 'warm'");
-      	$hot34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 104 AND tag = 'hot'");
-      	$cold34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 104 AND tag = 'cold'");
+		$warm34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 104 AND tag1 = 'warm'");
+      	$hot34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 104 AND tag1 = 'hot'");
+      	$cold34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 104 AND tag1 = 'cold'");
 		
 		$totwarm10 = 0;
 		$tothot10 = 0;
@@ -202,10 +203,10 @@ if (mysqli_connect_errno()) {
 		
 		
 ?>
-<script src="heat.js"></script>
-<script src="color.js"></script>
-<script src="colorlight.js"></script>
-<script src="colorpop.js"></script>
+<script src="js/heat.js"></script>
+<script src="js/color.js"></script>
+<script src="js/colorlight.js"></script>
+<script src="js/colorpop.js"></script>
 <script type="text/javascript">
 		var tot10 = <?php echo json_encode($tot10); ?>;
 		var totwarm10 = <?php echo json_encode($totwarm10); ?>;
