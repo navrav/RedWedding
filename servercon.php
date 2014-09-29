@@ -21,8 +21,8 @@
 	
 	// Connect to the MySQL server - if an error occurs, the "die" message will be output to the log
 	$dbconn = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
-	if($dbconn->connect_errno > 0){
-		die("Unable to connect to database [".$db->connect_error."]");
+	if(!$dbconn){
+		die("Unable to connect to database [".mysqli_connect_error()."]");
 	}
 	// You can output messages to the error log for debugging purposes
 		error_log("All ready to go");

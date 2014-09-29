@@ -9,18 +9,24 @@
 
   $user = $_SESSION["username"];
 
-  $stat = mysqli_query(dbconn, "SELECT `f_name`,`l_name` FROM `Users` WHERE `u_ID` = '{$user}'");
+  $result = mysqli_query($dbconn, "SELECT `f_name`,`l_name`,`pic` FROM `Users` WHERE `u_ID` = {$user}");
     /*
 		if($stat != ""){
 			if(!$result = $dbconn->query($stat)){
 					die("There was an error running the stat query [".$db->error."]");
 				}
-		}
+		
 	*/
-    $row = mysqli_fetch_array($result);
-    $fname = $row['f_name'];
-    $lname = $row['l_name'];
+    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    $fname = $row["f_name"];
+    $lname = $row["l_name"];
+    $avatar = $row["pic"];
+    //printf("%s (%s)\n", $row["f_name"], $row["l_name"]);
+    //echo("<script>console.log('first name:".$fname."');</script>"); 
+    //echo("<script>console.log('row:".$row['l_name']."');</script>"); 
+    //echo("<script>console.log('query:".$result."');</script>"); 
 ?>
+
 <section data-role="panel" id="nav" data-display="overlay"> 
    	 		
     <ul data-role="listview">
@@ -28,8 +34,9 @@
 			    	<!--insert username here -->
 		  	<a href="profile.php" style="background-color:#ee4055;">
 		  		<h4>
-		  		<img src="Team/will.jpg" width="50px" height="50px" class="img-circle" hspace="10" />
-		  		<?php echo $fname ." ". $lname?><br>
+		  		<img src="avatar/<?php echo($avatar);?>.png" width="50px" height="50px" class="img-circle" hspace="10" />
+		  		<?php echo ($fname ." ". $lname); ?>
+		  		<br>
 		  		<h4 style ="size: 10px">
 		  		
 		  		</h4>

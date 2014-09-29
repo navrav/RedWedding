@@ -3,7 +3,7 @@ if (isset($_SERVER['HTTP_X_UQ_USER'])) {
     session_name("PHPSESSID");
     session_start();
     $_SESSION['PMA_single_signon_user'] = "root";
-    $_SESSION['PMA_single_signon_password'] = "Hebrew*Read+dire";
+    $_SESSION['PMA_single_signon_password'] = "Viking8Chief+latch";
     $_SESSION['PMA_single_signon_host'] = 'localhost';
     $_SESSION['PMA_single_signon_token'] = sha1(uniqid(rand(), true));
     session_write_close();

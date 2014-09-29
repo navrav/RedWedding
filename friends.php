@@ -9,6 +9,7 @@
   	}
 
   	$user = $_SESSION['username'];
+  	//$user = '1';
 
    	$resultNew = mysqli_query($dbconn,"SELECT u_ID, f_name, l_name, pic, rank FROM Users WHERE u_ID IN (SELECT ID_2 FROM Friends WHERE ID_1 ='{$user}')");
 
@@ -28,11 +29,16 @@
 		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 		<script src="js/jquery.mobile-1.4.2.js"></script>
 		
+		<script type="text/javascript">
+			var tempFriend = "";
+		</script>
+
 		<script>
-			function Deletepop(){
+			function Deletepop(clickedID){
 				document.getElementById('layover').style.display= "block";
 				document.getElementById('confirmpop').style.display= "block";
-
+				console.log("CLICKED ID" + clickedID);
+				tempFriend = clickedID;
 			}
 		</script>
 		
@@ -96,10 +102,10 @@
 	  
 	  	
 	<?php
-	  	while($friendList = mysqli_fetch_array($resultNew)) {
+	  	while($friendList = mysqli_fetch_array($resultNew, MYSQLI_ASSOC)) {
 	  ?>
       <li data-icon="false"><a href="friend.php">
-      	<h6><img src="Team/adee.jpg" width="50px" height="50px" class="img-circle" style/>
+      	<h6><img src="avatar/<?php echo($friendList["pic"]);?>.png" width="50px" height="50px" class="img-circle" style/>
       		<?php 
       		echo $friendList['f_name'] . " " . $friendList['l_name']; 
       		?>
@@ -109,7 +115,7 @@
          <?php echo $friendList['rank'] ?> 
      	</p></a>
         <p style="position: absolute;top: 1em;padding-top:30px;right: 0.3em;margin: 0;text-align: right;">
-        	<button type="button" class="btn btn-default btn-sm" style="float:right;" id="<?php echo $friendList['u_ID'] ?>" onClick="Deletepop();">
+        	<button type="button" class="btn btn-default btn-sm" style="float:right;" id="<?php echo $friendList['u_ID'] ?>" onClick="Deletepop(this.id);">
 	        		<span class="glyphicon glyphicon-trash"></span> Delete
 	        </button>
 		</p>
