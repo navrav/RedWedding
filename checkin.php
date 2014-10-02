@@ -267,9 +267,13 @@
 				</div>
 				
 				<!-- to survey -->
-				<div id="select1">
-					<input type="button" value="Get More AEBux" onClick="window.location.href='survey.php'" />
-				</div>
+				<?php
+					/* REMOVE IF NO PROBLEMS CAUSED BY COMMENTING OUT.
+						<div id="select1">
+							<input type="button" value="Get More AEBux" onClick="window.location.href='survey.php'" />
+						</div>
+					*/
+				?>
 				
 				<div id="select2">
 					<!-- temporary storage for room and tag choices -->
