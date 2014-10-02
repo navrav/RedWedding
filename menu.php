@@ -8,8 +8,7 @@
   }
 
   $user = $_SESSION["username"];
-  $userIsAdmin = mysqli_query($dbconn, "SELECT `isAdmin` FROM `Users` WHERE `u_ID` = {$user}");
-  $result = mysqli_query($dbconn, "SELECT `f_name`,`l_name`,`pic` FROM `Users` WHERE `u_ID` = {$user}");
+  $result = mysqli_query($dbconn, "SELECT `f_name`,`l_name`,`pic`,`isAdmin` FROM `Users` WHERE `u_ID` = {$user}");
     /*
 		if($stat != ""){
 			if(!$result = $dbconn->query($stat)){
@@ -21,8 +20,9 @@
     $fname = $row["f_name"];
     $lname = $row["l_name"];
     $avatar = $row["pic"];
+    $userIsAdmin = $row["isAdmin"];
     //printf("%s (%s)\n", $row["f_name"], $row["l_name"]);
-    //echo("<script>console.log('first name:".$fname."');</script>"); 
+    echo("<script>console.log('isAdmin:".$userIsAdmin."');</script>"); 
     //echo("<script>console.log('row:".$row['l_name']."');</script>"); 
     //echo("<script>console.log('query:".$result."');</script>"); 
 ?>
@@ -89,15 +89,16 @@
 		</li>
 		
 		<?php
-		if($userIsAdmin){
-		echo(
-		"<li>
-			<a href=\"admin.php\" data-ajax=\"false\" style=\"background-color:#F50000;\">
-			<span class=\"glyphicon glyphicon-warning-sign\"></span>
+		if($userIsAdmin == 1){
+		?>
+		<li>
+			<a href="admin.php" style="background-color:#F50000;">
+			<span class="glyphicon glyphicon-warning-sign"></span>
 			Admin Page
 			</a>
-		</li>"
-		)
+		</li>
+		<?php
+		}
 		?>
 		
 		<li>
