@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
   session_start();
+ 
   include_once("servercon.php");
   
     if (!isset($_SESSION['username']))
@@ -15,7 +16,7 @@
 ?>
 <html>
 	<head>
-        <title>AEB Space - My Profile</title>
+        <title><?=$user?></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css">
@@ -26,8 +27,36 @@
 		
 		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 		<script src="js/jquery.mobile-1.4.2.js"></script>
+	<script>$(document).ready(function(){$("#change_img").click(function(){$("#select_img").show();$("#layover").show();});
+	
+	
+	$("#male_img").find('img').bind("click",function(){ 
+	
+	
+	$.get('change_pic.php?t='+Math.random(),{user:"<?=$user?>",pic:$(this).attr('data_src')},function(change_result){
+	
+	
+	if(change_result!=''){//当改变了数据库成功之后 才改变头像
+	
+	$("#show_img").attr({'src':'avatars/'+change_result});
+	  
+	  $("#select_img").hide();$("#layover").hide();
+	
+	}
+	
+	});  
+	
+	
+	  
+	   });
+	
+	
+	
+	});
+	</script>
 	</head>
 	<body>
+	
 		<!--top bar-->
 		<div data-role="page" data-theme="b">
 		  <div data-role="header" id="header_pink">
@@ -51,9 +80,11 @@
                     <div class="col-md-8 col-md-offset-2">
                         <div class="">
                         	<div class="col-md-4 col-md-offset-4">
-                        	<img src="avatar/<?php echo ($avatar); ?>.png" width="100px" height="105px" class="img-circle"/>
+                        	<img id="show_img" src="avatars/<?=!empty($currentUser['pic']) ? $currentUser['pic'] : "male.png"?>" width="100px" height="105px" class="img-circle"/>
 							<!-- The below two lines are coming from top banner. -->
-                        	<h4> <?php echo $fname ." ". $lname;?> </h4>
+                        	<button id="change_img"> <?php //echo $fname ." ". $lname;
+							echo "debug user";
+							?></button> 
                         	<h5> <?php echo $aebux; ?> AEBux | <a href="store.php">Buy Secrets</a> </h5>
                         	</div>
                          </div>
@@ -114,5 +145,34 @@
   
 </div> 
 
+<div id="layover" style="display:none; position:fixed; top:0%; left:0%; width:100%; height:100%; background-color:black; opacity: .50;" > </div>
+					
+					
+	<div id="select_img" style="display:none; position:fixed; left:50%; top:50%;margin-left:-125px;margin-top:-74.5px; "> 
+		<div class="modal-content" style="background-color:#262626; width:250px">
+				<div class="modal-body"  style="padding: 15px; padding-bottom: 5px;">
+					<p>change your head portrait?</p>
+				</div>
+			
+				<div class="modal-footer" style="padding-top: 10px; padding-bottom: 10px;">
+					
+					<div id="male_img">
+			
+				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/male1.png" data_src="male1.png">
+				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/male2.png" data_src="male2.png">
+				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/male3.png" data_src="male3.png">
+				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/male4.png" data_src="male4.png">
+				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/male5.png" data_src="male5.png">
+				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/male6.png" data_src="male6.png">
+				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/male7.png" data_src="male7.png">
+				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/male8.png" data_src="male8.png">
+				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/male9.png" data_src="male9.png">
+				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/male10.png" data_src="male10.png"></div>
+					<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+					
+					
+				</div>
+			</div>
+	</div>
 </body>
 </html>
