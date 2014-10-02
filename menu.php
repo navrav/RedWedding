@@ -8,7 +8,7 @@
   }
 
   $user = $_SESSION["username"];
-
+  $userIsAdmin = mysqli_query($dbconn, "SELECT `isAdmin` FROM `Users` WHERE `u_ID` = {$user}");
   $result = mysqli_query($dbconn, "SELECT `f_name`,`l_name`,`pic` FROM `Users` WHERE `u_ID` = {$user}");
     /*
 		if($stat != ""){
@@ -87,6 +87,18 @@
 			Maintenance/Contact
 			</a>
 		</li>
+		
+		<?php
+		if($userIsAdmin){
+		echo(
+		"<li>
+			<a href=\"admin.php\" data-ajax=\"false\" style=\"background-color:#F50000;\">
+			<span class=\"glyphicon glyphicon-warning-sign\"></span>
+			Admin Page
+			</a>
+		</li>"
+		)
+		?>
 		
 		<li>
 			<a href="javascript:void(0)" Onclick="logout()";  data-ajax="false"  style="background-color:#CE6786;">
