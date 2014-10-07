@@ -13,18 +13,34 @@
 		
 		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 		<script src="js/jquery.mobile-1.4.2.js"></script>
-		
-		
-		<!-- Need to know:
-			User ID
-			Secret ID
-			Secret Cost
-		-->
-	<script type="text/javascript">
+        <script type="text/javascript">
 
 	function disableButton(buttonID){
     	document.getElementById(buttonID).disabled = true;
     }
+    
+    function ownedButton(buttonID){
+        document.getElementById(buttonID).innerHTML = "Purchased";
+    	document.getElementById(buttonID).disabled = true;
+    }
+    
+    // function confirmPurchase(sID){
+//         console.log('Launching pop-up window...');
+//         document.getElementById('secretIDtemp').value=sID;
+//         document.getElementById('layover').style.display= "block";
+// 		document.getElementById('confirmpop').style.display= "block";
+//     }
+//     
+//     function buySecret(){
+//         x = document.getElementById("secretIDtemp").value;
+//         document.getElementById('layover').style.display= "none";
+// 		document.getElementById('confirmpop').style.display= "none";
+//         console.log("buying secret with ID...");
+//         console.log(x);
+//         
+//         
+//     }
+    
     </script>
 
 	<?php
@@ -49,29 +65,31 @@
 	{
 		header("location:index.php");
 	}
-
-	$query = mysqli_query($dbconn, "SELECT * FROM `Secrets` ORDER BY `cost`");
-
-	//$queryarray = mysqli_fetch_array($query);
-	echo("<script>console.log('Opening page!');</script>");
+	
+	// Taken from feed.php
+    $user = $_SESSION["username"];
+	echo("<script>console.log('uID_Store.php:".$user."');</script>"); // Nikita added print check here
+    
+    $query = mysqli_query($dbconn, "SELECT * FROM `Secrets` ORDER BY `cost`");
 	if ($query != ""){
-		echo("<script>console.log('Data is not found...');</script>");
 	}else{
-		echo("<script>console.log('Data was found');</script>");
-		echo("<script>console.log(".mysqli_fetch_array($query).");</script>");
+		echo("<script>console.log('Data not found');</script>");
 	}
 
-	// Updates the database tables with UserSecret information on the click of the button
-	if (isset($_POST['buysecret'])) {
-	$uID = $_GET('id');
-    $sqlt = mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES ($uID, $sID)");
-	//$(this).find('button[type="submit"]').prop("disabled", true);
-	echo("<script>console.log('Calling function...');</script>");
-    }
-    //
-
-	//$sqlt = mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (100,aebroom)");
+    $query2 = mysqli_query($dbconn, "SELECT * FROM `Users` WHERE `u_ID`=$user");
+	//echo("<script>console.log(".$query2.");</script>");
+	if ($query2 != ""){
+	}else{
+		echo("<script>console.log('Data was not found');</script>");
+	}
 	
+	$secretslist = mysqli_query($dbconn, "SELECT * FROM 'UserSecrets' WHERE 'u_ID'=$user");
+
+	// Updates the database tables with UserSecret information on the click of the button
+	// if (isset($_POST['buysecret'])) {
+// 	//$(this).find('button[type="submit"]').prop("disabled", true);
+// 	echo("<script>console.log('Calling function...');</script>");
+//     }
 
 
 	
@@ -81,15 +99,6 @@
 	   function in order to disable all the buttons for secrets already bought
 	*/
 
-	// function checkSecrets(){
-	// 	echo("<script>console.log('Calling php function...');</script>");
-	// 	while($row = mysqli_fetch_array($result)) {
- //  			echo $sID = $row['s_ID'];
- //  			echo("<script>console.log({$sID});</script>");
- //  			// Calls function to update the disabled setting of each button
- //  			echo '<script type="text/javascript">', "updateButtons({$sID});", '</script>';
-	// 		}
-	// }
 	/*****************************************************************************/
 	?>			
 	</head>
@@ -113,13 +122,20 @@
 			
 	<ul data-role="listview" data-inset="true">
 	<li style="background-color:#ee4055; border:none; text-align:center;">STORE
-				  
-		 <?php 
+	<input type="hidden" id="secretIDtemp" value="">			  
+		 <?php
+    				
+if (isset($_POST['buysecret'])){
+	   $sID = $_POST['buysecret'];
+	   echo("<script>console.log('Posting form... sID: ');</script>");
+	   echo("<script>console.log(".$sID.");</script>");
+	   mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (".$user.", ".$sID.")");
+	   
+	   	   }
+		        
 	
 	while($row = mysqli_fetch_array($query)){
 		?>
-		  
-
 			<li data-icon="false">
 				<h6><?php
 					echo $row['name'];
@@ -131,15 +147,21 @@
 					?>
 				</p>
 				<p class="ui-li-aside">
-					<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-						<button type="submit" name="buysecret" class="btn btn-default btn-sm" id="id" value="<?php echo $row['s_ID'] ?>">
+
+<!--"<?php echo $_SERVER['PHP_SELF']; ?>"
+onsubmit="return confirm('Are you sure you would like to buy this secret for <?php echo $row['cost'] ?> AEBux?')" -->
+		        
+					<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" onsubmit="return confirm('Are you sure you would like to buy this secret for <?php echo $row['cost'] ?> AEBux?')">
+					    <input type="hidden" name="secretid" value="<?php echo $row['s_ID'] ?>">
+						<button type="submit" name="buysecret" class="btn btn-default btn-sm" id="<?php echo $row['s_ID'] ?>" value="<?php echo $row['s_ID'] ?>">
 						<span class="glyphicon glyphicon-gift"></span> Buy Secret
 						</button>
-						</form>
+						</form> 
 				</p>
 				</li>
 
 			<?php
+	// 
 	}
 	?>
 	</ul>
@@ -155,8 +177,8 @@
 				</div>
 				
 				<div class="modal-footer" style="padding-top: 10px; padding-bottom: 10px;">
-					<button type="button" style="font-size: 13px; padding: 5px; width: 100px; float: right; margin-left: 5px;" id = "yes" onclick="window.location.href='/store2.php'">Yes</button>
-					<button type="button" style="font-size: 13px; padding: 5px; width: 100px; float: right;" id="no" onclick="window.location.href='/store.php'">No</button>
+					<button type="button" style="font-size: 13px; padding: 5px; width: 100px; float: right; margin-left: 5px;" id = "yes" onclick="buySecret()">Yes</button>
+					<button type="button" style="font-size: 13px; padding: 5px; width: 100px; float: right;" id="no" onclick="window.location.href='/Kevin/store.php'">No</button> 
 				</div>
 			</div>
 	</div>
@@ -166,17 +188,25 @@
 
 </body>
 <?php
-// 	$result = mysqli_query($dbconn, "SELECT * FROM `UserSecrets` WHERE `u_ID`='1'");
-// 	if(!$result){
-// 			echo("<script>console.log('');</script>");
-// 			echo("<script>console.log('No data from table');</script>");
-// 		} else{
-// 			echo("<script>console.log('Data found');</script>");
-// 			//echo("<script>console.log("$secretlist");</script>");
-// 		}
-// 	echo("<script>console.log('continuing function');</script>");
-// 	while($row = mysqli_fetch_array($result)) {
-//    		echo '<script type="text/javascript"> disableButton('.$row['s_ID'].'); </script>';
-// }
+/*
+$result = mysqli_query($dbconn, "SELECT * FROM `UserSecrets` WHERE `u_ID`=$user");
+	if(!$result){
+			echo("<script>console.log('');</script>");
+			echo("<script>console.log('No data from table');</script>");
+		} else{
+			echo("<script>console.log('Data found');</script>");
+		}
+	echo("<script>console.log('continuing function');</script>");
+	while($row = mysqli_fetch_array($result)) {
+   		echo '<script type="text/javascript"> ownedButton('.$row['s_ID'].'); </script>';
+}
+
+$result2 = mysqli_query($dbconn, "SELECT * FROM `Secrets`");
+while ($row2 = mysqli_fetch_array($result2)){
+if($row2['cost'] > 30){
+    echo '<script type="text/javascript"> disableButton('.$row2['s_ID'].'); </script>';
+}
+}
+*/
 ?>
 </html>
