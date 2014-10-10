@@ -40,7 +40,7 @@
 			var log_out = "<?=isset($_GET['log_out']) ? $_GET['log_out'] : '0'?>";
 			
 			if (log_out == 1) {
-				$("#status").text('Logout successful.').show();
+				$("#status").text('Logout successfully').show();
 			}
 
 			$("#log").click(function() {

@@ -80,10 +80,10 @@
                     <div class="col-md-8 col-md-offset-2">
                         <div class="">
                         	<div class="col-md-4 col-md-offset-4">
-                        	<img id="show_img" src="avatars/<?=!empty($currentUser['pic']) ? $currentUser['pic'] : "male.png"?>" width="100px" height="105px" class="img-circle"/>
+                        	<img id="show_img" src="avatars/<?=!empty($currentUser['pic']) ? $currentUser['pic'] : "m.png"?>" width="100px" height="105px" class="img-circle"/>
 							<!-- The below two lines are coming from top banner. -->
                         	<button id="change_img"> <?php //echo $fname ." ". $lname;
-							echo "debug user";
+							echo "Change Avatar";
 							?></button> 
                         	<h5> <?php echo $aebux; ?> AEBux | <a href="store.php">Buy Secrets</a> </h5>
                         	</div>
@@ -151,23 +151,23 @@
 	<div id="select_img" style="display:none; position:fixed; left:50%; top:50%;margin-left:-125px;margin-top:-74.5px; "> 
 		<div class="modal-content" style="background-color:#262626; width:250px">
 				<div class="modal-body"  style="padding: 15px; padding-bottom: 5px;">
-					<p>change your head portrait?</p>
+					<p>Change your hat?</p>
 				</div>
 			
 				<div class="modal-footer" style="padding-top: 10px; padding-bottom: 10px;">
 					
 					<div id="male_img">
 			
-				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/male1.png" data_src="male1.png">
-				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/male2.png" data_src="male2.png">
-				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/male3.png" data_src="male3.png">
-				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/male4.png" data_src="male4.png">
-				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/male5.png" data_src="male5.png">
-				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/male6.png" data_src="male6.png">
-				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/male7.png" data_src="male7.png">
-				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/male8.png" data_src="male8.png">
-				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/male9.png" data_src="male9.png">
-				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/male10.png" data_src="male10.png"></div>
+				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/hat1.png" data_src="m1.png">
+				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/hat2.png" data_src="m2.png">
+				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/hat3.png" data_src="m3.png">
+				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/hat4.png" data_src="m4.png">
+				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/hat5.png" data_src="m5.png">
+				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/hat6.png" data_src="m6.png">
+				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/hat7.png" data_src="m7.png">
+				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/hat8.png" data_src="m8.png">
+				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/hat9.png" data_src="m9.png">
+				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/hat10.png" data_src="m10.png"></div>
 					<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
 					
 					
