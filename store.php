@@ -40,11 +40,22 @@
 //         
 //         
 //     }
+    function redirect(){
+    window.location = "http://deco3801-01.uqcloud.net/store.php";
+    }
+    
+    function checkSecrets(){
+        console.log('Refreshed page...');
+    }
+    
     
     </script>
 
 	<?php
-
+    function reloadPage(){
+    echo("<script>console.log('calling reload function');</script>");
+    location.reload(true);
+    }
 	/***************************************************************************
 	*	
 	*	STORE.PHP - Updates the userSecret table and AEBux totals depending
@@ -85,15 +96,6 @@
 	
 	$secretslist = mysqli_query($dbconn, "SELECT * FROM 'UserSecrets' WHERE 'u_ID'=$user");
 
-	// Updates the database tables with UserSecret information on the click of the button
-	// if (isset($_POST['buysecret'])) {
-// 	//$(this).find('button[type="submit"]').prop("disabled", true);
-// 	echo("<script>console.log('Calling function...');</script>");
-//     }
-
-
-	
-
 	/* Aim is to check the database table and find the list of secrets already bought
 	   by a user, and store the s_ID values in a list that is iterated over by a jscript 
 	   function in order to disable all the buttons for secrets already bought
@@ -103,7 +105,7 @@
 	?>			
 	</head>
 
-	<body>
+	<body onload="checkSecrets()">
 
 		<!--top bar-->
 		<div data-role="page" data-theme="b" style="background-color:white;">
@@ -127,11 +129,17 @@
     				
 if (isset($_POST['buysecret'])){
 	   $sID = $_POST['buysecret'];
-	   echo("<script>console.log('Posting form... sID: ');</script>");
-	   echo("<script>console.log(".$sID.");</script>");
-	   mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (".$user.", ".$sID.")");
+	   $cost = $_POST['cost'];
 	   
-	   	   }
+	   mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (".$user.", ".$sID.")");
+	   $BUXquery = mysqli_query($dbconn, "SELECT * FROM `Users` WHERE `u_ID` = 36");
+	   $BUXqueryarray = mysqli_fetch_array($BUXquery);
+	   $userBUX = $BUXqueryarray['AEBux'];
+	   $newBUX = $userBUX - $cost;
+	   mysqli_query($dbconn, "UPDATE `Users` SET `AEBux`=".$newBUX." WHERE `u_ID`=".$user."");
+	   echo '<script type="text/javascript"> redirect(); </script>';
+	   //header('Location: profile.php');
+	   }
 		        
 	
 	while($row = mysqli_fetch_array($query)){
@@ -151,9 +159,9 @@ if (isset($_POST['buysecret'])){
 <!--"<?php echo $_SERVER['PHP_SELF']; ?>"
 onsubmit="return confirm('Are you sure you would like to buy this secret for <?php echo $row['cost'] ?> AEBux?')" -->
 		        
-					<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" onsubmit="return confirm('Are you sure you would like to buy this secret for <?php echo $row['cost'] ?> AEBux?')">
-					    <input type="hidden" name="secretid" value="<?php echo $row['s_ID'] ?>">
-						<button type="submit" name="buysecret" class="btn btn-default btn-sm" id="<?php echo $row['s_ID'] ?>" value="<?php echo $row['s_ID'] ?>">
+					<form id="buysecretForm" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" onsubmit="return confirm('Are you sure you would like to buy this secret for <?php echo $row['cost'] ?> AEBux?')">
+					    <input type="hidden" name="cost" value="<?php echo $row['cost'] ?>">
+						<button type="submit" name="buysecret" class="btn btn-default btn-sm" id="<?php echo $row['s_ID'] ?>" value="<?php echo $row['s_ID'] ?>" >
 						<span class="glyphicon glyphicon-gift"></span> Buy Secret
 						</button>
 						</form> 
@@ -188,7 +196,10 @@ onsubmit="return confirm('Are you sure you would like to buy this secret for <?p
 
 </body>
 <?php
-/*
+
+// Code responsible for disabling the buttons for secrets that have already been purchased
+// by the user, and secrets for which a user does not have enough AEBux to purchase it
+// Should put this script into a document.ready function or body.onload()
 $result = mysqli_query($dbconn, "SELECT * FROM `UserSecrets` WHERE `u_ID`=$user");
 	if(!$result){
 			echo("<script>console.log('');</script>");
@@ -207,6 +218,6 @@ if($row2['cost'] > 30){
     echo '<script type="text/javascript"> disableButton('.$row2['s_ID'].'); </script>';
 }
 }
-*/
+
 ?>
 </html>
