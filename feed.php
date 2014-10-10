@@ -89,7 +89,7 @@ function setOptions(feed) {
             	<img src="avatars/<?php echo($checkList['pic']);?>" width="40px" height="40px" class="img-circle"/>  
             	</span> 
               <?php echo $checkList['f_name'] . " " . $checkList['l_name']; ?></h2>
-              <p><?php echo($checkList['f_name']); ?> felt at</p>
+              <p><?php echo($checkList['f_name']); ?> felt <?php echo($checkList['tag1']); ?> at <?php echo($checkList['room']); ?> with <?php echo($checkList['withFriend']); ?></p>
               <p>Zoe felt very hot at 370 </p>
               <p class="ui-li-aside">10:38 pm</p>
             </li>
