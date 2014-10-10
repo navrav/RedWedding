@@ -18,7 +18,7 @@
 	<!-- <script src="fb.js"></script> -->
 	<!-- script src="//connect.facebook.net/en_US/all.js"></script -->
 <script>
-	$(document).ready(function() {
+	/*$(document).ready(function() {
 		$("*").keyup(function() {
 			if ($("#fname").val() != "" &&
 			$("#lname").val() != "" &&
@@ -29,7 +29,7 @@
 				document.getElementById('signup').disabled = true;
 			}
 		});
-	});
+	});*/
 
 function check(){
 	var pass = document.getElementById("pass").value;
@@ -78,14 +78,14 @@ function check(){
 
 								<div class="radio">
 							    	<label for="Gender1">Male</label>
-							    	<input type="radio" name="Gender" id="Gender1" value="m" checked>
+							    	<input type="radio" name="Gender" id="Gender1"value="m" checked>
 							  	</div>
 							  <div class="radio">
 							  	<label for="Gender2">Female</label>
 							  	<input type="radio" name="Gender" id="Gender2" value="f">
 							  </div>
 								
-								<button type="button" class="btn btn-danger btn_reg" id="signup" style="width:80%" onClick="check();" disabled>Sign Up</button></td><td>
+								<button type="button" class="btn btn-danger btn_reg" id="signup" style="width:80%" onClick="check();">Sign Up</button></td><td>
 							
 					
 									

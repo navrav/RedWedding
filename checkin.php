@@ -182,7 +182,7 @@
 	                    <div class="col-md-8 col-md-offset-2">
 	                        <div class="">
 	                        	<div class="col-md-4 col-md-offset-4">
-	                        	<img src="avatar/<?php echo ($avatar); ?>.png" width="100px" height="105px" class="img-circle"/>
+	                        	<img src="avatars/<?php echo ($avatar); ?>" width="100px" height="105px" class="img-circle"/>
 	                        	<h4> <?php echo $fname ." ". $lname;?> </h4>
 	                        	<h5> <?php echo $aebux; ?> AEBux | <a href="store.php">Buy Secrets</a> </h5>
 	                        	

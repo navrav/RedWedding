@@ -105,7 +105,7 @@
 	  	while($friendList = mysqli_fetch_array($resultNew, MYSQLI_ASSOC)) {
 	  ?>
       <li data-icon="false"><a href="friend.php">
-      	<h6><img src="avatar/<?php echo($friendList["pic"]);?>.png" width="50px" height="50px" class="img-circle" style/>
+      	<h6><img src="avatars/<?php echo($friendList["pic"]);?>" width="50px" height="50px" class="img-circle" style/>
       		<?php 
       		echo $friendList['f_name'] . " " . $friendList['l_name']; 
       		?>

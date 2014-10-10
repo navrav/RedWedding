@@ -34,7 +34,7 @@
 			    	<!--insert username here -->
 		  	<a href="profile.php" style="background-color:#ee4055;">
 		  		<h4>
-		  		<img src="avatar/<?php echo($avatar);?>.png" width="50px" height="50px" class="img-circle" hspace="10" />
+		  		<img src="avatars/<?php echo($avatar);?>" width="50px" height="50px" class="img-circle" hspace="10" />
 		  		<?php echo ($fname ." ". $lname); ?>
 		  		<br>
 		  		<h4 style ="size: 10px">

@@ -8,17 +8,23 @@
  *		Uses an insert query to create a user record in db.
  */
 
+include_once("servercon.php");
+
 $fname = $_POST["fname"];
 $lname = $_POST["lname"];
 $pass = $_POST["pass"];
 $email = $_POST["email"];
+$gender = $_POST["Gender"];
 
-		$conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Viking8Chief+latch","aeb");
-      	// Check connection
-      	if (mysqli_connect_errno()) {
-        	echo "Failed to connect to MySQL: " . mysqli_connect_error();
-      	}
-		$resultNew = mysqli_query($conNew,"INSERT INTO Users (pass,f_name,l_name,email) VALUES ('$pass', '$fname','$lname','$email');");
+if ($gender == 'm') {
+	$pic = 'm.png';
+} else{
+	$pic = 'f.png';
+}
+
+      	$select = mysqli_query($dbconn)
+
+		$resultNew = mysqli_query($dbconn,"INSERT INTO Users (pass,f_name,l_name,email,gender,pic) VALUES ('$pass', '$fname','$lname','$email','$gender','$pic');");
 		mysqli_close($conNew);		
 		
 header('Location: /index.php');

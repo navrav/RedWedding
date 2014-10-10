@@ -12,8 +12,7 @@
 	$user = $_SESSION["username"];
 	echo("<script>console.log('uID:".$user."');</script>"); // Nikita added print check here
 
-  
-
+  $resultNew = mysqli_query($dbconn, "SELECT `timestamp`, `room`, `tag1`, `tag2`, `tag3`, `tag4`, `withFriend`, `comment`, `f_name`, `l_name`, `pic`, `rank` FROM CheckIn, Users WHERE CheckIn.u_ID = Users.u_ID AND CheckIn.u_ID IN (SELECT ID_2 FROM Friends WHERE ID_1 ='{$user}' OR CheckIn.u_ID = {$user}) ORDER BY `CheckIn`.`timestamp` DESC");
 ?>
 
 <html>
@@ -73,36 +72,32 @@ function setOptions(feed) {
     </section>
     <!-- feed end-->
 
-      <div data-role="main" class="ui-content" id="feed" style="display:block; padding-top:0px;" >
-      
-    
-    <!-- the feed, i dont know, working on it. adee -->
-     <section data-role="main" class="ui-content" style="padding-bottom:0px;">
-  		<select name="rno" onchange="setOptions(this.options[this.selectedIndex].value);">
-  			<option value="1">News Feed</option>
-  			<option value="2">Events</option>
-  		</select>
-      </section>
-      <!-- feed end-->
 
         <div data-role="main" class="ui-content" id="feed" style="display:block; padding-top:0px;" >
         
           <ul data-role="listview" data-inset="true">
+
+            <?php
+            while($checkList = mysqli_fetch_array($resultNew, MYSQLI_ASSOC)) {
+            ?>
 
             <li style="background-color:#e03838; border:none;">Wednesday, January 2, 2014 <span class="ui-li-count">3</span></li> 
            
             <li class="feed-line" data-icon="false" style="border:none;">
             	<h2>
             	<span>
-            	<img src="Team/zoe.jpg" width="40px" height="40px" class="img-circle"/>  
+            	<img src="avatars/<?php echo($checkList['pic']);?>" width="40px" height="40px" class="img-circle"/>  
             	</span> 
-              Zoe Stewart</h2>
+              <?php echo $checkList['f_name'] . " " . $checkList['l_name']; ?></h2>
+              <p><?php echo($checkList['f_name']); ?> felt at</p>
               <p>Zoe felt very hot at 370 </p>
               <p class="ui-li-aside">10:38 pm</p>
             </li>
 
             <li class="feed-line" data-icon="false" style="border:none;">
-            	
+            <?php
+            }
+            ?>
             	
               <h2>
               <span>
