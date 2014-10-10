@@ -95,7 +95,7 @@
 		
 		<!-- validate form input -->
 		<script>
-			/* Yong: I don't think this does anything...
+			/* I don't think this does anything...
 			
 				function Submit() {
 
@@ -199,7 +199,7 @@
 					<h2>CHECK IN</h2>
 			</span>
 	
-			<form name="checkInForm" method="post" id="submited" action="checkin_submit.php">
+			<form name="checkInForm" method="post" id="checkInForm" action="checkin_submit.php">
 				
 				<!-- room select -->
 				<div id="checkin_location">
@@ -230,7 +230,7 @@
 					<span id="dark" class="hashtag">#Dark</span>
 					<span id="comfy" class="hashtag">#Comfortable</span>
 					<span id="bright" class="hashtag">#Bright</span>
-					<h2>Crowding</h2>
+					<h2>Crowd</h2>
 					<span id="crowded" class="hashtag">#Crowded</span>
 					<span id="peaceful" class="hashtag">#Peaceful</span>
 				</div>
@@ -403,7 +403,6 @@
 				};
 
 				friend1.style.cursor = 'pointer';
-				
 				friend1.onclick = function(){
 					if(document.getElementById("tag4").value == "friend2" || document.getElementById("tag4").value == "friend3" ){						 
 						friend2.style.color= "white";

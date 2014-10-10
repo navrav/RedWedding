@@ -18,7 +18,7 @@
     	<link rel="stylesheet" href="css/ion.rangeSlider.skinNice.css" />
 		
 		<script>
-			function Submit() {
+			function submitForm() {
 				var Level = document.getElementById("levelID").value;
 				var Room = document.getElementById("roomID").value;
 				
@@ -113,61 +113,53 @@
 		</script>
 	
 		<script>
-			$(document).ready(function(){
-				$("#slider").ionRangeSlider({
-					min: 0,
-					max: 10,
+			$(document).ready(function() {
+				$("#slider1").ionRangeSlider({
 					type: 'single',
 					step: 1,
 					prettify: false,
 					hideMinMax: true,
-					hasGrid: true,
 					values: ["cold", "cool", "good", "warm", "hot"],
+					hasGrid: true,
 				});
 			});
 		</script>
 		
 		<script>
-			$(document).ready(function(){
+			$(document).ready(function() {
 				$("#slider2").ionRangeSlider({
-					min: 0,
-					max: 10,
 					type: 'single',
 					step: 1,
 					prettify: false,
 					hideMinMax: true,
-					hasGrid: true,
 					values: ["good", "little humid", "very humid"],
+					hasGrid: true
 				});
 			});
 		</script>
 		
 		<script>
-			$(document).ready(function(){
+			$(document).ready(function() {
 				$("#slider3").ionRangeSlider({
-					min: 0,
-					max: 10,
 					type: 'single',
 					step: 1,
 					prettify: false,
 					hideMinMax: true,
-					hasGrid: true,
 					values: ["good", "little noise", "loud"],
+					hasGrid: true
 				});
 			});
 		</script>
 		
 		<script>
-			$(document).ready(function(){
+			$(document).ready(function() {
 				$("#slider4").ionRangeSlider({
-					min: 0,
-					max: 10,
 					type: 'single',
 					step: 1,
 					prettify: false,
 					hideMinMax: true,
-					hasGrid: true,
 					values: ["too dark", "good light", "very bright"],
+					hasGrid: true
 				});
 			});
 		</script>
@@ -214,9 +206,9 @@
 	    	
 	    	<div data-role="main" class="ui-content" id="extendedsurvey">
 	    	
-				<h2>Give Some More Feedback?</h2>
+				<h2>Survey</h2>
 			
-				<form name="submit">
+				<form name="surveyForm">
 					<div id="checkin_location">
 						<h4>Where are you?</h4>
 						
@@ -230,32 +222,32 @@
 							<option value="6">Level 6</option>
 						</select>
 						<select name="opttwo" size="1" id="roomID">
-							<option value=" " selected="selected">Room</option>
+							<option value=" " selected="selected">Change level for room list</option>
 						</select>
 					</div>
 					
 					<div id="hash-tag">
 						<h4> Room Temperature </h4>
-						<input type="text" id ="slider" name ="slider" value = "" />
+						<input type="text" id="slider1" name="slider1" value="" />
 					</div>
 					
 					<div id="checkin_location">
 						<h4> Humidity </h4>
-						<input type="text" id ="slider2" name ="slider" value = "" />
+						<input type="text" id="slider2" name="slider2" value="" />
 					</div>
 					
 					<div id="hash-tag">
 						<h4> Noise Level </h4>
-						<input type="text" id ="slider3" name ="slider" value = "" />
+						<input type="text" id="slider3" name="slider3" value="" />
 					</div>
 					
 					<div id="checkin_location">
 						<h4> Light Levels </h4>
-						<input type="text" id ="slider4" name ="slider" value = "" />
+						<input type="text" id="slider4" name="slider4" value="" />
 					</div>
 					
 					<div id="select2">
-						<input type="button" name="submit" id="submit" value="Submit" onclick="Submit();"/> 
+						<input type="button" name="submitButton" id="submitButton" value="Submit" onclick="submitForm();"/> 
 					</div>
 				</form>
 
