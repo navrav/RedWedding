@@ -58,7 +58,7 @@
 			function setOptions(chosen) {
 				console.log(chosen);
 
-				var selbox = document.submit.opttwo;
+				var selbox = document.surveyForm.opttwo;
 				
 				console.log(selbox);
 				
@@ -67,47 +67,47 @@
 				if (chosen == " ") {
 					selbox.options[selbox.options.length] = new Option('Floor',' ');
 				} else if (chosen == "1") {
-					selbox.options[selbox.options.length] = new Option('101','oneone');
-					selbox.options[selbox.options.length] = new Option('102','onetwo');
-					selbox.options[selbox.options.length] = new Option('103','onethree');
-					selbox.options[selbox.options.length] = new Option('104','onefour');
-					selbox.options[selbox.options.length] = new Option('105','onefive');
-					selbox.options[selbox.options.length] = new Option('106','onesix');
+					selbox.options[selbox.options.length] = new Option('101','101');
+					selbox.options[selbox.options.length] = new Option('102','102');
+					selbox.options[selbox.options.length] = new Option('103','103');
+					selbox.options[selbox.options.length] = new Option('104','104');
+					selbox.options[selbox.options.length] = new Option('105','105');
+					selbox.options[selbox.options.length] = new Option('106','106');
 				} else if (chosen == "2") {
-					selbox.options[selbox.options.length] = new Option('201','twoone');
-					selbox.options[selbox.options.length] = new Option('202','twotwo');
-					selbox.options[selbox.options.length] = new Option('203','twothree');
-					selbox.options[selbox.options.length] = new Option('204','twofour');
-					selbox.options[selbox.options.length] = new Option('205','twofive');
-					selbox.options[selbox.options.length] = new Option('206','twosix');
+					selbox.options[selbox.options.length] = new Option('201','201');
+					selbox.options[selbox.options.length] = new Option('202','202');
+					selbox.options[selbox.options.length] = new Option('203','203');
+					selbox.options[selbox.options.length] = new Option('204','204');
+					selbox.options[selbox.options.length] = new Option('205','205');
+					selbox.options[selbox.options.length] = new Option('206','206');
 				} else if (chosen == "3") {
-					selbox.options[selbox.options.length] = new Option('301','threeone');
-					selbox.options[selbox.options.length] = new Option('302','threetwo');
-					selbox.options[selbox.options.length] = new Option('316','threethree');
-					selbox.options[selbox.options.length] = new Option('317','threefour');
-					selbox.options[selbox.options.length] = new Option('318','threefive');
-					selbox.options[selbox.options.length] = new Option('319','threesix');
+					selbox.options[selbox.options.length] = new Option('301','301');
+					selbox.options[selbox.options.length] = new Option('302','302');
+					selbox.options[selbox.options.length] = new Option('316','316');
+					selbox.options[selbox.options.length] = new Option('317','317');
+					selbox.options[selbox.options.length] = new Option('318','318');
+					selbox.options[selbox.options.length] = new Option('319','319');
 				} else if (chosen == "4") {
-					selbox.options[selbox.options.length] = new Option('401','foureone');
-					selbox.options[selbox.options.length] = new Option('402','fourtwo');
-					selbox.options[selbox.options.length] = new Option('405','fourthree');
-					selbox.options[selbox.options.length] = new Option('406','fourfour');
-					selbox.options[selbox.options.length] = new Option('407','fourfive');
-					selbox.options[selbox.options.length] = new Option('408','foursix');
+					selbox.options[selbox.options.length] = new Option('401','401');
+					selbox.options[selbox.options.length] = new Option('402','402');
+					selbox.options[selbox.options.length] = new Option('405','405');
+					selbox.options[selbox.options.length] = new Option('406','406');
+					selbox.options[selbox.options.length] = new Option('407','407');
+					selbox.options[selbox.options.length] = new Option('408','408');
 				} else if (chosen == "5") {
-					selbox.options[selbox.options.length] = new Option('506','fiveone');
-					selbox.options[selbox.options.length] = new Option('507','fivetwo');
-					selbox.options[selbox.options.length] = new Option('513','fivethree');
-					selbox.options[selbox.options.length] = new Option('519','fivefour');
-					selbox.options[selbox.options.length] = new Option('520','fivefive');
-					selbox.options[selbox.options.length] = new Option('522','fivesix');
+					selbox.options[selbox.options.length] = new Option('506','506');
+					selbox.options[selbox.options.length] = new Option('507','507');
+					selbox.options[selbox.options.length] = new Option('513','513');
+					selbox.options[selbox.options.length] = new Option('519','519');
+					selbox.options[selbox.options.length] = new Option('520','520');
+					selbox.options[selbox.options.length] = new Option('522','522');
 				} else if (chosen == "6") {
-					selbox.options[selbox.options.length] = new Option('603','sixone');
-					selbox.options[selbox.options.length] = new Option('605','sixtwo');
-					selbox.options[selbox.options.length] = new Option('606','sixthree');
-					selbox.options[selbox.options.length] = new Option('608','sixfour');
-					selbox.options[selbox.options.length] = new Option('610','sixfive');
-					selbox.options[selbox.options.length] = new Option('612','sixsix');
+					selbox.options[selbox.options.length] = new Option('603','603');
+					selbox.options[selbox.options.length] = new Option('605','605');
+					selbox.options[selbox.options.length] = new Option('606','606');
+					selbox.options[selbox.options.length] = new Option('608','608');
+					selbox.options[selbox.options.length] = new Option('610','610');
+					selbox.options[selbox.options.length] = new Option('612','612');
 				}
 			}
 		</script>
@@ -119,8 +119,12 @@
 					step: 1,
 					prettify: false,
 					hideMinMax: true,
-					values: ["cold", "cool", "good", "warm", "hot"],
+					values: ["cold", "cool", "mild", "warm", "hot"],
 					hasGrid: true,
+					
+					onChange: function() {
+						$("#tag1").val($("#slider1").val());
+					}
 				});
 			});
 		</script>
@@ -132,8 +136,12 @@
 					step: 1,
 					prettify: false,
 					hideMinMax: true,
-					values: ["good", "little humid", "very humid"],
-					hasGrid: true
+					values: ["dry", "normal", "humid"],
+					hasGrid: true,
+					
+					onChange: function() {
+						$("#tag2").val($("#slider2").val());
+					}
 				});
 			});
 		</script>
@@ -145,8 +153,12 @@
 					step: 1,
 					prettify: false,
 					hideMinMax: true,
-					values: ["good", "little noise", "loud"],
-					hasGrid: true
+					values: ["quiet", "fine", "noisy"],
+					hasGrid: true,
+					
+					onChange: function() {
+						$("#tag3").val($("#slider3").val());
+					}
 				});
 			});
 		</script>
@@ -158,8 +170,29 @@
 					step: 1,
 					prettify: false,
 					hideMinMax: true,
-					values: ["too dark", "good light", "very bright"],
-					hasGrid: true
+					values: ["dark", "comfortable", "bright"],
+					hasGrid: true,
+					
+					onChange: function() {
+						$("#tag4").val($("#slider4").val());
+					}
+				});
+			});
+		</script>
+		
+		<script>
+			$(document).ready(function() {
+				$("#slider5").ionRangeSlider({
+					type: 'single',
+					step: 1,
+					prettify: false,
+					hideMinMax: true,
+					values: ["peaceful", "crowded"],
+					hasGrid: true,
+					
+					onChange: function() {
+						$("#tag5").val($("#slider5").val());
+					}
 				});
 			});
 		</script>
@@ -208,7 +241,7 @@
 	    	
 				<h2>Survey</h2>
 			
-				<form name="surveyForm">
+				<form name="surveyForm" method="post" id="surveyForm" action="survey_submit.php">
 					<div id="checkin_location">
 						<h4>Where are you?</h4>
 						
@@ -221,33 +254,49 @@
 							<option value="5">Level 5</option>
 							<option value="6">Level 6</option>
 						</select>
-						<select name="opttwo" size="1" id="roomID">
+						<select name="opttwo" size="1" id="opttwo" onchange="saveRoom()">
 							<option value=" " selected="selected">Change level for room list</option>
 						</select>
 					</div>
 					
 					<div id="hash-tag">
-						<h4> Room Temperature </h4>
+						<h4> Room Temperature (cold, cool, mild, warm, hot)</h4>
 						<input type="text" id="slider1" name="slider1" value="" />
 					</div>
 					
 					<div id="checkin_location">
-						<h4> Humidity </h4>
+						<h4> Humidity (dry, normal, humid)</h4>
 						<input type="text" id="slider2" name="slider2" value="" />
 					</div>
 					
 					<div id="hash-tag">
-						<h4> Noise Level </h4>
+						<h4> Noise Level (quiet, fine, noisy)</h4>
 						<input type="text" id="slider3" name="slider3" value="" />
 					</div>
 					
 					<div id="checkin_location">
-						<h4> Light Levels </h4>
+						<h4> Light Levels (dark, comfortable, bright)</h4>
 						<input type="text" id="slider4" name="slider4" value="" />
 					</div>
 					
-					<div id="select2">
-						<input type="button" name="submitButton" id="submitButton" value="Submit" onclick="submitForm();"/> 
+					<div id="hash-tag">
+						<h4> Crowd (peaceful, crowded)</h4>
+						<input type="text" id="slider5" name="slider5" value="" />
+					</div>
+					
+					<div id="checkin_location">
+						<h4> Additional comments </h4>
+						<textarea name="comment" id="comment" rows="1" placeholder="(You may leave this section blank.)" style="height: 50px; max-height: 100px; resize: none;"></textarea>
+					</div>
+					
+					<div id="submitSection">
+						<input type="hidden" name="room" id="room" value="" />
+						<input type="hidden" name="tag1" id="tag1" value="" />
+						<input type="hidden" name="tag2" id="tag2" value="" />
+						<input type="hidden" name="tag3" id="tag3" value="" />
+						<input type="hidden" name="tag4" id="tag4" value="" />
+						<input type="hidden" name="tag5" id="tag5" value="" />
+						<input type="submit" name="submitButton" id="submitButton" value="Submit" /> 
 					</div>
 				</form>
 
@@ -268,6 +317,16 @@
 						</div>
 					</div>
 				</div>
+				
+				<!-- script to save room choice -->
+				<script>
+					var selectedRoom = document.getElementById("opttwo");
+					var room = document.getElementById("room");
+					
+					function saveRoom() {
+						room.setAttribute("value", selectedRoom.value);
+					}
+				</script>
 			</div>
 		</div>
 	</body>
