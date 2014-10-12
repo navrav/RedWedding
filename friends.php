@@ -11,7 +11,7 @@
   	$user = $_SESSION['username'];
   	//$user = '1';
 
-   	$resultNew = mysqli_query($dbconn,"SELECT u_ID, f_name, l_name, pic, rank FROM Users WHERE u_ID IN (SELECT ID_2 FROM Friends WHERE ID_1 ='36')");
+   	$resultNew = mysqli_query($dbconn,"SELECT u_ID, f_name, l_name, pic, rank FROM Users WHERE u_ID IN (SELECT ID_2 FROM Friends WHERE ID_1 ='".$user."')");//
 
 ?>
 
@@ -32,7 +32,29 @@
 		<script type="text/javascript">
 			var tempFriend = "";
 		</script>
+<script>
+$(document).ready(function(){
+$("#yes").click(function(){
 
+$.get('friends_delete.php?t='+Math.random(),{u_id:"<?=$user?>",delete_id:tempFriend},function(delete_success){if(delete_success=="ok")//如果数据库删除成功 移除DOM
+$("#"+tempFriend).parents('li').remove();
+$("#layover").css({'display':'none'});//移除弹窗
+$("#confirmpop").css({'display':'none'});//移除弹窗背景	
+});
+
+
+
+});
+//点击取消 移除弹窗和弹窗背景
+$("#no").click(function(){
+$("#layover").css({'display':'none'});
+$("#confirmpop").css({'display':'none'});				
+
+});
+});
+
+
+</script>
 		<script>
 			function Deletepop(clickedID){
 				document.getElementById('layover').style.display= "block";
@@ -138,8 +160,8 @@
 				</div>
 				
 				<div class="modal-footer" style="padding-top: 10px; padding-bottom: 10px;">
-					<button type="button" style="font-size: 13px; padding: 5px; width: 100px; float: right; margin-left: 5px;" id = "yes" onClick="Delete();'">Yes</button>
-					<button type="button" style="font-size: 13px; padding: 5px; width: 100px; float: right;" id="no" onClick="window.location.href='/friends.php'">No</button>
+					<button type="button" style="font-size: 13px; padding: 5px; width: 100px; float: right; margin-left: 5px;" id = "yes">Yes</button>
+					<button type="button" style="font-size: 13px; padding: 5px; width: 100px; float: right;" id="no" >No</button>
 				</div>
 			</div>
 	</div>
