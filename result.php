@@ -119,25 +119,25 @@
 		</div>
 
 <?php 
-$conNew=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Viking8Chief+latch","aeb");
+$dbconn=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Viking8Chief+latch","aeb");
 if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
       }
-      	$warm10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101 AND tag1 = 'warm'");
-      	$hot10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101  AND tag1 = 'hot'");
-      	$cold10 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 101  AND tag1 = 'cold'");
+      	$warm10 = mysqli_query($dbconn,"SELECT COUNT(*) from CheckIn where room = 101 AND tag1 = 'warm'");
+      	$hot10 = mysqli_query($dbconn,"SELECT COUNT(*) from CheckIn where room = 101  AND tag1 = 'hot'");
+      	$cold10 = mysqli_query($dbconn,"SELECT COUNT(*) from CheckIn where room = 101  AND tag1 = 'cold'");
 		
-		$warm22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag1 = 'warm'");
-      	$hot22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag1 = 'hot'");
-      	$cold22 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 102 AND tag1 = 'cold'");
+		$warm22 = mysqli_query($dbconn,"SELECT COUNT(*) from CheckIn where room = 102 AND tag1 = 'warm'");
+      	$hot22 = mysqli_query($dbconn,"SELECT COUNT(*) from CheckIn where room = 102 AND tag1 = 'hot'");
+      	$cold22 = mysqli_query($dbconn,"SELECT COUNT(*) from CheckIn where room = 102 AND tag1 = 'cold'");
 		
-		$warm33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 103 AND tag1 = 'warm'");
-      	$hot33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 103 AND tag1 = 'hot'");
-      	$cold33 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 103 AND tag1 = 'cold'");
+		$warm33 = mysqli_query($dbconn,"SELECT COUNT(*) from CheckIn where room = 103 AND tag1 = 'warm'");
+      	$hot33 = mysqli_query($dbconn,"SELECT COUNT(*) from CheckIn where room = 103 AND tag1 = 'hot'");
+      	$cold33 = mysqli_query($dbconn,"SELECT COUNT(*) from CheckIn where room = 103 AND tag1 = 'cold'");
 		
-		$warm34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 104 AND tag1 = 'warm'");
-      	$hot34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 104 AND tag1 = 'hot'");
-      	$cold34 = mysqli_query($conNew,"SELECT COUNT(*) from CheckIn where room = 104 AND tag1 = 'cold'");
+		$warm34 = mysqli_query($dbconn,"SELECT COUNT(*) from CheckIn where room = 104 AND tag1 = 'warm'");
+      	$hot34 = mysqli_query($dbconn,"SELECT COUNT(*) from CheckIn where room = 104 AND tag1 = 'hot'");
+      	$cold34 = mysqli_query($dbconn,"SELECT COUNT(*) from CheckIn where room = 104 AND tag1 = 'cold'");
 		
 		$totwarm10 = 0;
 		$tothot10 = 0;
@@ -199,7 +199,7 @@ if (mysqli_connect_errno()) {
 		$tot22 = $totwarm22+$tothot22+$totcold22;
 		$tot33 = $totwarm33+$tothot33+$totcold33;
 		$tot34 = $totwarm34+$tothot34+$totcold34;
-		mysqli_close($conNew);
+		mysqli_close($dbconn);
 		
 		
 ?>
