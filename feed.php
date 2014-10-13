@@ -67,7 +67,7 @@ function setOptions(feed) {
    <section data-role="main" class="ui-content" style="padding-bottom:0px;">
 		<select name="rno" onchange="setOptions(this.options[this.selectedIndex].value);">
 			<option value="1">News Feed</option>
-			<option value="2">Events</option>
+			<!--<option value="2">Events</option>-->
 		</select>
     </section>
     <!-- feed end-->
@@ -78,10 +78,16 @@ function setOptions(feed) {
           <ul data-role="listview" data-inset="true">
 
             <?php
+            
+        
+        
             while($checkList = mysqli_fetch_array($resultNew, MYSQLI_ASSOC)) {
+            $datetimeall = getdate($checkList['timestamp']);
+            
             ?>
 
-            <li style="background-color:#e03838; border:none;">Wednesday, January 2, 2014 <span class="ui-li-count">3</span></li> 
+            <!-- <li style="background-color:#e03838; border:none;">Wednesday, January 2, 2014 <span class="ui-li-count">3</span></li> -->
+           <li style="background-color:#e03838; border:none;"> <?php echo($datetimeall['weekday']);?>, <?php echo($datetimeall['month']);?> <?php echo($datetimeall['mday']);?>, <?php echo($datetimeall['year']); ?> <span class="ui-li-count">3</span></li> 
            
             <li class="feed-line" data-icon="false" style="border:none;">
             	<h2>
@@ -89,9 +95,25 @@ function setOptions(feed) {
             	<img src="avatars/<?php echo($checkList['pic']);?>" width="40px" height="40px" class="img-circle"/>  
             	</span> 
               <?php echo $checkList['f_name'] . " " . $checkList['l_name']; ?></h2>
-              <p><?php echo($checkList['f_name']); ?> felt <?php echo($checkList['tag1']); ?> at <?php echo($checkList['room']); ?> with <?php echo($checkList['withFriend']); ?></p>
-              <p>Zoe felt very hot at 370 </p>
-              <p class="ui-li-aside">10:38 pm</p>
+              <p><?php echo($checkList['f_name']); ?> felt <?php echo($checkList['tag1']);
+              if ($checkList['tag2'] && $checkList['tag3'] && $checkList['tag4']){
+              ?>, <?php echo($checkList['tag2']); ?>, <?php echo($checkList['tag3']); ?>, and <?php echo($checkList['tag4']);
+              }
+              if ($checkList['tag2'] && !$checkList['tag3'] && !$checkList['tag4']){
+              ?> and <?php echo($checkList['tag2']); 
+              }
+              
+              if ($checkList['tag2'] && $checkList['tag3'] && !$checkList['tag4']){
+              ?>, <?php echo($checkList['tag2']); ?>, and <?php echo($checkList['tag3']);
+              }
+              ?>
+               at <?php echo($checkList['room']);
+              if ($checkList['withFriend']){ 
+               ?> with <?php echo($checkList['withFriend']);
+              }
+              ?> <br> <?php echo($checkList['comment']); ?></p>
+              <p class="ui-li-aside"> 
+              <?php echo($datetimeall['hours']);?>:<?php echo($datetimeall['minutes']);?>  <?php echo($checkList['timestamp']);?></p>
             </li>
 
             <li class="feed-line" data-icon="false" style="border:none;">

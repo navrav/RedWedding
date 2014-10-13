@@ -46,6 +46,7 @@
     
     function checkSecrets(){
         console.log('Refreshed page...');
+        
     }
     
     
