@@ -18,8 +18,9 @@
 	<link rel="stylesheet" href="css/main.css" type="text/css" />
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" />
 		
-	
+	<!--This One Jquery is not working with Bootstrap-->
 	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	
 	<script src="js/jquery.mobile-1.4.2.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 		<!-- <script src="js/fb.js"></script> -->
@@ -40,7 +41,7 @@
 			var log_out = "<?=isset($_GET['log_out']) ? $_GET['log_out'] : '0'?>";
 			
 			if (log_out == 1) {
-				$("#status").text('Logout successfully').show();
+				$("#status").text('Logout successful.').show();
 			}
 
 			$("#log").click(function() {

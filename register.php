@@ -22,10 +22,11 @@ if ($gender == 'm') {
 	$pic = 'f.png';
 }
 
-      	$select = mysqli_query($dbconn)
+      	$select = mysqli_query($dbconn,"SELECT from Users where email = {$email}");
+      	$results = mysqli_fetch($select);
 
 		$resultNew = mysqli_query($dbconn,"INSERT INTO Users (pass,f_name,l_name,email,gender,pic) VALUES ('$pass', '$fname','$lname','$email','$gender','$pic');");
-		mysqli_close($conNew);		
+		mysqli_close($dbconn);		
 		
 header('Location: /index.php');
 
