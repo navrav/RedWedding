@@ -36,7 +36,7 @@
 	$.get('change_pic.php?t='+Math.random(),{user:"<?=$user?>",pic:$(this).attr('data_src')},function(change_result){
 	
 	
-	if(change_result!=''){//当改变了数据库成功之后 才改变头像
+	if(change_result!=''){//change the avatar once the database changes successfully
 	
 	$("#show_img").attr({'src':'avatars/'+change_result});
 	  
