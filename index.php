@@ -19,8 +19,8 @@
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" />
 		
 	<!--This One Jquery is not working with Bootstrap-->
-	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-	
+	<!--<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>-->
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.min.js"></script>
 	<script src="js/jquery.mobile-1.4.2.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 		<!-- <script src="js/fb.js"></script> -->
