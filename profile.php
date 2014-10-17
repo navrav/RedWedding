@@ -151,7 +151,7 @@
 	<div id="select_img" style="display:none; position:fixed; left:50%; top:50%;margin-left:-125px;margin-top:-74.5px; "> 
 		<div class="modal-content" style="background-color:#262626; width:250px">
 				<div class="modal-body"  style="padding: 15px; padding-bottom: 5px;">
-					<p>change your head portrait?</p>
+					<p>change your hat?</p>
 				</div>
 			
 				<div class="modal-footer" style="padding-top: 10px; padding-bottom: 10px;">
