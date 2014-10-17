@@ -113,13 +113,6 @@
 							<div class="form-group col-md-6 col-md-offset-3">
 								<button type="button" class="btn btn-danger btn_reg" value="Register" onClick="signup();" >Sign Up</button>
 							</div>
-				
-							<!-- facebook login button (disabled for now) -->
-								<!--
-								<div class="form-group" col-md-6 col-md-offset-3 id="fb_login">
-									<button type="button" class="btn btn-primary btn_fb">Login using Facebook</button>
-								</div>
-								-->
 						</div>
 					</div>
 				</div>
