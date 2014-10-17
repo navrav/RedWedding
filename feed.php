@@ -111,7 +111,13 @@ function setOptions(feed) {
               if ($checkList['withFriend']){ 
                ?> with <?php echo($checkList['withFriend']);
               }
-              ?> <br> "<?php echo($checkList['comment']); ?>"</p>
+              ?> <br>
+			  <?php // edit by Yong - print comment only if it exists.
+			  if ($checkList['comment'] != "") {
+				echo("\"");
+				echo($checkList['comment']);
+				echo("\"");
+			  } ?></p>
               <p class="ui-li-aside"> 
               <?php echo($datetimeall['hours']);?>:<?php echo($datetimeall['minutes']);?>  <?php echo($checkList['timestamp']);?></p>
             </li>
