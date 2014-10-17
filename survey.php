@@ -1,12 +1,21 @@
 <!DOCTYPE html>
+<?php
+	session_start();
+  	include_once("servercon.php");
+
+  	if (!isset($_SESSION['username']))
+  	{
+    	  header("location:index.php");
+  	}
+?>
 <html>
 	<head>
 		<title>AEB Space - Survey</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
-		<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css">
-		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/main.css" type="text/css">
+		<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css" />
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/main.css" type="text/css" />
 		
 		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 		<script src="js/jquery.mobile-1.4.2.js"></script>
@@ -16,40 +25,6 @@
 		<link rel="stylesheet" href="css/normalize.min.css" />
    		<link rel="stylesheet" href="css/ion.rangeSlider.css" />
     	<link rel="stylesheet" href="css/ion.rangeSlider.skinNice.css" />
-		
-		<script>
-			function submitForm() {
-				var Level = document.getElementById("levelID").value;
-				var Room = document.getElementById("roomID").value;
-				
-				if (Level == " " || Room == " ") {
-  					console.log("level is null");
-  					alert("Please enter the level and room you are in");
-  				} else {
-  					console.log(Level);
-  					setTimeout(function() {window.location.href = "feed.php"}, 3000);
-					document.getElementById('layover').style.display = "block";
-					document.getElementById('confirmpop').style.display = "block";
-  				}
-
-				/*
-					var Level = $('#rno option:selected').val();
-					var Room = $('#opttwo option:selected').val();
-					var comment = $('#comment').val();
-					
-					console.log(Level + Room + comment);
-				
-					if (Level == " " || Room == " ") {
-						alert("Please enter the Level and room you are in");
-					} else {
-						setTimeout(function() {window.location.href = "feed.php"}, 3000);
-						document.getElementById('layover').style.display = "block";
-						document.getElementById('confirmpop').style.display = "block";
-					}
-				*/
-			
-			}
-		</script>
 		
 		<script>
 			// I am hard coding this but there are way to call from tables
@@ -196,50 +171,40 @@
 				});
 			});
 		</script>
-		
-		<style>
-			#header_yellow {
-				background-color: #fdd017;
-			}
-			
-			#header_yellow a {
-				color: #fdd017;
-			}
-			
-			#header_yellow a {
-				background-color: #fff;
-				margin-top:20px;
-				border-radius: 50%;
-				text-shadow:none;
-				border:none;
-				padding:0.8em 1em;
-				margin-left: 10px;
-			}
-			
-			#extendedsurvey h2, h4 {
-				color: #f1e75a;
-			}		
-		</style>
 	</head>
-	
 	<body>
+		<!-- top bar -->
 		<div data-role="page" data-theme="b">
 			<div data-role="header" id="header_yellow">
 			    <?php require("topbanner.php"); ?>
 			</div>
-			<!--end top bar-->
-	  
-	  
-			<!--nav bar-->
-
+			
+			<!-- nav bar -->
 	   	 	<?php require("menu.php"); ?>
-		
-			<!--end nav bar-->
+			
+			<section class="survey">
+				<div class="survey-body">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-8 col-md-offset-2">
+								<div class="">
+									<div class="col-md-4 col-md-offset-4">
+									<img src="avatars/<?php echo ($avatar); ?>" width="100px" height="105px" class="img-circle"/>
+									<h4> <?php echo $fname ." ". $lname;?> </h4>
+									<h5> <?php echo $aebux; ?> AEBux | <a href="store.php">Buy Secrets</a> </h5>
+									
+									</div>
+								 </div>
+							</div>
+						</div>
+					</div>
+	            </div>
+			</section>
 	    	
-	    	
-	    	<div data-role="main" class="ui-content" id="extendedsurvey">
-	    	
-				<h2>Survey</h2>
+	    	<div data-role="main" class="ui-content" id="survey-form">
+				<span id="survey-title">
+					<h2>SURVEY</h2>
+				</span>
 			
 				<form name="surveyForm" method="post" id="surveyForm" action="survey_submit.php">
 					<div id="checkin_location">
@@ -285,8 +250,8 @@
 					</div>
 					
 					<div id="checkin_location">
-						<h4> Additional comments </h4>
-						<textarea name="comment" id="comment" rows="1" placeholder="(You may leave this section blank.)" style="height: 50px; max-height: 100px; resize: none;"></textarea>
+						<h4> Additional comments (Optional) </h4>
+						<textarea name="comment" id="comment" rows="1" style="height: 50px; max-height: 100px; resize: none;"></textarea>
 					</div>
 					
 					<div id="submitSection">
@@ -299,24 +264,6 @@
 						<input type="submit" name="submitButton" id="submitButton" value="Submit" /> 
 					</div>
 				</form>
-
-				<div id="layover" style="display:none; position:fixed; top:0%; left:0%; width:100%; height:100%; background-color:black; opacity: .50;" > </div>
-				
-				<div id="confirmpop" style="display:none; position:fixed; left:30%; right:30%; top:40%; "> 
-					<div class="modal-content">
-						<div  id="checkin_location">
-							<p>Thank you for your submission, 10 AEBuxs have been added to your account </p>
-						</div>
-					</div>
-				</div>
-				
-				<div id="errorpop" style="display:none; position:fixed; left:30%; right:30%; top:40%; "> 
-					<div class="modal-content">
-						<div  id="checkin_location">
-							<p>Please select a level and floor</p>
-						</div>
-					</div>
-				</div>
 				
 				<!-- script to save room choice -->
 				<script>
