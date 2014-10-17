@@ -13,6 +13,8 @@
 
   $resultNew = mysqli_query($dbconn,"SELECT f_name, l_name, pic, rank FROM Users WHERE u_ID = {$user}");
   $currentUser = mysqli_fetch_array($resultNew, MYSQLI_ASSOC);
+  $hatquery = mysqli_query($dbconn, "SELECT h_ID FROM `Hat`, `UserSecrets` WHERE `Hat`.`s_ID` = `UserSecrets`.`s_ID` AND `UserSecrets`.`u_ID` = {$user}");
+  $allhats = mysqli_query($dbconn, "SELECT h_ID FROM `Hat`");
 ?>
 <html>
 	<head>
@@ -160,6 +162,39 @@
 			
 				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/hat1.png" data_src="m1.png">
 				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/hat2.png" data_src="m2.png">
+				
+				
+				
+				<?php
+				echo("<script>console.log('All hats... ');</script>");
+				$allmyhats = array();
+				while($hatList = mysqli_fetch_array($hatquery, MYSQLI_ASSOC)){
+					array_push($allmyhats, $hatList['h_ID']);
+				}
+				
+				
+				
+				$allhatsarray = array();
+				while($allhatsq = mysqli_fetch_array($allhats, MYSQLI_ASSOC)){
+					array_push($allhatsarray, $allhatsq['h_ID']);
+				}
+				
+				echo("<script>console.log('Gets here');</script>");
+				
+				foreach ($allhatsarray as $currenthat){
+				if (in_array($currenthat, $allymhats)){
+				?> <img style="max-height:40px;float:left;cursor:pointer;" src="avatars/<?php echo($currenthat); ?>.png" data_src="m.png"><?php
+				}
+				
+				else{ ?>
+				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/qm.png" data_src="m.png"> <?php
+				}
+				}?>
+				
+				
+				
+			
+				<!--
 				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/qm.png" data_src="m.png">
 				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/qm.png" data_src="m.png">
 				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/qm.png" data_src="m.png">
@@ -167,7 +202,7 @@
 				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/qm.png" data_src="m.png">
 				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/qm.png" data_src="m.png">
 				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/qm.png" data_src="m.png">
-				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/qm.png" data_src="m.png"></div>
+				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/qm.png" data_src="m.png">--></div>
 					<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
 					
 					
