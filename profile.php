@@ -182,9 +182,13 @@
 				echo("<script>console.log('Gets here');</script>");
 				
 				foreach ($allhatsarray as $currenthat){
-				if (in_array($currenthat, $allymhats)){
-				?> <img style="max-height:40px;float:left;cursor:pointer;" src="avatars/<?php echo($currenthat); ?>.png" data_src="m.png"><?php
+				if (in_array($currenthat, $allmyhats)){
+				?> 
+				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/<?php echo($currenthat); ?>" data_src="<?php echo($currenthat); ?>">
+				<?php
 				}
+				
+
 				
 				else{ ?>
 				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/qm.png" data_src="m.png"> <?php
