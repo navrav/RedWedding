@@ -69,6 +69,7 @@ function setOptions(feed) {
 			<option value="1">News Feed</option>
 			<!--<option value="2">Events</option>-->
 		</select>
+		
     </section>
     <!-- feed end-->
 
@@ -83,6 +84,17 @@ function setOptions(feed) {
         
             while($checkList = mysqli_fetch_array($resultNew, MYSQLI_ASSOC)) {
             $datetimeall = getdate($checkList['timestamp']);
+            $alltags = [$checkList['tag1'], $checkList['tag2'], $checkList['tag3'], $checkList['tag4']];
+            $allrealtags = array();
+            
+            foreach($alltags as $tag){
+            	if ($tag){
+            		array_push($allrealtags, $tag);
+            	}
+            }
+            
+            $ntags = count($allrealtags);
+            
             
             ?>
 
@@ -95,17 +107,34 @@ function setOptions(feed) {
             	<img src="avatars/<?php echo($checkList['pic']);?>" width="40px" height="40px" class="img-circle"/>  
             	</span> 
               <?php echo $checkList['f_name'] . " " . $checkList['l_name']; ?></h2>
-              <p><?php echo($checkList['f_name']); ?> felt <?php echo($checkList['tag1']);
-              if ($checkList['tag2'] && $checkList['tag3'] && $checkList['tag4']){
-              ?>, <?php echo($checkList['tag2']); ?>, <?php echo($checkList['tag3']); ?>, and <?php echo($checkList['tag4']);
-              }
-              if ($checkList['tag2'] && !$checkList['tag3'] && !$checkList['tag4']){
-              ?> and <?php echo($checkList['tag2']); 
+              <p><?php echo($checkList['f_name']);
+              if ($ntags > 0){
+              ?> felt <?php 
               }
               
-              if ($checkList['tag2'] && $checkList['tag3'] && !$checkList['tag4']){
-              ?>, <?php echo($checkList['tag2']); ?>, and <?php echo($checkList['tag3']);
+              
+              $i = 1;
+              
+              foreach($allrealtags as $tag){
+              	echo($tag);
+            
+              
+              	if ($i == ($ntags-1)){
+              		?> and <?php
+              		}
+              
+              	if (($i < $ntags) && ($i != ($ntags-1))){
+              	?>, <?php
+              	}
+              	
+              	$i = $i+1;
               }
+              
+              
+              
+              
+              
+              
               ?>
                at <?php echo($checkList['room']);
               if ($checkList['withFriend']){ 
