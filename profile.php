@@ -15,6 +15,7 @@
   $currentUser = mysqli_fetch_array($resultNew, MYSQLI_ASSOC);
   $hatquery = mysqli_query($dbconn, "SELECT h_ID FROM `Hat`, `UserSecrets` WHERE `Hat`.`s_ID` = `UserSecrets`.`s_ID` AND `UserSecrets`.`u_ID` = {$user}");
   $allhats = mysqli_query($dbconn, "SELECT h_ID FROM `Hat`");
+  $des = mysqli_query($dbconn, "SELECT Description FROM `Secrets`, `UserSecrets` WHERE `Secrets`.`s_ID` = `UserSecrets`.`s_ID` AND `UserSecrets`.`u_ID` = {$user}");
 ?>
 <html>
 	<head>
@@ -34,7 +35,7 @@
 	
 	$("#male_img").find('img').bind("click",function(){ 
 	
-	if($(this).index()<2){
+	if($(this).attr('data_src')!='m.png'){
 	$.get('change_pic.php?t='+Math.random(),{user:"<?=$user?>",pic:$(this).attr('data_src')},function(change_result){
 	
 	
@@ -101,42 +102,17 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-5">
-                        <div class="">
-                        	<br>
-                        	<h6>
-                        		<span class="glyphicon glyphicon-stats"></span>
-                        		Achievement Received: Adventurer
-                        	</h6>
-                        	<p>6 hours ago</p>
-                        	
-                        	<h6>
-                        		<span class="glyphicon glyphicon-stats"></span>
-                        		Achievement Received: Amateur</h6>
-                        	<p>12 hours ago</p>
-                        	
-                        	<h6>
-                        		<span class="glyphicon glyphicon-lock"></span>
-                        		Unlocked AEB Secret</h6>
-                        	<p>12 hours ago</p>
-                        	
-                        	<h6> 
-                        		<span class="glyphicon glyphicon-map-marker"></span>
-                        		Check-in Room 316A (Contact)</h6>
-                        	<p>3 days ago</p>
-                        	
-                        	<h6>
-                        		<span class="glyphicon glyphicon-log-out"></span> Left AEB</h6>
-                        		<p>4 days ago</p>
-                        		
-                        	<h6> 
-                        		<span class="glyphicon glyphicon-map-marker"></span>
-                        		Check-in Room 412 (Lecture) </h6>
-                        	<p>4 days ago</p>
-                        	
-                        	<h6> 
-                        		<span class="glyphicon glyphicon-map-marker"></span>
-                        		Check-in Room 316A (Study)</h6>
-                        	<p>3 days ago</p>
+                       
+					    <div class="">
+                        	<?php 
+					   while($desList = mysqli_fetch_array($des, MYSQLI_ASSOC)){
+					   echo '<h6>'.$desList['Description'].'</h6>';
+					   
+					   
+					   }
+					   
+					   ?>
+							
                          </div>
                     </div>
                 </div>
@@ -184,7 +160,7 @@
 				foreach ($allhatsarray as $currenthat){
 				if (in_array($currenthat, $allmyhats)){
 				?> 
-				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/<?php echo($currenthat); ?>" data_src="<?php echo($currenthat); ?>">
+				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/<?php echo($currenthat); ?>" data_src="<?php echo 'm'.$currenthat[3].'.png'; ?>">
 				<?php
 				}
 				
