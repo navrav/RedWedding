@@ -17,7 +17,6 @@
 	<link rel="stylesheet" href="css/main.css" type="text/css" />
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" />
 		
-		
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 		<!-- <script src="js/fb.js"></script> -->
@@ -95,13 +94,6 @@
 							<div class="form-group col-md-6 col-md-offset-3">
 								<button type="button" class="btn btn-danger btn_reg" value="Register" onClick="signup();" >Sign Up</button>
 							</div>
-				
-							<!-- facebook login button (disabled for now) -->
-								<!--
-								<div class="form-group" col-md-6 col-md-offset-3 id="fb_login">
-									<button type="button" class="btn btn-primary btn_fb">Login using Facebook</button>
-								</div>
-								-->
 						</div>
 					</div>
 				</div>

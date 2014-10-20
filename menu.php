@@ -68,7 +68,7 @@
 			</a>
 		</li>
 		<li>
-			<a href="survey.php" data-ajax="false" style="background-color:#fdd017;">
+			<a href="survey.php" data-ajax="false" style="background-color:#ffcc00;">
 			<span class="glyphicon glyphicon-list-alt"></span>
 			Survey
 			</a>
