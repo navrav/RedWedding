@@ -13,15 +13,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" >
 	
 	<!-- Import libraries -->
-	<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css" />
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="css/main.css" type="text/css" />
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" />
 		
-	<!--This One Jquery is not working with Bootstrap-->
-	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-	
-	<script src="js/jquery.mobile-1.4.2.js"></script>
+		
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 		<!-- <script src="js/fb.js"></script> -->
 		<!-- script src="//connect.facebook.net/en_US/all.js"></script -->
@@ -63,21 +60,6 @@
 			window.location.href = '/signup.php';
 		}
 		
-
-
-		/* Don't believe the following function is required anymore.
-		function checkForm() {
-			if (document.getElementById("user").value == "") {
-				document.getElementById("check").innerHTML = "Please enter email";
-				return false;
-			} else if (document.getElementById("pass").value == "") {
-				document.getElementById("check").innerHTML = "Please enter password";
-				return false;
-			} else {
-				window.location.href = '/check.php';
-			}
-		}
-		*/
 	</script>
 
 </head>
@@ -89,7 +71,7 @@
 					<div class="row">
 						<div class="col-md-8 col-md-offset-2">
 							<!-- logo image -->
-							<div id="logo"><img src="images/logo2.png" class="img-responsive" /></div>
+							<div id="logo"><center><img src="images/logo2.png" class="img-responsive" /></center></div>
 							 
 							<!-- status message -->
 							<div style="color:red;margin:0 auto;" id="status">&nbsp;</div>

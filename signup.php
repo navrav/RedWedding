@@ -1,19 +1,22 @@
 <!DOCTYPE html>
+<?php
+session_start();
+?>
 <html class="ui-mobile">
 <head>
 	<title>AEB Space - Sign Up </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1" >
 	
-		<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css" />
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/main.css" type="text/css" />
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" />
 		
-	
-	<script src="js/jquery.mobile-1.4.2.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<!-- <script src="fb.js"></script> -->
-	<!-- script src="//connect.facebook.net/en_US/all.js"></script -->
+			
+		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+
+
+
 <script>
 function check(){
 
@@ -36,11 +39,11 @@ function check(){
 
 	
     else if (atpos< 1 || dotpos<atpos+2 || dotpos+2>=email.length) {
-        document.getElementById("validate").innerHTML = "Please enter your a valid email";
+        document.getElementById("validate").innerHTML = "Please enter a valid email";
     }
 
 	else if (pass == null || pass == ""){
-		document.getElementById("validate").innerHTML = "Please enter your a password";
+		document.getElementById("validate").innerHTML = "Please enter a password";
 	}
 
 	else if (pass != cpass) {
@@ -119,4 +122,13 @@ function back(){
 			</div>
 	</section>
 </body>
+<?php
+	if (isset($_SESSION['failed']))
+  {
+?>
+    <script>document.getElementById('validate').innerHTML = 'This email is already being used'</script>
+<?php
+	unset($_SESSION['failed']);
+  }	
+?>
 </html>

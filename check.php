@@ -3,7 +3,6 @@
 
 session_start();
 include_once("servercon.php");
-$tbl_name="Users"; // Table name
 
 
 //Use this for security -- not yet implemented
@@ -48,9 +47,5 @@ else
     echo "false";
 
 }
-
-
-
-
 
 ?>

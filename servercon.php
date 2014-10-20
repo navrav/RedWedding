@@ -24,6 +24,4 @@
 	if(!$dbconn){
 		die("Unable to connect to database [".mysqli_connect_error()."]");
 	}
-	// You can output messages to the error log for debugging purposes
-		error_log("All ready to go");
 ?>
