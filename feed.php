@@ -79,11 +79,16 @@ function setOptions(feed) {
           <ul data-role="listview" data-inset="true">
 
             <?php
+
             
-        
-        
+                    
             while($checkList = mysqli_fetch_array($resultNew, MYSQLI_ASSOC)) {
-            $datetimeall = getdate($checkList['timestamp']);
+            //$datetimenew = date_create('2001-01-01');
+           $datetimenew = date_create($checkList['timestamp']);
+           
+           //$datetimecomp = date_format($datetimenew, 'm.d.y');
+            //$date = date_format($date,"Y/m/d");
+            //$datetimeall = getdate($checkList['timestamp']);
             $alltags = [$checkList['tag1'], $checkList['tag2'], $checkList['tag3'], $checkList['tag4']];
             $allrealtags = array();
             
@@ -99,7 +104,8 @@ function setOptions(feed) {
             ?>
 
             <!-- <li style="background-color:#e03838; border:none;">Wednesday, January 2, 2014 <span class="ui-li-count">3</span></li> -->
-           <li style="background-color:#e03838; border:none;"> <?php echo($datetimeall['weekday']);?>, <?php echo($datetimeall['month']);?> <?php echo($datetimeall['mday']);?>, <?php echo($datetimeall['year']); ?> <span class="ui-li-count">3</span></li> 
+           <!--<li style="background-color:#e03838; border:none;"> <?php echo($datetimeall['weekday']);?>, <?php echo($datetimeall['month']);?> <?php echo($datetimeall['mday']);?>, <?php echo($datetimeall['year']); ?> <span class="ui-li-count">3</span></li> -->
+           <li style="background-color:#e03838; border:none;"> <?php echo date_format($datetimenew, 'l jS F Y');?> <span class="ui-li-count"><?php echo date_format($datetimenew, 'h:i a');?></span></li>
            
             <li class="feed-line" data-icon="false" style="border:none;">
             	<h2>
@@ -148,7 +154,8 @@ function setOptions(feed) {
 				echo("\"");
 			  } ?></p>
               <p class="ui-li-aside"> 
-              <?php echo($datetimeall['hours']);?>:<?php echo($datetimeall['minutes']);?>  <?php echo($checkList['timestamp']);?></p>
+            <!-- <?php echo date_format($datetimenew, 'h:i a');?></p>-->
+              <!--<?php echo($datetimeall['hours']);?>:<?php echo($datetimeall['minutes']);?>  <?php echo($checkList['timestamp']);?></p>-->
             </li>
 
             <li class="feed-line" data-icon="false" style="border:none;">
