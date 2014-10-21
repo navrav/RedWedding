@@ -23,6 +23,9 @@ $tag3 = $_POST["tag3"];
 $tag4 = $_POST["tag4"];
 $tag5 = $_POST["tag5"];
 $comment = $_POST["comment"];
+$AEBuxQuery = mysqli_query($dbconn, "SELECT * FROM `Users` WHERE `u_ID` = $user;");
+$AEBuxQueryResult = mysqli_fetch_array($AEBuxQuery);
+$userAEBux = $AEBuxQueryResult['AEBux'];
 
 // CONVERTING NUMBERS INTO TAGS
 // tag1 - temperature
@@ -73,9 +76,14 @@ if ($tag5 == 0) {
 }
 ///////////////////////////////
 
-$resultNew = mysqli_query($dbconn,
-	"INSERT INTO Survey (u_ID, room, temp, humid, noise, light, crowd, comment) VALUES ('$user', '$room', '$tag1', '$tag2', '$tag3', '$tag4', '$tag5', '$comment');");
-		
+// update AEBux
+$updatedAEBux = $userAEBux + 10;
+
+// update database
+mysqli_query($dbconn,
+	"INSERT INTO `Survey` (u_ID, room, temp, humid, noise, light, crowd, comment) VALUES ('$user', '$room', '$tag1', '$tag2', '$tag3', '$tag4', '$tag5', '$comment');");
+mysqli_query($dbconn, "UPDATE `Users` SET `AEBux` = ".$updatedAEBux." WHERE `u_ID` = ".$user.";");
+
 header('Location: /feed.php');
 
 ?>

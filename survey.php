@@ -102,9 +102,7 @@
 					}
 				});
 			});
-		</script>
 		
-		<script>
 			$(document).ready(function() {
 				$("#slider2").ionRangeSlider({
 					type: 'single',
@@ -119,9 +117,7 @@
 					}
 				});
 			});
-		</script>
 		
-		<script>
 			$(document).ready(function() {
 				$("#slider3").ionRangeSlider({
 					type: 'single',
@@ -136,9 +132,7 @@
 					}
 				});
 			});
-		</script>
 		
-		<script>
 			$(document).ready(function() {
 				$("#slider4").ionRangeSlider({
 					type: 'single',
@@ -153,9 +147,7 @@
 					}
 				});
 			});
-		</script>
 		
-		<script>
 			$(document).ready(function() {
 				$("#slider5").ionRangeSlider({
 					type: 'single',
@@ -170,6 +162,23 @@
 					}
 				});
 			});
+		</script>
+		
+		<script>
+			// room validation
+			function check() {
+				var selectedRoom = document.getElementById("room").value;
+				var form = document.getElementById("surveyForm");
+			
+				if (selectedRoom == "") {
+					$("#roomStatus").css("color", "red");
+					document.getElementById("roomStatus").innerHTML = "Please select a room.";
+					$("#formStatus").css("color", "red");
+					document.getElementById("formStatus").innerHTML = "Please select a room.";
+				} else {
+					form.submit();
+				}
+			}
 		</script>
 	</head>
 	<body>
@@ -207,8 +216,10 @@
 				</span>
 			
 				<form name="surveyForm" method="post" id="surveyForm" action="survey_submit.php">
+					<!-- room select -->
 					<div id="checkin_location">
-						<h4>Where are you?</h4>
+						<h2>Where are you?</h2>
+						<span id="roomStatus"></span>
 						
 						<select name="rno" size="1" onchange="setOptions(this.options[this.selectedIndex].value);" id="levelID">
 							<option value=" " selected="selected">Level</option>
@@ -261,7 +272,8 @@
 						<input type="hidden" name="tag3" id="tag3" value="" />
 						<input type="hidden" name="tag4" id="tag4" value="" />
 						<input type="hidden" name="tag5" id="tag5" value="" />
-						<input type="submit" name="submitButton" id="submitButton" value="Submit" /> 
+						<span id="formStatus"></span>
+						<button type="button" name="submitButton" id="submitButton" onClick="check();">Submit</button>
 					</div>
 				</form>
 				

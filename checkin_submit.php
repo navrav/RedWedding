@@ -23,9 +23,17 @@ $tag2 = $_POST["tag2"];
 $tag3 = $_POST["tag3"];
 $tag4 = $_POST["tag4"];
 $comment = $_POST["comment"];
+$AEBuxQuery = mysqli_query($dbconn, "SELECT * FROM `Users` WHERE `u_ID` = $user;");
+$AEBuxQueryResult = mysqli_fetch_array($AEBuxQuery);
+$userAEBux = $AEBuxQueryResult['AEBux'];
 
-$resultNew = mysqli_query($dbconn,
+// update AEBux
+$updatedAEBux = $userAEBux + 5;
+
+// update database
+mysqli_query($dbconn,
 	"INSERT INTO CheckIn (u_ID, room, tag1, tag2, tag3, tag4, comment) VALUES ('$user', '$room', '$tag1', '$tag2', '$tag3', '$tag4', '$comment');");
+mysqli_query($dbconn, "UPDATE `Users` SET `AEBux` = ".$updatedAEBux." WHERE `u_ID` = ".$user.";");
 		
 header('Location: /feed.php');
 

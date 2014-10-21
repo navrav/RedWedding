@@ -91,6 +91,23 @@
 			
 		</script>
 		
+		<script>
+			// room validation
+			function check() {
+				var selectedRoom = document.getElementById("room").value;
+				var form = document.getElementById("checkInForm");
+			
+				if (selectedRoom == "") {
+					$("#roomStatus").css("color", "red");
+					document.getElementById("roomStatus").innerHTML = "Please select a room.";
+					$("#formStatus").css("color", "red");
+					document.getElementById("formStatus").innerHTML = "Please select a room.";
+				} else {
+					form.submit();
+				}
+			}
+		</script>
+		
 		<!-- friends popover -->
 		<script>
 			var bootstrapButton = $.fn.button.noConflict()
@@ -176,10 +193,10 @@
 				</span>
 		
 				<form name="checkInForm" method="post" id="checkInForm" action="checkin_submit.php">
-					
 					<!-- room select -->
 					<div id="checkin_location">
 						<h2>Where are you?</h2>
+						<span id="roomStatus"></span>
 						
 						<select size="1" onchange="setOptions(this.options[this.selectedIndex].value);">
 							<option value=" " selected>Level</option>
@@ -215,8 +232,8 @@
 					<div id="checkin_location" style="height:150px;"> 
 						<!-- comment box -->
 						<div style ="float:left; width: 50%; padding-right:10px">
-							<h2>Comment</h2>
-							<textarea name="comment" id="comment" rows="1" placeholder="Anything else you want to add?" style="height: 50px; max-height: 100px; resize: none;"></textarea>
+							<h2>Additional comments (Optional)</h2>
+							<textarea name="comment" id="comment" rows="1" style="height: 50px; max-height: 100px; resize: none;"></textarea>
 						</div>
 						<!-- friends -->
 						<div style ="float:left;">
@@ -259,7 +276,8 @@
 						<input type="hidden" name="tag3" id="tag3" value="" />
 						<input type="hidden" name="tag4" id="tag4" value="" />
 						<!-- submit button -->
-						<input type="submit" name="submit" id="submit" value="Check In" /> 
+						<span id="formStatus"></span>
+						<button type="button" name="submitButton" id="submitButton" onClick="check();">Check in</button>
 							<!-- data-toggle="modal" data-target="#myModal" -->
 					</div>
 					
