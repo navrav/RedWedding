@@ -20,17 +20,17 @@ if (!isset($_SESSION['username']))
 $level = $_GET["level"];
 
 // generate default option
-echo '<option value="" selected>Test</option>';
+echo '<option value="" selected>Room</option>';
 
 // if a level is properly selected
 if ($level != "") {
 
 	// retrieve rooms from db
-	$dbRooms = mysqli_query($dbconn, "SELECT * FROM `Rooms` WHERE `level` = ".$level);
+	$dbRooms = mysqli_query($dbconn, "SELECT * FROM `Rooms` WHERE `level` = $level;");
 
 	// generate room list code
-	for ($i = 1, ($currRoom = mysqli_fetch_array($dbRooms)) !== false, $i++) {
-		echo '<option value="', $i, '">', $currRoom['room'], '</option>';
+	while (($nextRoom = mysqli_fetch_array($dbRooms)) != false) {
+		echo '<option value="', $nextRoom['room'], '">', $nextRoom['room'], '</option>';
 	}
 }
 

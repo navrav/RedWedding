@@ -25,67 +25,6 @@
 		<link rel="stylesheet" href="css/normalize.min.css" />
    		<link rel="stylesheet" href="css/ion.rangeSlider.css" />
     	<link rel="stylesheet" href="css/ion.rangeSlider.skinNice.css" />
-		
-		<script>
-			// I am hard coding this but there are way to call from tables
-			// in php that would make this a lot easier. 
-		
-			function setOptions(chosen) {
-				console.log(chosen);
-
-				var selbox = document.surveyForm.opttwo;
-				
-				console.log(selbox);
-				
-				selbox.options.length = 0;
-				
-				if (chosen == " ") {
-					selbox.options[selbox.options.length] = new Option('Floor',' ');
-				} else if (chosen == "1") {
-					selbox.options[selbox.options.length] = new Option('101','101');
-					selbox.options[selbox.options.length] = new Option('102','102');
-					selbox.options[selbox.options.length] = new Option('103','103');
-					selbox.options[selbox.options.length] = new Option('104','104');
-					selbox.options[selbox.options.length] = new Option('105','105');
-					selbox.options[selbox.options.length] = new Option('106','106');
-				} else if (chosen == "2") {
-					selbox.options[selbox.options.length] = new Option('201','201');
-					selbox.options[selbox.options.length] = new Option('202','202');
-					selbox.options[selbox.options.length] = new Option('203','203');
-					selbox.options[selbox.options.length] = new Option('204','204');
-					selbox.options[selbox.options.length] = new Option('205','205');
-					selbox.options[selbox.options.length] = new Option('206','206');
-				} else if (chosen == "3") {
-					selbox.options[selbox.options.length] = new Option('301','301');
-					selbox.options[selbox.options.length] = new Option('302','302');
-					selbox.options[selbox.options.length] = new Option('316','316');
-					selbox.options[selbox.options.length] = new Option('317','317');
-					selbox.options[selbox.options.length] = new Option('318','318');
-					selbox.options[selbox.options.length] = new Option('319','319');
-				} else if (chosen == "4") {
-					selbox.options[selbox.options.length] = new Option('401','401');
-					selbox.options[selbox.options.length] = new Option('402','402');
-					selbox.options[selbox.options.length] = new Option('405','405');
-					selbox.options[selbox.options.length] = new Option('406','406');
-					selbox.options[selbox.options.length] = new Option('407','407');
-					selbox.options[selbox.options.length] = new Option('408','408');
-				} else if (chosen == "5") {
-					selbox.options[selbox.options.length] = new Option('506','506');
-					selbox.options[selbox.options.length] = new Option('507','507');
-					selbox.options[selbox.options.length] = new Option('513','513');
-					selbox.options[selbox.options.length] = new Option('519','519');
-					selbox.options[selbox.options.length] = new Option('520','520');
-					selbox.options[selbox.options.length] = new Option('522','522');
-				} else if (chosen == "6") {
-					selbox.options[selbox.options.length] = new Option('603','603');
-					selbox.options[selbox.options.length] = new Option('605','605');
-					selbox.options[selbox.options.length] = new Option('606','606');
-					selbox.options[selbox.options.length] = new Option('608','608');
-					selbox.options[selbox.options.length] = new Option('610','610');
-					selbox.options[selbox.options.length] = new Option('612','612');
-				}
-			}
-		</script>
 	
 		<script>
 			// Slider settings
@@ -232,8 +171,8 @@
 						<h2>Where are you?</h2>
 						<span id="roomStatus"></span>
 						
-						<select name="rno" size="1" onchange="setOptions(this.options[this.selectedIndex].value);" id="levelID">
-							<option value="" selected="selected">Level</option>
+						<select size=1 name="levelSelect" id="levelSelect" onChange="ajaxRoomRetrieval(this.options[this.selectedIndex].value);">
+							<option value="" selected>Level</option>
 							<option value="1">Level 1</option>
 							<option value="2">Level 2</option>
 							<option value="3">Level 3</option>
@@ -241,8 +180,8 @@
 							<option value="5">Level 5</option>
 							<option value="6">Level 6</option>
 						</select>
-						<select name="opttwo" size="1" id="opttwo" onchange="saveRoom()">
-							<option value="" selected="selected">Change level for room list</option>
+						<select size=1 name="roomSelect" id="roomSelect" onChange="saveRoom();">
+							<option value="" selected>Room</option>
 						</select>
 					</div>
 					
@@ -286,17 +225,29 @@
 						<span id="formStatus"></span>
 						<button type="button" name="submitButton" id="submitButton" onClick="check();">Submit</button>
 					</div>
-					
-					<script>
-						// function to save room choice
-						var selectedRoom = document.getElementById("opttwo");
-						var room = document.getElementById("room");
-						
-						function saveRoom() {
-							room.setAttribute("value", selectedRoom.value);
-						}
-					</script>
 				</form>
+				
+				<!-- ajax call to retrieve rooms for selected level -->
+				<script>
+					function ajaxRoomRetrieval(level) {
+						$.ajax({
+							url: 'roomlist.php?level=' + level,
+							success: function(listCode) {
+								$("#roomSelect").html(listCode);
+							}
+						});
+					}
+				</script>
+				
+				<!-- save room choice -->
+				<script>
+					var selectedRoom = document.getElementById("roomSelect");
+					var room = document.getElementById("room");
+					
+					function saveRoom() {
+						room.setAttribute("value", selectedRoom.value);
+					}
+				</script>
 			</div>
 		</div>
 	</body>
