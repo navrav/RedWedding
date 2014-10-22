@@ -9,12 +9,13 @@
  */
 session_start();
 include_once("servercon.php");
+include_once("PasswordHash.php");
 
 unset($_SESSION['failed']);
 
 $fname = mysqli_real_escape_string($dbconn, $_POST["fname"]);
 $lname = mysqli_real_escape_string($dbconn, $_POST["lname"]);
-$pass = mysqli_real_escape_string($dbconn, $_POST["pass"]);
+$pass = create_hash(mysqli_real_escape_string($dbconn, $_POST["pass"]));
 $email = mysqli_real_escape_string($dbconn, $_POST["email"]);
 $gender = $_POST["Gender"];
 
@@ -24,6 +25,35 @@ if ($gender == 'm') {
 	$pic = 'f.png';
 }
 
+$query = "SELECT `u_ID` FROM `Users` WHERE email= ?";
+
+$stmt = mysqli_prepare($dbconn, $query);
+
+mysqli_stmt_bind_param($stmt, 's', $email);
+
+mysqli_stmt_execute($stmt);
+
+mysqli_stmt_bind_result($stmt, $uID);
+
+if (mysqli_stmt_fetch($stmt)){
+	mysqli_stmt_close($stmt);
+	$_SESSION['failed'] = "True";
+	header('Location: /signup.php');
+} else{
+	mysqli_stmt_close($stmt);
+	$insertquery = "INSERT INTO Users (pass,f_name,l_name,email,gender,pic) VALUES (?, ?, ?, ?, ?, ?);";
+	$insertstmt = mysqli_prepare($dbconn, $insertquery);
+	mysqli_stmt_bind_param($insertstmt, 'ssssss', $pass, $fname, $lname, $email, $gender, $pic);
+	mysqli_stmt_execute($insertstmt);
+	mysqli_stmt_close($insertstmt);
+	header('Location: /index.php');
+}
+
+
+
+
+
+/*
 $count = 0;
 $select = mysqli_query($dbconn,"SELECT email from Users where email = '$email'");
 $count = mysqli_num_rows($select);
@@ -35,5 +65,6 @@ if($count == 1){
 	$resultNew = mysqli_query($dbconn,"INSERT INTO Users (pass,f_name,l_name,email,gender,pic) VALUES ('$pass', '$fname','$lname','$email','$gender','$pic');");
 	header('Location: /index.php');
 }
-mysqli_close($dbconn);		
+mysqli_close($dbconn);	
+*/	
 ?>

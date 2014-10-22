@@ -65,8 +65,9 @@ function back(){
 			<div class="intro-body">
 				<div class="container">
 					<div class="row">						
-						<div class="col-md-8 col-md-offset-2">							
-							<span id="validate"></span>
+						<div class="col-md-8 col-md-offset-2">
+							<h2>Sign Up</h2>							
+							<span id="validate" style="color:red;">&nbsp;</span>
 							<form id="signup" method='POST' action='register.php'> 							
 								
 								<div class="form-group col-lg-12">

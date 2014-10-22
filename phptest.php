@@ -172,6 +172,11 @@
   	
   </form>
 
+  <h1>Version of PHP</h1>
+    <?php
+      echo "".phpinfo();
+    ?>
+
   </body>
   
   

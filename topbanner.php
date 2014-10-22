@@ -1,5 +1,4 @@
 <?php
-  session_start();
   include_once("servercon.php");
 
   if (!isset($_SESSION['username']))

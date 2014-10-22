@@ -29,6 +29,7 @@ $count = mysqli_num_rows($resultNew);
 
 // Converts to array to easily extract uID from row
 $userdata = mysqli_fetch_array($resultNew);
+mysqli_close($dbconn);	
 
 // If result matched $myusername and $mypassword, table row must be 1 row
 if($count==1)
