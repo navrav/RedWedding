@@ -1,60 +1,57 @@
-<?php 
- include_once("servercon.php");
-?>
 <!DOCTYPE html>
+
+<?php
+  session_start();
+  include_once("servercon.php");
+
+  if (!isset($_SESSION['username']))
+  {
+      header("location:index.php");
+  }
+
+	$user = $_SESSION["username"];
+	echo("<script>console.log('uID:".$user."');</script>"); // Nikita added print check here
+
+  $resultNew = mysqli_query($dbconn, "SELECT `timestamp`, `room`, `tag1`, `tag2`, `tag3`, `tag4`, `withFriend`, `comment`, `f_name`, `l_name`, `pic`, `rank` FROM CheckIn, Users WHERE CheckIn.u_ID = Users.u_ID AND CheckIn.u_ID IN (SELECT ID_2 FROM Friends WHERE ID_1 ='{$user}' OR CheckIn.u_ID = {$user}) ORDER BY `CheckIn`.`timestamp` DESC");
+?>
+
 <html>
-	<head>
-		<title>AEB Space - Map</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		
-		<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css">
-		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/main.css" type="text/css">
-		
-		
-		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-		<script src="js/jquery.mobile-1.4.2.js"></script>
-			
-		<style>
-			#choosing{
-				margin-top:0px;
-				padding: 15px;
-				
-				font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica Neue Ultra Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Arial", sans-serif;
-				
-				color:black;
-			}
-			#choosing h5{
-				font-size: 16px;
-				color: #3d8cea;
-				text-shadow: none;
-				font-weight: bold;
-			}
-			
-			#h2 { 
-			   position: absolute; 
-			   top: 4px; 
-			   left:17px;
-			   width: 100%; 
-			   font-size:10px;
-			}
-			
-			.desc{
-				position: absolute;
-				left: 70px;
-			}
 
-			
-		</style>
-	</head>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<body>
+<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css">
+<link rel="stylesheet" href="css/jquery.mobile-core.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/main.css" type="text/css">
+
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="js/jquery.mobile-1.4.2.js"></script>
+
+<script>
+function setOptions(feed) {
 		
-		<!--top bar-->
-		<div data-role="page" data-theme="b" style="background-color:white;">
-		  <div data-role="header" id="header_blue">
-		    <?php require("topbanner.php"); ?>
+			console.log(feed);
+
+			if (feed == "1") {
+				document.getElementById('feed').style.display= 'block' ;
+				document.getElementById('events').style.display= 'none' ;
+			}
+			
+			if (feed == "2") {
+				document.getElementById('feed').style.display= 'none' ;
+				document.getElementById('events').style.display= 'block' ;
+			}
+}
+</script>
+
+</head>
+
+<body>
+    <!--start top bar-->
+	<div data-role="page" data-theme="b" style="background-color:white;">
+		<div data-role="header" id="header_red">
+			<?php require("topbanner.php"); ?>
 		</div>
 		<!--end top bar-->
   
@@ -66,273 +63,217 @@
 		<!--end nav bar-->
     
   
-  <div data-role="main" class="ui-content" >
-		
-		<div id="choosing">
-		<div style ="float:left; width: 50%; padding-right:10px ">
-		<h5>Floor Level</h5>
-		<select name="flo" id="flo" onchange="showHeat(document.getElementById('flo').value,document.getElementById('categ').value)" >
-						<option value="1">1</option> 
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option> 
-						<option value="5">5</option>
-						<option value="6">6</option>
+  <!-- the feed, i dont know, working on it. adee -->
+   <section data-role="main" class="ui-content" style="padding-bottom:0px;">
+		<font color="black">Select a category to view trouble rooms:</font>
+		<select name="cat" onchange="setOptions(this.options[this.selectedIndex].value);">
+			<option value="1">Temperature</option>
+			<option value="2">Usage Level</option>
+			<option value="3">Lighting</option>
+			<option value="4">Noise</option>
+			
 		</select>
-		</div>
-		<h5>Sort By?</h5>
 		
-		<select name="flo" id="categ" onChange="showHeat(document.getElementById('flo').value,document.getElementById('categ').value)">
-						<option value="8">Temperature</option>
-						<option value="9">Light</option>
-						<option value="10">Noise</option>
-						<option value="9">Light</option>
-						<option value="10">Noise</option> 
-						<option value="11">Friend Checkins</option>
-						<option value="12">Services</option> 
+		<div id="tempRooms">
+		<table style="width:90%" align="center">
+        <tr>
+        <td>Room</td>
+        <td>Recent #Bad Feedback</td> 
+        <td>Rating</td>
+        </tr>
+        <tr>
+        <td>315</td>
+        <td>2</td> 
+        <td>-4.1</td>
+        </tr>
+        <tr>
+        <td>420</td>
+        <td>1</td> 
+        <td>-2.2</td>
+        </tr>
+        </table>
+        </div>
+        
+        <div id="usageRooms" style="display: none;">
+		<table style="width:90%" align="center">
+        <tr>
+        <td>Room</td>
+        <td>Recent #Bad Feedback</td> 
+        <td>Rating</td>
+        </tr>
+        <tr>
+        <td>315</td>
+        <td>2</td> 
+        <td>-4.1</td>
+        </tr>
+        <tr>
+        <td>420</td>
+        <td>1</td> 
+        <td>-2.2</td>
+        </tr>
+        </table>
+        </div>
+        
+        <div id="ligtingRooms" style="display: none;">
+		<table style="width:90%" align="center">
+        <tr>
+        <td>Room</td>
+        <td>Recent #Bad Feedback</td> 
+        <td>Rating</td>
+        </tr>
+        <tr>
+        <td>315</td>
+        <td>2</td> 
+        <td>-4.1</td>
+        </tr>
+        <tr>
+        <td>420</td>
+        <td>1</td> 
+        <td>-2.2</td>
+        </tr>
+        </table>
+        </div>
+        
+        <div id="noiseRooms" style="display: none;">
+		<table style="width:90%" align="center">
+        <tr>
+        <td>Room</td>
+        <td>Recent #Bad Feedback</td> 
+        <td>Rating</td>
+        </tr>
+        <tr>
+        <td>315</td>
+        <td>2</td> 
+        <td>-4.1</td>
+        </tr>
+        <tr>
+        <td>420</td>
+        <td>1</td> 
+        <td>-2.2</td>
+        </tr>
+        </table>
+        </div>
+		
+		</section>
+		
+		<section data-role="main" class="ui-content" style="padding-bottom:0px;">
+		<font color="black">Filter recent check-ins:</font>
+		<select name="lev" onchange="setOptions(this.options[this.selectedIndex].value);">
+			<option value="1">Level 1</option>
+			<option value="2">Level 2</option>
+			<option value="3">Level 3</option>
+			<option value="4">Level 4</option>
+			<option value="5">Level 5</option>
+			<!--<option value="2">Events</option>-->
 		</select>
-		</div>
-		<div id="heatmapArea" style="position:relative; width:300px; height:450px; background-image:url('images/testmap.JPG');"> 
-			
-			
-			<h2 id="temp"><span style ="color: white; 
-			   font: bold 16px Helvetica, Sans-Serif; 
-			   letter-spacing: -1px;  
-			   background: rgb(0, 0, 0); /* fallback color */
-			   background: rgba(0, 0, 0, 0.7);
-			   padding: 10px; ">25 &deg</span></h2>
-			
-			<div id="circle"></div>
-			<div id="circle2"></div>
-			<div id="circle3"></div>
-			<div id="circle4"></div>
-		</div>
 		
-		<div id="legend" class="leg"></div><div class="desc" id="d1"></div>
-		<div id="legend2" class="leg"></div><div class="desc" id="d2"></div>
-		<div id="legend3" class="leg"></div><div class="desc" id="d3"></div>
-		<div id="legend4" class="leg"></div><div class="desc" id="d4"></div>
-		<div id="legend5" class="leg"></div><div class="desc" id="d5"></div>
-		
-		<div id="test">		
-
-		</div>
-
-<?php 
-$dbconn=mysqli_connect("deco3801-01.zones.eait.uq.edu.au","root","Viking8Chief+latch","aeb");
-if (mysqli_connect_errno()) {
-        echo "Failed to connect to MySQL: " . mysqli_connect_error();
-      }
-      	$warm10 = mysqli_query($dbconn,"SELECT COUNT(*) from CheckIn where room = 101 AND tag1 = 'warm'");
-      	$hot10 = mysqli_query($dbconn,"SELECT COUNT(*) from CheckIn where room = 101  AND tag1 = 'hot'");
-      	$cold10 = mysqli_query($dbconn,"SELECT COUNT(*) from CheckIn where room = 101  AND tag1 = 'cold'");
-		
-		$warm22 = mysqli_query($dbconn,"SELECT COUNT(*) from CheckIn where room = 102 AND tag1 = 'warm'");
-      	$hot22 = mysqli_query($dbconn,"SELECT COUNT(*) from CheckIn where room = 102 AND tag1 = 'hot'");
-      	$cold22 = mysqli_query($dbconn,"SELECT COUNT(*) from CheckIn where room = 102 AND tag1 = 'cold'");
-		
-		$warm33 = mysqli_query($dbconn,"SELECT COUNT(*) from CheckIn where room = 103 AND tag1 = 'warm'");
-      	$hot33 = mysqli_query($dbconn,"SELECT COUNT(*) from CheckIn where room = 103 AND tag1 = 'hot'");
-      	$cold33 = mysqli_query($dbconn,"SELECT COUNT(*) from CheckIn where room = 103 AND tag1 = 'cold'");
-		
-		$warm34 = mysqli_query($dbconn,"SELECT COUNT(*) from CheckIn where room = 104 AND tag1 = 'warm'");
-      	$hot34 = mysqli_query($dbconn,"SELECT COUNT(*) from CheckIn where room = 104 AND tag1 = 'hot'");
-      	$cold34 = mysqli_query($dbconn,"SELECT COUNT(*) from CheckIn where room = 104 AND tag1 = 'cold'");
-		
-		$totwarm10 = 0;
-		$tothot10 = 0;
-		$totcold10 = 0;
-		
-		while($warm10 = mysqli_fetch_array($warm10)) {
-        	$totwarm10 = $warm10['COUNT(*)'];
-      	}
-		while($hot10 = mysqli_fetch_array($hot10)) {
-        	$tothot10 = $hot10['COUNT(*)'];
-      	}
-		while($cold10 = mysqli_fetch_array($cold10)) {
-        	$totcold10 = $cold10['COUNT(*)'];
-      	}
-		
-		$totwarm22 = 0;
-		$tothot22 = 0;
-		$totcold22 = 0;
-		
-		while($warm22 = mysqli_fetch_array($warm22)) {
-        	$totwarm22 = $warm22['COUNT(*)'];
-      	}
-		while($hot22 = mysqli_fetch_array($hot22)) {
-        	$tothot22 = $hot22['COUNT(*)'];
-      	}
-		while($cold22 = mysqli_fetch_array($cold22)) {
-        	$totcold22 = $cold22['COUNT(*)'];
-      	}
-		
-		$totwarm33 = 0;
-		$tothot33 = 0;
-		$totcold33 = 0;
-		
-		while($warm33 = mysqli_fetch_array($warm33)) {
-        	$totwarm33 = $warm33['COUNT(*)'];
-      	}
-		while($hot33 = mysqli_fetch_array($hot33)) {
-        	$tothot33 = $hot33['COUNT(*)'];
-      	}
-		while($cold33 = mysqli_fetch_array($cold33)) {
-        	$totcold33 = $cold33['COUNT(*)'];
-      	}
-		
-		$totwarm34 = 0;
-		$tothot34 = 0;
-		$totcold34 = 0;
-		
-		while($warm34 = mysqli_fetch_array($warm34)) {
-        	$totwarm34 = $warm34['COUNT(*)'];
-      	}
-		while($hot34 = mysqli_fetch_array($hot34)) {
-        	$tothot34 = $hot34['COUNT(*)'];
-      	}
-		while($cold34 = mysqli_fetch_array($cold34)) {
-        	$totcold34 = $cold34['COUNT(*)'];
-      	}
-		
-		$tot10 = $totwarm10+$tothot10+$totcold10;
-		$tot22 = $totwarm22+$tothot22+$totcold22;
-		$tot33 = $totwarm33+$tothot33+$totcold33;
-		$tot34 = $totwarm34+$tothot34+$totcold34;
-		mysqli_close($dbconn);
-		
-		
-?>
-<script src="js/heat.js"></script>
-<script src="js/color.js"></script>
-<script src="js/colorlight.js"></script>
-<script src="js/colorpop.js"></script>
-<script type="text/javascript">
-		var tot10 = <?php echo json_encode($tot10); ?>;
-		var totwarm10 = <?php echo json_encode($totwarm10); ?>;
-		var tothot10 = <?php echo json_encode($tothot10); ?>;
-		var totcold10 = <?php echo json_encode($totcold10); ?>;
-		
-		var tot22 = <?php echo json_encode($tot22); ?>;
-		var totwarm22 = <?php echo json_encode($totwarm22); ?>;
-		var tothot22 = <?php echo json_encode($tothot22); ?>;
-		var totcold22 = <?php echo json_encode($totcold22); ?>;
-		
-		var tot33 = <?php echo json_encode($tot33); ?>;
-		var totwarm33 = <?php echo json_encode($totwarm33); ?>;
-		var tothot33 = <?php echo json_encode($tothot33); ?>;
-		var totcold33 = <?php echo json_encode($totcold33); ?>;	
-
-		var tot34 = <?php echo json_encode($tot34); ?>;
-		var totwarm34 = <?php echo json_encode($totwarm34); ?>;
-		var tothot34 = <?php echo json_encode($tothot34); ?>;
-		var totcold34 = <?php echo json_encode($totcold34); ?>;
-		
-		var color10 = color(tothot10,totwarm10,totcold10);
-		var color22 = color(tothot22,totwarm22,totcold22);
-		var color33 = color(tothot33,totwarm33,totcold33);
-		var color34 = color(tothot34,totwarm34,totcold34);
-		
-		$(document).ready(function() {     
-        createHeat("circle",tot10*10,220,80,color10);
-		createHeat("circle2",tot22*10,90,340,color22);
-		createHeat("circle3",tot33*10,220,170,color33);
-		createHeat("circle4",tot34*10,200,300,color34); 
-		
-		createHeat("legend",10,50,700,color(2,1,1));
-		createHeat("legend2",10,50,730,color(2,2,1));
-		createHeat("legend3",10,50,760,color(1,1,1));
-		createHeat("legend4",10,50,790,color(1,2,2));
-		createHeat("legend5",10,50,820,color(1,1,2));
-		
-		document.getElementById("d1").style.top ="690px";
-		document.getElementById("d1").style.color="Red";
-		document.getElementById("d1").innerHTML = "Hot";
-		
-		document.getElementById("d2").style.top ="720px";
-		document.getElementById("d2").style.color="Orange";
-		document.getElementById("d2").innerHTML = "Warm";
-		
-		document.getElementById("d3").style.top ="750px";
-		document.getElementById("d3").style.color="Green";
-		document.getElementById("d3").innerHTML = "Normal";
-		
-		document.getElementById("d4").style.top ="780px";
-		document.getElementById("d4").style.color="Aqua";
-		document.getElementById("d4").innerHTML = "Cold";
-		
-		document.getElementById("d5").style.top ="810px";
-		document.getElementById("d5").style.color="Blue";
-		document.getElementById("d5").innerHTML = "Freezing";
+		<select name="room" onchange="setOptions(this.options[this.selectedIndex].value);">
+			<option value="101">101</option>
+			<option value="102">102</option>
+			<option value="103">103</option>
+			<option value="104">104</option>
+			<option value="105">105</option>
+			<!--<option value="2">Events</option>-->
+		</select>
+		</section>
+    
+    <!-- feed end-->
 
 
-        });    
-		</script>
+        <div data-role="main" class="ui-content" id="feed" style="display:block; padding-top:0px;" >
+        
+          <ul data-role="listview" data-inset="true">
 
-	
-	
-  </div>
+            <?php
 
-</div> 
-<script>
+            
+                    
+            while($checkList = mysqli_fetch_array($resultNew, MYSQLI_ASSOC)) {
+            //$datetimenew = date_create('2001-01-01');
+           $datetimenew = date_create($checkList['timestamp']);
+           
+           //$datetimecomp = date_format($datetimenew, 'm.d.y');
+            //$date = date_format($date,"Y/m/d");
+            //$datetimeall = getdate($checkList['timestamp']);
+            $alltags = [$checkList['tag1'], $checkList['tag2'], $checkList['tag3'], $checkList['tag4']];
+            $allrealtags = array();
+            
+            foreach($alltags as $tag){
+            	if ($tag){
+            		array_push($allrealtags, $tag);
+            	}
+            }
+            
+            $ntags = count($allrealtags);
+            
+            
+            ?>
 
-		function parseScript(_source) {
-			var source = _source;
-			var scripts = new Array();
+            <!-- <li style="background-color:#e03838; border:none;">Wednesday, January 2, 2014 <span class="ui-li-count">3</span></li> -->
+           <!--<li style="background-color:#e03838; border:none;"> <?php echo($datetimeall['weekday']);?>, <?php echo($datetimeall['month']);?> <?php echo($datetimeall['mday']);?>, <?php echo($datetimeall['year']); ?> <span class="ui-li-count">3</span></li> -->
+           <li style="background-color:#e03838; border:none;"> <?php echo date_format($datetimenew, 'l jS F Y');?> <span class="ui-li-count"><?php echo date_format($datetimenew, 'h:i a');?></span></li>
+           
+            <li class="feed-line" data-icon="false" style="border:none;">
+            	<h2>
+            	<span>
+            	<img src="avatars/<?php echo($checkList['pic']);?>" width="40px" height="40px" class="img-circle"/>  
+            	</span> 
+              <?php echo $checkList['f_name'] . " " . $checkList['l_name']; ?></h2>
+              <p><?php echo($checkList['f_name']);
+              if ($ntags > 0){
+              ?> felt <?php 
+              }
+              
+              
+              $i = 1;
+              
+              foreach($allrealtags as $tag){
+              	echo($tag);
+            
+              
+              	if ($i == ($ntags-1)){
+              		?> and <?php
+              		}
+              
+              	if (($i < $ntags) && ($i != ($ntags-1))){
+              	?>, <?php
+              	}
+              	
+              	$i = $i+1;
+              }
+              
+              
+              
+              
+              
+              
+              ?>
+               at <?php echo($checkList['room']);
+              if ($checkList['withFriend']){ 
+               ?> with <?php echo($checkList['withFriend']);
+              }
+              ?> <br>
+			  <?php // edit by Yong - print comment only if it exists.
+			  if ($checkList['comment'] != "") {
+				echo("\"");
+				echo($checkList['comment']);
+				echo("\"");
+			  } ?></p>
+              <p class="ui-li-aside"> 
+            <!-- <?php echo date_format($datetimenew, 'h:i a');?></p>-->
+              <!--<?php echo($datetimeall['hours']);?>:<?php echo($datetimeall['minutes']);?>  <?php echo($checkList['timestamp']);?></p>-->
+            </li>
 
-			// Strip out tags
-			while(source.indexOf("<script") > -1 || source.indexOf("</script") > -1) {
-				var s = source.indexOf("<script");
-				var s_e = source.indexOf(">", s);
-				var e = source.indexOf("</script", s);
-				var e_e = source.indexOf(">", e);
+            <li class="feed-line" data-icon="false" style="border:none;">
+            <?php
+            }
+            ?>
+		   
+			</ul>
+      
+      </div>
+  
+    </div> 
 
-				// Add to scripts array
-				scripts.push(source.substring(s_e+1, e));
-				// Strip from source
-				source = source.substring(0, s) + source.substring(e_e+1);
-			}
-
-			// Loop through every script collected and eval it
-			for(var i=0; i<scripts.length; i++) {
-				try {
-					eval(scripts[i]);
-				}
-				catch(ex) {
-				}
-			}
-
-			// Return the cleaned source
-			return source;
-		}
-		
-function showHeat(floor,category){
-	var xmlhttp;    
-	if (window.XMLHttpRequest)
-	  {// code for IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp=new XMLHttpRequest();
-	  }
-	else
-	  {// code for IE6, IE5
-	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	  }
-	xmlhttp.onreadystatechange=function()
-	  {
-	  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-		{
-		document.getElementById("test").innerHTML=xmlhttp.responseText;
-		var content = xmlhttp.responseText;
-		parseScript(content);
-		
-		}
-	  }
-	  
-	xmlhttp.open("GET","serverheat.php?q="+floor+"&l="+category,true);
-	xmlhttp.send();
-
-}
-
-
-</script>
 </body>
 </html>
