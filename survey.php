@@ -233,7 +233,7 @@
 						<span id="roomStatus"></span>
 						
 						<select name="rno" size="1" onchange="setOptions(this.options[this.selectedIndex].value);" id="levelID">
-							<option value=" " selected="selected">Level</option>
+							<option value="" selected="selected">Level</option>
 							<option value="1">Level 1</option>
 							<option value="2">Level 2</option>
 							<option value="3">Level 3</option>
@@ -242,7 +242,7 @@
 							<option value="6">Level 6</option>
 						</select>
 						<select name="opttwo" size="1" id="opttwo" onchange="saveRoom()">
-							<option value=" " selected="selected">Change level for room list</option>
+							<option value="" selected="selected">Change level for room list</option>
 						</select>
 					</div>
 					
