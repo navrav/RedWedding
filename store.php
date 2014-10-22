@@ -15,39 +15,11 @@
 		<script src="js/jquery.mobile-1.4.2.js"></script>
         <script type="text/javascript">
 
-	function disableButton(buttonID){
-    	document.getElementById(buttonID).disabled = true;
-    }
-    
-    function ownedButton(buttonID){
-        document.getElementById(buttonID).innerHTML = "Purchased";
-    	document.getElementById(buttonID).disabled = true;
-    }
-    
-    // function confirmPurchase(sID){
-//         console.log('Launching pop-up window...');
-//         document.getElementById('secretIDtemp').value=sID;
-//         document.getElementById('layover').style.display= "block";
-// 		document.getElementById('confirmpop').style.display= "block";
-//     }
-//     
-//     function buySecret(){
-//         x = document.getElementById("secretIDtemp").value;
-//         document.getElementById('layover').style.display= "none";
-// 		document.getElementById('confirmpop').style.display= "none";
-//         console.log("buying secret with ID...");
-//         console.log(x);
-//         
-//         
-//     }
+
     function redirect(){
     window.location = "http://deco3801-01.uqcloud.net/profile.php";
     }
-    
-    function checkSecrets(){
-        console.log('Refreshed page...');
-        
-    }
+
     
     
     </script>
@@ -89,18 +61,15 @@
 	}
 
     $query2 = mysqli_query($dbconn, "SELECT * FROM `Users` WHERE `u_ID`=$user");
-	//echo("<script>console.log(".$query2.");</script>");
 	if ($query2 != ""){
 	}else{
 		echo("<script>console.log('Data was not found');</script>");
 	}
 	
 	$secretslist = mysqli_query($dbconn, "SELECT * FROM 'UserSecrets' WHERE 'u_ID'=$user");
-    
-    //$owned = mysqli_query($dbconn, "SELECT * FROM `UserSecrets` WHERE `u_ID` =$user");
-	$ownedsecrets = array();
-	
-    
+	$BUXquery = mysqli_query($dbconn, "SELECT * FROM `Users` WHERE `u_ID` = $user");
+	$BUXqueryarray = mysqli_fetch_array($BUXquery);
+	$userBUX = $BUXqueryarray['AEBux'];
 	/* Aim is to check the database table and find the list of secrets already bought
 	   by a user, and store the s_ID values in a list that is iterated over by a jscript 
 	   function in order to disable all the buttons for secrets already bought
@@ -110,7 +79,7 @@
 	?>			
 	</head>
 
-	<body onload="checkSecrets()">
+	<body>
 
 		<!--top bar-->
 		<div data-role="page" data-theme="b" style="background-color:white;">
@@ -137,27 +106,19 @@ if (isset($_POST['buysecret'])){
 	   $cost = $_POST['cost'];
 	   
 	   mysqli_query($dbconn, "INSERT INTO `UserSecrets`(`u_ID`, `s_ID`) VALUES (".$user.", ".$sID.")");
-	   $BUXquery = mysqli_query($dbconn, "SELECT * FROM `Users` WHERE `u_ID` = 36");
+	   $BUXquery = mysqli_query($dbconn, "SELECT * FROM `Users` WHERE `u_ID` = $user");
 	   $BUXqueryarray = mysqli_fetch_array($BUXquery);
 	   $userBUX = $BUXqueryarray['AEBux'];
 	   $newBUX = $userBUX - $cost;
 	   mysqli_query($dbconn, "UPDATE `Users` SET `AEBux`=".$newBUX." WHERE `u_ID`=".$user."");
 	   echo '<script type="text/javascript"> redirect(); </script>';
-	   //header('Location: profile.php');
 	   }
+
 	
-	
-	
-    $test = array("1", "2", "3");
-    // foreach($test as $value){
-// 	    echo("<script>console.log('".gettype($value)."')</script>");
-// 	    }
-    if (in_array("1", $test)){
-		echo("<script>console.log('Matched secret');</script>");
-	    }
+
+
 	
 	while($row = mysqli_fetch_array($query)){
-	//echo("<script>console.log('".$row."');</script>");
 		?>
 			<li data-icon="false">
 				<h6><?php
@@ -167,26 +128,41 @@ if (isset($_POST['buysecret'])){
 				<p><?php
 					echo $row['cost'];
 					
-					
 					echo " AEBux";
 					?>
 				</p>
 				<p class="ui-li-aside">
 
-<!--"<?php echo $_SERVER['PHP_SELF']; ?>"
-onsubmit="return confirm('Are you sure you would like to buy this secret for <?php echo $row['cost'] ?> AEBux?')" -->
-		        
+	        
 					<form id="buysecretForm" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" onsubmit="return confirm('Are you sure you would like to buy this secret for <?php echo $row['cost'] ?> AEBux?')">
 					    <input type="hidden" name="cost" value="<?php echo $row['cost'] ?>">
+					    
+		                <?php	
+		                $secID = $row['s_ID'];		
+		                $isOwned = mysqli_query($dbconn, "SELECT * FROM `UserSecrets` WHERE `u_ID`=$user AND `s_ID`=$secID");
+		                $isOwnedarr = mysqli_fetch_array($isOwned);
+		                echo("<script>console.log('UserSecrets".$isOwnedarr['s_ID']."');</script>");
+		                echo("<script>console.log('".gettype($isOwnedarr['s_ID'])."');</script>");
+
+                        if (!empty($isOwnedarr['s_ID'])){ ?>
+                        <button type="submit" disabled name="buysecret" class="btn btn-default btn-sm" id="<?php echo $row['s_ID'] ?>" value="<?php echo $row['s_ID'] ?>" >
+						 Purchased
+						</button>
+						<?php } else if ($row['cost'] > $userBUX){ ?>
+						<button type="submit" disabled name="buysecret" class="btn btn-default btn-sm" id="<?php echo $row['s_ID'] ?>" value="<?php echo $row['s_ID'] ?>" >
+						<span class="glyphicon glyphicon-gift"></span> Buy Secret
+						</button>
+						<?php }	else{ ?>
 						<button type="submit" name="buysecret" class="btn btn-default btn-sm" id="<?php echo $row['s_ID'] ?>" value="<?php echo $row['s_ID'] ?>" >
 						<span class="glyphicon glyphicon-gift"></span> Buy Secret
 						</button>
+						<?php } ?>
 						</form> 
 				</p>
 				</li>
 
 			<?php
-	// 
+	
 	}
 	?>
 	</ul>
@@ -214,41 +190,6 @@ onsubmit="return confirm('Are you sure you would like to buy this secret for <?p
 </body>
 <?php
 
-// Code responsible for disabling the buttons for secrets that have already been purchased
-// by the user, and secrets for which a user does not have enough AEBux to purchase it
-// Should put this script into a document.ready function or body.onload()
-$result = mysqli_query($dbconn, "SELECT * FROM `UserSecrets` WHERE `u_ID`=$user");
-	if(!$result){
-			echo("<script>console.log('');</script>");
-			echo("<script>console.log('No data from table');</script>");
-		} else{
-			echo("<script>console.log('Data found');</script>");
-		}
-	echo("<script>console.log('continuing function');</script>");
-	$testing = array("1");
-	while($row = mysqli_fetch_array($result)) {
-   		echo '<script type="text/javascript"> ownedButton('.$row['s_ID'].'); </script>';
-   		echo("<script>console.log('Checking type ".gettype($row['s_ID'])."')</script>");
-   		array_push($testing, $row[`s_ID`]);
-}
-
-$result2 = mysqli_query($dbconn, "SELECT * FROM `Secrets`");
-while ($row2 = mysqli_fetch_array($result2)){
-if($row2['cost'] > 30){
-    echo '<script type="text/javascript"> disableButton('.$row2['s_ID'].'); </script>';
-}
-}
-
-$result3 = mysqli_query($dbconn, "SELECT `s_ID` FROM `UserSecrets` WHERE `u_ID`=36");
-	while($row2 = mysqli_fetch_array($result3)){
-	    echo("<script>console.log('Owned secret R3: ".$row2['s_ID']."');</script>");
-	    echo("<script>console.log('Type: ".gettype($row2['s_ID'])."');</script>");
-	    //array_push($ownedsecrets, $row2[`s_ID`]);
-	    }
-	foreach($testing as $value){
-	    echo("<script>console.log('".gettype($value)."')</script>");
-	    echo("<script>console.log('".$value."')</script>");
-	    }
 
 ?>
 </html>
