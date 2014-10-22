@@ -88,13 +88,16 @@
 		</script>
 	
 		<script>
+			// Slider settings
 			$(document).ready(function() {
 				$("#slider1").ionRangeSlider({
 					type: 'single',
+					min: 1,
+					max: 9,
 					step: 1,
 					prettify: false,
 					hideMinMax: true,
-					values: ["cold", "cool", "mild", "warm", "hot"],
+					//values: ["cold", "cool", "mild", "warm", "hot"],
 					hasGrid: true,
 					
 					onChange: function() {
@@ -106,10 +109,12 @@
 			$(document).ready(function() {
 				$("#slider2").ionRangeSlider({
 					type: 'single',
+					min: 1,
+					max: 9,
 					step: 1,
 					prettify: false,
 					hideMinMax: true,
-					values: ["dry", "normal", "humid"],
+					//values: ["dry", "normal", "humid"],
 					hasGrid: true,
 					
 					onChange: function() {
@@ -121,10 +126,12 @@
 			$(document).ready(function() {
 				$("#slider3").ionRangeSlider({
 					type: 'single',
+					min: 1,
+					max: 9,
 					step: 1,
 					prettify: false,
 					hideMinMax: true,
-					values: ["quiet", "fine", "noisy"],
+					//values: ["quiet", "fine", "noisy"],
 					hasGrid: true,
 					
 					onChange: function() {
@@ -136,10 +143,12 @@
 			$(document).ready(function() {
 				$("#slider4").ionRangeSlider({
 					type: 'single',
+					min: 1,
+					max: 9,
 					step: 1,
 					prettify: false,
 					hideMinMax: true,
-					values: ["dark", "comfortable", "bright"],
+					//values: ["dark", "comfortable", "bright"],
 					hasGrid: true,
 					
 					onChange: function() {
@@ -151,10 +160,12 @@
 			$(document).ready(function() {
 				$("#slider5").ionRangeSlider({
 					type: 'single',
+					min: 1,
+					max: 9,
 					step: 1,
 					prettify: false,
 					hideMinMax: true,
-					values: ["peaceful", "crowded"],
+					//values: ["peaceful", "crowded"],
 					hasGrid: true,
 					
 					onChange: function() {
@@ -236,27 +247,27 @@
 					</div>
 					
 					<div id="hash-tag">
-						<h4> Room Temperature (cold, cool, mild, warm, hot)</h4>
+						<h4> Room Temperature (1 = cold, 9 = hot)</h4>
 						<input type="text" id="slider1" name="slider1" value="" />
 					</div>
 					
 					<div id="checkin_location">
-						<h4> Humidity (dry, normal, humid)</h4>
+						<h4> Humidity (1 = dry, 9 = humid)</h4>
 						<input type="text" id="slider2" name="slider2" value="" />
 					</div>
 					
 					<div id="hash-tag">
-						<h4> Noise Level (quiet, fine, noisy)</h4>
+						<h4> Noise Level (1 = quiet, 9 = noisy)</h4>
 						<input type="text" id="slider3" name="slider3" value="" />
 					</div>
 					
 					<div id="checkin_location">
-						<h4> Light Levels (dark, comfortable, bright)</h4>
+						<h4> Light Levels (1 = dark, 9 = bright)</h4>
 						<input type="text" id="slider4" name="slider4" value="" />
 					</div>
 					
 					<div id="hash-tag">
-						<h4> Crowd (peaceful, crowded)</h4>
+						<h4> Crowd (1 = peaceful, 9 = crowded)</h4>
 						<input type="text" id="slider5" name="slider5" value="" />
 					</div>
 					
@@ -275,17 +286,17 @@
 						<span id="formStatus"></span>
 						<button type="button" name="submitButton" id="submitButton" onClick="check();">Submit</button>
 					</div>
-				</form>
-				
-				<!-- script to save room choice -->
-				<script>
-					var selectedRoom = document.getElementById("opttwo");
-					var room = document.getElementById("room");
 					
-					function saveRoom() {
-						room.setAttribute("value", selectedRoom.value);
-					}
-				</script>
+					<script>
+						// function to save room choice
+						var selectedRoom = document.getElementById("opttwo");
+						var room = document.getElementById("room");
+						
+						function saveRoom() {
+							room.setAttribute("value", selectedRoom.value);
+						}
+					</script>
+				</form>
 			</div>
 		</div>
 	</body>

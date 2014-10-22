@@ -27,7 +27,20 @@ $AEBuxQuery = mysqli_query($dbconn, "SELECT * FROM `Users` WHERE `u_ID` = $user;
 $AEBuxQueryResult = mysqli_fetch_array($AEBuxQuery);
 $userAEBux = $AEBuxQueryResult['AEBux'];
 
-// CONVERTING NUMBERS INTO TAGS
+// update AEBux
+$updatedAEBux = $userAEBux + 10;
+
+// update database
+mysqli_query($dbconn,
+	"INSERT INTO `Survey` (u_ID, room, temp, humid, noise, light, crowd, comment) VALUES ('$user', '$room', '$tag1', '$tag2', '$tag3', '$tag4', '$tag5', '$comment');");
+mysqli_query($dbconn, "UPDATE `Users` SET `AEBux` = ".$updatedAEBux." WHERE `u_ID` = ".$user.";");
+
+header('Location: /feed.php');
+
+
+
+/*** UNUSED ***
+// CONVERTING NUMBERS INTO TAGS - COMMENTED OUT IN FAVOUR OF NUMERIC FEEDBACK (1-10)
 // tag1 - temperature
 if ($tag1 == 0) {
 	$tag1 = "cold";
@@ -74,16 +87,6 @@ if ($tag5 == 0) {
 } else if ($tag5 == 1) {
 	$tag5 = "crowded";
 }
-///////////////////////////////
-
-// update AEBux
-$updatedAEBux = $userAEBux + 10;
-
-// update database
-mysqli_query($dbconn,
-	"INSERT INTO `Survey` (u_ID, room, temp, humid, noise, light, crowd, comment) VALUES ('$user', '$room', '$tag1', '$tag2', '$tag3', '$tag4', '$tag5', '$comment');");
-mysqli_query($dbconn, "UPDATE `Users` SET `AEBux` = ".$updatedAEBux." WHERE `u_ID` = ".$user.";");
-
-header('Location: /feed.php');
+//////////////////////////////*/
 
 ?>
