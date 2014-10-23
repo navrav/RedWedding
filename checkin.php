@@ -176,9 +176,9 @@
 							
 							<!-- can make this dynamic -->
 							<div id="popover_content_wrapper" style="display: none">
-									<span id="friend1" class="hashtag">Zoe Stewart</span><br />
-									<span id="friend2" class="hashtag">Adee</span><br />
-									<span id="friend3" class="hashtag">Faisal</span><br />
+								<span id="friend1" class="hashtag">Zoe Stewart</span><br />
+								<span id="friend2" class="hashtag">Adee</span><br />
+								<span id="friend3" class="hashtag">Faisal</span><br />
 							</div>
 						</div>
 					</div>
@@ -189,7 +189,7 @@
 						<input type="hidden" name="tag1" id="tag1" value="" />
 						<input type="hidden" name="tag2" id="tag2" value="" />
 						<input type="hidden" name="tag3" id="tag3" value="" />
-						<input type="hidden" name="tag4" id="tag4" value="" />
+						<input type="hidden" name="friend" id="friend" value="" />
 						
 						<!-- submit button -->
 						<span id="formStatus"></span>
