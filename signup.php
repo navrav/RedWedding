@@ -109,7 +109,7 @@ function back(){
 								<table style="width:100%;margin:0 auto"><tr><td width="50%">
 
 
-								<button type="button" class="btn btn-success btn_reg" id="signup" onClick="check();">Sign Up</button></td><td>
+								<button type="button" class="btn btn-primary btn_reg" id="signup" onClick="check();">Sign Up</button></td><td>
 							
 					
 									
@@ -123,13 +123,11 @@ function back(){
 			</div>
 	</section>
 </body>
-<?php
-	if (isset($_SESSION['failed']))
-  {
-?>
-    <script>document.getElementById('validate').innerHTML = 'This email is already being used'</script>
-<?php
-	unset($_SESSION['failed']);
-  }	
-?>
+<script type="text/javascript">
+	var sign_failed = "<?=isset($_GET['signfailed']) ? $_GET['signfailed'] : '0'?>";
+			
+	if (sign_failed == 1) {
+		document.getElementById('validate').innerHTML = 'This email is already being used';
+	}
+</script>
 </html>

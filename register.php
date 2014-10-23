@@ -11,7 +11,6 @@ session_start();
 include_once("servercon.php");
 include_once("PasswordHash.php");
 
-unset($_SESSION['failed']);
 
 $fname = mysqli_real_escape_string($dbconn, $_POST["fname"]);
 $lname = mysqli_real_escape_string($dbconn, $_POST["lname"]);
@@ -37,8 +36,7 @@ mysqli_stmt_bind_result($stmt, $uID);
 
 if (mysqli_stmt_fetch($stmt)){
 	mysqli_stmt_close($stmt);
-	$_SESSION['failed'] = "True";
-	header('Location: /signup.php');
+	header('Location: /signup.php?signfailed=1');
 } else{
 	mysqli_stmt_close($stmt);
 	$insertquery = "INSERT INTO Users (pass,f_name,l_name,email,gender,pic) VALUES (?, ?, ?, ?, ?, ?);";

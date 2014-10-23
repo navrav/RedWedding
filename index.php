@@ -19,41 +19,30 @@
 		
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-		<!-- <script src="js/fb.js"></script> -->
-		<!-- script src="//connect.facebook.net/en_US/all.js"></script -->
 	
 	<!-- Check submitted data -->
 	<script>
-		$(document).ready(function() {
-			$("*").keyup(function() {
-				if ($("#user").val() != "" &&
-					$("#pass").val() != "") {
-					document.getElementById('log').disabled = false;
-				} else {
-					document.getElementById('log').disabled = true;
-				}
-			});
+		function check(){
+
+			var email = document.getElementById("user").value;
+			var atpos = email.indexOf("@");
+		    var dotpos = email.lastIndexOf(".");
+			var pass = document.getElementById("pass").value;
+			var form = document.getElementById("login");
+
 			
-			var log_out = "<?=isset($_GET['log_out']) ? $_GET['log_out'] : '0'?>";
-			
-			if (log_out == 1) {
-				$("#status").text('Logout successful.').show();
+		    if (atpos< 1 || dotpos<atpos+2 || dotpos+2>=user.length) {
+		        document.getElementById("status").innerHTML = "Please enter a valid email";
+		    }
+
+			else if (pass == null || pass == ""){
+				document.getElementById("status").innerHTML = "Please enter a password";
 			}
 
-			$("#log").click(function() {
-				$.get('check.php?t=' + Math.random(), //callback function, math.random here to wipe cache of IE explorer
-					  {pass: $("#pass").val(), user: $("#user").val()},
-					  function(checkresponse) {
-					if (checkresponse == "ok") {
-						
-						window.location.href = '/feed.php';
-					} else {
-						$("#status").text('Wrong username or password').show();
-							//setTimeout(function(){$("#status").html('&nbsp;')},1500);
-					}
-				});
-			});
-		});
+			else {
+				form.submit();
+			}
+		}
 	
 		function signup() {
 			window.location.href = '/signup.php';
@@ -74,6 +63,7 @@
 							 
 							<!-- status message -->
 							<div style="color:red;margin:0 auto;" id="status">&nbsp;</div>
+							<form id="login" method='POST' action='/check.php'> 	
 							
 							<!-- email field for login -->
 							<div class="form-group col-lg-12">
@@ -87,24 +77,32 @@
 							
 							<!-- login button -->
 							<div class="form-group col-md-6 col-md-offset-3"> 
-								<button type="submit" class="btn btn-success btn_login" value="Login" id="log" disabled>Login</button>
+								<button type="button" class="btn btn-success btn_login" id="login" onClick="check();">Login</button>
 							</div>
 							
 							<!-- sign up button -->
 							<div class="form-group col-md-6 col-md-offset-3">
-								<button type="button" class="btn btn-danger btn_reg" value="Register" onClick="signup();" >Sign Up</button>
+								<button type="button" class="btn btn-primary btn_reg" value="Register" onClick="signup();" >Sign Up</button>
 							</div>
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 	</section>		
-    
-
-<!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button> -->
-
-
-
 </body>
+<script>
+	var log_out = "<?=isset($_GET['log_out']) ? $_GET['log_out'] : '0'?>";
+			
+	if (log_out == 1) {
+		document.getElementById('status').innerHTML = 'Logout successful.';
+	}
+
+	var log_failed = "<?=isset($_GET['logfailed']) ? $_GET['logfailed'] : '0'?>";
+
+	if (log_failed == 1) {
+		document.getElementById('status').innerHTML = 'Wrong username or password';
+	}
+
+</script>
 </html>

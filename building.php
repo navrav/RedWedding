@@ -1,5 +1,15 @@
 <!DOCTYPE html>
+<?php
+	session_start();
+  	include_once("servercon.php");
 
+  	if (!isset($_SESSION['username']))
+  	{
+    	  header("location:index.php");
+  	}
+
+  	$user = $_SESSION['username'];
+?>
 <html>
 	<head>
 		<title>AEB Space - Bulding Information</title>
