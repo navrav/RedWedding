@@ -44,17 +44,15 @@
 			var bootstrapButton = $.fn.button.noConflict()
 			$.fn.bootstrapBtn = bootstrapButton
 		
-			$(function (){
-			 
+			$(function() {
 				$("#friends").popover({
 					html : true,
 					title: 'Friends',
 					placement: 'top',
-					content:  function() {
-							return $('#popover_content_wrapper').html();
-						}
-					
-					});
+					content: function() {
+						return $('#popover_content_wrapper').html();
+					}
+				});
 			});
 		</script>
 		
@@ -178,11 +176,9 @@
 							
 							<!-- can make this dynamic -->
 							<div id="popover_content_wrapper" style="display: none">
-								<div>
 									<span id="friend1" class="hashtag">Zoe Stewart</span><br />
 									<span id="friend2" class="hashtag">Adee</span><br />
 									<span id="friend3" class="hashtag">Faisal</span><br />
-								</div>
 							</div>
 						</div>
 					</div>
