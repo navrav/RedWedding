@@ -45,7 +45,7 @@
 			$.fn.bootstrapBtn = bootstrapButton
 		
 			$(function() {
-				$("#friends").popover({
+				$("#friendButton").popover({
 					html : true,
 					title: 'Friends',
 					placement: 'top',
@@ -54,6 +54,16 @@
 					}
 				});
 			});
+			
+			// populate friend list; runs on page load
+			function ajaxFriendRetrieval() {
+				$.ajax({
+					url: 'friendlist.php',
+					success: function(listCode) {
+						$("#popover_content_wrapper").html(listCode);
+					}
+				});
+			}
 		</script>
 		
 		<!-- friends popover style -->
@@ -87,7 +97,7 @@
 			}
 		</style>
 	</head>
-	<body>
+	<body onload="ajaxFriendRetrieval();">
 		<!-- top bar -->
 		<div data-role="page" data-theme="b">
 			<div data-role="header" id="header_orange">
@@ -127,7 +137,7 @@
 						<h2>Where are you?</h2>
 						<span id="roomStatus"></span>
 						
-						<select size=1 name="levelSelect" id="levelSelect" onChange="ajaxRoomRetrieval(this.options[this.selectedIndex].value);">
+						<select size=1 name="levelSelect" id="levelSelect" onchange="ajaxRoomRetrieval(this.options[this.selectedIndex].value);">
 							<option value="" selected>Level</option>
 							<option value="1">Level 1</option>
 							<option value="2">Level 2</option>
@@ -136,7 +146,7 @@
 							<option value="5">Level 5</option>
 							<option value="6">Level 6</option>
 						</select>
-						<select size=1 name="roomSelect" id="roomSelect" onChange="saveRoom();">
+						<select size=1 name="roomSelect" id="roomSelect" onchange="saveRoom();">
 							<option value="" selected>Room</option>
 						</select>
 					</div>
@@ -168,17 +178,15 @@
 						
 						<!-- friends -->
 						<div style ="float:left;">
-							<h2>Who are you with</h2>
+							<h2>Are you with a friend? (Optional)</h2>
 							
-							<a href="#" id ="friends"  data-toggle="popover" role="button">
-								<img id="friend" src="images/AddFriends.png" alt="addFriends" height="30" style="margin-left:15px; margin-top: 3px;"></img>
+							<a href="#" id ="friendButton" data-toggle="popover" data-trigger="focus" role="button">
+								<img id="friendButtonImage" src="images/AddFriends.png" alt="addFriends" height="30" style="margin-left:15px; margin-top: 3px;"></img>
 							</a>
 							
-							<!-- can make this dynamic -->
 							<div id="popover_content_wrapper" style="display: none">
-								<span id="friend1" class="hashtag">Zoe Stewart</span><br />
-								<span id="friend2" class="hashtag">Adee</span><br />
-								<span id="friend3" class="hashtag">Faisal</span><br />
+								<!-- Friends will be generated here. -->
+								<!-- example: <span id="friend1" class="hashtag" onclick="saveFriend(this.id);" style="cursor: pointer">John Doe</span><br /> -->
 							</div>
 						</div>
 					</div>
@@ -193,7 +201,7 @@
 						
 						<!-- submit button -->
 						<span id="formStatus"></span>
-						<button type="button" name="submitButton" id="submitButton" onClick="check();">Check in</button>
+						<button type="button" name="submitButton" id="submitButton" onclick="check();">Check in</button>
 					</div>
 				</form>
 				
@@ -219,6 +227,15 @@
 					}
 				</script>
 				
+				<!-- script to save friend choice -->
+				<script>
+					var friend = document.getElementById("friend");
+					
+					function saveFriend(friendSpanID) {
+						friend.setAttribute("value", friendSpanID);
+					}
+				</script>
+				
 				<!-- stores tag choices
 						and controls the tags lighting up with different colours when selected. -->
 				<script>
@@ -233,7 +250,6 @@
 					var tag1 = document.getElementById("tag1");
 					var tag2 = document.getElementById("tag2");
 					var tag3 = document.getElementById("tag3");
-					var tag4 = document.getElementById("tag4");
 					
 					// set/unset tag1
 					hot.style.cursor = 'pointer'; // set cursor shape (to indicate clickable object)

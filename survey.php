@@ -171,7 +171,7 @@
 						<h2>Where are you?</h2>
 						<span id="roomStatus"></span>
 						
-						<select size=1 name="levelSelect" id="levelSelect" onChange="ajaxRoomRetrieval(this.options[this.selectedIndex].value);">
+						<select size=1 name="levelSelect" id="levelSelect" onchange="ajaxRoomRetrieval(this.options[this.selectedIndex].value);">
 							<option value="" selected>Level</option>
 							<option value="1">Level 1</option>
 							<option value="2">Level 2</option>
@@ -180,7 +180,7 @@
 							<option value="5">Level 5</option>
 							<option value="6">Level 6</option>
 						</select>
-						<select size=1 name="roomSelect" id="roomSelect" onChange="saveRoom();">
+						<select size=1 name="roomSelect" id="roomSelect" onchange="saveRoom();">
 							<option value="" selected>Room</option>
 						</select>
 					</div>
@@ -223,7 +223,7 @@
 						<input type="hidden" name="tag4" id="tag4" value="" />
 						<input type="hidden" name="tag5" id="tag5" value="" />
 						<span id="formStatus"></span>
-						<button type="button" name="submitButton" id="submitButton" onClick="check();">Submit</button>
+						<button type="button" name="submitButton" id="submitButton" onclick="check();">Submit</button>
 					</div>
 				</form>
 				

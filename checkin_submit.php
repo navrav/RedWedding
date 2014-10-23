@@ -21,7 +21,7 @@ $room = $_POST["room"];
 $tag1 = $_POST["tag1"];
 $tag2 = $_POST["tag2"];
 $tag3 = $_POST["tag3"];
-$friend = $_POST["friend"];
+$friend = substr($_POST["friend"], 6); // so as to remove "friend" from "friend##"
 $comment = $_POST["comment"];
 $AEBuxQuery = mysqli_query($dbconn, "SELECT * FROM `Users` WHERE `u_ID` = $user;");
 $AEBuxQueryResult = mysqli_fetch_array($AEBuxQuery);
