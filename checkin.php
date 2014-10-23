@@ -145,7 +145,7 @@
 					
 					<!-- hash tags -->
 					<div id="hash-tag">
-						<h2>How are you feeling?</h2>
+						<h2>How are you feeling? (Click tags to select/deselect.)</h2>
 						<h2>Temperature</h2>
 						<span id="hot" class="hashtag">#Hot</span>
 						<span id="warm" class="hashtag">#Warm</span>
@@ -239,109 +239,119 @@
 					var tag3 = document.getElementById("tag3");
 					var tag4 = document.getElementById("tag4");
 					
-					hot.style.cursor = 'pointer';
-					hot.onclick = function(){
-						if(document.getElementById("tag1").value == "warm" || document.getElementById("tag1").value == "cold"){						 
-							warm.style.color= "white";
-							cold.style.color= "white";
+					// set/unset tag1
+					hot.style.cursor = 'pointer'; // set cursor shape (to indicate clickable object)
+					hot.onclick = function() {    // when clicked,
+					
+						// unset all buttons
+						hot.style.color = "white";
+						warm.style.color = "white";
+						cold.style.color = "white";
+						
+						if (document.getElementById("tag1").value == "hot") {	// if tag1 is already "hot"
+							tag1.setAttribute("value", "");							// clear tag1 value
+						} else {												// otherwise
+							hot.style.color = "green";								// set hot button
+							tag1.setAttribute("value", "hot");						// set tag1 to "hot"
 						}
-						hot.style.color= "red";
-						tag1.setAttribute("value","hot");
 					};
 					
 					warm.style.cursor = 'pointer';
-					warm.onclick = function(){
-						if(document.getElementById("tag1").value == "hot" || document.getElementById("tag1").value == "cold"){						 
-							hot.style.color= "white";
-							cold.style.color= "white";
+					warm.onclick = function() {
+						hot.style.color = "white";
+						warm.style.color = "white";
+						cold.style.color = "white";
+						
+						if (document.getElementById("tag1").value == "warm") {
+							tag1.setAttribute("value", "");
+						} else {
+							warm.style.color = "green";
+							tag1.setAttribute("value", "warm");
 						}
-						warm.style.color= "red";
-						tag1.setAttribute("value","warm");					
 					};
 					
 					cold.style.cursor = 'pointer';
-					cold.onclick = function(){
-						if(document.getElementById("tag1").value == "warm" || document.getElementById("tag1").value == "hot"){						 
-							hot.style.color= "white";
-							warm.style.color= "white";
+					cold.onclick = function() {
+						hot.style.color = "white";
+						warm.style.color = "white";
+						cold.style.color = "white";
+						
+						if (document.getElementById("tag1").value == "cold") {
+							tag1.setAttribute("value", "");
+						} else {
+							cold.style.color = "green";
+							tag1.setAttribute("value", "cold");
 						}
-						cold.style.color= "red";
-						tag1.setAttribute("value","cold");					
 					};
 					
+					// set/unset tag2
 					dark.style.cursor = 'pointer';
-					dark.onclick = function(){
-						if(document.getElementById("tag2").value == "bright" || document.getElementById("tag2").value == "comfy"){						 
-							bright.style.color= "white";
-							comfy.style.color= "white";
+					dark.onclick = function() {
+						bright.style.color = "white";
+						comfy.style.color = "white";
+						dark.style.color = "white";
+						
+						if (document.getElementById("tag2").value == "dark") {
+							tag2.setAttribute("value", "");
+						} else {
+							dark.style.color = "red";
+							tag2.setAttribute("value", "dark");
 						}
-						dark.style.color= "blue";
-						tag2.setAttribute("value","dark");					
 					};
 					
 					comfy.style.cursor = 'pointer';
-					comfy.onclick = function(){
-						if(document.getElementById("tag2").value == "bright" || document.getElementById("tag2").value == "dark"){						 
-							bright.style.color= "white";
-							dark.style.color= "white";
+					comfy.onclick = function() {
+						bright.style.color = "white";
+						comfy.style.color = "white";
+						dark.style.color = "white";
+						
+						if (document.getElementById("tag2").value == "comfy") {
+							tag2.setAttribute("value", "");
+						} else {
+							comfy.style.color = "red";
+							tag2.setAttribute("value", "comfy");
 						}
-						comfy.style.color= "blue";
-						tag2.setAttribute("value","comfy");					
 					};
 					
 					bright.style.cursor = 'pointer';
-					bright.onclick = function(){
-						if(document.getElementById("tag2").value == "comfy" || document.getElementById("tag2").value == "dark"){						 
-							comfy.style.color= "white";
-							dark.style.color= "white";
+					bright.onclick = function() {
+						bright.style.color = "white";
+						comfy.style.color = "white";
+						dark.style.color = "white";
+						
+						if (document.getElementById("tag2").value == "bright") {
+							tag2.setAttribute("value", "");
+						} else {
+							bright.style.color = "red";
+							tag2.setAttribute("value", "bright");
 						}
-						bright.style.color= "blue";
-						tag2.setAttribute("value","bright");
 					};
 					
+					// set/unset tag3
 					crowded.style.cursor = 'pointer';
-					crowded.onclick = function(){
-						if(document.getElementById("tag3").value == "peaceful"){						 
-							peaceful.style.color= "white";
+					crowded.onclick = function() {
+						crowded.style.color = "white";
+						peaceful.style.color = "white";
+						
+						if (document.getElementById("tag3").value == "crowded") {
+							tag3.setAttribute("value", "");
+						} else {
+							crowded.style.color = "blue";
+							tag3.setAttribute("value", "crowded");
 						}
-						crowded.style.color= "green";
-						tag3.setAttribute("value","crowded");						
 					};
 					
 					peaceful.style.cursor = 'pointer';
-					peaceful.onclick = function(){
-						if(document.getElementById("tag3").value == "crowded"){						 
-							crowded.style.color= "white";
+					peaceful.onclick = function() {
+						crowded.style.color = "white";
+						peaceful.style.color = "white";
+						
+						if (document.getElementById("tag3").value == "peaceful") {
+							tag3.setAttribute("value", "");
+						} else {
+							peaceful.style.color = "blue";
+							tag3.setAttribute("value", "peaceful");
 						}
-						peaceful.style.color= "green";
-						tag3.setAttribute("value","peaceful");						
-					};
-
-					friend1.style.cursor = 'pointer';
-					friend1.onclick = function(){
-						if(document.getElementById("tag4").value == "friend2" || document.getElementById("tag4").value == "friend3" ){						 
-							friend2.style.color= "white";
-						}
-						friend1.style.color= "blue";
-						tag4.setAttribute("value","friend1");
-					};
-					
-					friend2.style.cursor = 'pointer';
-					friend2.onclick = function(){
-						if(document.getElementById("tag4").value == "friend1" || document.getElementById("tag4").value == "friend2" ){						 
-							friend1.style.color= "white";
-						}
-						friend2.style.color= "blue";
-						tag4.setAttribute("value","friend2");
-					};
-					
-					friend3.style.cursor = 'pointer';
-					friend3.onclick = function(){
-						if(document.getElementById("tag4").value == "friend1" || document.getElementById("tag4").value == "friend2" ){						 
-							friend1.style.color= "white";
-						}
-						friend3.style.color= "blue";
-						tag4.setAttribute("value","friend3");
 					};
 				</script>
 			</div>
