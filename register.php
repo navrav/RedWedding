@@ -12,8 +12,8 @@ include_once("servercon.php");
 include_once("PasswordHash.php");
 
 
-$fname = mysqli_real_escape_string($dbconn, $_POST["fname"]);
-$lname = mysqli_real_escape_string($dbconn, $_POST["lname"]);
+$fname = strip_tags($_POST["fname"]);
+$lname = strip_tags($_POST["lname"]);
 $pass = create_hash(mysqli_real_escape_string($dbconn, $_POST["pass"]));
 $email = mysqli_real_escape_string($dbconn, $_POST["email"]);
 $gender = $_POST["Gender"];
