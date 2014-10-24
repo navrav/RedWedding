@@ -29,18 +29,30 @@
 <script src="js/jquery.mobile-1.4.2.js"></script>
 
 <script>
-function setOptions(feed) {
+function setOptions(cat){
 		
-			console.log(feed);
+			console.log(cat);
 
-			if (feed == "1") {
-				document.getElementById('feed').style.display= 'block' ;
-				document.getElementById('events').style.display= 'none' ;
-			}
-			
-			if (feed == "2") {
-				document.getElementById('feed').style.display= 'none' ;
-				document.getElementById('events').style.display= 'block' ;
+			if (cat == "1") {
+				document.getElementById('tempRooms').style.display= 'block' ;
+				document.getElementById('usageRooms').style.display= 'none' ;
+				document.getElementById('lightingRooms').style.display= 'none' ;
+				document.getElementById('noiseRooms').style.display= 'none' ;
+			}else if (cat == "2") {
+				document.getElementById('tempRooms').style.display= 'none' ;
+				document.getElementById('usageRooms').style.display= 'block' ;
+				document.getElementById('lightingRooms').style.display= 'none' ;
+				document.getElementById('noiseRooms').style.display= 'none' ;
+			}else if (cat == "3"){
+			    document.getElementById('tempRooms').style.display= 'none' ;
+				document.getElementById('usageRooms').style.display= 'none' ;
+				document.getElementById('lightingRooms').style.display= 'block' ;
+				document.getElementById('noiseRooms').style.display= 'none' ;
+			}else if (cat == "4"){
+			    document.getElementById('tempRooms').style.display= 'none' ;
+				document.getElementById('usageRooms').style.display= 'none' ;
+				document.getElementById('lightingRooms').style.display= 'none' ;
+				document.getElementById('noiseRooms').style.display= 'block' ;
 			}
 }
 </script>
@@ -66,7 +78,7 @@ function setOptions(feed) {
   <!-- the feed, i dont know, working on it. adee -->
    <section data-role="main" class="ui-content" style="padding-bottom:0px;">
 		<font color="black">Select a category to view trouble rooms:</font>
-		<select name="cat" onchange="setOptions(this.options[this.selectedIndex].value);">
+		<select name="feed" onchange="setOptions(this.options[this.selectedIndex].value);">
 			<option value="1">Temperature</option>
 			<option value="2">Usage Level</option>
 			<option value="3">Lighting</option>
@@ -75,6 +87,28 @@ function setOptions(feed) {
 		</select>
 		
 		<div id="tempRooms">
+		<table style="width:90%" align="center" class="cssAdminTab">
+        <tr>
+        <td>Room</td>
+        <td>Recent #Bad Feedback</td> 
+        <td>Rating</td>
+        </tr>
+		<?php 
+		$result = mysqli_query($dbconn, "SELECT * FROM `RoomTrends` WHERE `numberCheckins` > 0 ORDER BY `room`");
+		while ($row = mysqli_fetch_array($result)){
+		echo("<script>console.log('gets here ');</script>");
+		?> 
+		
+        <tr>
+        <td><?php echo $row['room'] ?> </td>
+        <td><?php echo $row['numberCheckins'] ?> </td> 
+        <td>-<?php echo $row['trendRating'] ?> </td>
+        </tr>
+        <?php } ?>
+        </table>
+        </div>
+        
+        <div id="usageRooms" style="display: none;" class="cssAdminTab">
 		<table style="width:90%" align="center">
         <tr>
         <td>Room</td>
@@ -82,7 +116,7 @@ function setOptions(feed) {
         <td>Rating</td>
         </tr>
         <tr>
-        <td>315</td>
+        <td>201</td>
         <td>2</td> 
         <td>-4.1</td>
         </tr>
@@ -94,7 +128,7 @@ function setOptions(feed) {
         </table>
         </div>
         
-        <div id="usageRooms" style="display: none;">
+        <div id="lightingRooms" style="display: none;" class="cssAdminTab">
 		<table style="width:90%" align="center">
         <tr>
         <td>Room</td>
@@ -102,7 +136,7 @@ function setOptions(feed) {
         <td>Rating</td>
         </tr>
         <tr>
-        <td>315</td>
+        <td>101</td>
         <td>2</td> 
         <td>-4.1</td>
         </tr>
@@ -114,7 +148,7 @@ function setOptions(feed) {
         </table>
         </div>
         
-        <div id="ligtingRooms" style="display: none;">
+        <div id="noiseRooms" style="display: none;" class="cssAdminTab">
 		<table style="width:90%" align="center">
         <tr>
         <td>Room</td>
@@ -122,27 +156,7 @@ function setOptions(feed) {
         <td>Rating</td>
         </tr>
         <tr>
-        <td>315</td>
-        <td>2</td> 
-        <td>-4.1</td>
-        </tr>
-        <tr>
-        <td>420</td>
-        <td>1</td> 
-        <td>-2.2</td>
-        </tr>
-        </table>
-        </div>
-        
-        <div id="noiseRooms" style="display: none;">
-		<table style="width:90%" align="center">
-        <tr>
-        <td>Room</td>
-        <td>Recent #Bad Feedback</td> 
-        <td>Rating</td>
-        </tr>
-        <tr>
-        <td>315</td>
+        <td>601</td>
         <td>2</td> 
         <td>-4.1</td>
         </tr>
