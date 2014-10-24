@@ -180,7 +180,7 @@
 						<div style ="float:left;">
 							<h2>Are you with a friend? (Optional)</h2>
 							
-							<a href="#" id ="friendButton" data-toggle="popover" data-trigger="focus" role="button">
+							<a href="#" id ="friendButton" data-toggle="popover" data-trigger="focus" role="button" tabindex="0">
 								<img id="friendButtonImage" src="images/AddFriends.png" alt="addFriends" height="30" style="margin-left:15px; margin-top: 3px;"></img>
 							</a>
 							
