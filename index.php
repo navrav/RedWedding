@@ -95,7 +95,7 @@
 	var log_out = "<?=isset($_GET['log_out']) ? $_GET['log_out'] : '0'?>";
 			
 	if (log_out == 1) {
-		document.getElementById('status').innerHTML = 'Logout successful.';
+		document.getElementById('status').innerHTML = 'Logout successfully';
 	}
 
 	var log_failed = "<?=isset($_GET['logfailed']) ? $_GET['logfailed'] : '0'?>";
