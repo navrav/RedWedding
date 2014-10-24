@@ -155,16 +155,24 @@
 					<div id="hash-tag">
 						<h2>How are you feeling? (Click tags to select/deselect.)</h2>
 						<h2>Temperature</h2>
-						<span id="hot" class="hashtag">#Hot</span>
-						<span id="warm" class="hashtag">#Warm</span>
-						<span id="cold" class="hashtag">#Cold</span>
+						<span id="hot" class="hashtag">#hot</span>
+						<span id="warm" class="hashtag">#warm</span>
+						<span id="cold" class="hashtag">#cold</span>
 						<h2>Brightness</h2>
-						<span id="dark" class="hashtag">#Dark</span>
-						<span id="comfy" class="hashtag">#Comfortable</span>
-						<span id="bright" class="hashtag">#Bright</span>
+						<span id="dark" class="hashtag">#dark</span>
+						<span id="comfy" class="hashtag">#comfortable</span>
+						<span id="bright" class="hashtag">#bright</span>
 						<h2>Crowd</h2>
-						<span id="crowded" class="hashtag">#Crowded</span>
-						<span id="peaceful" class="hashtag">#Peaceful</span>
+						<span id="crowded" class="hashtag">#crowded</span>
+						<span id="peaceful" class="hashtag">#peaceful</span>
+						<h2>Noise</h2>
+						<span id="noisy" class="hashtag">#noisy</span>
+						<span id="fine" class="hashtag">#fine</span>
+						<span id="quiet" class="hashtag">#quiet</span>
+						<h2>Humidity</h2>
+						<span id="humid" class="hashtag">#humid</span>
+						<span id="normal" class="hashtag">#normal</span>
+						<span id="dry" class="hashtag">#dry</span>
 					</div>
 				
 					<!-- comment and friends -->
@@ -181,8 +189,9 @@
 							<h2>Are you with a friend? (Optional)</h2>
 							
 							<a href="#" id ="friendButton" data-toggle="popover" data-trigger="focus" role="button" tabindex="0">
-								<img id="friendButtonImage" src="images/AddFriends.png" alt="addFriends" height="30" style="margin-left:15px; margin-top: 3px;"></img>
-							</a>
+								<img id="friendButtonImage" src="images/AddFriends.png" alt="addFriends" height="30"></img>
+							</a><br>
+							<span id="friendStatus">I am with: no one</span>
 							
 							<div id="popover_content_wrapper" style="display: none">
 								<!-- Friends will be generated here. -->
@@ -197,6 +206,8 @@
 						<input type="hidden" name="tag1" id="tag1" value="" />
 						<input type="hidden" name="tag2" id="tag2" value="" />
 						<input type="hidden" name="tag3" id="tag3" value="" />
+						<input type="hidden" name="tag4" id="tag4" value="" />
+						<input type="hidden" name="tag5" id="tag5" value="" />
 						<input type="hidden" name="friend" id="friend" value="" />
 						
 						<!-- submit button -->
@@ -227,12 +238,20 @@
 					}
 				</script>
 				
-				<!-- script to save friend choice -->
+				<!-- script to save friend choice and update friendStatus -->
 				<script>
 					var friend = document.getElementById("friend");
+					var friendStatus = document.getElementById("friendStatus");
 					
 					function saveFriend(friendSpanID) {
+						var selectedFriend = document.getElementById(friendSpanID);
+					
 						friend.setAttribute("value", friendSpanID);
+						if (friendSpanID == "friend00") {
+							$("#friendStatus").text("I am with: no one");
+						} else {
+							$("#friendStatus").text("I am with: " + selectedFriend.innerHTML);
+						}
 					}
 				</script>
 				
@@ -247,9 +266,17 @@
 					var comfy = document.getElementById("comfy");
 					var crowded = document.getElementById("crowded");
 					var peaceful = document.getElementById("peaceful");
+					var noisy = document.getElementById("noisy");
+					var fine = document.getElementById("fine");
+					var quiet = document.getElementById("quiet");
+					var humid = document.getElementById("humid");
+					var normal = document.getElementById("normal");
+					var dry = document.getElementById("dry");
 					var tag1 = document.getElementById("tag1");
 					var tag2 = document.getElementById("tag2");
 					var tag3 = document.getElementById("tag3");
+					var tag4 = document.getElementById("tag4");
+					var tag5 = document.getElementById("tag5");
 					
 					// set/unset tag1
 					hot.style.cursor = 'pointer'; // set cursor shape (to indicate clickable object)
@@ -263,7 +290,7 @@
 						if (document.getElementById("tag1").value == "hot") {	// if tag1 is already "hot"
 							tag1.setAttribute("value", "");							// clear tag1 value
 						} else {												// otherwise
-							hot.style.color = "green";								// set hot button
+							hot.style.color = "orange";								// set hot button
 							tag1.setAttribute("value", "hot");						// set tag1 to "hot"
 						}
 					};
@@ -277,7 +304,7 @@
 						if (document.getElementById("tag1").value == "warm") {
 							tag1.setAttribute("value", "");
 						} else {
-							warm.style.color = "green";
+							warm.style.color = "orange";
 							tag1.setAttribute("value", "warm");
 						}
 					};
@@ -291,7 +318,7 @@
 						if (document.getElementById("tag1").value == "cold") {
 							tag1.setAttribute("value", "");
 						} else {
-							cold.style.color = "green";
+							cold.style.color = "orange";
 							tag1.setAttribute("value", "cold");
 						}
 					};
@@ -306,7 +333,7 @@
 						if (document.getElementById("tag2").value == "dark") {
 							tag2.setAttribute("value", "");
 						} else {
-							dark.style.color = "red";
+							dark.style.color = "yellow";
 							tag2.setAttribute("value", "dark");
 						}
 					};
@@ -320,7 +347,7 @@
 						if (document.getElementById("tag2").value == "comfy") {
 							tag2.setAttribute("value", "");
 						} else {
-							comfy.style.color = "red";
+							comfy.style.color = "yellow";
 							tag2.setAttribute("value", "comfy");
 						}
 					};
@@ -334,7 +361,7 @@
 						if (document.getElementById("tag2").value == "bright") {
 							tag2.setAttribute("value", "");
 						} else {
-							bright.style.color = "red";
+							bright.style.color = "yellow";
 							tag2.setAttribute("value", "bright");
 						}
 					};
@@ -348,7 +375,7 @@
 						if (document.getElementById("tag3").value == "crowded") {
 							tag3.setAttribute("value", "");
 						} else {
-							crowded.style.color = "blue";
+							crowded.style.color = "green";
 							tag3.setAttribute("value", "crowded");
 						}
 					};
@@ -361,8 +388,94 @@
 						if (document.getElementById("tag3").value == "peaceful") {
 							tag3.setAttribute("value", "");
 						} else {
-							peaceful.style.color = "blue";
+							peaceful.style.color = "green";
 							tag3.setAttribute("value", "peaceful");
+						}
+					};
+					
+					// set/unset tag4
+					noisy.style.cursor = 'pointer';
+					noisy.onclick = function() {
+						noisy.style.color = "white";
+						fine.style.color = "white";
+						quiet.style.color = "white";
+						
+						if (document.getElementById("tag4").value == "noisy") {
+							tag4.setAttribute("value", "");
+						} else {
+							noisy.style.color = "red";
+							tag4.setAttribute("value", "noisy");
+						}
+					};
+					
+					fine.style.cursor = 'pointer';
+					fine.onclick = function() {
+						noisy.style.color = "white";
+						fine.style.color = "white";
+						quiet.style.color = "white";
+						
+						if (document.getElementById("tag4").value == "fine") {
+							tag4.setAttribute("value", "");
+						} else {
+							fine.style.color = "red";
+							tag4.setAttribute("value", "fine");
+						}
+					};
+					
+					quiet.style.cursor = 'pointer';
+					quiet.onclick = function() {
+						noisy.style.color = "white";
+						fine.style.color = "white";
+						quiet.style.color = "white";
+						
+						if (document.getElementById("tag4").value == "quiet") {
+							tag4.setAttribute("value", "");
+						} else {
+							quiet.style.color = "red";
+							tag4.setAttribute("value", "quiet");
+						}
+					};
+					
+					// set/unset tag5
+					humid.style.cursor = 'pointer';
+					humid.onclick = function() {
+						humid.style.color = "white";
+						normal.style.color = "white";
+						dry.style.color = "white";
+						
+						if (document.getElementById("tag5").value == "humid") {
+							tag5.setAttribute("value", "");
+						} else {
+							humid.style.color = "blue";
+							tag5.setAttribute("value", "humid");
+						}
+					};
+					
+					normal.style.cursor = 'pointer';
+					normal.onclick = function() {
+						humid.style.color = "white";
+						normal.style.color = "white";
+						dry.style.color = "white";
+						
+						if (document.getElementById("tag5").value == "normal") {
+							tag5.setAttribute("value", "");
+						} else {
+							normal.style.color = "blue";
+							tag5.setAttribute("value", "normal");
+						}
+					};
+					
+					dry.style.cursor = 'pointer';
+					dry.onclick = function() {
+						humid.style.color = "white";
+						normal.style.color = "white";
+						dry.style.color = "white";
+						
+						if (document.getElementById("tag5").value == "dry") {
+							tag5.setAttribute("value", "");
+						} else {
+							dry.style.color = "blue";
+							tag5.setAttribute("value", "dry");
 						}
 					};
 				</script>

@@ -18,9 +18,11 @@ if (!isset($_SESSION['username']))
 
 $user = $_SESSION['username'];
 $room = $_POST["room"];
-$tag1 = $_POST["tag1"];
-$tag2 = $_POST["tag2"];
-$tag3 = $_POST["tag3"];
+$tag1 = $_POST["tag1"]; // temperature
+$tag2 = $_POST["tag2"]; // lighting
+$tag3 = $_POST["tag3"]; // crowd
+$tag4 = $_POST["tag4"]; // noise
+$tag5 = $_POST["tag5"]; // humidity
 $friend = substr($_POST["friend"], 6); // so as to remove "friend" from "friend##"
 $comment = strip_tags($_POST["comment"]);
 $AEBuxQuery = mysqli_query($dbconn, "SELECT * FROM `Users` WHERE `u_ID` = $user;");
@@ -31,12 +33,10 @@ $userAEBux = $AEBuxQueryResult['AEBux'];
 $updatedAEBux = $userAEBux + 5;
 
 // update database
-$query = "INSERT INTO CheckIn (u_ID, room, tag1, tag2, tag3, withFriend, comment) VALUES (?, ?, ?, ?, ?, ?, ?);";
-
-//mysqli_query($dbconn, $query);
+$query = "INSERT INTO CheckIn (u_ID, room, tag1, tag2, tag3, tag4, tag5, withFriend, comment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 $stmt = mysqli_prepare($dbconn, $query);
-mysqli_stmt_bind_param($stmt, 'issssis', $user, $room, $tag1, $tag2, $tag3, $friend, $comment);
+mysqli_stmt_bind_param($stmt, 'issssssis', $user, $room, $tag1, $tag2, $tag3, $tag4, $tag5, $friend, $comment);
 mysqli_stmt_execute($stmt);
 mysqli_stmt_close($stmt);
 
