@@ -12,11 +12,7 @@ $purple = #883c96;
 	width:100%;
 	border-radius: 16px;
 }
-.btn_fb{
-	width:100%;
-	border-radius: 22px;
-	margin-top:25px;
-}
+
 .btn_reg{
 	width:100%;
 	border-radius:16px;
@@ -124,9 +120,6 @@ $purple = #883c96;
 		
 	}
 	
-#fb_login{
-	padding-top: 30px;
-}
 
 #header_pink, #header_red, #header_orange, #header_purple, #header_green, #header_blue, #header_yellow{
 	border: none;
