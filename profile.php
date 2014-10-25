@@ -15,7 +15,7 @@
   $currentUser = mysqli_fetch_array($resultNew, MYSQLI_ASSOC);
   $hatquery = mysqli_query($dbconn, "SELECT h_ID FROM `Hat`, `UserSecrets` WHERE `Hat`.`s_ID` = `UserSecrets`.`s_ID` AND `UserSecrets`.`u_ID` = {$user}");
   $allhats = mysqli_query($dbconn, "SELECT h_ID FROM `Hat`");
-  $des = mysqli_query($dbconn, "SELECT Description FROM `Secrets`, `UserSecrets` WHERE `Secrets`.`s_ID` = `UserSecrets`.`s_ID` AND `UserSecrets`.`u_ID` = {$user}");
+  $des = mysqli_query($dbconn, "SELECT Description, name FROM `Secrets`, `UserSecrets` WHERE `Secrets`.`s_ID` = `UserSecrets`.`s_ID` AND `UserSecrets`.`u_ID` = {$user} AND `Secrets`.`s_ID` NOT IN (SELECT `Hat`.`s_ID` FROM Hat)");
 ?>
 <html>
 	<head>
@@ -101,12 +101,16 @@
         <div class="profile_content_body">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-5">
+              <div class="col-md-8 col-md-offset-5">
+					<h3>Your Secrets</h3>
+					
                        
-					    <div class="">
+					    
                         	<?php 
 					   while($desList = mysqli_fetch_array($des, MYSQLI_ASSOC)){
-					   echo '<h6>'.$desList['Description'].'</h6>';
+					   echo '<h4>'.$desList['name'].'</h4>';
+					   echo '<h5>'.$desList['Description'].'</h5>';
+					   echo '<br />';
 					   
 					   
 					   }
