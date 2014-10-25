@@ -44,7 +44,7 @@ if (mysqli_stmt_fetch($stmt)){
 	mysqli_stmt_bind_param($insertstmt, 'ssssss', $pass, $fname, $lname, $email, $gender, $pic);
 	mysqli_stmt_execute($insertstmt);
 	mysqli_stmt_close($insertstmt);
-	header('Location: /index.php');
+	header('Location: /index.php?signsuccess=1');
 }
 
 

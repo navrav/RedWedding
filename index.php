@@ -95,13 +95,21 @@
 	var log_out = "<?=isset($_GET['log_out']) ? $_GET['log_out'] : '0'?>";
 			
 	if (log_out == 1) {
-		document.getElementById('status').innerHTML = 'Logout successfully';
+		document.getElementById('status').innerHTML = 'Logout successful.';
+		document.getElementById('status').style.color="white"
 	}
 
 	var log_failed = "<?=isset($_GET['logfailed']) ? $_GET['logfailed'] : '0'?>";
 
 	if (log_failed == 1) {
 		document.getElementById('status').innerHTML = 'Wrong username or password';
+	}
+
+	var sign_success = "<?=isset($_GET['signsuccess']) ? $_GET['signsuccess'] : '0'?>";
+
+	if (sign_success == 1) {
+		document.getElementById('status').innerHTML = 'Successfully registered! Please log in with your new details';
+		document.getElementById('status').style.color="white";
 	}
 
 </script>
