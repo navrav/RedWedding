@@ -28,7 +28,6 @@
 			var atpos = email.indexOf("@");
 		    var dotpos = email.lastIndexOf(".");
 			var pass = document.getElementById("pass").value;
-			var form = document.getElementById("login");
 
 			
 		    if (atpos< 1 || dotpos<atpos+2 || dotpos+2>=user.length) {
@@ -77,7 +76,8 @@
 							
 							<!-- login button -->
 							<div class="form-group col-md-6 col-md-offset-3"> 
-								<button type="button" class="btn btn-success btn_login" id="login" onClick="check();">Login</button>
+								<button type="button" class="btn btn-success btn_login" onClick="check();">Login</button>
+								
 							</div>
 							
 							<!-- sign up button -->
