@@ -101,8 +101,8 @@ if (sendmail($from,$to, $subject, $msg)){
 /////////////////////////////////////////////////////////////////////////////////
 
 $to = 'aebspace@gmail.com';
-$from = $_POST["email"];
-$name = $_POST["FirstName"] . " " . $_POST["LastName"];
+$from = strip_tags($_POST["email"]);
+$name = strip_tags($_POST["FirstName"]) . " " . strip_tags($_POST["LastName"]);
 $subject = 'AEB Maintenance Issue';
 $issue = strip_tags($_POST["issue"]);
 //echo("<script>console.log('Sending to: '".$to.");</script>");

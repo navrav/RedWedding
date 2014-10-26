@@ -12,7 +12,7 @@
 	$user = $_SESSION["username"];
 	echo("<script>console.log('uID:".$user."');</script>"); // Nikita added print check here
 
-  $resultNew = mysqli_query($dbconn, "SELECT `timestamp`, `room`, `tag1`, `tag2`, `tag3`, `withFriend`, `comment`, `f_name`, `l_name`, `pic`, `rank` FROM CheckIn, Users WHERE CheckIn.u_ID = Users.u_ID AND CheckIn.u_ID IN (SELECT ID_2 FROM Friends WHERE ID_1 ='{$user}' OR CheckIn.u_ID = {$user}) ORDER BY `CheckIn`.`timestamp` DESC");
+  $resultNew = mysqli_query($dbconn, "SELECT `timestamp`, `room`, `tag1`, `tag2`, `tag3`, `tag4`, `tag5`, `withFriend`, `comment`, `f_name`, `l_name`, `pic`, `rank` FROM CheckIn, Users WHERE CheckIn.u_ID = Users.u_ID AND CheckIn.u_ID IN (SELECT ID_2 FROM Friends WHERE ID_1 ='{$user}' OR CheckIn.u_ID = {$user}) ORDER BY `CheckIn`.`timestamp` DESC");
 ?>
 
 <html>
@@ -66,8 +66,10 @@ function setOptions(feed) {
     
   
   <!-- the feed, i dont know, working on it. adee -->
-   <section data-role="main" class="ui-content" style="padding-bottom:0px;">
+   <section data-role="main" class="ui-content" style="padding-bottom:0px;" width="50%">
+   News Feed
 		<select name="rno" onchange="setOptions(this.options[this.selectedIndex].value);">
+		News Feed
 			<option value="1">News Feed</option>
 			<!--<option value="2">Events</option>-->
 		</select>
@@ -88,7 +90,7 @@ function setOptions(feed) {
             while($checkList = mysqli_fetch_array($resultNew, MYSQLI_ASSOC)) {
             $userid = $checkList['withFriend'];
             $friendnameq = mysqli_query($dbconn, "SELECT `f_name`, `l_name` FROM Users WHERE `u_ID` = '{$userid}'");
-             $friendnamea = mysqli_fetch_array($dbconn, "SELECT `f_name`, `l_name` FROM Users WHERE `u_ID` = '{$userid}'");
+             $friendnamea = mysqli_fetch_array($friendnameq, MYSQLI_ASSOC);
             //$datetimenew = date_create('2001-01-01');
            $datetimenew = date_create($checkList['timestamp']);
            
@@ -144,7 +146,9 @@ function setOptions(feed) {
               
               
               
-              
+              if ($ntags == 0){
+              ?> was <?php
+              }
               
               
               ?>
