@@ -9,7 +9,7 @@
 <head>
 	
 	<title>AEB Space - Home</title>
-
+	<link rel="icon" href="/icons/favicon.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1" >
 	
 	<!-- Import libraries -->

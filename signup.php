@@ -5,8 +5,9 @@ session_start();
 <html class="ui-mobile">
 <head>
 	<title>AEB Space - Sign Up </title>
+	<link rel="icon" href="/icons/favicon.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1" >
-	
+		
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/main.css" type="text/css" />
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" />

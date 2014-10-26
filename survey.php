@@ -11,6 +11,7 @@
 <html>
 	<head>
 		<title>AEB Space - Survey</title>
+		<link rel="icon" href="/icons/favicon.ico">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css" />
