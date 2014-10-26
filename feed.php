@@ -86,6 +86,9 @@ function setOptions(feed) {
             
                     
             while($checkList = mysqli_fetch_array($resultNew, MYSQLI_ASSOC)) {
+            $userid = $checkList['withFriend'];
+            $friendnameq = mysqli_query($dbconn, "SELECT `f_name`, `l_name` FROM Users WHERE `u_ID` = '{$userid}'");
+             $friendnamea = mysqli_fetch_array($dbconn, "SELECT `f_name`, `l_name` FROM Users WHERE `u_ID` = '{$userid}'");
             //$datetimenew = date_create('2001-01-01');
            $datetimenew = date_create($checkList['timestamp']);
            
@@ -147,7 +150,7 @@ function setOptions(feed) {
               ?>
                at <?php echo($checkList['room']);
               if ($checkList['withFriend']){ 
-               ?> with <?php echo($checkList['withFriend']);
+               ?> with <?php echo($friendnamea['f_name'] . " " . $friendnamea['l_name']);
               }
               ?> <br>
 			  <?php // edit by Yong - print comment only if it exists.

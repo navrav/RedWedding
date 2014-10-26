@@ -135,7 +135,7 @@ $("#addF").click(
 	
     <ul data-role="listview" data-inset="true">
 	  <li style="background-color:#883c96; border:none;">
-	  		<div style="text-align:center;">Search Results: IS THIS WHO YOU WERE LOOKING FOR?</div>
+	  		<div style="text-align:center;">Search Results:</div>
 		  <div  style="position:absolute; right:15px; top:0px;"><button type="button" class="btn btn-default btn-sm" onClick="Add();">+</button></div>
 	  </li> 
 	  
@@ -209,7 +209,7 @@ $("#addF").click(
             console.log('clicked');
       }
   });
-  window.location="http://deco3801-01.uqcloud.net/friends100.php";
+  window.location="http://deco3801-01.uqcloud.net/friends.php";
   }
 
     
@@ -217,8 +217,26 @@ $("#addF").click(
   </div>
 
 	<div id="layover" style="display:none; position:fixed; top:0%; left:0%; width:100%; height:100%; background-color:black; opacity: .50;" > </div>
+		
+	<div id="addpop" style="display:none; position:fixed; left:20%; top:40%; "> 
+		<div class="modal-content" style="background-color:#262626; width:250px">
+		
+				<div class="modal-body" style="padding: 15px; padding-bottom: 5px;">
+			<!--	<form id="searchname" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">-->
+			<form id="searchname" method="POST" action="friendsadd.php">
+									<p> Enter Friends Name to Add:</p>
+					<button type="button" style="position: absolute; top:0px; right: 7px; width: 20px; background-color: transparent; border: none; box-shadow: none; text-align: center; padding: 5px;" onClick="Close();">&times;</button>
+					<p> Name: <input type="text" id="namesearch" name="namesearch2"></p>
 					
-					
+					<input type="submit" value="Search">
+					<!--<button type="button" style="font-size: 13px; padding: 5px; width:100px ; margin-left: 105px;" id = "search">Search</button>-->
+				</form>	
+				</div>
+			
+			</div>
+	</div>			
+	<!-- 
+				
 	<div id="confirmpop" style="display:none; position:fixed; left:50%; top:50%;margin-left:-125px;margin-top:-74.5px; "> 
 		<div class="modal-content" style="background-color:#262626; width:250px">
 				<div class="modal-body"  style="padding: 15px; padding-bottom: 5px;">
@@ -231,9 +249,11 @@ $("#addF").click(
 				</div>
 			</div>
 	</div>
+ -->
 				 
 									
-	<div id="addpop" style="display:none; position:fixed; left:20%; top:40%; "> 
+	<!-- 
+<div id="addpop" style="display:none; position:fixed; left:20%; top:40%; "> 
 		<div class="modal-content" style="background-color:#262626; width:250px">
 		
 				<div class="modal-body" style="padding: 15px; padding-bottom: 5px;">
@@ -247,8 +267,10 @@ $("#addF").click(
 			
 			</div>
 	</div>
+ -->
 						
-	<div id="addsearch" style="display:none; position:fixed; left:20%; top:40%; background-color:#262626;"> 
+	<!-- 
+<div id="addsearch" style="display:none; position:fixed; left:20%; top:40%; background-color:#262626;"> 
 		<div class="modal-content" style="background-color:#262626; width:250px">
 				<div class="modal-header">
 					<p> Is this who you where looking for?</p>
@@ -270,6 +292,7 @@ $("#addF").click(
 				</div>
 			</div>
 	</div>
+ -->
 			
   
   
