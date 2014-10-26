@@ -112,7 +112,8 @@ if (isset($_POST['buysecret'])){
 	   $userBUX = $BUXqueryarray['AEBux'];
 	   $newBUX = $userBUX - $cost;
 	   mysqli_query($dbconn, "UPDATE `Users` SET `AEBux`=".$newBUX." WHERE `u_ID`=".$user."");
-	   echo '<script type="text/javascript"> redirect(); </script>';
+	   //echo '<script type="text/javascript"> redirect(); </script>';
+	   header('Location: http://deco3801-01.uqcloud.net/profile.php');
 	   }
 
 	

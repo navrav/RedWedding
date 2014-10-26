@@ -61,9 +61,9 @@
 			</a>
 		</li>
 		<li>
-			<a href="result.php" data-ajax="false" style="background-color:#3d8cea;">
+			<a href="trending.php" data-ajax="false" style="background-color:#3d8cea;">
 			<span><img src="icons/map1.png" height="20px" width="20px"/></span>
-			Map
+			Trending
 			</a>
 		</li>
 		<li>

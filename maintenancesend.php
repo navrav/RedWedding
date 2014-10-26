@@ -104,7 +104,7 @@ $to = 'aebspace@gmail.com';
 $from = $_POST["email"];
 $name = $_POST["FirstName"] . " " . $_POST["LastName"];
 $subject = 'AEB Maintenance Issue';
-$issue = $_POST["issue"];
+$issue = strip_tags($_POST["issue"]);
 //echo("<script>console.log('Sending to: '".$to.");</script>");
 //echo("<script>console.log('Sent from: '".$from.");</script>");
 //echo("<script>console.log('Subject: '".$subject.");</script>");
@@ -182,17 +182,20 @@ echo 'Message was sent.';
 }  
 }
 
+?>
 
 sendMail($to, $from, $subject, $issue, $name);
 
-header( 'Location: maintenance.php' ) ;
+<script language="javascript" type="text/javascript">        
+ alert('Thank you for your feedback!');         window.location = 'feed.php';     </script>
 
 
 
 
 
+<?php
 
-
+header( 'Location: feed.php' ) ;
 
 
 ?>
