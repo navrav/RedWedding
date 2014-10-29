@@ -1,10 +1,10 @@
 <?php
 
-/****************************************************************
+/*************************************************************
  *	CHECKIN_SUBMIT.PHP - Sends checkIn form input to database
  *
  *		Takes checkIn form inputs
- *			- room, tags, comment, friends (not yet implemented)
+ *			- room, tags, comment, friends
  *		Uses an insert query to create checkIn record in db.
  */
 
@@ -23,8 +23,8 @@ $tag2 = $_POST["tag2"]; // lighting
 $tag3 = $_POST["tag3"]; // crowd
 $tag4 = $_POST["tag4"]; // noise
 $tag5 = $_POST["tag5"]; // humidity
-$friend = substr($_POST["friend"], 6); // so as to remove "friend" from "friend##"
 $comment = strip_tags($_POST["comment"]);
+$friend = substr($_POST["friend"], 6); // so as to remove "friend" from "friend##"
 $AEBuxQuery = mysqli_query($dbconn, "SELECT * FROM `Users` WHERE `u_ID` = $user;");
 $AEBuxQueryResult = mysqli_fetch_array($AEBuxQuery);
 $userAEBux = $AEBuxQueryResult['AEBux'];

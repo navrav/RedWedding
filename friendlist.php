@@ -1,6 +1,6 @@
 <?php
 
-/******************************************
+/**********************************************
  *	FRIENDLIST.PHP - Generate friend list code
  *
  *		Retrieves friends from database;

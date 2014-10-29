@@ -27,19 +27,20 @@
    		<link rel="stylesheet" href="css/ion.rangeSlider.css" />
     	<link rel="stylesheet" href="css/ion.rangeSlider.skinNice.css" />
 	
+		<!-- slider settings -->
 		<script>
-			// Slider settings
 			$(document).ready(function() {
 				$("#slider1").ionRangeSlider({
+					// slider attributes
 					type: 'single',
 					min: 1,
 					max: 9,
 					step: 1,
 					prettify: false,
 					hideMinMax: true,
-					//values: ["cold", "cool", "mild", "warm", "hot"],
 					hasGrid: true,
 					
+					// save slider value
 					onChange: function() {
 						$("#tag1").val($("#slider1").val());
 					}
@@ -54,7 +55,6 @@
 					step: 1,
 					prettify: false,
 					hideMinMax: true,
-					//values: ["dry", "normal", "humid"],
 					hasGrid: true,
 					
 					onChange: function() {
@@ -71,7 +71,6 @@
 					step: 1,
 					prettify: false,
 					hideMinMax: true,
-					//values: ["quiet", "fine", "noisy"],
 					hasGrid: true,
 					
 					onChange: function() {
@@ -88,7 +87,6 @@
 					step: 1,
 					prettify: false,
 					hideMinMax: true,
-					//values: ["dark", "comfortable", "bright"],
 					hasGrid: true,
 					
 					onChange: function() {
@@ -105,7 +103,6 @@
 					step: 1,
 					prettify: false,
 					hideMinMax: true,
-					//values: ["peaceful", "crowded"],
 					hasGrid: true,
 					
 					onChange: function() {
@@ -115,8 +112,8 @@
 			});
 		</script>
 		
+		<!-- room validation -->
 		<script>
-			// room validation
 			function check() {
 				var selectedRoom = document.getElementById("room").value;
 				var form = document.getElementById("surveyForm");
@@ -161,7 +158,7 @@
 	            </div>
 			</section>
 	    	
-	    	<div data-role="main" class="ui-content" id="survey-form">
+	    	<div data-role="main" class="ui-content" id="survey-form-section">
 				<span id="survey-title">
 					<h2>SURVEY</h2>
 				</span>
@@ -186,43 +183,48 @@
 						</select>
 					</div>
 					
-					<div id="hash-tag">
+					<!-- sliders -->
+					<div id="survey-dark">
 						<h4> Room Temperature (1 = cold, 9 = hot)</h4>
 						<input type="text" id="slider1" name="slider1" value="" />
 					</div>
 					
-					<div id="checkin_location">
+					<div id="survey-light">
 						<h4> Humidity (1 = dry, 9 = humid)</h4>
 						<input type="text" id="slider2" name="slider2" value="" />
 					</div>
 					
-					<div id="hash-tag">
+					<div id="survey-dark">
 						<h4> Noise Level (1 = quiet, 9 = noisy)</h4>
 						<input type="text" id="slider3" name="slider3" value="" />
 					</div>
 					
-					<div id="checkin_location">
+					<div id="survey-light">
 						<h4> Light Levels (1 = dark, 9 = bright)</h4>
 						<input type="text" id="slider4" name="slider4" value="" />
 					</div>
 					
-					<div id="hash-tag">
+					<div id="survey-dark">
 						<h4> Crowd (1 = peaceful, 9 = crowded)</h4>
 						<input type="text" id="slider5" name="slider5" value="" />
 					</div>
 					
-					<div id="checkin_location">
+					<!-- comments -->
+					<div id="survey-light">
 						<h4> Additional comments (Optional) </h4>
 						<textarea name="comment" id="comment" rows="1" style="height: 50px; max-height: 100px; resize: none;"></textarea>
 					</div>
 					
 					<div id="submitSection">
+						<!-- temporary storage for room and tag choices -->
 						<input type="hidden" name="room" id="room" value="" />
 						<input type="hidden" name="tag1" id="tag1" value="" />
 						<input type="hidden" name="tag2" id="tag2" value="" />
 						<input type="hidden" name="tag3" id="tag3" value="" />
 						<input type="hidden" name="tag4" id="tag4" value="" />
 						<input type="hidden" name="tag5" id="tag5" value="" />
+						
+						<!-- submit button -->
 						<span id="formStatus"></span>
 						<button type="button" name="submitButton" id="submitButton" onclick="check();">Submit</button>
 					</div>

@@ -17,11 +17,11 @@ if (!isset($_SESSION['username']))
 
 $user = $_SESSION['username'];
 $room = $_POST["room"];
-$tag1 = $_POST["tag1"];
-$tag2 = $_POST["tag2"];
-$tag3 = $_POST["tag3"];
-$tag4 = $_POST["tag4"];
-$tag5 = $_POST["tag5"];
+$tag1 = $_POST["tag1"]; // temperature
+$tag2 = $_POST["tag2"]; // humidity
+$tag3 = $_POST["tag3"]; // noise
+$tag4 = $_POST["tag4"]; // lighting
+$tag5 = $_POST["tag5"]; // crowd
 $comment = strip_tags($_POST["comment"]);
 $AEBuxQuery = mysqli_query($dbconn, "SELECT * FROM `Users` WHERE `u_ID` = $user;");
 $AEBuxQueryResult = mysqli_fetch_array($AEBuxQuery);
@@ -31,7 +31,6 @@ $userAEBux = $AEBuxQueryResult['AEBux'];
 $updatedAEBux = $userAEBux + 10;
 
 // update database
-
 $query = "INSERT INTO `Survey` (u_ID, room, temp, humid, noise, light, crowd, comment) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 
 $stmt = mysqli_prepare($dbconn, $query);

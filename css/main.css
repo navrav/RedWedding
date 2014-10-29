@@ -545,11 +545,6 @@ margin-right:1%;
 padding:0.5%;
 }
 
-#check-in{
-	text-align:center;
-	padding-top: 10px;
-}
-
 #hash-tag{
 	background-color: #1a1a1a;
 	width:100%;
@@ -581,7 +576,7 @@ padding:0.5%;
 	font-weight: 100;
 	text-shadow: none;
 }
-#checkin-form{
+#checkin-form-section {
 	font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica Neue Ultra Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Arial", sans-serif;
 	margin: 0;
 	padding: 0;
@@ -600,7 +595,7 @@ padding:0.5%;
 }
 
 /* Survey.php */
-#survey-form h2, h4 {
+#survey-form-section h2, h4 {
 	color: #ffdd66;
 }
 
@@ -650,6 +645,29 @@ padding:0.5%;
 .survey img{
 	border: 4px solid #ffcc00;
 
+}
+
+#survey-dark{
+	background-color: #1a1a1a;
+	width:100%;
+	padding: 15px;
+}
+#survey_light{
+	background-color: #1d1d1d;
+	width:100%;
+	padding: 15px;
+}
+#survey-light h2, #survey-dark h2{
+	font-size:16px;
+	font-weight: 100;
+	text-shadow: none;
+	color:#ef4f23;
+
+}
+#survey-light select option{
+	font-size:14px;
+	font-weight: 100;
+	text-shadow: none;
 }
 
 /*CSS for score.php*/

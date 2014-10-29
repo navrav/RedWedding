@@ -23,8 +23,8 @@
 		<script src="js/jquery.mobile-1.4.2.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		
+		<!-- room validation -->
 		<script>
-			// room validation
 			function check() {
 				var selectedRoom = document.getElementById("room").value;
 				var form = document.getElementById("checkInForm");
@@ -127,7 +127,7 @@
 				</div>
 			</section>
 		
-			<div data-role="main" class="ui-content" id="checkin-form">
+			<div data-role="main" class="ui-content" id="checkin-form-section">
 				<span id="check-in-title">
 					<h2>CHECK IN</h2>
 				</span>
@@ -189,9 +189,11 @@
 						<div style ="float:left;">
 							<h2>Are you with a friend? (Optional)</h2>
 							
+							<!-- button -->
 							<a href="#" id ="friendButton" data-toggle="popover" data-trigger="focus" role="button" tabindex="0">
 								<img id="friendButtonImage" src="images/AddFriends.png" alt="addFriends" height="30"></img>
 							</a><br>
+							<!-- status message -->
 							<span id="friendStatus">I am with: no one</span>
 							
 							<div id="popover_content_wrapper" style="display: none">
@@ -229,7 +231,7 @@
 					}
 				</script>
 				
-				<!-- script to save room choice -->
+				<!-- save room choice -->
 				<script>
 					var selectedRoom = document.getElementById("roomSelect");
 					var room = document.getElementById("room");
@@ -239,7 +241,7 @@
 					}
 				</script>
 				
-				<!-- script to save friend choice and update friendStatus -->
+				<!-- save friend choice and update friendStatus -->
 				<script>
 					var friend = document.getElementById("friend");
 					var friendStatus = document.getElementById("friendStatus");
@@ -256,8 +258,7 @@
 					}
 				</script>
 				
-				<!-- stores tag choices
-						and controls the tags lighting up with different colours when selected. -->
+				<!-- store tag choices; tag light-up control; tag colour -->
 				<script>
 					var hot = document.getElementById("hot");
 					var warm = document.getElementById("warm");
