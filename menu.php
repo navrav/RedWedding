@@ -8,22 +8,15 @@
 
   $user = $_SESSION["username"];
   $result = mysqli_query($dbconn, "SELECT `f_name`,`l_name`,`pic`,`isAdmin` FROM `Users` WHERE `u_ID` = {$user}");
-    /*
-		if($stat != ""){
-			if(!$result = $dbconn->query($stat)){
-					die("There was an error running the stat query [".$db->error."]");
-				}
-		
-	*/
+
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     $fname = $row["f_name"];
     $lname = $row["l_name"];
     $avatar = $row["pic"];
     $userIsAdmin = $row["isAdmin"];
-    //printf("%s (%s)\n", $row["f_name"], $row["l_name"]);
+
+
     echo("<script>console.log('isAdmin:".$userIsAdmin."');</script>"); 
-    //echo("<script>console.log('row:".$row['l_name']."');</script>"); 
-    //echo("<script>console.log('query:".$result."');</script>"); 
 ?>
 
 <section data-role="panel" id="nav" data-display="overlay"> 
@@ -109,10 +102,9 @@
 		
     </ul> 
 </section>
+
 <script>
-function logout(){
-location.href="/logout.php";
-
-}
-
+	function logout(){
+		location.href="/logout.php";
+	}
 </script>

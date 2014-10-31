@@ -1,19 +1,23 @@
 <?php
-// Previously known as "ajax_check.php"
+/***********************************************************
+ *	CHECK.PHP - Checks whether user's email and password 
+ *	match the records in database.
+ *
+ *		Takes user's details from INDEX.PHP web page
+ *			- email and password
+ *		Uses a SELECT and fetch to check a user's record  
+ * 		matches the one in database.
+ */
 
 session_start();
 include_once("servercon.php");
+//
 include_once("PasswordHash.php");
 
 
-//Use this for security -- not yet implemented
-//$hasher = new PasswordHash(8, FALSE);
-//$hash   = $hasher->HashPassword($password);
-
-
 // username and password sent from form
-$myusername= mysqli_real_escape_string($dbconn, $_POST['user']);
-$mypassword=mysqli_real_escape_string($dbconn, $_POST['pass']);
+$myusername = mysqli_real_escape_string($dbconn, $_POST['user']);
+$mypassword = mysqli_real_escape_string($dbconn, $_POST['pass']);
 
 
 $query = "SELECT `u_ID`, `pass` FROM `Users` WHERE email= ?";
