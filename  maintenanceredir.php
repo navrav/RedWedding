@@ -118,9 +118,7 @@
 		                        	<h4>MAINTENANCE CONTACT PAGE</h4>
 		                        	
 		                        	<p>
-		                        		If you have any issue regarding the maintenance of the building,
-		                        		fill out the form below and an email will be sent to the appropriate
-		                        		person.
+		                        		Thank you for submitting a maintenance request! Return to <a href="feed.php"?>feed</a>, or <a href="maintenance.php">submit another</a> report.
 		                        	</p>
 		                        	<br><br>
 		                        	<p>

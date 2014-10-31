@@ -118,29 +118,11 @@
 		                        	<h4>MAINTENANCE CONTACT PAGE</h4>
 		                        	
 		                        	<p>
-		                        		If you have any issue regarding the maintenance of the building,
-		                        		fill out the form below and an email will be sent to the appropriate
-		                        		person.
+		                        		Thank you for submitting a maintenance request! Return to <a href="feed.php"?>feed</a>, or <a href="maintenance.php">submit another</a> report.
 		                        	</p>
 		                        	<br><br>
 		                        	<p>
-		                        		<form id="maintform" method="POST" action="maintenancesend.php" name="email">
 		                        		
-		                        		
-		                        		
-		                        		
-		                        			First name: <input type="text" name="FirstName" ><br>
-											Last name: <input type="text" name="LastName" ><br>
-		                        			<label for="email">Email (for reference): </label>
-									<input type="email" class="form-control input-control" placeholder="Email" name="email" id="email">
-		                        			
-		                        			Issue: <textarea placeholder="Input a description of your issue here" name="issue" ></textarea>
-		                        			
-		                        			<br>
-		                        			<label><Input type = 'checkbox' Name ='emailmeornot' value= 'emailmeval'><font size="2">Please email me a copy of this maintenance request.</font></label>
-		                        			<input type="submit" value="Submit"> 
-		                        			
-		                        		</form>
 		                        		
 										<div id="layover" style="display:none; position:fixed; top:0%; left:0%; width:100%; height:100%; background-color:black; opacity: .50;" > </div>
 			

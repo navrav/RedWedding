@@ -11,9 +11,9 @@
 
   	$user = $_SESSION['username'];
   	//$user = '1';
-  	$namesearchin = $_POST['namesearch2'];
+  	$namesearchin = strip_tags($_POST['namesearch2']);
   	
-   	$resultNew = mysqli_query($dbconn,"SELECT u_ID, f_name, l_name, pic, rank FROM Users WHERE f_name = '{$namesearchin}'");
+   	$resultNew = mysqli_query($dbconn,"SELECT u_ID, f_name, l_name, pic, AEBux FROM Users WHERE f_name = '{$namesearchin}'");
     $currFriends = mysqli_query($dbconn, "SELECT `ID_2` FROM `Friends` WHERE `ID_1`=$user");
     $currFriendsA = mysqli_fetch_array($currFriends);
 ?>
@@ -136,7 +136,7 @@ $("#addF").click(
     <ul data-role="listview" data-inset="true">
 	  <li style="background-color:#883c96; border:none;">
 	  		<div style="text-align:center;">Search Results:</div>
-		  <div  style="position:absolute; right:15px; top:0px;"><button type="button" class="btn btn-default btn-sm" onClick="Add();">+</button></div>
+		  <div  style="position:absolute; right:15px; top:0px;"><button type="button" class="btn btn-default btn-sm"><a href="friends.php">Return to Friends</a></button></div>
 	  </li> 
 	  
 	  	
@@ -151,6 +151,9 @@ $("#addF").click(
 	
 	
 	  while($friendList = mysqli_fetch_array($resultNew, MYSQLI_ASSOC)) {
+	  if (empty($friendList)){?>
+	  <center> No results found :( </center>
+	  <?php }
 	  echo("<script>console.log('Friend ID: ".$friendList['u_ID']."');</script>");
 	  echo("<script>console.log('User ID: ".$user."');</script>");
 	  if ($user==$friendList['u_ID']){
@@ -160,39 +163,39 @@ $("#addF").click(
 	  else{
 	  
 	  ?>
-      <li data-icon="false"><a href="friend.php">
+      <li data-icon="false">
       	<h6><img src="avatars/<?php echo($friendList["pic"]);?>" width="50px" height="50px" class="img-circle" style/>
       		<?php 
       		echo $friendList['f_name'] . " " . $friendList['l_name']; 
       		?>
 		</h6>
         <p><span class="glyphicon glyphicon-tower"></span>
-         Rank: 
-         <?php echo $friendList['rank'] ?> 
-     	</p></a>
+         AEBux: 
+         <?php echo $friendList['AEBux'] ?> 
+     	</p>
         <p style="position: absolute;top: 1em;padding-top:30px;right: 0.3em;margin: 0;text-align: right;">
         <!--
         	<form id="addfriend" method="POST" action="friendsadd.php">
         	<input type="submit" value="Add">
         	</form>-->
         	<?php 
-        	if(in_array($friendList['u_ID'], $cfa)){ ?>
-        	<button type="button" disabled class="btn btn-default btn-sm" style="float:right;" id="<?php echo $friendList['u_ID'] ?>">
+        	if(in_array($friendList['u_ID'], $cfa) && $cf['ID_2']!=$user){ ?>
+        	<button type="button" class="btn btn-default btn-sm" style="float:right;" id="<?php echo $friendList['u_ID'] ?>">
 	        		 Friends
+	        
 	        </button>
-        	<?php }else{ ?>
+	        <?php 
+	                	}else{ if($namesearchin != "" && $cf['ID_2']!=$user){?>
         	<button type="button" class="btn btn-default btn-sm" style="float:right;" id = "addF" name="<?php echo $friendList['u_ID'] ?>" onClick="addFriend(<?php echo $friendList['u_ID'] ?>)">
+	        		 
 	        		 Add
 	        </button>
-	        <?php } ?>
+	        <?php }} ?>
 		</p>
-		<br>
-		<br>
       </li>
 
       <?php
-      	}
-      	}
+      	}}
       ?>
 
     </ul>

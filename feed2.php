@@ -69,6 +69,7 @@ function setOptions(feed) {
    <section data-role="main" class="ui-content" style="padding-bottom:0px;">
 		<select name="rno" onchange="setOptions(this.options[this.selectedIndex].value);">
 			<option value="1">News Feed</option>
+			<!--<option value="2">Events</option>-->
 		</select>
 		
     </section>
@@ -81,11 +82,9 @@ function setOptions(feed) {
  
  
             <?php
-            
-            date_default_timezone_set('Australia/Brisbane');
 
-           
-            $setdate = null;
+            $initialList = mysqli_fetch_array($resultNew, MYSQLI_ASSOC);
+            $setdate = date_format(date_create($checkList['timestamp']), 'l jS F Y');
             
             ?>
             <!-- <li style="background-color:#e03838; border:none;"> <?php echo($setdate);?> <span class="ui-li-count"><?php echo($setdate);?></span></li>-->
