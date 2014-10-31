@@ -1,0 +1,60 @@
+/**
+Styling for colouring of the trend rating column in the trending table
+Colours can be assigned based on administrator preference
+**/
+.vGood {
+    background-color: #0000FF;
+}
+
+.good {
+    background-color: #0099FF;
+}
+
+.okay {
+    background-color: #009999;
+}
+
+.avg {
+    background-color: #00CC00;
+}
+
+.below {
+    background-color: #FF3300;
+}
+
+.poor {
+    background-color: #FFFF00;
+}
+
+.vPoor {
+    background-color: #FF0000;
+}
+
+th:nth-child(even),
+td:nth-child(even) {
+    text-align: center;
+    color: black;
+}
+
+th:nth-child(odd),
+td:nth-child(odd) {
+    text-align: center;
+    color: black;
+}
+
+.cssAdminTab{
+color:black;
+padding: 0 0 0 0;
+border-spacing: 0;
+font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica Neue Ultra Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Arial", sans-serif;				
+}
+
+.searchbar{
+font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica Neue Ultra Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Arial", sans-serif;				
+}
+
+p.trending{
+font-size:120%;
+color: black;
+font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica Neue Ultra Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Arial", sans-serif;				
+}

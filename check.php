@@ -20,7 +20,7 @@ $myusername = mysqli_real_escape_string($dbconn, $_POST['user']);
 $mypassword = mysqli_real_escape_string($dbconn, $_POST['pass']);
 
 
-$query = "SELECT `u_ID`, `pass` FROM `Users` WHERE email= ?";
+$query = "SELECT `u_ID`, `pass`, `isAdmin` FROM `Users` WHERE email= ?";
 
 $stmt = mysqli_prepare($dbconn, $query);
 
@@ -28,12 +28,17 @@ mysqli_stmt_bind_param($stmt, 's', $myusername);
 
 mysqli_stmt_execute($stmt);
 
-mysqli_stmt_bind_result($stmt, $uID, $pass);
+mysqli_stmt_bind_result($stmt, $uID, $pass, $admin);
 
 if (mysqli_stmt_fetch($stmt)){
 	if (validate_password($mypassword, $pass)){
 		$_SESSION['username'] = $uID;
     	$_SESSION['loggedIn'] = true;
+    	if ($admin){
+    	    $_SESSION['admin'] = true;
+    	}else{
+    	    $_SESSION['admin'] = false;
+    	}
    		header('Location: /feed.php');
 	} else {
 		header('Location: /index.php?logfailed=1');

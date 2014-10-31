@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <?php
+
   session_start();
   include_once("servercon.php");
 
@@ -9,13 +10,34 @@
       header("location:index.php");
   }
 
-	$user = $_SESSION["username"];
-	echo("<script>console.log('uID:".$user."');</script>"); // Nikita added print check here
+	$user = $_SESSION["username"]; 
+	// Resets session variables on each reload
+	$_SESSION["room"] = "";
+	$_SESSION["temp"]= "";
+	$_SESSION["brightness"]= "";
+	$_SESSION["use"]= "";
+	$_SESSION["noise"]= "";
+	$_SESSION["humid"]= "";
 
-  
 ?>
 
 <html>
+
+/***************************************************************************
+	*	
+	*	ADMIN.PHP - Extracts data from the 'Views' created in the database based
+	* 				on the user check-ins and surveys, that are combined to produce
+	*               a trend-rating for each information category
+	*
+	*	Functionality:
+	*		- Establishes connection to the database
+	*		- Grabs data from the database
+	*		- Updates the information displayed on the page based on administrator input 
+	*		  through means of search bars and select menus
+	*		- Retrieves the list of check-ins by users relevant to the room being analysed
+	*		  by the administrator. All information is altered so that the data remains
+	*         anonymous
+	*/          
 
 <head>
 <title>AEB Space - Administrator</title>
@@ -26,11 +48,19 @@
 <link rel="stylesheet" href="css/jquery.mobile-core.css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/main.css" type="text/css">
+<link rel="stylesheet" href="css/admin.css" type="text/css">
 
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="js/jquery.mobile-1.4.2.js"></script>
 
 <script>
+/**
+Function is responsible for displaying the right 'select' menu to allow the 
+administrator to select which tag they would like to view information for
+
+Parameters:
+@ cat - string representing the tag (information), selected by the administrator
+**/
 function setOptions(cat){
 		
 			console.log(cat);
@@ -68,6 +98,14 @@ function setOptions(cat){
 			}
 }
 
+
+/**
+Function is responsible for displaying the right 'select' menu to allow the 
+administrator to select which room they would like to view checkins for
+
+Parameters:
+@ cat - string representing the building level, selected by the user
+**/
 function setLevel(cat){
 		
 			console.log(cat);
@@ -105,8 +143,13 @@ function setLevel(cat){
 			}
 			}
 
-
+/**
+Function is responsible for filtering the results displayed in the results table
+for a particular feedback area, based on the search term input by the administrator
+**/
 $(function() {
+    // Ignores the first row which contains the headers as these are to be displayed
+    // at all times
     var $rows = $('#trendTab tr:not(":first")');
     $('#search-basic').keyup(function() {
     console.log('Made it here...');
@@ -119,7 +162,13 @@ $(function() {
     });
     });
 
+/**
+Function is responsible for filtering the results displayed in the results table
+for Lighting, based on the user inputted search term
+**/
 $(function() {
+    // Ignores the first row which contains the headers as these are to be displayed
+    // at all times
     var $rows = $('#trendTab2 tr:not(":first")');
     $('#search-basic').keyup(function() {
     console.log('Made it here...');
@@ -132,7 +181,13 @@ $(function() {
     });
     });
 
+/**
+Function is responsible for filtering the results displayed in the results table
+for Usage Level, based on the user inputted search term
+**/
 $(function() {
+    // Ignores the first row which contains the headers as these are to be displayed
+    // at all times
     var $rows = $('#trendTab3 tr:not(":first")');
     $('#search-basic').keyup(function() {
     console.log('Made it here...');
@@ -145,7 +200,13 @@ $(function() {
     });
     });
 
+/**
+Function is responsible for filtering the results displayed in the results table
+for Noise, based on the user inputted search term
+**/
 $(function() {
+    // Ignores the first row which contains the headers as these are to be displayed
+    // at all times
     var $rows = $('#trendTab4 tr:not(":first")');
     $('#search-basic').keyup(function() {
     console.log('Made it here...');
@@ -158,7 +219,13 @@ $(function() {
     });
     });
 
+/**
+Function is responsible for filtering the results displayed in the results table
+for Humidity, based on the user inputted search term
+**/
 $(function() {
+    // Ignores the first row which contains the headers as these are to be displayed
+    // at all times
     var $rows = $('#trendTab5 tr:not(":first")');
     $('#search-basic').keyup(function() {
     console.log('Made it here...');
@@ -171,8 +238,17 @@ $(function() {
     });
     });
 
+/**
+Function is responsible for formatting the colour of the cells in the trending table
+based on the value of the rating for each room.
+Colours are assigned based on default categories and can be adjusted/added to in order
+to provide more detailed information for users
+**/
 $(function() {
+    // Ignores the first two columns and only colours the third column that contains the 
+    // ratings for each category
     $('tbody tr td:nth-child(3)').each(function(index) {
+        // Applies a class to each cell according to the value contained in the cell
         var scale = [['vPoor', -1.0], ['poor', -0.2], ['below', -0.1], ['avg', 0], ['okay', 0.1], ['good', 0.2], ['vGood', 1.0]];
         var score = $(this).text();
         for (var i = 0; i < scale.length; i++) {
@@ -183,90 +259,29 @@ $(function() {
     });
 });
 
+/**
+Function is responsible for formatting the colour of the cells in the trending table
+based on the value of the rating for each room.
+Colours are assigned based on default categories and can be adjusted/added to in order
+to provide more detailed information for users
+**/
+$(function() {
+    $('#tableSearch tr td:nth-child(3)').each(function(index) {
+        // Applies a class to each cell according to the value contained in the cell
+        var scale = [['vPoor', -1.0], ['poor', -0.2], ['below', -0.1], ['avg', 0], ['okay', 0.1], ['good', 0.2], ['vGood', 1.0]];
+        var score = $(this).text();
+        for (var i = 0; i < scale.length; i++) {
+            if (score <= scale[i][1]) {
+                $(this).addClass(scale[i][0]);
+            }
+        }
+    });
+});
 
-
-</script>
-
-<style>
-.vGood {
-    background-color: #0000FF;
-}
-
-.good {
-    background-color: #0099FF;
-}
-
-.okay {
-    background-color: #009999;
-}
-
-.avg {
-    background-color: #00CC00;
-}
-
-.below {
-    background-color: #FFFF00;
-}
-
-.poor {
-    
-    background-color: #FF3300;
-}
-
-.vPoor {
-    background-color: #FF0000;
-}
-
-th:nth-child(even),
-td:nth-child(even) {
-    text-align: center;
-    color: black;
-}
-
-th:nth-child(odd),
-td:nth-child(odd) {
-    text-align: center;
-    color: black;
-}
-
-.cssAdminTab{
-color:black;
-}
-
-.searchbar{
-font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica Neue Ultra Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Arial", sans-serif;				
-display:inline;
-width:60%;
-}
-
-.searchbutton{
-display:inline;
-width:30%;
-}
-
-p.admin{
-font-size:120%;
-color: black;
-font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica Neue Ultra Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Arial", sans-serif;
-}
-
-.searchtable{
-			
-}
-
-</style>
-
-<script>
-    function priceSorter(a, b) {
-        a = +a.substring(1); // remove $
-        b = +b.substring(1);
-        if (a > b) return 1;
-        if (a < b) return -1;
-        return 0;
-    }
 </script>
 
 </head>
+
 
 <body>
     <!--start top bar-->
@@ -276,31 +291,87 @@ font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica 
 		</div>
 		<!--end top bar-->
   
-  
 		<!--nav bar-->
-
    	 	<?php require("menu.php"); ?>
-	
 		<!--end nav bar-->
 
-  	<?php
-        if (isset($_POST['search'])){
+<?php
+/**
+ Function is called when an administrator clicks the search button to search
+ for information about a room. The function is only called if the form
+ is posted
+**/
+ if (isset($_POST['search'])){
+        // Assigns default values in case a rating is not found for the variable - this 
+        // will be displayed in the visualisation table
 	   $room = $_POST['search'];
+	   $temperature='-';
+	   $brightness='-';
+	   $usagetag='-';
+	   $noisetag='-';
+	   $humid='-';
 	   echo("<script>console.log('Search for room...".$room."');</script>");
-	   $rooms = mysqli_query($dbconn, "SELECT * FROM `Tag1Rating` WHERE `room`=$room");
-	   }
-	   ?>
-	   
+	   //$checkins = mysqli_query($dbconn, "SELECT `room`, COUNT(*) FROM `CheckIn` WHERE `room`=$room AND `timestamp` < NOW() - INTERVAL 2 WEEK GROUP BY `room`");
+       $temp = mysqli_query($dbconn, "SELECT * FROM `Tag1Rating` WHERE `room`=$room");
+       // Loop to select the temperature rating for the searched room from all of the data
+       // for that room
+       while ($rowroom = mysqli_fetch_array($temp)){
+ 		    $temperature = $rowroom['TagScore'];
+         }
+       
+       $bright = mysqli_query($dbconn, "SELECT * FROM `Tag2Rating` WHERE `room`=$room");
+       // Loop to select the brightness rating for the searched room from all of the data
+       // for that room
+       while ($rowroom = mysqli_fetch_array($bright)){
+ 		    $brightness = $rowroom['TagScore'];
+         }
+       
+       $usage = mysqli_query($dbconn, "SELECT * FROM `Tag3Rating` WHERE `room`=$room");
+       // Loop to select the usage rating for the searched room from all of the data
+       // for that room
+       while ($rowroom = mysqli_fetch_array($usage)){
+ 		    $usagetag = $rowroom['TagScore'];
+         }
+       
+       $noise = mysqli_query($dbconn, "SELECT * FROM `Tag4Rating` WHERE `room`=$room");
+       // Loop to select the noise rating for the searched room from all of the data
+       // for that room
+       while ($rowroom = mysqli_fetch_array($noise)){
+ 		    $noisetag = $rowroom['TagScore'];
+         }
+         
+       $humidity = mysqli_query($dbconn, "SELECT * FROM `Tag5Rating` WHERE `room`=$room");
+       // Loop to select the humidity rating for the searched room from all of the data
+       // for that room
+       while ($rowroom = mysqli_fetch_array($humidity)){
+ 		    $humid = $rowroom['TagScore'];
+         }
+    
+    // Assigns the data extracted from the database to session values to be displayed in
+    // a table
+    $_SESSION["room"] = $room;
+	$_SESSION["temp"]= $temperature;
+	$_SESSION["brightness"]= $brightness;
+	$_SESSION["use"]= $usagetag;
+	$_SESSION["noise"]= $noisetag;
+	$_SESSION["humid"]= $humid;
+	
+    echo("<script type='text/javascript'>window.location.reload()</script>");  
+         }
+                ?>
+  	
   <section data-role="main" class="ui-content" style="padding-bottom:0px;">
 		<p class="admin"> Search for a Room </p>
-		 <input type="text" placeholder="Search Rooms..." data-theme="white" id="roomsearchbar"></input>
-		 <button type="submit" class="searchbutton" style="background-color:grey" style="display:inline" onclick="searchRoom()">Search</button>
+		<form id="searchRoom" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+		 <input type="text" class="roomsearchbar" name='search' placeholder="Search Rooms..." data-theme="white" id="roomsearchbar"></input>
+		 <button type="submit" class="searchbutton" style="background-color:grey" style="display:inline">Search</button>
+        </form>
 <div id="searchResults">
-<div id="searchedRoom" style="color:black">Test Room</div>
+<div id="searchedRoom" style="color:black">Room No: <?php echo $_SESSION['room'] ?></div>
 <div class="table-responsive">
-  <table class="table">
+  <table class="table" id="tableSearch">
     <thead>
-        <th>#Checkins</th>
+<!--         <th>#Checkins</th> -->
         <th>Temp.</th>
         <th>Light</th>
         <th>Usage</th>
@@ -309,39 +380,22 @@ font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica 
     </thead>
     <tbody>
         <tr>
-            <td> 1 </td>
-            <td> 1 </td>
-            <td> 1 </td>
-            <td> 1 </td>
-            <td> 1 </td>
-            <td> 1 </td>
+<!--             <td id="c1"> - </td> -->
+<!-- Echo the data extracted from the database to the table to display the information, 
+trimming the length of the value to a maximum of 5 characters -->
+            <td id="c2"> <?php echo substr($_SESSION['temp'],0,5) ?></td>
+            <td id="c3"> <?php echo substr($_SESSION['brightness'],0,5); ?> </td>
+            <td id="c4"> <?php echo substr($_SESSION['use'],0,5) ?> </td>
+            <td id="c5"> <?php echo substr($_SESSION['noise'],0,5) ?> </td>
+            <td id="c6"> <?php echo substr($_SESSION['humid'],0,5) ?> </td>
         </tr>
     </tbody>
   </table>
 </div>
 </div>
+
 </section>
 
-<script>
-    function searchRoom(){
-    console.log('clicked');
-        var room = document.getElementById('roomsearchbar').value;
-        console.log(room);
-        $.ajax({
-            url: "roomsearch.php",
-            type: "POST",
-            data: {"room": room},
-            success: function(data){
-            console.log('clicked');
-      }
-  });
-//   window.location="http://deco3801-01.uqcloud.net/friends100.php";
-  }
-    </script>
-    
-  <br>
-  
-  <!-- the feed, i dont know, working on it. adee -->
    <section data-role="main" class="ui-content" style="padding-bottom:0px;">
 		 
 		<p class="admin">Select a category to view trouble rooms:</p>
@@ -355,7 +409,8 @@ font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica 
 
 			
 		</select>
-		
+		<!-- This section should be upgraded to create the individual tables dynamically
+        based on the selection made in the select menu above   -->
 		<br>
 		<input type="text" name="search" id="search-basic" class="searchbar" value="" placeholder="Filter Rooms..." data-theme="white"/>
 		<br>
@@ -366,16 +421,20 @@ font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica 
         <tr>
             <th data-field="id" data-align="right" data-sortable="true">Room</th>
             <th data-field="name" data-align="center" data-sortable="true">Recent Bad Score</th>
-            <th data-field="price" data-sortable="true">Rating</th>
+            <th data-field="rating" data-sortable="true">Rating</th>
         </tr>
     </thead>
     <tbody>
         
 		<?php 
 		$result = mysqli_query($dbconn, "SELECT * FROM `Tag1Rating` ORDER BY `TagScore` ASC");
+		// Loop to select the tag rating for the searched room from all of the data
+        // for that room
 		while ($row = mysqli_fetch_array($result)){
 		$tagScore = $row['TagScore'];
 		$neg = substr($tagScore,0,1);
+		// Checks to see if the rating is negative and adjusts the length of the string
+		// for clarity
 		if ($neg == "-"){
 		    $subScore = substr($tagScore,0,5);
 		    }else{
@@ -408,9 +467,13 @@ font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica 
         
 		<?php 
 		$result = mysqli_query($dbconn, "SELECT * FROM `Tag2Rating` ORDER BY `TagScore` ASC");
+		// Loop to select the tag rating for the searched room from all of the data
+        // for that room
 		while ($row = mysqli_fetch_array($result)){
 		$tagScore = $row['TagScore'];
 		$neg = substr($tagScore,0,1);
+		// Checks to see if the rating is negative and adjusts the length of the string
+		// for clarity
 		if ($neg == "-"){
 		    $subScore = substr($tagScore,0,5);
 		    }else{
@@ -443,9 +506,13 @@ font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica 
         
 		<?php 
 		$result = mysqli_query($dbconn, "SELECT * FROM `Tag3Rating` ORDER BY `TagScore` ASC");
+		// Loop to select the tag rating for the searched room from all of the data
+        // for that room
 		while ($row = mysqli_fetch_array($result)){
 		$tagScore = $row['TagScore'];
 		$neg = substr($tagScore,0,1);
+		// Checks to see if the rating is negative and adjusts the length of the string
+		// for clarity
 		if ($neg == "-"){
 		    $subScore = substr($tagScore,0,5);
 		    }else{
@@ -478,9 +545,13 @@ font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica 
         
 		<?php 
 		$result = mysqli_query($dbconn, "SELECT * FROM `Tag4Rating` ORDER BY `TagScore` ASC");
+		// Loop to select the tag rating for the searched room from all of the data
+        // for that room
 		while ($row = mysqli_fetch_array($result)){
 		$tagScore = $row['TagScore'];
 		$neg = substr($tagScore,0,1);
+		// Checks to see if the rating is negative and adjusts the length of the string
+		// for clarity
 		if ($neg == "-"){
 		    $subScore = substr($tagScore,0,5);
 		    }else{
@@ -513,9 +584,13 @@ font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica 
         
 		<?php 
 		$result = mysqli_query($dbconn, "SELECT * FROM `Tag5Rating` ORDER BY `TagScore` ASC");
+		// Loop to select the tag rating for the searched room from all of the data
+        // for that room
 		while ($row = mysqli_fetch_array($result)){
 		$tagScore = $row['TagScore'];
 		$neg = substr($tagScore,0,1);
+		// Checks to see if the rating is negative and adjusts the length of the string
+		// for clarity
 		if ($neg == "-"){
 		    $subScore = substr($tagScore,0,5);
 		    }else{
@@ -537,123 +612,116 @@ font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica 
 
 		</section>
 		
-		
-		
-		
-		
-	<!-- 
-	<?php
-        if (isset($_POST['roomNo'])){
-	   $level = $_POST['roomNo'];
-	   echo("<script>console.log('".$level."');</script>");
-	   $rooms = mysqli_query($dbconn, "SELECT * FROM `Rooms` WHERE `level`=$level");
-	   }
+		<?php
+		$roomsa = [];
+		// Checks to see if the 'select' box has been posted and retrieves the value
+		// if it has and assigns it to a session variable for use later
+        if (isset($_POST['level1sel'])){
+	        $room = $_POST['level1sel'];
+	        $_SESSION["roomcheckin"]=$room;
+	        // Finds all check-in records for a particular room from the last 2 weeks
+	        $checks = mysqli_query($dbconn, "SELECT * FROM `CheckIn` WHERE `chk_ID`=$room AND datetime < NOW() - INTERVAL 2 WEEK");
+	    }
 	   ?>
- -->
+
 		
 		<section data-role="main" class="ui-content" style="padding-bottom:0px;">
 		<br>
 		<p class="admin"> Recent Checkins </p>
 		<br>
+    <!-- Creates a select menu for the administrator to pick which level they want to 
+            view information about		 -->
 		<font color="black">Filter recent check-ins:</font>
-<!-- 		<form id="selectLevel" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"> -->
 		<select name="lev" onchange="setLevel(this.options[this.selectedIndex].value);">
 			<option value="1" id="1" name="1">Level 1</option>
 			<option value="2" id="2" name="2">Level 2</option>
 			<option value="3" id="3" name="3">Level 3</option>
 			<option value="4" id="4" name="4">Level 4</option>
 			<option value="5" id="5" name="5">Level 5</option>
-			<!--<option value="2">Events</option>-->
 		</select>
-		</form>
 		
-		
-		
-		
-	<!-- 
-	<?php
-		if(isset($_POST['level1sel']))
-{
-    $room = $_POST['level1sel'];
-    echo("<script>console.log('Room: ".$room."');</script>");
-}
-		?>
- -->
-		
+<!-- This		 -->
 		<div id="level1">
-		<form id="selectRoom" method="POST" onchange="this.form.submit()"<!-- action="<?php echo $_SERVER['PHP_SELF']; ?> -->">
-		<select name="level1sel" id="level1sel">
+		<form id="selectRoom" name="selectRoom" method="POST"  action="">
+		<select name="level1sel" id="level1sel" onchange="this.form.submit()">
 		<option value="default" >Select a room...</option>
 		<?php 
+		// Extracts the list of rooms for the selected level and creates a select box with
+		// each room as an option
 		$rooms = mysqli_query($dbconn, "SELECT * FROM `Rooms` WHERE `level`=1");
 				while ($roomRows = mysqli_fetch_array($rooms)){
-				
 			?>
 			<option id="<?php echo $roomRows['room'] ?>" name="roomNo" value="<?php echo $roomRows['room'] ?>"> <?php echo $roomRows['room'] ?></option>
 			<?php } ?>
-			<!--<option value="2">Events</option>-->
 		</select>
 		</form>
 		</div>
 		
+		
+		
 		<div id="level2" style="display:none">
-<!-- 		<form id="selectRoom" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"> -->
-		<select name="lev2room">
+		<form id="selectRoom2" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+		<select name="lev2room" onchange="this.form.submit()">
 		<option value="default" >Select a room...</option>
 		<?php 
+		// Extracts the list of rooms for the selected level and creates a select box with
+		// each room as an option
 		$rooms = mysqli_query($dbconn, "SELECT * FROM `Rooms` WHERE `level`=2");
 				while ($roomRows = mysqli_fetch_array($rooms)){
 			?>
 			<option id="<?php echo $roomRows['room'] ?>" name="roomNo" value="<?php echo $roomRows['room'] ?>"><?php echo $roomRows['room'] ?> </option>
 			<?php } ?>
-			<!--<option value="2">Events</option>-->
 		</select>
-<!-- 		</form> -->
+		</form>
 		</div>
 		
 		<div id="level3" style="display:none">
-<!-- 		<form id="selectRoom" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"> -->
-		<select name="lev3room">
+		<form id="selectRoom3" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+		<select name="lev3room" onchange="this.form.submit()">
 		<option value="default" >Select a room...</option>
 		<?php 
+		// Extracts the list of rooms for the selected level and creates a select box with
+		// each room as an option
 		$rooms = mysqli_query($dbconn, "SELECT * FROM `Rooms` WHERE `level`=3");
 				while ($roomRows = mysqli_fetch_array($rooms)){
 			?>
 			<option id="<?php echo $roomRows['room'] ?>" name="roomNo" value="<?php echo $roomRows['room'] ?>"><?php echo $roomRows['room'] ?> </option>
 			<?php } ?>
-			<!--<option value="2">Events</option>-->
 		</select>
-<!-- 		</form> -->
+		</form>
 		</div>
 		
 		<div id="level4" style="display:none">
-<!-- 		<form id="selectRoom" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"> -->
-		<select name="lev4room">
+		<form id="selectRoom4" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+		<select name="lev4room" onchange="this.form.submit()">
 		<option value="default" >Select a room...</option>
 		<?php 
+		// Extracts the list of rooms for the selected level and creates a select box with
+		// each room as an option
 		$rooms = mysqli_query($dbconn, "SELECT * FROM `Rooms` WHERE `level`=4");
 				while ($roomRows = mysqli_fetch_array($rooms)){
 			?>
 			<option id="<?php echo $roomRows['room'] ?>" name="roomNo" value="<?php echo $roomRows['room'] ?>"><?php echo $roomRows['room'] ?> </option>
 			<?php } ?>
-			<!--<option value="2">Events</option>-->
 		</select>
-<!-- 		</form> -->
+		</form>
 		</div>
 		
+		
 		<div id="level5" style="display:none">
-<!-- 		<form id="selectRoom" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"> -->
-		<select name="lev5room">
+		<form id="selectRoom5" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"> -->
+		<select name="lev5room" onchange="this.form.submit()">
 		<option value="default" >Select a room...</option>
 		<?php 
+		// Extracts the list of rooms for the selected level and creates a select box with
+		// each room as an option
 		$rooms = mysqli_query($dbconn, "SELECT * FROM `Rooms` WHERE `level`=5");
 				while ($roomRows = mysqli_fetch_array($rooms)){
 			?>
 			<option id="<?php echo $roomRows['room'] ?>" name="roomNo" value="<?php echo $roomRows['room'] ?>"><?php echo $roomRows['room'] ?> </option>
 			<?php } ?>
-			<!--<option value="2">Events</option>-->
 		</select>
-<!-- 		</form> -->
+		</form>
 		</div>
 		
 		</section>
@@ -666,16 +734,13 @@ font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica 
           <ul data-role="listview" data-inset="true">
 
             <?php
+            // Selects all of the data from the database that is required for the news feed
+            // Users names are changed to 'Anonymous User' in order to protect their 
+            // identity
             $resultNew = mysqli_query($dbconn, "SELECT `timestamp`, `room`, `tag1`, `tag2`, `tag3`, `tag4`, `withFriend`, `comment`, `f_name`, `l_name`, `pic`, `rank` FROM CheckIn, Users WHERE CheckIn.chk_ID = $room  ORDER BY `CheckIn`.`timestamp` DESC");
-            
-                    
+               
             while($checkList = mysqli_fetch_array($resultNew, MYSQLI_ASSOC)) {
-            //$datetimenew = date_create('2001-01-01');
-           $datetimenew = date_create($checkList['timestamp']);
-           
-           //$datetimecomp = date_format($datetimenew, 'm.d.y');
-            //$date = date_format($date,"Y/m/d");
-            //$datetimeall = getdate($checkList['timestamp']);
+            $datetimenew = date_create($checkList['timestamp']);
             $alltags = [$checkList['tag1'], $checkList['tag2'], $checkList['tag3'], $checkList['tag4']];
             $allrealtags = array();
             
@@ -690,17 +755,18 @@ font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica 
             
             ?>
 
-            <!-- <li style="background-color:#e03838; border:none;">Wednesday, January 2, 2014 <span class="ui-li-count">3</span></li> -->
-           <!--<li style="background-color:#e03838; border:none;"> <?php echo($datetimeall['weekday']);?>, <?php echo($datetimeall['month']);?> <?php echo($datetimeall['mday']);?>, <?php echo($datetimeall['year']); ?> <span class="ui-li-count">3</span></li> -->
            <li style="background-color:#e03838; border:none;"> <?php echo date_format($datetimenew, 'l jS F Y');?> <span class="ui-li-count"><?php echo date_format($datetimenew, 'h:i a');?></span></li>
-           
+        <!-- Code is responsible for creating a list element for each check-in recorded
+        for a room by a user. Data is extracted from the query and then displayed on 
+        the page              -->
             <li class="feed-line" data-icon="false" style="border:none;">
             	<h2>
             	<span>
             	<img src="avatars/<?php echo($checkList['pic']);?>" width="40px" height="40px" class="img-circle"/>  
-            	</span> 
-              <?php echo $checkList['f_name'] . " " . $checkList['l_name']; ?></h2>
-              <p><?php echo($checkList['f_name']);
+            	</span>
+            	<?php $anon = "Anonymous User"; ?> 
+              <?php echo $anon; ?></h2>
+              <p><?php echo($anon);
               if ($ntags > 0){
               ?> felt <?php 
               }
@@ -708,6 +774,8 @@ font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica 
               
               $i = 1;
               
+              // Prints out each of the tags submitted by a user in each check-in
+              // with a series of catches designed to join the tags in a sentence
               foreach($allrealtags as $tag){
               	echo($tag);
             
@@ -724,9 +792,7 @@ font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica 
               }
               ?>
                at <?php echo($checkList['room']);
-              if ($checkList['withFriend']){ 
-               ?> with <?php echo($checkList['withFriend']);
-              }
+              
               ?> <br>
 			  <?php // edit by Yong - print comment only if it exists.
 			  if ($checkList['comment'] != "") {
@@ -734,9 +800,7 @@ font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica 
 				echo($checkList['comment']);
 				echo("\"");
 			  } ?></p>
-              <p class="ui-li-aside"> 
-            <!-- <?php echo date_format($datetimenew, 'h:i a');?></p>-->
-              <!--<?php echo($datetimeall['hours']);?>:<?php echo($datetimeall['minutes']);?>  <?php echo($checkList['timestamp']);?></p>-->
+              <p class="ui-li-aside"><?php echo($checkList['timestamp']);?></p>-->
             </li>
 
             <li class="feed-line" data-icon="false" style="border:none;">

@@ -1,0 +1,64 @@
+.vGood {
+    background-color: #0000FF;
+}
+
+.good {
+    background-color: #0099FF;
+}
+
+.okay {
+    background-color: #009999;
+}
+
+.avg {
+    background-color: #00CC00;
+}
+
+.below {
+    background-color: #FFFF00;
+}
+
+.poor {
+    background-color: #FF3300;
+}
+
+.vPoor {
+    background-color: #FF0000;
+}
+
+th:nth-child(even),
+td:nth-child(even) {
+    text-align: center;
+    color: black;
+}
+
+th:nth-child(odd),
+td:nth-child(odd) {
+    text-align: center;
+    color: black;
+}
+
+.cssAdminTab{
+color:black;
+}
+
+.searchbar{
+font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica Neue Ultra Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Arial", sans-serif;				
+display:inline;
+width:60%;
+}
+
+.searchbutton{
+display:inline;
+width:30%;
+}
+
+p.admin{
+font-size:120%;
+color: black;
+font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica Neue Ultra Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Arial", sans-serif;
+}
+
+.roomsearchbar{
+color:black;
+}

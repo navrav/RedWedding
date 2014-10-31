@@ -17,6 +17,21 @@
 
 <html>
 
+/***************************************************************************
+	*	
+	*	TRENDING.PHP - Extracts data from the 'Views' created in the database based
+	* 				on the user check-ins and surveys, that are combined to produce
+	*               a trend-rating for each room in the AEB that can be searched by
+	*               users
+	* 				
+	*	Functionality:
+	*		- Establishes connection to the database
+	*		- Grabs data from the database
+	*		- Updates the information displayed on the page based on user input 
+	*		  through means of search bars and select menus
+	*		
+	*/          
+
 <head>
 <title>AEB Space - Trending</title>
 <link rel="icon" href="/icons/favicon.ico">
@@ -26,12 +41,16 @@
 <link rel="stylesheet" href="css/jquery.mobile-core.css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/main.css" type="text/css">
+<link rel="stylesheet" href="css/trending.css" type="text/css">
 
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="js/jquery.mobile-1.4.2.js"></script>
 
 <script>
-
+/**
+Function is responsible for filtering the results displayed in the trending table
+based on the user inputted search term
+**/
 $(function() {
     var $rows = $('#trendTab tr:not(":first")');
     $('#search-basic').keyup(function() {
@@ -45,9 +64,15 @@ $(function() {
     });
     });
 
+/**
+Function is responsible for formatting the colour of the cells in the trending table
+based on the value of the rating for each room.
+Colours are assigned based on default categories and can be adjusted/added to in order
+to provide more detailed information for users
+**/
 $(function() {
     $('tbody tr td:nth-child(3)').each(function(index) {
-        var scale = [['vPoor', -4], ['poor', -1], ['below', -0.5], ['avg', 0], ['okay', 0.5], ['good', 1], ['vGood', 4]];
+        var scale = [['vPoor', -4], ['poor', -2], ['below', -0.5], ['avg', 0], ['okay', 0.5], ['good', 2], ['vGood', 4]];
         var score = $(this).text();
         for (var i = 0; i < scale.length; i++) {
             if (score <= scale[i][1]) {
@@ -57,90 +82,11 @@ $(function() {
     });
 });
 
-
-
 </script>
 
 <style>
-.vGood {
-    background-color: #0000FF;
-}
-
-.good {
-    background-color: #0099FF;
-}
-
-.okay {
-    background-color: #009999;
-}
-
-.avg {
-    background-color: #00CC00;
-}
-
-.below {
-    background-color: #FF3300;
-}
-
-.poor {
-    background-color: #FFFF00;
-}
-
-.vPoor {
-    background-color: #FF0000;
-}
-
-th:nth-child(even),
-td:nth-child(even) {
-    text-align: center;
-    color: black;
-}
-
-th:nth-child(odd),
-td:nth-child(odd) {
-    text-align: center;
-    color: black;
-}
-
-.cssAdminTab{
-color:black;
-padding: 0 0 0 0;
-border-spacing: 0;
-font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica Neue Ultra Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Arial", sans-serif;
-				
-}
-
-.searchbar{
-font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica Neue Ultra Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Arial", sans-serif;
-				
-}
-
-p.trending{
-font-size:120%;
-color: black;
-font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica Neue Ultra Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Arial", sans-serif;
-				
-}
-
-#roomNo, #checkins, #rating{
-
-}
 
 </style>
-
-<script>
-    function priceSorter(a, b) {
-        a = +a.substring(1); // remove $
-        b = +b.substring(1);
-        if (a > b) return 1;
-        if (a < b) return -1;
-        return 0;
-    }
-    
-
-    
-
-</script>
 
 </head>
 
@@ -159,21 +105,14 @@ font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica 
 	
 		<!--end nav bar-->
     
-  
-  <!-- the feed, i dont know, working on it. adee -->
    <section data-role="main" class="ui-content" style="padding-bottom:0px;">
    <div class="ui-content" style="display:block; padding-top:0px;" >
      
-<!--          <input type="search" name="search" id="search-basic" class="searchbar" value="" placeholder="Filter Rooms..." data-theme="white"/> -->
          <input type="text" id="search-basic" placeholder="Filter rooms..."> 
         <br>
  
 		<p class="trending"> Trending Rooms in the Last 2 Weeks </p>
 		
-<!-- 		<div id="tempRooms" class="cssAdminTab"> -->
-		<!-- <input type="text" id="search" placeholder="Type to search"> -->
-
-    
     <table class="table" id="trendTab">
 		<col id="roomNo" />
         <col id="checkins" />
@@ -182,15 +121,19 @@ font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica 
         
             <th data-field="id" data-align="right" data-sortable="true">Room</th>
             <th data-field="name" data-align="center" data-sortable="true">#Checkins</th>
-            <th data-field="price" data-sortable="true">Rating</th>
+            <th data-field="rating" data-sortable="true">Rating</th>
         
     </thead>
     <tbody>
 		<?php 
+		// Query to select ten rooms with the highest trend rating
 		$result = mysqli_query($dbconn, "SELECT * FROM `RoomTrends` WHERE `numberCheckins` > 0 ORDER BY `trendRating` DESC LIMIT 10");
+		// Loop through an array of the query results and print them to a html table
 		while ($row = mysqli_fetch_array($result)){
 		$trendScore = $row['trendRating'];
 		$negCheck = substr($trendscore,0,1);
+		// Checks to see whether the trend rating is negative and if not, it adds
+		// a '+' to the front of the value for clarity
 		if ($negCheck == "-"){
 		    $trend = $trendScore;
 		    }else{
@@ -202,25 +145,16 @@ font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica 
         <td><?php echo $row['room'] ?> </td>
         <td><?php echo $row['numberCheckins'] ?> </td> 
         <td><?php echo $trend
-        //echo("<script>console.log('Type ".gettype($row['trendRating']."');</script>");
         ?> </td>
-        
         </tr>
+        
         <?php } ?>
         </tbody>
 </table>
-
-
-<!--         </div> -->
-
- 
     </div>
-		</section>
-		
-		
     
-  
-  
+		</section>
+
     </div> 
 
 </body>
