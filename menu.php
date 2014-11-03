@@ -105,6 +105,6 @@
 
 <script>
 	function logout(){
-		location.href="/logout.php";
+		location.href="/logout.php"; //click the logout button and go to the logout.php
 	}
 </script>

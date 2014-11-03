@@ -114,7 +114,7 @@
 					   echo '<br />';
 					   
 					   
-					   }
+					   }//display the name and description of the serects which the user owns
 					   
 					   ?>
 							

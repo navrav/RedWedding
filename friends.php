@@ -38,14 +38,14 @@ $("#yes").click(function(){
 
 $.get('friends_delete.php?t='+Math.random(),{u_id:"<?=$user?>",delete_id:tempFriend},function(delete_success){if(delete_success=="ok")//如果数据库删除成功 移除DOM
 $("#"+tempFriend).parents('li').remove();
-$("#layover").css({'display':'none'});//移除弹窗
-$("#confirmpop").css({'display':'none'});//移除弹窗背景	
+$("#layover").css({'display':'none'});//remove the popup window
+$("#confirmpop").css({'display':'none'});//remove the popup background
 });
 
 
 
 });
-//点击取消 移除弹窗和弹窗背景
+//click to cancel and remove both the popup window and background
 $("#no").click(function(){
 $("#layover").css({'display':'none'});
 $("#confirmpop").css({'display':'none'});				
