@@ -1,9 +1,9 @@
 <?php
 
-/****************************************************************
+/**************************************************************
  *	SURVEY_SUBMIT.PHP - Sends survey form input to database
  *
- *		Takes survey form inputs (room, 5 tags, comment)
+ *		Takes survey form inputs (room, 5 tag values, comment)
  *		Uses an insert query to create survey record in db
  *		Updates user's AEBux total
  */
