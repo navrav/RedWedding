@@ -31,7 +31,7 @@
 			var form = document.getElementById("login");
 
 			
-		    if (atpos< 1 || dotpos<atpos+2 || dotpos+2>=user.length) {
+		    if (atpos< 1 || dotpos<atpos+2 || dotpos+2>=email.length) {
 		        document.getElementById("status").innerHTML = "Please enter a valid email";
 		    }
 
