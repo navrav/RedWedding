@@ -1,11 +1,11 @@
 <?php
 
-/*************************************************************
+/*****************************************************************
  *	CHECKIN_SUBMIT.PHP - Sends checkIn form input to database
  *
- *		Takes checkIn form inputs
- *			- room, tags, comment, friends
- *		Uses an insert query to create checkIn record in db.
+ *		Takes checkIn form inputs (room, 5 tags, comment, friend)
+ *		Uses an insert query to create checkIn record in db
+ *		Updates user's AEBux total
  */
 
 session_start();
@@ -29,7 +29,7 @@ $AEBuxQuery = mysqli_query($dbconn, "SELECT * FROM `Users` WHERE `u_ID` = $user;
 $AEBuxQueryResult = mysqli_fetch_array($AEBuxQuery);
 $userAEBux = $AEBuxQueryResult['AEBux'];
 
-// update AEBux
+// recalculate AEBux
 $updatedAEBux = $userAEBux + 5;
 
 // update database
@@ -41,7 +41,8 @@ mysqli_stmt_execute($stmt);
 mysqli_stmt_close($stmt);
 
 mysqli_query($dbconn, "UPDATE `Users` SET `AEBux` = ".$updatedAEBux." WHERE `u_ID` = ".$user.";");
-		
+
+// redirect page
 header('Location: /feed.php');
 
 ?>

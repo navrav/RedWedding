@@ -3,8 +3,9 @@
 /****************************************************************
  *	SURVEY_SUBMIT.PHP - Sends survey form input to database
  *
- *		Takes survey form inputs (4 tags)
- *		Uses an insert query to create survey record in db.
+ *		Takes survey form inputs (room, 5 tags, comment)
+ *		Uses an insert query to create survey record in db
+ *		Updates user's AEBux total
  */
 
 session_start();
@@ -27,7 +28,7 @@ $AEBuxQuery = mysqli_query($dbconn, "SELECT * FROM `Users` WHERE `u_ID` = $user;
 $AEBuxQueryResult = mysqli_fetch_array($AEBuxQuery);
 $userAEBux = $AEBuxQueryResult['AEBux'];
 
-// update AEBux
+// recalculate AEBux
 $updatedAEBux = $userAEBux + 10;
 
 // update database
@@ -40,12 +41,13 @@ mysqli_stmt_close($stmt);
 
 mysqli_query($dbconn, "UPDATE `Users` SET `AEBux` = ".$updatedAEBux." WHERE `u_ID` = ".$user.";");
 
+// redirect page
 header('Location: /feed.php');
 
 
 
 /*** UNUSED ***
-// CONVERTING NUMBERS INTO TAGS - COMMENTED OUT IN FAVOUR OF NUMERIC FEEDBACK (1-10)
+// CONVERTING NUMBERS INTO TAGS - COMMENTED OUT IN FAVOUR OF NUMERIC FEEDBACK (1-9)
 // tag1 - temperature
 if ($tag1 == 0) {
 	$tag1 = "cold";
@@ -92,6 +94,6 @@ if ($tag5 == 0) {
 } else if ($tag5 == 1) {
 	$tag5 = "crowded";
 }
-//////////////////////////////*/
+////////////////////////*/
 
 ?>

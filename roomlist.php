@@ -17,6 +17,7 @@ if (!isset($_SESSION['username']))
 	  header("location:index.php");
 }
 
+// read input argument
 $level = $_GET["level"];
 
 // generate default option

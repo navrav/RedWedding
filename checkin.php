@@ -56,7 +56,7 @@
 				});
 			});
 			
-			// populate friend list; runs on page load
+			// populate friend list; runs on page load (refer to <body> tag)
 			function ajaxFriendRetrieval() {
 				$.ajax({
 					url: 'friendlist.php',
