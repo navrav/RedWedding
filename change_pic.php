@@ -14,4 +14,6 @@ $resultNew = mysqli_query($dbconn, $sql);
 if($result = $dbconn->query($sql)){
 echo $pic;
 }
-}
+} //change the database based on the data transmitted from ajax
+
+?>

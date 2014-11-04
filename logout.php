@@ -10,7 +10,7 @@
 
 session_start();
 $_SESSION = array();
-session_destroy();
+session_destroy(); //distroy the session variable
 
-echo '<script>location.href="index.php?log_out=1"</script>';
+echo '<script>location.href="index.php?log_out=1"</script>';//clear the dialogue session and logout
 ?>

@@ -33,18 +33,18 @@
 		<script src="js/jquery.mobile-1.4.2.js"></script>
 	<script>$(document).ready(function(){$("#change_img").click(function(){$("#select_img").show();$("#layover").show();});
 	
-	
+	//click the button then open the popup
 	$("#male_img").find('img').bind("click",function(){ 
 	
 	if($(this).attr('data_src')!='m.png'){
 	$.get('change_pic.php?t='+Math.random(),{user:"<?=$user?>",pic:$(this).attr('data_src')},function(change_result){
-	
+	//if the avatar data source does not include m.png, then the function of changing hat can be executed
 	
 	if(change_result!=''){//change the database then change the avatar
 	
-	$("#show_img").attr({'src':'avatars/'+change_result});
+	$("#show_img").attr({'src':'avatars/'+change_result}); //display the image
 	  
-	  $("#select_img").hide();$("#layover").hide();
+	  $("#select_img").hide();$("#layover").hide();//remove the popup
 	
 	}
 	
@@ -175,6 +175,8 @@
 				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/qm.png" data_src="m.png"> <?php
 				}
 				}?>
+				
+				<!--display the hats which the user owns in the popup window-->
 				
 				
 				

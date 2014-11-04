@@ -36,7 +36,7 @@
 $(document).ready(function(){
 $("#yes").click(function(){
 
-$.get('friends_delete.php?t='+Math.random(),{u_id:"<?=$user?>",delete_id:tempFriend},function(delete_success){if(delete_success=="ok")//如果数据库删除成功 移除DOM
+$.get('friends_delete.php?t='+Math.random(),{u_id:"<?=$user?>",delete_id:tempFriend},function(delete_success){if(delete_success=="ok")//If the database si deleted successfully, remove DOM
 $("#"+tempFriend).parents('li').remove();
 $("#layover").css({'display':'none'});//remove the popup window
 $("#confirmpop").css({'display':'none'});//remove the popup background

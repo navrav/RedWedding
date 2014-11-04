@@ -95,15 +95,15 @@
 	var log_out = "<?=isset($_GET['log_out']) ? $_GET['log_out'] : '0'?>";
 			
 	if (log_out == 1) {
-		document.getElementById('status').innerHTML = 'Logout Successful';
+		document.getElementById('status').innerHTML = 'Logout Successfully';
 		document.getElementById('status').style.color="white"
-	}
+	}//assign the logout as 1 which means logout successfully and display 'Logout Successfully'
 
 	var log_failed = "<?=isset($_GET['logfailed']) ? $_GET['logfailed'] : '0'?>";
 
 	if (log_failed == 1) {
 		document.getElementById('status').innerHTML = 'Wrong username or password';
-	}
+	}//assign the failed login as 1 which means login unsuccessfully and display 'Wrong username or password'
 
 	var sign_success = "<?=isset($_GET['signsuccess']) ? $_GET['signsuccess'] : '0'?>";
 
