@@ -1,5 +1,11 @@
 <?php
-
+    /****************************************************************
+	*	CHANGE_PIC.PHP - This page is the which user change their hats 
+	*   for avatars  
+	*	This page connects with profile.php and allows users to change their avatars 
+	*   based on the database
+	*
+	*/
 include_once("servercon.php");
 $tbl_name="Users"; // Table name
 $pic=isset($_GET['pic']) ? $_GET['pic'] : "";

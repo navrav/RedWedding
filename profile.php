@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <?php
+    /****************************************************************
+	*	PROFILE.PHP - This page is the which user change their hats 
+	*   for avatars and buy secrets. 
+	*	This page allows users to see the hats and the secrets they own 
+	*
+	*
+	*/
   session_start();
  
   include_once("servercon.php");

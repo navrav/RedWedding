@@ -1,4 +1,10 @@
 <?php
+    /****************************************************************
+	*	FRIENDS_DELETE.PHP - This page is the which user delete their friends
+	*	This page allows users to delete the friends they want based on the database 
+	*
+	*
+	*/
 
 include('servercon.php');
 
