@@ -151,7 +151,7 @@
 				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/hat1.png" data_src="m1.png">
 				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/hat2.png" data_src="m2.png">
 				
-				
+				<!--each user has two default hats which are hat1 and hat2-->
 				
 				<?php
 				echo("<script>console.log('All hats... ');</script>");
@@ -188,15 +188,7 @@
 				
 				
 			
-				<!--
-				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/qm.png" data_src="m.png">
-				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/qm.png" data_src="m.png">
-				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/qm.png" data_src="m.png">
-				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/qm.png" data_src="m.png">
-				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/qm.png" data_src="m.png">
-				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/qm.png" data_src="m.png">
-				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/qm.png" data_src="m.png">
-				<img style="max-height:40px;float:left;cursor:pointer;" src="avatars/qm.png" data_src="m.png">--></div>
+				</div>
 					<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
 					
 					
