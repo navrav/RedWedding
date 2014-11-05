@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <?php
+/*********************************************************
+ *	SIGNUP.PHP - The form which users will to register 
+ *				 for an account
+ *
+ *
+ */
 session_start();
 ?>
 <html class="ui-mobile">
@@ -8,45 +14,56 @@ session_start();
 	<link rel="icon" href="/icons/favicon.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1" >
 		
-		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="css/main.css" type="text/css" />
-		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" />
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/main.css" type="text/css" />
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" />
+	
 		
-			
-		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 
 
 
 <script>
+/**
+ *The function check goes through the html form elements checking whether the inputted values are not null and appropriate to submit 
+ */
 function check(){
 
 	var fname = document.getElementById("fname").value;
 	var lname = document.getElementById("lname").value;
+
 	var email = document.getElementById("email").value;
 	var atpos = email.indexOf("@");
     var dotpos = email.lastIndexOf(".");
+
 	var pass = document.getElementById("pass").value;
 	var cpass = document.getElementById("cpass").value;
 	var form = document.getElementById("signup");
-	
-	if (fname == null || fname == ""){
+
+	if (fname == null || fname == "") {
 		document.getElementById("validate").innerHTML = "Please enter your first name";
 	}
 	
-	else if (lname == null || lname == ""){
+	else if (lname == null || lname == "") {
 		document.getElementById("validate").innerHTML = "Please enter your last name";
 	}
-
 	
+	/**
+	 *Checks whether the email is invalid if
+	 *there is less than 1 character before the @ symbol
+	 *and the final dot is at less 2 characters awhile from the @ symbol
+	 *and has characters after the final dot
+	 */
     else if (atpos< 1 || dotpos<atpos+2 || dotpos+2>=email.length) {
         document.getElementById("validate").innerHTML = "Please enter a valid email";
     }
 
-	else if (pass == null || pass == ""){
+	else if (pass == null || pass == "") {
 		document.getElementById("validate").innerHTML = "Please enter a password";
 	}
 
+	//Checks whether the password match. This is to prevent user input errors.
 	else if (pass != cpass) {
 		document.getElementById("validate").innerHTML = "Passwords do not match.";
 	}
@@ -55,6 +72,9 @@ function check(){
 	}
 }
 
+/**
+ *Takes the user back to the index.php when the function is called
+ */
 function back(){
 	location.href='index.php';
 }
@@ -125,6 +145,7 @@ function back(){
 	</section>
 </body>
 <script type="text/javascript">
+	//Checks whether the $_GET['signfailed'] has been set, if so then the variable sign_failed is set to 1, otherwise it will be set to 0.
 	var sign_failed = "<?=isset($_GET['signfailed']) ? $_GET['signfailed'] : '0'?>";
 			
 	if (sign_failed == 1) {

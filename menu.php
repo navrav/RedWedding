@@ -1,4 +1,8 @@
 <?php
+/*********************************************************
+ *	MENU.PHP - Contains the html section of menu that is 
+ *	included by all pages expect signup.php and index.php
+ */
   include_once("servercon.php");
 
   if (!isset($_SESSION['username']))
@@ -14,9 +18,6 @@
     $lname = $row["l_name"];
     $avatar = $row["pic"];
     $userIsAdmin = $row["isAdmin"];
-
-
-    echo("<script>console.log('isAdmin:".$userIsAdmin."');</script>"); 
 ?>
 
 <section data-role="panel" id="nav" data-display="overlay"> 
@@ -81,6 +82,7 @@
 		</li>
 		
 		<?php
+		//Checks whether the current user is an Admin. If so they will be able to see the addtional menu option Admin Page.
 		if($userIsAdmin == 1){
 		?>
 		<li>
@@ -104,7 +106,8 @@
 </section>
 
 <script>
+	//This function redirects the User to logout.php which will log the user out.
 	function logout(){
-		location.href="/logout.php"; //click the logout button and go to the logout.php
+		location.href="/logout.php"; 
 	}
 </script>

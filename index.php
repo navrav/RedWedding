@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <?php
-	// Database access - set variables and connect
+	/****************************************************************
+	*	INDEX.PHP - This page is the which user first interact with. 
+	*	This page allows users to login or can access the sign up 
+	*	page to create an account. 
+	*
+	*
+	*/
 	include_once("servercon.php");
 ?>
 
@@ -22,6 +28,9 @@
 	
 	<!-- Check submitted data -->
 	<script>
+		/**
+		 *The function check goes through the html form elements checking whether the inputted values are not null and appropriate to submit 
+		 */
 		function check(){
 
 			var email = document.getElementById("user").value;
@@ -30,7 +39,12 @@
 			var pass = document.getElementById("pass").value;
 			var form = document.getElementById("login");
 
-			
+			/**
+	 		 *Checks whether the email is invalid if
+			 *there is less than 1 character before the @ symbol
+			 *and the final dot is at less 2 characters awhile from the @ symbol
+			 *and has characters after the final dot
+			 */
 		    if (atpos< 1 || dotpos<atpos+2 || dotpos+2>=email.length) {
 		        document.getElementById("status").innerHTML = "Please enter a valid email";
 		    }
@@ -92,6 +106,7 @@
 	</section>		
 </body>
 <script>
+	//Checks whether the $_GET['log_out'] has been set, if so then the variable log_out is set to 1, otherwise it will be set to 0.
 	var log_out = "<?=isset($_GET['log_out']) ? $_GET['log_out'] : '0'?>";
 			
 	if (log_out == 1) {
@@ -99,12 +114,14 @@
 		document.getElementById('status').style.color="white"
 	}//assign the logout as 1 which means logout successfully and display 'Logout Successfully'
 
+	//Checks whether the $_GET['logfailed'] has been set, if so then the variable log_failed is set to 1, otherwise it will be set to 0.
 	var log_failed = "<?=isset($_GET['logfailed']) ? $_GET['logfailed'] : '0'?>";
 
 	if (log_failed == 1) {
 		document.getElementById('status').innerHTML = 'Wrong username or password';
 	}//assign the failed login as 1 which means login unsuccessfully and display 'Wrong username or password'
 
+	//Checks whether the $_GET['signsuccess'] has been set, if so then the variable sign_success is set to 1, otherwise it will be set to 0.
 	var sign_success = "<?=isset($_GET['signsuccess']) ? $_GET['signsuccess'] : '0'?>";
 
 	if (sign_success == 1) {
