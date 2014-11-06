@@ -6,11 +6,14 @@
  */
 
 	// variables for accessing the database
+	
 	// Host for the database
-	$dbhost = "deco3801-01.zones.eait.uq.edu.au";
+	$dbhost = "deco3801-01.zones.eait.uq.edu.au"; // Will need to be changed
+
 	// Username & password for accessing the database
 	$dbuser = "root";
-	$dbpass = "Viking8Chief+latch";
+	$dbpass = "Viking8Chief+latch"; // Will need to be changed
+	
 	// Database to be accessed
 	$dbname = "aeb";
 	

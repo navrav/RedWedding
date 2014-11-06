@@ -18,6 +18,7 @@
     $lname = $row["l_name"];
     $avatar = $row["pic"];
     $userIsAdmin = $row["isAdmin"];
+    echo("<script>console.log('isAdmin:".$userIsAdmin."');</script>"); 
 ?>
 
 <section data-role="panel" id="nav" data-display="overlay"> 
