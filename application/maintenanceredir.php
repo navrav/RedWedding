@@ -1,4 +1,16 @@
 <?php
+/***********************************************************
+ *	MAINTENANCEREDIR.PHP - Provides feedback to the user
+ *  upon submitting a maintenance request form and acknowledges
+ *  that the process was successful
+ *
+ *      Consists of HTML elements with minimal reliance on
+ *      server side script to display either a successful 
+ *      outcome or an error if something went wrong.
+ *      
+ */
+ 
+ 
 	session_start();
   	include_once("servercon.php");
 

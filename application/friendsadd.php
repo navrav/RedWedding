@@ -1,5 +1,17 @@
 <!DOCTYPE html>
 <?php
+/***********************************************************
+ *	FRIENDSADD.PHP - Page that lists all user matches to the
+ *  search term/s entered the dialog box on the friends page
+ *
+ *		Takes user's search term from FRIENDS.PHP and searches
+ *          for matches to other users in the database
+ *		Uses a SELECT and fetch to check a user's record and
+ *          whether or not it matches the search term  
+ * 		Allows user to add the individual as a friend 
+ *      Uses an INSERT statement to enter the new friendship
+ *          into the database
+ */
 	session_start();
 	
   	include_once("servercon.php");
@@ -36,6 +48,8 @@
 			var tempFriend = "";
 		</script>
 <script>
+// Checks whether individuals are already friends and if so they have to watch for the
+// Changes the display of each layover to make the page more dyanimic
 $(document).ready(function(){
 $("#yes").click(function(){
 
@@ -56,6 +70,8 @@ $("#confirmpop").css({'display':'none'});
 });
 });
 
+// Posts data to a separate page for insertion into the database, however the same
+// information is stored locally
 $("#addF").click(
     console.log('clicked');
     function(){
@@ -73,6 +89,8 @@ $("#addF").click(
 
 </script>
 		<script>
+// Controls the display of the different dialog boxes based on the current conditions
+// of the page and what action users have already selected
 			function Deletepop(clickedID){
 				document.getElementById('layover').style.display= "block";
 				document.getElementById('confirmpop').style.display= "block";

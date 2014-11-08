@@ -1,4 +1,21 @@
 <?php
+
+/***********************************************************
+ *	MAINTENANCE.PHP - Allows users to provide feedback 
+ *	about maintenance issues in the AEB that is sent to
+ *  the building services team via email.
+ *
+ *		Requires users to input basic contact details
+ *      and information about the issue
+ *			- name, email, issue
+ *      Maintenance.php only contains the scripting necessary for  
+ *      creating the elements needed for the page
+ *      The functionality associated with storing and transferring
+ *      this information is contained in separate pages.
+ *      
+ */
+ 
+ 
 	session_start();
   	include_once("servercon.php");
 
@@ -124,6 +141,10 @@
 		                        	</p>
 		                        	<br><br>
 		                        	<p>
+                                    <!-- Creates elements in the form that are necessary
+                                    to collect the desired information about maintenance 
+                                    issues. No additional data other than that contained
+                                    in this form is collected or passed on. -->
 		                        		<form id="maintform" method="POST" action="maintenancesend.php" name="email">
 		                        		
 		                        		

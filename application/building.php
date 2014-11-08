@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <?php
+/***********************************************************
+ *	BUILDING.PHP - Provides users information on the AEB
+ *
+ */
+
 	session_start();
   	include_once("servercon.php");
 
@@ -11,6 +16,7 @@
   	$user = $_SESSION['username'];
 ?>
 <html>
+
 	<head>
 		<title>AEB Space - Bulding Information</title>
 		<link rel="icon" href="/icons/favicon.ico">
