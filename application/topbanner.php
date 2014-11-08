@@ -1,6 +1,6 @@
 <?php
 	/*********************************************************
-	*	MENU.PHP - Contains the html section for the topbanner that is 
+	*	TOPBANNER.PHP - Contains the html section for the topbanner that is 
 	*	included by all pages expect signup.php and index.php.
 	* 
 	*	This banner allows the user to access the menu and displays 

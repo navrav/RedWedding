@@ -96,6 +96,7 @@ function setOptions(cat){
 				document.getElementById('tag4').style.display= 'none' ;
 				document.getElementById('tag5').style.display= 'block' ;
 			}
+			
 }
 
 
@@ -142,7 +143,8 @@ function setLevel(cat){
 				document.getElementById('level5').style.display= 'block' ;
 			}
 			}
-
+//////////////////////////////////////////////////////////////////////////////////////////
+// The following search/filter function is repeated for each level in the AEB 
 /**
 Function is responsible for filtering the results displayed in the results table
 for a particular feedback area, based on the search term input by the administrator
@@ -154,7 +156,8 @@ $(function() {
     $('#search-basic').keyup(function() {
     console.log('Made it here...');
     var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-    
+    // Filters the content displayed in the table based on the string entered in the
+    // search box
     $rows.show().filter(function() {
         var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
         return !~text.indexOf(val);
@@ -173,7 +176,8 @@ $(function() {
     $('#search-basic').keyup(function() {
     console.log('Made it here...');
     var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-    
+    // Filters the content displayed in the table based on the string entered in the
+    // search box
     $rows.show().filter(function() {
         var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
         return !~text.indexOf(val);
@@ -192,7 +196,8 @@ $(function() {
     $('#search-basic').keyup(function() {
     console.log('Made it here...');
     var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-    
+    // Filters the content displayed in the table based on the string entered in the
+    // search box
     $rows.show().filter(function() {
         var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
         return !~text.indexOf(val);
@@ -211,7 +216,8 @@ $(function() {
     $('#search-basic').keyup(function() {
     console.log('Made it here...');
     var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-    
+    // Filters the content displayed in the table based on the string entered in the
+    // search box
     $rows.show().filter(function() {
         var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
         return !~text.indexOf(val);
@@ -230,13 +236,16 @@ $(function() {
     $('#search-basic').keyup(function() {
     console.log('Made it here...');
     var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-    
+    // Filters the content displayed in the table based on the string entered in the
+    // search box
     $rows.show().filter(function() {
         var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
         return !~text.indexOf(val);
     }).hide();
     });
     });
+//////////////////////////////////////////////////////////////////////////////////////////
+
 
 /**
 Function is responsible for formatting the colour of the cells in the trending table
@@ -640,7 +649,8 @@ trimming the length of the value to a maximum of 5 characters -->
 			<option value="5" id="5" name="5">Level 5</option>
 		</select>
 		
-<!-- This		 -->
+<!-- A seperate div is created for each level and then the display attribute is updated
+according to which level the user has selected to view	 -->
 		<div id="level1">
 		<form id="selectRoom" name="selectRoom" method="POST"  action="">
 		<select name="level1sel" id="level1sel" onchange="this.form.submit()">
