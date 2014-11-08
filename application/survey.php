@@ -1,5 +1,22 @@
 <!DOCTYPE html>
 <?php
+
+/**************************************
+ *	SURVEY.PHP - Form page for surveys
+ *
+ *		Visual elements
+ *			- Room selection
+ *			- Sliders
+ *			- Comment box
+ *			- Submit button
+ *		
+ *		Functional elements
+ *			- Slider settings
+ *			- Room validation
+ *			- Room list retrieval
+ *			- Save room choice
+ */
+
 	session_start();
   	include_once("servercon.php");
 

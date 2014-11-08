@@ -1,5 +1,26 @@
 <!DOCTYPE html>
 <?php
+
+/*****************************************
+ *	CHECKIN.PHP - Form page for check-ins
+ *
+ *		Visual elements
+ *			- Room selection
+ *			- Hashtags
+ *			- Comment box
+ *			- Friends list
+ *			- Submit button
+ *		
+ *		Functional elements
+ *			- Room validation
+ *			- Friends popover
+ *			- Friends list generator
+ *			- Room list retrieval
+ *			- Save room choice
+ *			- Save friend choice
+ *			- Hashtag control
+ */
+
 	session_start();
   	include_once("servercon.php");
 
@@ -258,7 +279,7 @@
 					}
 				</script>
 				
-				<!-- store tag choices; tag light-up control; tag colour -->
+				<!-- save tag choices; tag light-up control; tag colour -->
 				<script>
 					var hot = document.getElementById("hot");
 					var warm = document.getElementById("warm");
