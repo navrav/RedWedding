@@ -1,17 +1,5 @@
 <!DOCTYPE html>
 <?php
-/***********************************************************
- *	FRIENDSADD.PHP - Page that lists all user matches to the
- *  search term/s entered the dialog box on the friends page
- *
- *		Takes user's search term from FRIENDS.PHP and searches
- *          for matches to other users in the database
- *		Uses a SELECT and fetch to check a user's record and
- *          whether or not it matches the search term  
- * 		Allows user to add the individual as a friend 
- *      Uses an INSERT statement to enter the new friendship
- *          into the database
- */
 	session_start();
 	
   	include_once("servercon.php");
@@ -31,6 +19,17 @@
 ?>
 
 <html>
+/***************************************************************************
+	*	
+	*	FRIENDSADD.PHP - Responsible for searching the database for matches to 
+	*   user searches and allows users to add these as friends
+	*
+	*	Functionality:
+	*		- Establishes connection to the database
+	*		- Grabs data from the database
+	*		- Displays a list of people that return a match to the user's search term
+	*		
+	*/
 	<head>
 		<title>AEB Space - Friends</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,8 +47,8 @@
 			var tempFriend = "";
 		</script>
 <script>
-// Checks whether individuals are already friends and if so they have to watch for the
-// Changes the display of each layover to make the page more dyanimic
+// If the user selects 'Yes' then a function is called to remove the friend from the 
+// users network
 $(document).ready(function(){
 $("#yes").click(function(){
 
@@ -62,16 +61,15 @@ $("#confirmpop").css({'display':'none'});//remove the bg of popup
 
 
 });
-//click to cancel
+// If the user selects 'Cancel' the popup dialog box is removed from the screen
 $("#no").click(function(){
 $("#layover").css({'display':'none'});
 $("#confirmpop").css({'display':'none'});				
 
 });
 });
-
-// Posts data to a separate page for insertion into the database, however the same
-// information is stored locally
+// If users wish to add a friend the form is posted to friendins.php which inserts the new
+// friendship into a users friends network
 $("#addF").click(
     console.log('clicked');
     function(){
@@ -89,8 +87,14 @@ $("#addF").click(
 
 </script>
 		<script>
-// Controls the display of the different dialog boxes based on the current conditions
-// of the page and what action users have already selected
+		/**
+        Function is responsible for displaying a dialog box that allows a user to confirm
+        whether they still wish to delete the friend from their network
+
+        Parameters:
+        @ clickedID - string representing the ID of the button that was clicked, which 
+        is equal to the userID of the friend
+        **/
 			function Deletepop(clickedID){
 				document.getElementById('layover').style.display= "block";
 				document.getElementById('confirmpop').style.display= "block";
@@ -98,32 +102,26 @@ $("#addF").click(
 				tempFriend = clickedID;
 			}
 		</script>
-		
-		<script>
-			function Delete(){
-				document.getElementById('layover').style.display= "block";
-				document.getElementById('confirmpop').style.display= "block";
-
-			}
-		</script>
 
 		<script>
+		/**
+            Function is responsible for displaying a dialog box that allows a user to search
+            for a user they wish to add to their friend network
+            **/
 			function Add(){
 				document.getElementById('layover').style.display= "block";
 				document.getElementById('addpop').style.display= "block";
 				document.getElementById('addsearch').style.display= "none";
 			}
 		</script>
+
 		
 		<script>
-			function AddSearch(){
-				document.getElementById('layover').style.display= "block";
-				document.getElementById('addpop').style.display= "none";
-				document.getElementById('addsearch').style.display= "block";
-			}
-		</script>
-		
-		<script>
+		/**
+            Function is responsible for hiding the dialog box that allows a user to search
+            for a user they wish to add to their friend network. Function is called when 
+            a user clicks on the 'X' button
+            **/
 			function Close(){
 				document.getElementById('layover').style.display= "none";
 				document.getElementById('addpop').style.display= "none";
@@ -159,7 +157,7 @@ $("#addF").click(
 	  
 	  	
 	<?php
-	
+	// Searches the database and returns an array of users the user is currently friends with
 	while($cf = mysqli_fetch_array($currFriends, MYSQLI_ASSOC)){
 	    echo("<script>console.log('Friend ID: ".$cf['ID_2']."');</script>");
 	    echo("<script>console.log('Friend ID: ".gettype($cf['ID_2'])."');</script>");
@@ -167,21 +165,20 @@ $("#addF").click(
 	    }
 	
 	
-	
+        // Creates and array of elements returned from the query and iterates over these 
+        // elements to populate a list of matches
 	  while($friendList = mysqli_fetch_array($resultNew, MYSQLI_ASSOC)) {
 	  if (empty($friendList)){?>
 	  <center> No results found :( </center>
 	  <?php }
-	  echo("<script>console.log('Friend ID: ".$friendList['u_ID']."');</script>");
-	  echo("<script>console.log('User ID: ".$user."');</script>");
+	  // Checks to see if they are already friends and if so, ignores this user
 	  if ($user==$friendList['u_ID']){
-	  // Debugging
-	  echo("<script>console.log('Match');</script>");
+	
 	  } 
 	  else{
 	  
 	  ?>
-      <li data-icon="false">
+      <li data-icon="false"><a href="friend.php">
       	<h6><img src="avatars/<?php echo($friendList["pic"]);?>" width="50px" height="50px" class="img-circle" style/>
       		<?php 
       		echo $friendList['f_name'] . " " . $friendList['l_name']; 
@@ -190,13 +187,10 @@ $("#addF").click(
         <p><span class="glyphicon glyphicon-tower"></span>
          AEBux: 
          <?php echo $friendList['AEBux'] ?> 
-     	</p>
+     	</p></a>
         <p style="position: absolute;top: 1em;padding-top:30px;right: 0.3em;margin: 0;text-align: right;">
-        <!--
-        	<form id="addfriend" method="POST" action="friendsadd.php">
-        	<input type="submit" value="Add">
-        	</form>-->
         	<?php 
+        	// Populates list of matches with the information extracted from the database
         	if(in_array($friendList['u_ID'], $cfa) && $cf['ID_2']!=$user){ ?>
         	<button type="button" class="btn btn-default btn-sm" style="float:right;" id="<?php echo $friendList['u_ID'] ?>">
 	        		 Friends
@@ -218,6 +212,13 @@ $("#addF").click(
 
     </ul>
     <script>
+    /**
+    Function is responsible for establishing the query for entering the new network into
+    the database
+
+    Parameters:
+    @ friend - string representing the userID of the person the user wishes to add
+    **/
     function addFriend(friend){
     console.log('clicked');
         
@@ -230,6 +231,7 @@ $("#addF").click(
             console.log('clicked');
       }
   });
+  // Redirects user to the friends page to view their new friends list
   window.location="http://deco3801-01.uqcloud.net/friends.php";
   }
 
@@ -255,66 +257,7 @@ $("#addF").click(
 				</div>
 			
 			</div>
-	</div>			
-	<!-- 
-				
-	<div id="confirmpop" style="display:none; position:fixed; left:50%; top:50%;margin-left:-125px;margin-top:-74.5px; "> 
-		<div class="modal-content" style="background-color:#262626; width:250px">
-				<div class="modal-body"  style="padding: 15px; padding-bottom: 5px;">
-					<p> Are you sure you want to delete this friend?</p>
-				</div>
-				
-				<div class="modal-footer" style="padding-top: 10px; padding-bottom: 10px;">
-					<button type="button" style="font-size: 13px; padding: 5px; width: 100px; float: right; margin-left: 5px;" id = "yes">Yes</button>
-					<button type="button" style="font-size: 13px; padding: 5px; width: 100px; float: right;" id="no" >No</button>
-				</div>
-			</div>
-	</div>
- -->
-				 
-									
-	<!-- 
-<div id="addpop" style="display:none; position:fixed; left:20%; top:40%; "> 
-		<div class="modal-content" style="background-color:#262626; width:250px">
-		
-				<div class="modal-body" style="padding: 15px; padding-bottom: 5px;">
-					<p> Enter Friends Email to Add:</p>
-					<button type="button" style="position: absolute; top:0px; right: 7px; width: 20px; background-color: transparent; border: none; box-shadow: none; text-align: center; padding: 5px;" onClick="Close();">&times;</button>
-					<p> Email: <input type="text" name="email"></p>
-					
-					<button type="button" style="font-size: 13px; padding: 5px; width:100px ; margin-left: 105px;" id = "search" onClick="AddSearch();">Search</button>
-					
-				</div>
-			
-			</div>
-	</div>
- -->
-						
-	<!-- 
-<div id="addsearch" style="display:none; position:fixed; left:20%; top:40%; background-color:#262626;"> 
-		<div class="modal-content" style="background-color:#262626; width:250px">
-				<div class="modal-header">
-					<p> Is this who you where looking for?</p>
-				</div>
-				
-				<div class="modal-body" style="padding: 15px; padding-bottom: 0px;background-color:#262626;">
-						<section class="checkin" style=" background-color:#262626; initial; padding: 0px; ">
-								<div class="container">
-									<img src="Team/faisal.jpg" width="35%" height="35%" class="img-circle" style="float: left;"/>
-									<h4> Faisal Alsidiqqi </h4>				
-								</div>							
-						</section>
-    
-				</div>
-				
-				<div class="modal-footer" style="padding-top: 10px; padding-bottom: 10px;background-color:#262626;">
-					<button type="button" style="font-size: 13px; padding: 5px; width: 100px; float: right; margin-left: 5px;" id = "yes" onClick="window.location.href='/friends2.php'">Yes</button>
-					<button type="button" style="font-size: 13px; padding: 5px; width: 100px; float: right;" id="no" onClick="Add();">No</button>
-				</div>
-			</div>
-	</div>
- -->
-			
+	</div>					
   
   
 </div> 

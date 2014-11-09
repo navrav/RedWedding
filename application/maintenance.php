@@ -1,21 +1,4 @@
 <?php
-
-/***********************************************************
- *	MAINTENANCE.PHP - Allows users to provide feedback 
- *	about maintenance issues in the AEB that is sent to
- *  the building services team via email.
- *
- *		Requires users to input basic contact details
- *      and information about the issue
- *			- name, email, issue
- *      Maintenance.php only contains the scripting necessary for  
- *      creating the elements needed for the page
- *      The functionality associated with storing and transferring
- *      this information is contained in separate pages.
- *      
- */
- 
- 
 	session_start();
   	include_once("servercon.php");
 
@@ -33,6 +16,19 @@
 <!DOCTYPE html>
 
 <html>
+/***************************************************************************
+	*	
+	*	MAINTENANCE.PHP - Sends an email to a specified account containing information
+	*   about possible maintenance issues, along with the details of the person lodging
+	*   the issue
+	*
+	*	Functionality:
+	*		- Users enter contact information and a description of the maintenance issue
+	*         they wish to report
+	*		- An email is sent to an account that is controlled by the building 
+	*         administrators
+	*		
+	*/
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
@@ -44,23 +40,11 @@
 		
 		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 		<script src="js/jquery.mobile-1.4.2.js"></script>
-		<!-- 
-<script>
-			function Submit() {
-				console.log('Called');
-				$.get("maintenance2.php");
-				console.log('After call');
-				//setTimeout(function() {window.location.href = "feed.php"}, 3000);
-				//document.getElementById('layover').style.display= "block";
-				//document.getElementById('confirmpop').style.display= "block";
-			}
- -->
-		
-
-		
 		
 		<style>
-		
+        /* Outlines the styling of different elements specific to the maintenance page,
+            hence are not contained in main.css
+         */
 		#header_brown {
 			background-color: #CD4F39;
 		}
@@ -89,7 +73,6 @@
 			font-weight: 100;
 			color: #CD4F39;
 		}
-		
 		
 		#maint_text p{
 			font-size: 14px;
@@ -141,19 +124,11 @@
 		                        	</p>
 		                        	<br><br>
 		                        	<p>
-                                    <!-- Creates elements in the form that are necessary
-                                    to collect the desired information about maintenance 
-                                    issues. No additional data other than that contained
-                                    in this form is collected or passed on. -->
 		                        		<form id="maintform" method="POST" action="maintenancesend.php" name="email">
-		                        		
-		                        		
-		                        		
-		                        		
 		                        			First name: <input type="text" name="FirstName" ><br>
 											Last name: <input type="text" name="LastName" ><br>
 		                        			<label for="email">Email (for reference): </label>
-									<input type="email" class="form-control input-control" placeholder="Email" name="email" id="email">
+									        <input type="email" class="form-control input-control" placeholder="Email" name="email" id="email">
 		                        			
 		                        			Issue: <textarea placeholder="Input a description of your issue here" name="issue" ></textarea>
 		                        			
@@ -188,12 +163,6 @@
 		        </div>
 		    </section>
   		</div> 
-  		<!--
-<?php
 
-echo("<script>console.log('Sending email...');</script>");
-sendmail($from, $to, $subject, $msg);
-echo("<script>console.log('Email sent...');</script>");
-?>-->
 	</body>
 </html>

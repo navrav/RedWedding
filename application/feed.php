@@ -16,7 +16,17 @@
 ?>
 
 <html>
-
+/***************************************************************************
+	*	
+	*	FEED.PHP - Extracts data from the database and displays information
+	*   about the user's and their friends check-ins. 
+	*
+	*	Functionality:
+	*		- Establishes connection to the database
+	*		- Grabs data from the database
+	*		- Displays a list of recent check-ins from the user and people in their friend
+	*         network
+	*/
 <head>
 <title>AEB Space - Newsfeed</title>
 <link rel="icon" href="/icons/favicon.ico">
@@ -31,6 +41,13 @@
 <script src="js/jquery.mobile-1.4.2.js"></script>
 
 <script>
+/**
+Function is responsible for selecting which information is to be displayed in the news feed.
+The options are either recent check-ins (feed) or recent events (not currently available)
+
+Parameters:
+@ feed - string representing the type of information to be displayed in the news feed
+**/
 function setOptions(feed) {
 		
 			console.log(feed);
@@ -65,7 +82,7 @@ function setOptions(feed) {
 		<!--end nav bar-->
     
   
-  <!-- the feed, i dont know, working on it. adee -->
+  <!-- the feed -->
    <section data-role="main" class="ui-content" style="padding-bottom:0px;">
 		<select name="rno" onchange="setOptions(this.options[this.selectedIndex].value);">
 			<option value="1">News Feed</option>
@@ -88,20 +105,22 @@ function setOptions(feed) {
             $setdate = null;
             
             ?>
-            <!-- <li style="background-color:#e03838; border:none;"> <?php echo($setdate);?> <span class="ui-li-count"><?php echo($setdate);?></span></li>-->
+            
              <?php
-                    
+             // Creates an array of the information about recent check-ins from the user
+             // and their friends. Array is iterated over to extract the relevant information
+             // from each check-in, which is later inserted into HTML elements       
             while($checkList = mysqli_fetch_array($resultNew, MYSQLI_ASSOC)) {
             $userid = $checkList['withFriend'];
+            // Selects information about friends who were tagged in the check-in
             $friendnameq = mysqli_query($dbconn, "SELECT `f_name`, `l_name` FROM Users WHERE `u_ID` = '{$userid}'");
              $friendnamea = mysqli_fetch_array($friendnameq, MYSQLI_ASSOC);
-            //$datetimenew = date_create('2001-01-01');
+             // Creates a string of the timestamp that is associated with the check-in data
            $datetimenew = date_create($checkList['timestamp']);
            $newdate = date_format($datetimenew, 'l jS F Y');
            
-           //$datetimecomp = date_format($datetimenew, 'm.d.y');
-            //$date = date_format($date,"Y/m/d");
-            //$datetimeall = getdate($checkList['timestamp']);
+           // Retrieves the list of tags that were included in the check-in and pushes them 
+           // to an array that is later iterated over to insert into HTML elements
             $alltags = [$checkList['tag1'], $checkList['tag2'], $checkList['tag3'], $checkList['tag4']];
             $allrealtags = array();
             
@@ -116,9 +135,6 @@ function setOptions(feed) {
             
             ?>
 
-            <!-- <li style="background-color:#e03838; border:none;">Wednesday, January 2, 2014 <span class="ui-li-count">3</span></li> -->
-           <!--<li style="background-color:#e03838; border:none;"> <?php echo($datetimeall['weekday']);?>, <?php echo($datetimeall['month']);?> <?php echo($datetimeall['mday']);?>, <?php echo($datetimeall['year']); ?> <span class="ui-li-count">3</span></li> -->
-           
            <?php
            
            if ($setdate != $newdate){ ?>
@@ -147,15 +163,19 @@ function setOptions(feed) {
               
               
               $i = 1;
-              
+              // Iterates over the array of tags associated with the check-in and prints
+              // them to the page. A series of catches are used (based on the index of the tag 
+              // in the array) in order to print the correct punctuation so that the tags can
+              // be printed in a sentence structure (read coherently)
               foreach($allrealtags as $tag){
               	echo($tag);
             
-              
+                // Checks whether the current tag from the array is the last element of the array
               	if ($i == ($ntags-1)){
               		?> and <?php
               		}
               
+                // Checks if the current tag is in the array and that it is not the last element
               	if (($i < $ntags) && ($i != ($ntags-1))){
               	?>, <?php
               	}
@@ -164,14 +184,16 @@ function setOptions(feed) {
               }
               
               
-              
+              // Catch for if there are no tags associated with the checkin
               if ($ntags == 0){
               ?> was <?php
               }
               
               
               ?>
-               at <?php echo($checkList['room']);
+               at <?php echo($checkList['room']); // Prints the room number to the page
+               // Checks to see if they tagged a friend or not. If they did the name of the
+               // friend is printed to the page, otherwise this catch is ignored
               if ($checkList['withFriend']){ 
                ?> with <?php echo($friendnamea['f_name'] . " " . $friendnamea['l_name']);
               }
@@ -184,8 +206,7 @@ function setOptions(feed) {
 			  } ?></p>
               <p class="ui-li-aside"> </p>
               <span class="ui-li-count"><?php echo date_format($datetimenew, 'h:i a');?></span>
-            <!-- <?php echo date_format($datetimenew, 'h:i a');?></p>-->
-              <!--<?php echo($datetimeall['hours']);?>:<?php echo($datetimeall['minutes']);?>  <?php echo($checkList['timestamp']);?></p>-->
+
             </li>
 
             <li class="feed-line" data-icon="false" style="border:none;">

@@ -1,9 +1,13 @@
 <?php
-    /****************************************************************
-	*	FRIENDS_DELETE.PHP - This page is the which user delete their friends
-	*	This page allows users to delete the friends they want based on the database 
+/***************************************************************************
+	*	
+	*	FRIENDS_DELETE.PHP - Provides auxillary support for friends.php through 
+	*   handling database connections and updating tables based on user actions
 	*
-	*
+	*	Functionality:
+	*		- Establishes database connections
+	*       - Removes data from the Friends table based on user input
+	*		
 	*/
 
 include('servercon.php');
