@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 10, 2014 at 03:27 AM
+-- Generation Time: Nov 10, 2014 at 11:29 AM
 -- Server version: 5.5.33
 -- PHP Version: 5.4.20
 
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `CheckIn` (
   `comment` text,
   PRIMARY KEY (`chk_ID`),
   KEY `timestamp` (`timestamp`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=277 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=279 ;
 
 --
 -- Dumping data for table `CheckIn`
@@ -253,7 +253,9 @@ INSERT INTO `CheckIn` (`chk_ID`, `u_ID`, `timestamp`, `room`, `tag1`, `tag2`, `t
 (273, 36, '2014-10-31 04:40:13', '101', 'hot', 'dark', 'crowded', 'noisy', 'humid', 0, ''),
 (274, 95, '2014-11-06 10:26:09', '307', 'warm', 'comfy', 'peaceful', 'quiet', 'humid', 0, 'alert("Testing script injection.");'),
 (275, 36, '2014-11-08 15:20:20', '307', 'cold', 'comfy', '', '', '', 0, 'Earning those $$$$$$$'),
-(276, 36, '2014-11-08 15:22:37', '102', '', '', '', '', '', 0, '');
+(276, 36, '2014-11-08 15:22:37', '102', '', '', '', '', '', 0, ''),
+(277, 36, '2014-11-09 20:21:13', '503', 'hot', 'comfy', 'peaceful', 'fine', 'normal', 0, ''),
+(278, 36, '2014-11-09 20:22:28', '208', '', '', '', '', '', 0, '');
 
 -- --------------------------------------------------------
 
@@ -298,11 +300,9 @@ INSERT INTO `Friends` (`ID_1`, `ID_2`) VALUES
 (2, 3),
 (2, 36),
 (3, 2),
-(3, 36),
 (5, 1),
 (6, 1),
 (36, 2),
-(36, 3),
 (36, 43),
 (36, 67),
 (36, 84),
@@ -314,11 +314,7 @@ INSERT INTO `Friends` (`ID_1`, `ID_2`) VALUES
 (89, 43),
 (89, 94),
 (94, 36),
-(94, 89),
-(95, 84),
-(95, 93),
-(100, 36),
-(100, 84);
+(94, 89);
 
 -- --------------------------------------------------------
 
@@ -832,7 +828,7 @@ CREATE TABLE IF NOT EXISTS `Survey` (
   `crowd` tinyint(2) DEFAULT NULL COMMENT '1 to 9',
   `comment` text,
   PRIMARY KEY (`svy_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=55 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=56 ;
 
 --
 -- Dumping data for table `Survey`
@@ -848,7 +844,8 @@ INSERT INTO `Survey` (`svy_ID`, `u_ID`, `timestamp`, `room`, `temp`, `humid`, `n
 (46, 89, '2014-10-24 05:12:08', '101', 8, 9, 9, 1, 0, ''),
 (47, 89, '2014-10-27 04:43:04', '101', 5, 3, 7, 6, 5, ''),
 (48, 36, '2014-10-27 06:23:17', '505', 8, 6, 5, 4, 5, 'Hey'),
-(49, 36, '2014-10-27 06:24:36', '200', 9, 9, 5, 1, 0, '');
+(49, 36, '2014-10-27 06:24:36', '200', 9, 9, 5, 1, 0, ''),
+(55, 36, '2014-11-09 20:24:45', '202', 0, 0, 0, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -1062,7 +1059,7 @@ INSERT INTO `Users` (`u_ID`, `email`, `pass`, `f_name`, `l_name`, `gender`, `pic
 (1, 'johnsnow@nightswatch.com', 'sha256:1000:KPNlxW2ZcToe49jRFsnw2wVGqPjSGtn+:PunedIJ5UgiBR3YfZnw2efq9/LauY1/t', 'John', 'Snow', 'm', 'm2.png', 100, 0, 5),
 (2, 'tyrion@kingslanding.com', 'sha256:1000:KPNlxW2ZcToe49jRFsnw2wVGqPjSGtn+:PunedIJ5UgiBR3YfZnw2efq9/LauY1/t', 'Tyrion', 'Lannister', 'm', 'm4.png', 1000, 0, 10),
 (3, 'jmormont@khaleesi.com', 'sha256:1000:KPNlxW2ZcToe49jRFsnw2wVGqPjSGtn+:PunedIJ5UgiBR3YfZnw2efq9/LauY1/t', 'Jorah', 'Mormont', 'm', 'm5.png', 1, 0, 3),
-(36, 'deco@3801.com', 'sha256:1000:rGq8OgHEgrr6yKEdOi6vIQR5AhS/sp/T:9FHJniuoc500zPPy1vghMMRrKf6mSIry', 'Tom', 'Koorts', 'm', 'm6.png', 40, 1, 777),
+(36, 'deco@3801.com', 'sha256:1000:rGq8OgHEgrr6yKEdOi6vIQR5AhS/sp/T:9FHJniuoc500zPPy1vghMMRrKf6mSIry', 'Tom', 'Koorts', 'm', 'm6.png', 60, 1, 777),
 (82, 'Testingit@hash.com', 'sha256:1000:Gucf+LdGNX17hgXniBeyN/0J7VemimuS:B9oriv2NwV2YrKWrZr8z6+0vYHnRn7r6', 'Password', 'Hashing', 'm', 'm.png', 5, 0, 0),
 (83, 'p@p.com', 'sha256:1000:1wsoBiR/SyGvcn5d4J4lJWcUmu6dXdAl:YpJpGYzaF9j8YO3Brl0OoIUN9cdkT8Uw', 'p', 'p', 'm', 'm.png', 5, 0, 0),
 (84, 'deco@3802.com', 'sha256:1000:rGq8OgHEgrr6yKEdOi6vIQR5AhS/sp/T:9FHJniuoc500zPPy1vghMMRrKf6mSIry', 'Debug', 'User', 'm', 'm.png', 5, 0, 0),
