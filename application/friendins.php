@@ -25,6 +25,7 @@
 if (isset($_POST['friend'])){
     $friend = $_POST['friend'];
     mysqli_query($dbconn, "INSERT INTO `Friends`(`ID_1`, `ID_2`) VALUES (".$user.", ".$friend.")");
+	mysqli_query($dbconn, "INSERT INTO `Friends`(`ID_1`, `ID_2`) VALUES (".$friend.", ".$user.")");
      
 }
 
